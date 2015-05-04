@@ -1,0 +1,86 @@
+{
+  "frames": {
+    "right": {
+      "totalFrame": 1,
+      "childrenFrame": [
+        {
+          "res": "right",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "left": {
+      "totalFrame": 1,
+      "childrenFrame": [
+        {
+          "res": "left",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "airnut": {
+      "totalFrame": 1,
+      "childrenFrame": [
+        {
+          "res": "airnut",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "pumpkin": {
+      "totalFrame": 1,
+      "childrenFrame": [
+        {
+          "res": "pumpkin",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "sugar": {
+      "totalFrame": 1,
+      "childrenFrame": [
+        {
+          "res": "sugar",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    }
+  },
+  "res": {
+    "right": {
+      "x": 26,
+      "y": 14,
+      "w": 84,
+      "h": 147
+    },
+    "left": {
+      "x": 167,
+      "y": 14,
+      "w": 84,
+      "h": 147
+    },
+    "airnut": {
+      "x": 313,
+      "y": 0,
+      "w": 71,
+      "h": 202
+    },
+    "pumpkin": {
+      "x": 450,
+      "y": 0,
+      "w": 84,
+      "h": 161
+    },
+    "sugar": {
+      "x": 579,
+      "y": 21,
+      "w": 121,
+      "h": 140
+    }
+  }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html> 
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title>蜻蜓_海量小游戏在线玩</title>
+  <meta http-equiv="Content-Language" content="zh-CN" /> 
+  <meta id="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" /> 
+  <meta content="yes" name="apple-mobile-web-app-capable" /> 
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
+  <meta content="telephone=no" name="format-detection" />  
+  
+    <link rel="stylesheet" href="../public/active/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/active/css/common.css"><!--
+    <link rel="stylesheet" href="../public/active/css/activities_step3.css">-->
+    <link rel="stylesheet" href="../public/active/css/swiper.css" id="laySwiper"> 
+    <link rel="stylesheet" href="../public/active/css/layout.css" id="layStyle">
+    <script src="../public/active/js/jquery.js"></script> 
+    <style>
+      #WU_FILE_0 img{ width:100%;}
+    </style>
+    </head>
+    
+    <body> 
+                                    <div class="phone" style="width: 100%; height:480px;">
+                                    
+                                    
+                                    
+                                    <script>var share_title='吃饭了',share_link='http://qingting.huosu.com/active/20150430-14303909382622.html',share_imgUrl='http://qingting.huosu.com/./upload/active/20150430-14303909187754.jpg',share_desc='听见没';</script>
+                                        <div class="phone-simulation lay-common" data-layout="symmetric" data-start="theEnd" data-screen="1">
+                                            <div class="swiper-container">
+                                                <div class="swiper-wrapper" style="-webkit-transform: translate3d(0px, 0px, 0px); height: 476px;">
+                                                </div>
+
+                                                <div class="btn-area">
+                                                    <a class="start-btn hdp-btn cc" href="/index.php/active/games_info?id=12170" style="right: 0px; position: absolute;">
+                                                        开始游戏
+
+                                                        <div class="btn-current">
+                                                            <i class="btn-current-i tl"></i>
+                                                            <i class="btn-current-i tr"></i>
+                                                            <i class="btn-current-i bl"></i>
+                                                            <i class="btn-current-i br"></i>
+                                                        </div>
+
+                                                    </a>
+                                                </div>
+
+                                                <div class="pagination"></div>
+                                            </div>
+                                        </div>
+                                    </div> </body>
+ 
+</html><script>  document.title = '吃饭了'; </script><script>
+ window.onload=function(){
+var w = $(document).width(),h = $(document).height();
+			$('.phone').css({
+				'width':w,
+				'height':h
+			});
+			$('.swiper-wrapper').css({
+				'width':w,
+				'height':h
+			});
+			$('.swiper-slide').css({
+				'width':w,
+				'height':h
+			});
+			
+			
+ }
+</script><script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script> 
+
+$.get("/index.php/active/share?url="+window.location.href,function(data){
+	   var share=eval("("+data+")");  
+	 
+	wx.config({
+    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    appId: share.appId, // 必填，公众号的唯一标识
+    timestamp: share.timestamp, // 必填，生成签名的时间戳
+    nonceStr: share.nonceStr, // 必填，生成签名的随机串
+    signature: share.signature,// 必填，签名，见附录1
+    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+});
+wx.ready(function(){
+	//朋友圈
+	wx.onMenuShareTimeline({
+	    title: share_title, // 分享标题
+	    link: share_link, // 分享链接
+	    imgUrl: share_imgUrl, // 分享图标
+	    success: function () {
+			alert('分享到朋友圈成功');
+	    },
+	    cancel: function () {}
+	});
+	//分享给朋友
+	wx.onMenuShareAppMessage({
+		title: share_title, // 分享标题
+	    link: share_link, // 分享链接
+	    imgUrl: share_imgUrl, // 分享图标 
+		desc: share_desc, // 分享标题
+	    
+	    type: '', // 分享类型,music、video或link，不填默认为link
+	    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+	    success: function () { 
+	        alert('分享给朋友成功');
+	    },
+	    cancel: function () {}
+	});
+});
+  } );
+
+</script>

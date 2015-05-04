@@ -1,0 +1,181 @@
+@charset "UTF-8";
+/*
+* @name: lay1
+* @description: 定义全站通栏样式.
+* @author: holan
+*/
+/*
+* @name: mixin
+* @description: 样式代码片段，快速和重复调用
+* @author: luobaoan
+*/
+.lay-common .layoutArea .btnArea, .share-content .share-text {
+  *zoom: 1;
+}
+.lay-common .layoutArea .btnArea:before, .share-content .share-text:before, .lay-common .layoutArea .btnArea:after, .share-content .share-text:after {
+  display: table;
+  content: "";
+}
+.lay-common .layoutArea .btnArea:after, .share-content .share-text:after {
+  clear: both;
+}
+
+.lay-common .layoutArea .btnArea a.btn1, .lay-common .layoutArea .btnArea a.btn3 {
+  float: left;
+  _display: inline;
+}
+
+.lay-common .layoutArea .btnArea a.btn2, .lay-common .layoutArea .btnArea a.btn4, .share-content .arrow-img {
+  float: right;
+  _display: inline;
+}
+
+.lay-common {
+  height: 100%;
+}
+.lay-common .layoutArea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 8%;
+}
+.lay-common .layoutArea .prize-show .prize-litpic {
+  position: relative;
+  width: 80%;
+  height: 150px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
+.lay-common .layoutArea .prize-show .prize-litpic img {
+  display: inline-block;
+  width: auto;
+  height: 150px;
+}
+.lay-common .layoutArea .prize-show p {
+  position: relative;
+  color: #fff;
+  margin-bottom: 15px;
+  text-align: center;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.lay-common .layoutArea .textArea {
+  position: relative;
+  width: 90%;
+  padding: 50px 0;
+  margin: 0 auto 20px auto;
+  background-color: #40464a;
+  color: #fff;
+  font-size: 36px;
+  line-height: 1.6em;
+  text-align: center;
+}
+.lay-common .layoutArea .btnArea {
+  width: 90%;
+  margin: 0 auto;
+}
+.lay-common .layoutArea .btnArea a {
+  text-decoration: none;
+  position: relative;
+  display: block;
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  margin-top: 10px;
+  color: #fff;
+}
+.lay-common .layoutArea .btnArea a:hover {
+  text-decoration: none;
+}
+.lay-common .layoutArea .btnArea a.btn1 {
+  width: 48%;
+  background-color: #ec3a3f;
+}
+.lay-common .layoutArea .btnArea a.btn2 {
+  width: 48%;
+  background-color: #707070;
+}
+.lay-common .layoutArea .btnArea a.btn3 {
+  width: 48%;
+  background-color: #7fbd48;
+}
+.lay-common .layoutArea .btnArea a.btn4 {
+  width: 48%;
+  display: block;
+  background-color: #ec3a3f;
+}
+.lay-common .footerArea {
+  width: 90%;
+  margin: 20px auto;
+}
+.lay-common .footerArea .homepage {
+  position: relative;
+  text-align: left;
+  height: 30px;
+  line-height: 30px;
+}
+.lay-common .footerArea .copyright {
+  position: relative;
+  text-align: center;
+}
+
+.mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.share-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 90%;
+  margin: 0 auto;
+}
+.share-content .arrow-img {
+  position: relative;
+  width: 50%;
+}
+.share-content .share-text {
+  width: 100%;
+}
+.share-content .share-text h3 {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+}
+.share-content .share-text p {
+  position: relative;
+  color: #fff;
+  line-height: 1.6em;
+}
+
+.layoutAuto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.hdp-input-text {
+  display: inline-block;
+  border: none;
+  padding: 0 10px;
+  width: 90%;
+  height: 35px;
+  line-height: 35px;
+  background-color: #fff;
+}
+
+/*# sourceMappingURL=layout.css.map */

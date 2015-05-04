@@ -1,0 +1,77 @@
+ <script>
+             //取得cookie    
+function getCookie(name) {    
+ var nameEQ = name + "=";    
+ var ca = document.cookie.split(';');    //把cookie分割成组    
+ for(var i=0;i < ca.length;i++) {    
+ var c = ca[i];                      //取得字符串    
+ while (c.charAt(0)==' ') {          //判断一下字符串有没有前导空格    
+ c = c.substring(1,c.length);      //有的话，从第二位开始取    
+ }    
+ if (c.indexOf(nameEQ) == 0) {       //如果含有我们要的name    
+ return unescape(c.substring(nameEQ.length,c.length));    //解码并截取我们要值    
+ }    
+ }    
+ return false;    
+} 
+   function delCookie(name) 
+{ 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() - 100000); 
+    var cval=getCookie(name); 
+    document.cookie= name + "="+cval+";expires="+exp.toGMTString()+";path=/"; 
+} 
+var score=getCookie('score');
+if(score<1)score='O';
+</script><!DOCTYPE html> 
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title>蜻蜓_海量小游戏在线玩</title>
+  <meta http-equiv="Content-Language" content="zh-CN" /> 
+  <meta id="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" /> 
+  <meta content="yes" name="apple-mobile-web-app-capable" /> 
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
+  <meta content="telephone=no" name="format-detection" />  
+  
+    <link rel="stylesheet" href="../public/active/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/active/css/common.css"><!--
+    <link rel="stylesheet" href="../public/active/css/activities_step3.css">-->
+    <link rel="stylesheet" href="../public/active/css/swiper.css" id="laySwiper"> 
+    <link rel="stylesheet" href="../public/active/css/layout.css" id="layStyle">
+    <script src="../public/active/js/jquery.js"></script> 
+    <style>
+      #WU_FILE_0 img{ width:100%;}
+    </style>
+    </head>
+    
+    <body> 
+                                    <div class="phone" style="width: 100%; height:480px;">
+                                    
+                                    
+                                    
+                                    <div style='display:none'><img src='http://qingting.huosu.com/'></div>
+                                    <div class="phone-simulation share-page" data-screen="1" style="width: 320px; height: 480px;">
+                                        <div class="layoutArea">
+                                            <div class="mask"></div>
+                                            <div class="share-content">
+                                                <div class="arrow-img hdp-img" style="left: 144px; top: 0px; margin: 0px; position: absolute;">
+                                                    <img src="data:image/png;base64,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">
+                                                </div>
+                                                <div class="clearfix" style="left: 0px; top: 0px; margin: 0px; position: absolute;"></div>
+                                                <div class="share-text" style="left: 0px; top: 98px; margin: 0px; position: absolute;">
+                                                    <h3 class="hdp-textarea">
+                                                        <div class="text-main"><span>爱我请FUN享</span></div>
+                                                    </h3>
+                                                    <h3 class="hdp-textarea" style="color: #FFFFFF;">
+                                                        <div class="text-main"><span>点击分享到微信朋友圈，邀请你的小伙伴一起玩游戏吧！</span>
+                                                        </div>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div> </body>
+ 
+</html><script> if(getCookie('cookie3_3')){ document.title = '';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='http://qingting.huosu.com/';}</script>

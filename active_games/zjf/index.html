@@ -1,0 +1,127 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+    <head>
+	
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>搞定丈母娘-轻应用-最大h5游戏分发平台</title>
+
+
+        <link rel="icon" type="image/GIF" href="res/favicon.ico"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="full-screen" content="yes"/>
+        <meta name="screen-orientation" content="portrait"/>
+        <meta name="x5-fullscreen" content="true"/>
+        <meta name="360-fullscreen" content="true"/>
+        <script type="text/javascript" src="http://qingting.huosu.com/public/js/game-handler.js"></script>
+        <style>
+            body, canvas, div {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                -khtml-user-select: none;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            }
+            .lis {
+				overflow: hidden;
+				width: 100%;
+				z-index: 99999;
+				position: absolute;
+				bottom: 0px;
+			}
+			.lis a {
+				display: block;
+				width: 99.9%;
+				color: #ffffff;
+				font-size: 14px;
+				text-decoration: none;
+				background: #606783;
+				text-align: center;
+				opacity: 0.5;
+				line-height: 30px;
+				font-weight: bold;
+				font-family: "微软雅黑"
+			}
+			.lis a img {
+				position: relative;
+				top: 0px;
+			}
+        
+        </style>
+ 
+    </head>
+    <body style="padding:0; margin: 0; background: #000;">
+    <div class="lis">
+  		<div style="float: left;width:50%;"><a style="border-bottom: 3px solid #fd6766;" href="http://yx.huosu.com/yx/index">更多游戏</a></div>
+  		<div style="float: left;width:50%;"><a style="border-bottom: 3px solid #04fece;" href="http://www.huosu.com">关注我们</a></div>
+	</div>
+        <canvas id="gameCanvas" width="640" height="960"></canvas>
+        <script src="game.min.js"></script>
+      	<script language=javascript>
+		var mebtnopenurl = "http://yx.huosu.com/yx/index";
+		window.shareData = {
+		        "imgUrl": "#",
+		        "timeLineLink": "#",
+		        "tTitle": "搞定丈母娘",
+		        "tContent": "【搞定丈母娘】自己动手来建房，你能造多高？"
+		};
+				
+		function goHome(){
+			window.location=mebtnopenurl;
+		}
+		function clickMore(){
+			 	window.location = "http://yx.huosu.com/yx/index";
+		}
+		function do_share(){
+			document.getElementById("share").style.display="";
+			
+		}
+		function do_Ranking(){
+			window.location=mebtnopenurl;
+		}
+
+		function showAd(){
+		}
+		function hideAd(){
+		}
+		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+		    
+		    WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+		        WeixinJSBridge.invoke('sendAppMessage', {
+		            "img_url": window.shareData.imgUrl,
+		            "link": window.shareData.timeLineLink,
+		            "desc": window.shareData.tContent,
+		            "title": window.shareData.tTitle
+		        }, onShareComplete);
+		    });
+
+		    WeixinJSBridge.on('menu:share:timeline', function(argv) {
+		        WeixinJSBridge.invoke('shareTimeline', {
+		            "img_url": window.shareData.imgUrl,
+		            "img_width": "640",
+		            "img_height": "640",
+		            "link": window.shareData.timeLineLink,
+		            "desc": window.shareData.tContent,
+		            "title": window.shareData.tTitle
+		        }, onShareComplete);
+		    });
+		}, false);
+		</script>
+		<div id=share style="display: none">
+			<img width=100% src="./share.png"
+				style="position: fixed; z-index: 9999; top: 0; left: 0; display: "
+				ontouchstart="document.getElementById('share').style.display='none';" />
+		</div>
+		<div style="display: none;">
+			<script type="text/javascript">
+            var myData = { gameid: "gdzmn" };
+			
+			
+			function onShareComplete(res) {
+		        	 dp_share();
+			}
+			</script>
+
+    </body>
+</html>

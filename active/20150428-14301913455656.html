@@ -1,0 +1,162 @@
+<!DOCTYPE html> 
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title>蜻蜓_海量小游戏在线玩</title>
+  <meta http-equiv="Content-Language" content="zh-CN" /> 
+  <meta id="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" /> 
+  <meta content="yes" name="apple-mobile-web-app-capable" /> 
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
+  <meta content="telephone=no" name="format-detection" />  
+  
+    <link rel="stylesheet" href="../public/active/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/active/css/common.css"><!--
+    <link rel="stylesheet" href="../public/active/css/activities_step3.css">-->
+    <link rel="stylesheet" href="../public/active/css/swiper.css" id="laySwiper"> 
+    <link rel="stylesheet" href="../public/active/css/layout.css" id="layStyle">
+    <script src="../public/active/js/jquery.js"></script> 
+    <style>
+      #WU_FILE_0 img{ width:100%;}
+    </style>
+    </head>
+    
+    <body> 
+                                    <div class="phone" style="width: 100%; height:480px;">
+                                    
+                                    
+                                    
+                                    
+  
+<div class="phone-simulation lay-common ui-droppable" data-layout="vertical" data-screen="1">
+    <div class="layoutBg hdp-layoutBg" style="height: 100%; background-image: url(http://qingting.huosu.com/active/20150428971.jpg); background-size: 100%;">
+        <!--<img class="hdp-layoutBg">-->
+    </div>
+    <div class="layoutAuto">
+        <div class="layoutbox" style="height: 100%; width: 100%;">
+            <div class="layoutArea">
+                <div class="prize-show">
+                    <div class="prize-litpic hdp-img" data-tip="no-upload">
+                        <img src="/public/active/css/images/litpic.jpg" id="prize-img">
+                    </div>
+                    <p class="hdp-textarea" data-input="false" style="color: #101010">
+                                                                <span class="text-main" id="prizeName-text">可口可乐一箱</span>
+                    </p>
+
+                    <p class="hdp-textarea" style="color: #101010">
+                                                                        <span class="text-main" id="tip-text">喜欢该奖品，点击【立即领奖】，了解详细的兑奖操作。</span>
+                    </p>
+
+                    <div class="btnArea">
+                        <a class="btn1 hdp-btn hdp-acceptPrize-btn active" href="/index.php/active/games_info?id=12154" data-id="url" data-url="http://baidu.com">
+                            立即领奖
+                            <div class="btn-current">
+                                <i class="btn-current-i tl"></i>
+                                <i class="btn-current-i tr"></i>
+                                <i class="btn-current-i bl"></i>
+                                <i class="btn-current-i br"></i>
+                            </div>
+                        </a>
+                        <a class="btn2 hdp-btn hdp-replay-btn" href="/index.php/active/games_info?id=12154">
+                            再玩一次
+                            <div class="btn-current">
+                                <i class="btn-current-i tl"></i>
+                                <i class="btn-current-i tr"></i>
+                                <i class="btn-current-i bl"></i>
+                                <i class="btn-current-i br"></i>
+                            </div>
+                        </a>
+                        <a class="btn3 hdp-btn hdp-share-btn" href="/index.php/active/games_fenxiang?id=12154">
+                            我要分享
+                            <div class="btn-current">
+                                <i class="btn-current-i tl"></i>
+                                <i class="btn-current-i tr"></i>
+                                <i class="btn-current-i bl"></i>
+                                <i class="btn-current-i br"></i>
+                            </div>
+                        </a>
+                        <a class="btn4 hdp-btn hdp-attention-btn" href="/index.php/active/games_info?id=12154" data-id="url" data-url="#">
+                            关注我们
+                            <div class="btn-current">
+                                <i class="btn-current-i tl"></i>
+                                <i class="btn-current-i tr"></i>
+                                <i class="btn-current-i bl"></i>
+                                <i class="btn-current-i br"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="footerArea" style="position: absolute; left: 16px;">
+                    <div class="copyright hdp-textarea">
+                        <span class="text-main">蜻蜓提供技术支持</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                                    </div> </body>
+ 
+</html><script>
+   if($(".btn1").attr("data-url").length>3)$(".btn1").attr('href',$(".btn1").attr("data-url"));
+   if($(".btn3").attr("data-url").length>3)$(".btn3").attr('href',$(".btn3").attr("data-url"));
+   if($(".btn4").attr("data-url").length>3)$(".btn4").attr('href',$(".btn4").attr("data-url"));
+ </script> <script>
+             //取得cookie    
+function getCookie(name) {    
+ var nameEQ = name + "=";    
+ var ca = document.cookie.split(';');    //把cookie分割成组    
+ for(var i=0;i < ca.length;i++) {    
+ var c = ca[i];                      //取得字符串    
+ while (c.charAt(0)==' ') {          //判断一下字符串有没有前导空格    
+ c = c.substring(1,c.length);      //有的话，从第二位开始取    
+ }    
+ if (c.indexOf(nameEQ) == 0) {       //如果含有我们要的name    
+ return unescape(c.substring(nameEQ.length,c.length));    //解码并截取我们要值    
+ }    
+ }    
+ return false;    
+} 
+ function delCookie(name) 
+{ 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() - 100000); 
+    var cval=getCookie(name); 
+    document.cookie= name + "="+cval+";expires="+exp.toGMTString()+";path=/"; 
+} 
+var str=$(".textArea").children('.text-main').text();
+var score=getCookie('score');
+if(score<1)score='0';
+ 
+str=str.replace("#score#",score); 
+ $(".textArea").children('.text-main').text(str);
+
+           </script><script>var pirze_url='http://qingting.huosu.com/active/games_getprize?id=12154';
+var now_p=0;
+ 
+$.get(pirze_url,function(data){
+	  var jsondata=eval('('+data+')');
+	  
+	  if(jsondata.title!='')$("#prizeName-text").html(jsondata.title);
+	  if(jsondata.pirze_t!='')$("#prizeName-text").html('恭喜你中奖【'+jsondata.title+'】兑奖码为'+jsondata.pirze_t);
+	  if(jsondata.img!='')$("#prize-img").attr('src',jsondata.img);
+	 });
+</script><script> if(getCookie('cookie3_5')){ document.title = '第一个活动';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','../public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='http://qingting.huosu.com/active/20150428-14301911178084.html';}</script>
+<script>
+ window.onload=function(){
+var w = $(document).width(),h = $(document).height();
+			$('.phone').css({
+				'width':w,
+				'height':h
+			});
+			$('.swiper-wrapper').css({
+				'width':w,
+				'height':h
+			});
+			$('.swiper-slide').css({
+				'width':w,
+				'height':h
+			});
+			
+			
+ }
+</script>

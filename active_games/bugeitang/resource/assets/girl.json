@@ -1,0 +1,38 @@
+{
+  "frames": {
+    "normal": {
+      "totalFrame": 1,
+      "childrenFrame": [
+        {
+          "res": "normal",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "throw": {
+      "totalFrame": 1,
+      "childrenFrame": [
+        {
+          "res": "throw",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    }
+  },
+  "res": {
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "w": 190,
+      "h": 250
+    },
+    "throw": {
+      "x": 190,
+      "y": 0,
+      "w": 190,
+      "h": 250
+    }
+  }
+}

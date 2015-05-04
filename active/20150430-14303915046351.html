@@ -1,0 +1,118 @@
+ <script>
+             //取得cookie    
+function getCookie(name) {    
+ var nameEQ = name + "=";    
+ var ca = document.cookie.split(';');    //把cookie分割成组    
+ for(var i=0;i < ca.length;i++) {    
+ var c = ca[i];                      //取得字符串    
+ while (c.charAt(0)==' ') {          //判断一下字符串有没有前导空格    
+ c = c.substring(1,c.length);      //有的话，从第二位开始取    
+ }    
+ if (c.indexOf(nameEQ) == 0) {       //如果含有我们要的name    
+ return unescape(c.substring(nameEQ.length,c.length));    //解码并截取我们要值    
+ }    
+ }    
+ return false;    
+} 
+   function delCookie(name) 
+{ 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() - 100000); 
+    var cval=getCookie(name); 
+    document.cookie= name + "="+cval+";expires="+exp.toGMTString()+";path=/"; 
+} 
+var score=getCookie('score');
+if(score<1)score='O';
+</script><!DOCTYPE html> 
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title>蜻蜓_海量小游戏在线玩</title>
+  <meta http-equiv="Content-Language" content="zh-CN" /> 
+  <meta id="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" /> 
+  <meta content="yes" name="apple-mobile-web-app-capable" /> 
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
+  <meta content="telephone=no" name="format-detection" />  
+  
+    <link rel="stylesheet" href="../public/active/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/active/css/common.css"><!--
+    <link rel="stylesheet" href="../public/active/css/activities_step3.css">-->
+    <link rel="stylesheet" href="../public/active/css/swiper.css" id="laySwiper"> 
+    <link rel="stylesheet" href="../public/active/css/layout.css" id="layStyle">
+    <script src="../public/active/js/jquery.js"></script> 
+    <style>
+      #WU_FILE_0 img{ width:100%;}
+    </style>
+    </head>
+    
+    <body> 
+                                    <div class="phone" style="width: 100%; height:480px;">
+                                    
+                                    
+                                    
+                                    <script>var share_title='吃饭了',share_link='http://qingting.huosu.com/active/20150430-14303915046351.html',share_imgUrl='http://qingting.huosu.com/./upload/active/20150430-14303909187754.jpg',share_desc='听见没';</script><div style='display:none'><img src='http://qingting.huosu.com/./upload/active/20150430-14303909187754.jpg'></div>
+                                    <div class="phone-simulation share-page" data-screen="1" style="width: 320px; height: 480px;">
+                                        <div class="layoutArea">
+                                            <div class="mask"></div>
+                                            <div class="share-content">
+                                                <div class="arrow-img hdp-img" style="left: 144px; top: 0px; margin: 0px; position: absolute; background-color: rgb(255, 40, 17);">
+                                                    <img src="data:image/png;base64,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">
+                                                </div>
+                                                <div class="clearfix" style="left: 0px; top: 0px; margin: 0px; position: absolute;"></div>
+                                                <div class="share-text" style="left: 0px; top: 98px; margin: 0px; position: absolute;">
+                                                    <h3 class="hdp-textarea active">
+                                                        <div class="text-main">爱我请FUNw享</div>
+                                                    </h3>
+                                                    <h3 class="hdp-textarea f-underline f-italic f-bold" style="color: rgb(253, 75, 63); font-size: 13.68px;" val="19">
+                                                        <div class="text-main">点击分享到微信朋友圈，邀请你的小伙伴一起</div>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div> </body>
+ 
+</html><script> if(getCookie('cookie3_3')){ document.title = '饭好了#score#吃不吃吧';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='http://qingting.huosu.com/active/20150430-14303909382622.html';}</script><script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script> 
+
+$.get("/index.php/active/share?url="+window.location.href,function(data){
+	   var share=eval("("+data+")");  
+	 
+	wx.config({
+    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    appId: share.appId, // 必填，公众号的唯一标识
+    timestamp: share.timestamp, // 必填，生成签名的时间戳
+    nonceStr: share.nonceStr, // 必填，生成签名的随机串
+    signature: share.signature,// 必填，签名，见附录1
+    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+});
+wx.ready(function(){
+	//朋友圈
+	wx.onMenuShareTimeline({
+	    title: share_title, // 分享标题
+	    link: share_link, // 分享链接
+	    imgUrl: share_imgUrl, // 分享图标
+	    success: function () {
+			alert('分享到朋友圈成功');
+	    },
+	    cancel: function () {}
+	});
+	//分享给朋友
+	wx.onMenuShareAppMessage({
+		title: share_title, // 分享标题
+	    link: share_link, // 分享链接
+	    imgUrl: share_imgUrl, // 分享图标 
+		desc: share_desc, // 分享标题
+	    
+	    type: '', // 分享类型,music、video或link，不填默认为link
+	    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+	    success: function () { 
+	        alert('分享给朋友成功');
+	    },
+	    cancel: function () {}
+	});
+});
+  } );
+
+</script>

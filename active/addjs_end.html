@@ -1,0 +1,31 @@
+ <script>
+             //取得cookie    
+function getCookie(name) {    
+ var nameEQ = name + "=";    
+ var ca = document.cookie.split(';');    //把cookie分割成组    
+ for(var i=0;i < ca.length;i++) {    
+ var c = ca[i];                      //取得字符串    
+ while (c.charAt(0)==' ') {          //判断一下字符串有没有前导空格    
+ c = c.substring(1,c.length);      //有的话，从第二位开始取    
+ }    
+ if (c.indexOf(nameEQ) == 0) {       //如果含有我们要的name    
+ return unescape(c.substring(nameEQ.length,c.length));    //解码并截取我们要值    
+ }    
+ }    
+ return false;    
+} 
+ function delCookie(name) 
+{ 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() - 100000); 
+    var cval=getCookie(name); 
+    document.cookie= name + "="+cval+";expires="+exp.toGMTString()+";path=/"; 
+} 
+var str=$(".textArea").children('.text-main').text();
+var score=getCookie('score');
+if(score<1)score='0';
+ 
+str=str.replace("#score#",score); 
+ $(".textArea").children('.text-main').text(str);
+
+           </script>

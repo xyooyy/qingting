@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>最快大脑-轻应用-最大h5游戏分发平台</title>
+    <link rel="icon" type="image/GIF" href="res/favicon.ico"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="yes"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+    <script type="text/javascript" src="http://qingting.huosu.com/public/js/game-handler.js"></script>
+    <style>
+        body, canvas, div {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+<body style="padding:0; margin: 0; background: #000;">
+<canvas id="gameCanvas" width="800" height="450"></canvas>
+
+<script src="game.min.js"></script>
+<script src="WeixinApi.js"></script>
+
+<script type="text/javascript">
+    var time = setInterval(function () {
+        if (that) {
+            document.getElementById('gameCanvas').style.visibility='';
+            C.W.Pe(new V(1));
+            clearInterval(time)
+        }
+    }, 100);
+
+
+    window.wxData = {
+        "appId": "", // 服务号可以填写appId
+        "imgUrl": 'http://mathfast.sinaapp.com/Icon.png',
+        "link": 'http://mathfast.sinaapp.com',
+        "desc": "最近微信刷屏的游戏，最快大脑，快来感受下吧",
+        "title": "最近微信刷屏的游戏，最快大脑，快来感受下吧"
+    };
+    window.wxFriend = {
+        "appId": "", // 服务号可以填写appId
+        "imgUrl": 'http://mathfast.sinaapp.com/Icon.png',
+        "link": 'http://mathfast.sinaapp.com',
+        "desc": '最近微信刷屏的游戏，最快大脑，快来感受下吧',
+        "title": "最近微信刷屏的游戏《最快大脑》，快来感受下吧"
+    };
+
+    WeixinApi.ready(function (Api) {
+        var wxCallbacks = {
+            ready: function () {
+            },
+            cancel: function (resp) {
+            },
+            fail: function (resp) {
+            },
+            confirm: function (resp) {
+            },
+            all: function (resp) {
+            }
+        };
+        Api.shareToFriend(wxFriend, wxCallbacks);
+        Api.shareToTimeline(wxData, wxCallbacks);
+        Api.shareToWeibo(wxData, wxCallbacks);
+    });
+
+
+</script>
+</body>
+</html>

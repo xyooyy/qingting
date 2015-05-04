@@ -1,0 +1,100 @@
+*{ margin:0; padding:0; font-size:14px; font-family:微软雅黑;}
+ul{ list-style:none;}
+a{ text-decoration:none;}
+body{ background-color:#ddd; color:#333;}
+
+.clear{ width:100%; clear:both;}
+.content{ width:100%;min-width:800px;}
+.header{ width:100%; height:60px; background-color:#3b5a79;color:#fff;}
+.con{ width:100%; background-color:#ddd;  min-height:52em; }
+.footer{ width:100%; background-color:#fff; height:60px; line-height:60px; text-align:center; clear:both; position:inherit; margin-top:5em; bottom:0;}
+.logo{ color:#fff; font-size:1.5em; float:left; display:block;line-height:60px; margin-left:50px; margin-right:100px;}
+.header_ul li{ float:left; color:#fff; line-height:60px; width:6em; text-align:center; height:60px;}
+.header_ul li.now_header{ background-color:#324a62;}
+.header_ul li:hover{ background-color:#324a62;}
+.header_info{ float:right; position:absolute; right:2%; line-height:60px;}
+.header_info a{ color:#fff;}
+
+/*****************我的游戏列表*************************/
+.qt_menu{ width:90%; padding-left:10%; height:45px; background:#fff;}
+.qt_menu span{ display:block; height:45px; line-height:45px; color:#395a79; margin:0 5px; float:left;}
+.qt_menu .span_fang{ background:url(../images/fang.png) no-repeat 25%; width:19px;}
+.qt_menu .span_jian{ background:url(../images/jian.png)  25%  no-repeat; width:10px;}
+.my_game { width:80%; margin:0 auto; min-height:50em;}
+.my_game dl{ float:left; width:16%; min-width:13em; margin-left:3%; margin-top:2%;}
+.my_game dl dt{ width:100%;}
+.my_game dl dt img{ width:13em; height:13em;}
+.my_game dl dd{ width:100%; text-align:center; line-height:2em; color:#333;}
+
+
+/*****************游戏列表*************************/
+
+.game_list{ width:90%; margin:0 auto; margin-top:2%;}
+.left{ float:left; width:12%; background-color:#fff;}
+.left ul li{ float:left; width:100%; text-align:center; color:#333; height:2.5em; line-height:2.5em;}
+.left ul li.now_tp{ background-color:#3598db; color:#fff;}
+.left ul li:hover{ background-color:#3598db; color:#fff;}
+.right{ float:right; width:84%; }
+.game_con{ width:100%;background-color:#fff;}
+.game_con ul li{ float:left; width:43.5%; padding:3%; border-bottom:1px solid #eee; border-right:1px solid #eee; min-height:9em;}
+.game_con ul .no_b{ border-right:none;}
+.game_con ul li img{ float:left; width:28%;}
+.game_con ul li span{ float:left;  padding-left:5%; }
+.game_con ul li p{ float:left; color:#929292;  width:65%; padding-left:5%; margin-top:2%; line-height:1.5em;}
+.b_l{ width:77px; height:28px; border:none; background:url(../images/3-3.png) no-repeat; line-height:20px; text-indent:1.8em; float:left; cursor:pointer; border-radius:2px;}
+.b_l:hover{  background:url(../images/3-2.png) no-repeat; color:#fff;}
+
+.b_c{ width:77px; height:28px; border:none; background:url(../images/4-4.png) no-repeat; line-height:20px; text-indent:1.8em; float:right;cursor:pointer;}
+.b_c:hover{  background:url(../images/4-3.png) no-repeat; color:#fff;}
+
+
+/*****************编辑内容页*************************/  
+.con_info{ width:80%; margin:0 auto; min-height:45em; padding-top:50px;}
+.info_img{ width:100%; border-radius:5px;}
+.left_info{ float:left; width:18%; background-color:#fff;}
+.right_info{ float:right; width:78%; }
+.info{ width:100%;}
+.info dl{ float:left; width:30%; margin-right:3%; margin-bottom:3%; }
+.info dl dt{ width:80%; margin:0 auto;}
+.info dl dt img{ width:100%; border-radius:10px;}
+.info dl dd{ width:100%; text-align:center; line-height:2em; color:#333;}
+
+/*****************生成游戏页*************************/ 
+.begame_info{width:85%; margin-left:10%;padding-top:50px;}
+.left_begame{ float:left; width:8%;   background-color:#fff;  }
+.left_begame ul li{ width:90%; margin:0 auto; margin-top:5%;  text-align:center;margin-bottom:1em; padding-bottom:1em; border-radius:10px;}
+.left_begame ul li span{ display:block; width:100%;  text-align:center; font-size:3em; margin:0 auto; color:#0a84cd; font-weight:100;}
+.left_begame ul li.now_begame{ background-color:#41a5f1; color:#fff;} 
+.left_begame ul li.now_begame span{ color:#fff;}
+.left_begame ul li img{ width:40%; margin-top:1em; }
+.right_begame{ float:left; width:91%; margin-left:1%; background-color:#fff;}
+.game_info{ width:95%; margin:0 auto; margin-top:2.5%; border-bottom:1px solid #ececec; height:auto; padding-bottom:2em;}
+.info_left{ width:55%; float:left;}
+.info_right{ width:44%; margin-left:1%; float:left;}
+.right1{ background:url(../images/shouji.png) no-repeat; width:360px;height:720px; margin:0 auto;}
+.right1 iframe{width:80%;height:520px; margin:0 auto;margin-top: 80px; margin-left:30px;}
+.right1_s{ clear:both; padding-left:20%;}
+.right1_s input{ width:20%; margin-left:3%; height:3em; line-height:3em; cursor:pointer; border:none; background-color:#fdac25; color:#fff; border-radius:5px; float:left;}
+.right1_s input:hover{ background-color:#9a9a9a;}
+.be_title h2{ color:#0a84cd; font-size:2em; float:left;}
+.be_title font{ float:left; font-size:1.3em; padding-top:0.7em; margin-left:0.6em;}
+.be_title p{ width:70%; border-bottom:1px solid #b8c5ce; float:left; margin-top:2.5em; margin-left:1em; display:block; }
+.form_info{ display:none;}
+.form_info div{ width:100%; margin:5em 0px;}
+.form_info div font{ float:left;text-align:right; width:25%; line-height:2.5em; height:4em;}
+.form_info div.font2{ float:left; width:79%; margin-left:1%; color:#848484;}
+.font2 input{ width:50%; height:2em; border:1px solid #b8c5ce; line-height:2em; text-indent:1em;}
+.form_info div p{ color:#848484; margin-top:1em; width:70%; padding-left:25%;}
+.game_img{ margin-left:1em; width:100px; height:100px; border:1px dashed #ddd;}
+ 
+.game_foot{ width:100%; height:60px; padding-top:2em;}
+.game_foot input{ width:193px; color:#dbeffa; font-size:1.5em; height:48px; background:url(../images/18.png) no-repeat; margin-left:5em;   border:none; cursor:pointer; float:left; }
+.game_foot input:hover{ background:url(../images/18-1.png) no-repeat;}
+
+/*****************多点投放*************************/
+.game_link{width:74%; margin:0 auto; min-height:50em; background-color:#eee; padding:1% 3%;}
+.game_link table{ width:100%;border-collapse:collapse;}
+.link_table tr td{ border:1px solid #dedede; padding:1em; text-align:center;}
+.del_button { width: 68px; height:30px; background:url(../images/19.png) no-repeat; border:none; text-indent:1em; cursor:pointer;}
+.link_head{ width:100%; text-align:left; margin-bottom:1em;}
+.add_button{ width:115px; height:30px; text-indent:1em; color:#fff; background:url(../images/20.png) no-repeat; border:0; float:right;}

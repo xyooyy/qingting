@@ -1,0 +1,26 @@
+{
+"resources":
+	[
+		{"name":"bgImage","type":"image","url":"assets/bg.jpg"},
+		{"name":"logo_jpg","type":"image","url":"assets/logo.jpg"},
+        {"name":"Hero_png","type":"image","url":"assets/Hero.png"},
+        {"name":"Hero_json","type":"json","url":"assets/Hero.json"},
+        {"name":"start_btn_png","type":"image",	"url":"assets/start_btn.png"},
+        {"name":"replay_btn_png","type":"image",	"url":"assets/replay_btn.png"},
+        {"name":"more_btn_png","type":"image",	"url":"assets/more_btn.png"},
+        {"name":"ground_png","type":"image",	"url":"assets/ground.jpg"},
+        {"name":"fx_png","type":"image",	"url":"assets/fx.png"},
+        {"name":"homepage_jpg","type":"image",	"url":"assets/homepage.jpg"},
+        {"name":"homepage2_jpg","type":"image",	"url":"assets/homepage2.jpg"},
+        {"name":"zone_jpg","type":"image",	"url":"assets/zone.jpg"},
+        {"name":"bg_sound","type":"sound",	"url":"assets/bgSound.mp3"},
+        {"name":"right_sound","type":"sound",	"url":"assets/rightSound.mp3"},
+        {"name":"wrong_sound","type":"sound",	"url":"assets/wrongSound.mp3"},
+        {"name":"mooncake_png","type":"image",	"url":"assets/mooncake.png"}
+	],
+
+"groups":
+	[
+        {"name":"preload","keys":"bg_sound,right_sound,wrong_sound,bgImage,logo_jpg,homepage_jpg,homepage2_jpg,zone_jpg,fx_png,Hero_png,Hero_json,start_btn_png,replay_btn_png,more_btn_png,ground_png,mooncake_png"}
+	]
+}

@@ -1,0 +1,98 @@
+﻿
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>不给糖就捣蛋-轻应用-最大h5游戏分发平台</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <meta name="full-screen" content="true"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+    <script type="text/javascript" src="http://qingting.huosu.com/public/js/game-handler.js"></script>
+
+    <style>
+        body {
+            text-align: center;
+            background: #000000;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+        html {
+            -ms-touch-action: none; /* Direct all pointer events to JavaScript code. */
+            overflow: hidden;
+        }
+        #gameDiv div, canvas {
+            display:block;
+            position:absolute;
+            margin: 0 auto;
+            padding: 0;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+<div style="position:relative; visibility: hidden" id="gameDiv" ></div>
+
+
+<script>var document_class = "Main";</script><!--这部分内容在编译时会被替换，要修改文档类，请到工程目录下的egretProperties.json内编辑。-->
+<script src="launcher/egret_require.js"></script>
+<script src="launcher/egret_loader.js"></script>
+<script src="launcher/game-min.js"></script>
+
+
+<script>
+    function shareTimeline() {  
+      WeixinJSBridge.invoke('shareTimeline',{  
+        "img_url": "http://meiriq-file.b0.upaiyun.com/h5game/moji/resource/image/games_icon.png",  
+        "img_width": "135",  
+        "img_height": "135",  
+        "link": window.location.href,  
+        "desc": "坚持20秒你就是纯汉子",  
+        "title": "坚持20秒你就是纯汉子"  
+      }, function(res) {  
+        _report('timeline', res.err_msg);  
+      });  
+    }
+    // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。  
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+      // 分享到朋友圈
+      WeixinJSBridge.on('menu:share:timeline', function(argv){
+        shareTimeline();
+      });
+    }, false);
+</script>
+<script>
+    var hiScore = 0;
+    var area = "广东省";
+    function endLoading(){};
+    function ADWH(){};
+    function ADWS(){};
+    egret_h5.startGame();
+//    finishLoadLog();
+</script>
+</body>
+</html>
+
+<script type="text/javascript"src="resource/script/lib/iscroll.min.js"></script>
+<script type="text/javascript"src="resource/script/common.min.js?20141008V1"></script>
+<script type="text/javascript">startLoading();</script>
+        <script type="text/javascript">
+            var time = setInterval(function (){
+                if(test&&test.startGame){
+                    document.getElementById('gameDiv').style.visibility = '';
+                    var evt = document.createEvent("MouseEvents");
+                    evt.initMouseEvent("touchTap", true, true, window,
+                            0, 0, 0, 80, 20, false, false, false, false, 0, null);
+                    test.startGame(evt);
+                    clearInterval(time);
+                }
+
+            },100)
+        </script>
+
+</body></html>

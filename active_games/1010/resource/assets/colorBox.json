@@ -1,0 +1,10 @@
+{"file":"colorBox.png","frames":{
+"bgBox":{"x":0,"y":0,"w":40,"h":40,"offX":0,"offY":0,"sourceW":40,"sourceH":40},
+"color_0":{"x":0,"y":40,"w":40,"h":40,"offX":0,"offY":0,"sourceW":40,"sourceH":40},
+"color_1":{"x":0,"y":80,"w":40,"h":40,"offX":0,"offY":0,"sourceW":40,"sourceH":40},
+"color_2":{"x":40,"y":0,"w":40,"h":40,"offX":0,"offY":0,"sourceW":40,"sourceH":40},
+"color_3":{"x":80,"y":0,"w":40,"h":40,"offX":0,"offY":0,"sourceW":40,"sourceH":40},
+"color_4":{"x":40,"y":40,"w":40,"h":40,"offX":0,"offY":0,"sourceW":40,"sourceH":40},
+"color_5":{"x":40,"y":80,"w":40,"h":40,"offX":0,"offY":0,"sourceW":40,"sourceH":40},
+"color_6":{"x":80,"y":40,"w":40,"h":40,"offX":0,"offY":0,"sourceW":40,"sourceH":40},
+"color_7":{"x":80,"y":80,"w":40,"h":40,"offX":0,"offY":0,"sourceW":40,"sourceH":40}}}
