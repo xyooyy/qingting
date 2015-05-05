@@ -5,11 +5,11 @@
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<title>蜻蜓</title>
-		<link rel="stylesheet" href="/public/css/style_login.css" type="text/css" media="screen" charset="utf-8"> 
+		<link rel="stylesheet" href="/public/css/style_login.css" type="text/css" media="screen" charset="utf-8">
         <script src="/public/js/jquery-1.7.2.min.js"></script>
 </head>
 	<body>
-        <img src="/public/images/login_bg.jpg" id="loginBg" /> 
+        <img src="/public/images/login_bg.jpg" id="loginBg" />
 		 <div id="wrapper_login">
 			<div id="menu">
 				<div id="left"></div>
@@ -20,7 +20,6 @@
 			<div class="body">
 						<form action="/index.php/admin/login" method="post">
 							<p>
-								 
 								<input type="text" name="username" id="username"  size="40" class="text" value="<?php echo $_GET['username']?>">
 								<br>
 							</p>
@@ -31,7 +30,7 @@
 							</p>
                             <p>
 								 
-								<input type="text" name="reg_rand" class="text" id="yan" value=""  ><img id="code" alt="看不清，换一张" onclick="location.href='?username='+document.getElementById('username').value;"  src="http://qingting.huosu.com/index.php/admin/rand_create"  title="换张图片"/>
+								<input type="text" name="reg_rand" class="text" id="yan" value=""  ><img id="code" alt="看不清，换一张" onclick="location.href='?username='+document.getElementById('username').value;"  src="http://localhost/index.php/admin/rand_create"  title="换张图片"/>
 								<br>
 							</p>
 							<p class="last">
