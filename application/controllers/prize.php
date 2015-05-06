@@ -5,6 +5,12 @@ session_start();
 
 class Prize extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+    }
+
     public function index()
     {
         //echo $_GET['id'];
@@ -28,7 +34,7 @@ class Prize extends CI_Controller
                 $wximg = $new_file;
             };
         }
-        if ($wximg) $data['p_img'] = 'http://qingting.huosu.com' . $wximg;
+        if ($wximg) $data['p_img'] = substr($this->host, 0, strlen($this->host) - 1) . $wximg;
         $data['p_title'] = $this->input->post('p_title');
         $data['p_count'] = $this->input->post('p_count');
         $data['p_size'] = $this->input->post('p_size');
