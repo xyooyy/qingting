@@ -18,21 +18,21 @@ $(function () {
     function saveConfig(success) {
         var html = $('.phone').clone();
         //html.find('.btn-current').remove();
-        var url =   "http://qingting.huosu.com/index.php/active/active_submit3_2";
+        var url = "http://qingting.huosu.com/index.php/active/active_submit3_2";
         //alert(html.html());
         $.ajax(url, {
             data: {
                 id: hdpUrl.get("id"),
                 html: html.html()
-            }, 
+            },
             type: "post",
             success: function (data, text) {
-                if (data>0) {
-                    window.location.href='./begame3_3?id='+data;
+                if (data > 0) {
+                    window.location.href = './begame3_3?id=' + data;
                 } else {
                     window.modal.showAlert(data);
-                } 
-            } 
+                }
+            }
         });
     }
 

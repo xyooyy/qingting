@@ -1,4 +1,264 @@
-@charset "UTF-8";.form-single-upload{*zoom:1}.form-single-upload:before,.form-single-upload:after{display:table;content:""}.form-single-upload:after{clear:both}.comm-form .form-group label,.comm-form .form-group .input-class,.comm-form .form-group .prompt,.comm-form .form-group .prompt i.icon-prompt,.comm-form .form-group .prompt .prompt-text{float:left;_display:inline}.webuploader-container{position:relative}.webuploader-element-invisible{position:absolute!important;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px)}.form-single-upload{height:auto}.form-single-upload .form-fileupload{float:left;width:188px;height:205px;padding-top:35px;background:#eee;border:1px solid #fa6567;text-align:center;position:relative}.form-single-upload .form-fileupload img{width:188px;height:240px;position:absolute;top:0;left:0;z-index:0}.form-single-upload .form-fileupload.upload-state-done .ico-sucess{width:40px;height:40px;position:absolute;right:0;bottom:0;z-index:5;background:url(images/success.png)}.form-single-upload .form-fileupload .inner{position:relative;z-index:10;width:166px;height:140px;margin:0 auto;padding:10px 0px;}.form-single-upload .form-fileupload .inner.bg{background:rgba(0,0,0,.6)}.form-single-upload .form-fileupload .inner p{font-size:14px;line-height:24px;color:#a0a0a0;position:relative;z-index:10}.form-single-upload .form-fileupload .inner p i{color:#fa6567}.form-single-upload .form-fileupload .inner .picker{display:block;width:110px;height:40px;line-height:40px;text-align:center;font-size:14px;color:#fff;border:0 none;background:#fa6567;position:relative;z-index:10;margin:14px auto 14px;cursor:pointer;overflow:hidden}.form-single-upload .form-fileupload .inner .picker .webuploader-pick{display:block;width:110px;height:40px;line-height:40px;text-align:center;font-size:14px;color:#fff;border:0 none;background:#fa6567}.form-single-upload .form-fileupload .inner .picker .webuploader-pick-hover{background:#fd9394}.form-single-upload .form-fileupload .inner .picker .webuploader-pick-disable{opacity:.6;pointer-events:none}.form-single-modify img{width:240px;height:240px;vertical-align:bottom;margin-right:10px;-webkit-border-radius:40px;border-radius:40px}.form-single-modify span{margin:0 0 0 10px;display:inline-block;width:155px;color:#999;font-size:14px;line-height:1.5}.form-single-modify span em{color:#F47672}.comm-form .form-group{height:40px;line-height:40px;margin-bottom:33px}.comm-form .form-group label{display:block;width:120px;text-align:right;font-size:16px;color:#a0a0a0;margin-right:20px}.comm-form .form-group label.ti{width:4.5em}.comm-form .form-group .input-class{padding:11px;height:40px;font-size:18px;border:0;background-color:#eee;margin-right:20px}.comm-form .form-group .prompt{padding:7.5px 0}.comm-form .form-group .prompt i.icon-prompt{display:block;width:25px;height:25px;background-image:url(images/icon-prompt.png);background-size:100%;cursor:pointer}.comm-form .form-group .prompt .prompt-text{font-size:12px;display:none;height:25px;line-height:25px;color:#fa6567}.comm-form .form-group .input-name{width:400px}.comm-form .form-group .date-picker{width:230px;border:1px solid #eee;padding:0 0 0 7px;height:38px;line-height:38px;color:#636363;font-size:16px;cursor:pointer;position:relative;z-index:10;background:#eee url(images/ico_date.png) no-repeat right 10px top 10px;outline:0}.comm-form .form-group span.options{font-size:16px;color:#aeaeae;margin:0 50px 0 5px}.comm-form .form-group-check{height:auto}.comm-form .commercial-content{padding:20px;height:190px;background-color:#f7f7f7;margin-left:135px;margin-bottom:20px}.comm-form .commercial-content h3{color:#fa6567;font-size:24px;margin-top:0}.comm-form .commercial-content p{color:#676767}.comm-form .commercial-content span{display: block;width: 75%;float: left;}.comm-form .commercial-content .code{width: 150px;float: right;}.comm-form .commercial-content .code img{display: block;width: 150px;height: 150px;}
+@charset "UTF-8";
+.form-single-upload {
+    *zoom: 1
+}
+
+.form-single-upload:before, .form-single-upload:after {
+    display: table;
+    content: ""
+}
+
+.form-single-upload:after {
+    clear: both
+}
+
+.comm-form .form-group label, .comm-form .form-group .input-class, .comm-form .form-group .prompt, .comm-form .form-group .prompt i.icon-prompt, .comm-form .form-group .prompt .prompt-text {
+    float: left;
+    _display: inline
+}
+
+.webuploader-container {
+    position: relative
+}
+
+.webuploader-element-invisible {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px)
+}
+
+.form-single-upload {
+    height: auto
+}
+
+.form-single-upload .form-fileupload {
+    float: left;
+    width: 188px;
+    height: 205px;
+    padding-top: 35px;
+    background: #eee;
+    border: 1px solid #fa6567;
+    text-align: center;
+    position: relative
+}
+
+.form-single-upload .form-fileupload img {
+    width: 188px;
+    height: 240px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0
+}
+
+.form-single-upload .form-fileupload.upload-state-done .ico-sucess {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    background: url(images/success.png)
+}
+
+.form-single-upload .form-fileupload .inner {
+    position: relative;
+    z-index: 10;
+    width: 166px;
+    height: 140px;
+    margin: 0 auto;
+    padding: 10px 0px;
+}
+
+.form-single-upload .form-fileupload .inner.bg {
+    background: rgba(0, 0, 0, .6)
+}
+
+.form-single-upload .form-fileupload .inner p {
+    font-size: 14px;
+    line-height: 24px;
+    color: #a0a0a0;
+    position: relative;
+    z-index: 10
+}
+
+.form-single-upload .form-fileupload .inner p i {
+    color: #fa6567
+}
+
+.form-single-upload .form-fileupload .inner .picker {
+    display: block;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border: 0 none;
+    background: #fa6567;
+    position: relative;
+    z-index: 10;
+    margin: 14px auto 14px;
+    cursor: pointer;
+    overflow: hidden
+}
+
+.form-single-upload .form-fileupload .inner .picker .webuploader-pick {
+    display: block;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border: 0 none;
+    background: #fa6567
+}
+
+.form-single-upload .form-fileupload .inner .picker .webuploader-pick-hover {
+    background: #fd9394
+}
+
+.form-single-upload .form-fileupload .inner .picker .webuploader-pick-disable {
+    opacity: .6;
+    pointer-events: none
+}
+
+.form-single-modify img {
+    width: 240px;
+    height: 240px;
+    vertical-align: bottom;
+    margin-right: 10px;
+    -webkit-border-radius: 40px;
+    border-radius: 40px
+}
+
+.form-single-modify span {
+    margin: 0 0 0 10px;
+    display: inline-block;
+    width: 155px;
+    color: #999;
+    font-size: 14px;
+    line-height: 1.5
+}
+
+.form-single-modify span em {
+    color: #F47672
+}
+
+.comm-form .form-group {
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 33px
+}
+
+.comm-form .form-group label {
+    display: block;
+    width: 120px;
+    text-align: right;
+    font-size: 16px;
+    color: #a0a0a0;
+    margin-right: 20px
+}
+
+.comm-form .form-group label.ti {
+    width: 4.5em
+}
+
+.comm-form .form-group .input-class {
+    padding: 11px;
+    height: 40px;
+    font-size: 18px;
+    border: 0;
+    background-color: #eee;
+    margin-right: 20px
+}
+
+.comm-form .form-group .prompt {
+    padding: 7.5px 0
+}
+
+.comm-form .form-group .prompt i.icon-prompt {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(images/icon-prompt.png);
+    background-size: 100%;
+    cursor: pointer
+}
+
+.comm-form .form-group .prompt .prompt-text {
+    font-size: 12px;
+    display: none;
+    height: 25px;
+    line-height: 25px;
+    color: #fa6567
+}
+
+.comm-form .form-group .input-name {
+    width: 400px
+}
+
+.comm-form .form-group .date-picker {
+    width: 230px;
+    border: 1px solid #eee;
+    padding: 0 0 0 7px;
+    height: 38px;
+    line-height: 38px;
+    color: #636363;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    background: #eee url(images/ico_date.png) no-repeat right 10px top 10px;
+    outline: 0
+}
+
+.comm-form .form-group span.options {
+    font-size: 16px;
+    color: #aeaeae;
+    margin: 0 50px 0 5px
+}
+
+.comm-form .form-group-check {
+    height: auto
+}
+
+.comm-form .commercial-content {
+    padding: 20px;
+    height: 190px;
+    background-color: #f7f7f7;
+    margin-left: 135px;
+    margin-bottom: 20px
+}
+
+.comm-form .commercial-content h3 {
+    color: #fa6567;
+    font-size: 24px;
+    margin-top: 0
+}
+
+.comm-form .commercial-content p {
+    color: #676767
+}
+
+.comm-form .commercial-content span {
+    display: block;
+    width: 75%;
+    float: left;
+}
+
+.comm-form .commercial-content .code {
+    width: 150px;
+    float: right;
+}
+
+.comm-form .commercial-content .code img {
+    display: block;
+    width: 150px;
+    height: 150px;
+}
+
 .new-eggs-prize {
     border-bottom: 1px #eaeaea solid;
     margin-bottom: 20px;
@@ -35,15 +295,16 @@
     width: 70px !important;
 }
 
-.new-eggs-prize .input-name{
-    width:350px !important;
+.new-eggs-prize .input-name {
+    width: 350px !important;
 }
 
-.wx-avatar-upload img, .new-eggs-prize-upload img{
-    width:198px !important;
-    height:198px !important;
+.wx-avatar-upload img, .new-eggs-prize-upload img {
+    width: 198px !important;
+    height: 198px !important;
 }
-.new-eggs-info{
+
+.new-eggs-info {
     display: none;
 }
 

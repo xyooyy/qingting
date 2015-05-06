@@ -15,7 +15,7 @@
                 活动管理
             </span>
             </a>
-        </li> 
+        </li>
         <li>
             <a href="/active/games">
                 <i class="sidebar-icon sidebar-game"></i>

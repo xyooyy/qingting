@@ -45,7 +45,7 @@ function bg_position(options) {
 
 }
 
-bg_position.prototype.updateConfig = function(){
+bg_position.prototype.updateConfig = function () {
     this.size = {
         width: parseInt($(this.obj).css('background-size').split(' ')[0]),
         height: parseInt($(this.obj).css('background-size').split(' ')[1])
@@ -71,8 +71,8 @@ bg_position.prototype.init = function () {
     var $this = this;
 
 
-    this.helper.on("mousedown",function (e) {
-        if ($this.isMove&&bp !== e.target && !$.contains(bp, e.target)) {
+    this.helper.on("mousedown", function (e) {
+        if ($this.isMove && bp !== e.target && !$.contains(bp, e.target)) {
 
             $this.data.startX = e.pageX - $this.data.currentX;
 
@@ -80,7 +80,7 @@ bg_position.prototype.init = function () {
 
             $this.data.locked = true;
 
-            $(document).on("mousemove",function (e) {
+            $(document).on("mousemove", function (e) {
                 if ($this.data.locked != true) {
                     return false;
                 }
@@ -92,9 +92,9 @@ bg_position.prototype.init = function () {
 
                 bp0.css({
                     'transition': 'background-position 0ms',
-                    '-moz-transition': 'background-position 0ms',	/* Firefox 4 */
-                    '-webkit-transition': 'background-position 0ms',	/* Safari 和 Chrome */
-                    '-o-transition': 'background-position 0ms',	/* Opera */
+                    '-moz-transition': 'background-position 0ms', /* Firefox 4 */
+                    '-webkit-transition': 'background-position 0ms', /* Safari 和 Chrome */
+                    '-o-transition': 'background-position 0ms', /* Opera */
                     'background-repeat': 'no-repeat',
                     'background-position': $this.data.currentX + 'px ' + $this.data.currentY + 'px',
                     '-moz-background-position': $this.data.currentX + 'px ' + $this.data.currentY + 'px',
@@ -105,7 +105,7 @@ bg_position.prototype.init = function () {
                 });
 
             });
-            $(document).on("mouseup",function (ev) {
+            $(document).on("mouseup", function (ev) {
                 $(document).unbind('mousemove');
                 $(document).unbind('mouseup');
                 if ($this.data.locked != true) {
@@ -134,9 +134,9 @@ bg_position.prototype.init = function () {
                     }
                     bp0.css({
                         'transition': 'background-position 500ms',
-                        '-moz-transition': 'background-position 500ms',	/* Firefox 4 */
-                        '-webkit-transition': 'background-position 500ms',	/* Safari 和 Chrome */
-                        '-o-transition': 'background-position 500ms',	/* Opera */
+                        '-moz-transition': 'background-position 500ms', /* Firefox 4 */
+                        '-webkit-transition': 'background-position 500ms', /* Safari 和 Chrome */
+                        '-o-transition': 'background-position 500ms', /* Opera */
                         'background-position': $this.data.currentX + 'px ' + $this.data.currentY + 'px',
                         '-moz-background-position': $this.data.currentX + 'px ' + $this.data.currentY + 'px',
                         '-webkit-background-position': $this.data.currentX + 'px ' + $this.data.currentY + 'px',

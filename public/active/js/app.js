@@ -21,7 +21,7 @@
             $this.css({'background-color': color});
         });
         //字体颜色取色器
-        var color = new colorpicker(null, {color: $this.get(0).tempColor||$this.css('color')}, function (color) {
+        var color = new colorpicker(null, {color: $this.get(0).tempColor || $this.css('color')}, function (color) {
             $this.css({'color': color});
         });
         //盒子阴影选择器
@@ -89,21 +89,29 @@
             pro3.update(val);
         });
         //尺寸选择器
-        var pro4 = new progressbar({target: $this, css: 'size', val: ($this.attr('size-val')/3)||parseFloat(1/3), max: 3,sc:'0.1',min:0.1}, function (data, val) {
-            console.log(data+"  "+val);
+        var pro4 = new progressbar({
+            target: $this,
+            css: 'size',
+            val: ($this.attr('size-val') / 3) || parseFloat(1 / 3),
+            max: 3,
+            sc: '0.1',
+            min: 0.1
+        }, function (data, val) {
+            console.log(data + "  " + val);
             step4.update(val);
         });
         var step4 = new steper({
             target: $this,
             css: 'size',
-            default: $this.attr('size-val')||1.0,
+            default: $this.attr('size-val') || 1.0,
             max: 3,
             unit: '倍',
-            step:'0.1',
-            fix:1,
-            min:0.1
+            step: '0.1',
+            fix: 1,
+            min: 0.1
         }, function (data, val) {
-            pro4.update(val);console.log(data+"  "+val);
+            pro4.update(val);
+            console.log(data + "  " + val);
         });
 
         //字体大小选择器
@@ -201,21 +209,19 @@
         //}
 
 
-
         var axisXBtn = $('<a class="axis axis-x">横向</a>');
         var axisYBtn = $('<a class="axis axis-y">纵向</a>');
         var axisAllBtn = $('<a class="axis axis-all">双向</a>');
 
 
-
-        axisXBtn.click(function(){
-            $this.draggable({"axis":"x"});
+        axisXBtn.click(function () {
+            $this.draggable({"axis": "x"});
         });
-        axisYBtn.click(function(){
-            $this.draggable({"axis":"y"});
+        axisYBtn.click(function () {
+            $this.draggable({"axis": "y"});
         });
-        axisAllBtn.click(function(){
-            $this.draggable({"axis":""});
+        axisAllBtn.click(function () {
+            $this.draggable({"axis": ""});
         });
 
 
@@ -223,7 +229,8 @@
         $('#target2').empty();
         $('#target3').empty();
         $('#target4').empty();
-        $('.img-set').addClass('.img-uplodbtn-hide');;
+        $('.img-set').addClass('.img-uplodbtn-hide');
+        ;
 
         //显示选项卡风格，隐藏标题风格
         $('.tab').show();
@@ -272,10 +279,10 @@
         $('#target3').append('<br/>');
         $('#target3').append('<div class="content-set"> <input type="text" maxlength="8" placeholder="按钮文本" id="btn_text"></div>');
         $('#target3').append('<hr/>');
-        if(att=="url"){
+        if (att == "url") {
             $('#target3').append('<div class="setComn-label">按钮链接：</div>');
             $('#target3').append('<br/>');
-            $('#target3').append('<div class="content-set"> <input type="text" value="'+$this.attr('data-url')+'" placeholder="按钮链接" id="btn_url"></div>');
+            $('#target3').append('<div class="content-set"> <input type="text" value="' + $this.attr('data-url') + '" placeholder="按钮链接" id="btn_url"></div>');
             $('#target3').append('<hr/>');
         }
         $('#target3').append('<div class="setColor-label">字体颜色：</div>');
@@ -348,17 +355,17 @@
         style($this);
 
 
-        $('.axis').click(function(){
+        $('.axis').click(function () {
             $(this).addClass('active').siblings().removeClass('active');
         });
 
         //按钮链接文本框失去焦点时赋值
         var dataUrl = $this.attr('data-url');
-        $('#btn_url').blur(function(){
-            if($.trim($(this).val())==0){
-                $this.attr('data-url',dataUrl);
-            }else{
-                $this.attr('data-url',$.trim($(this).val()));
+        $('#btn_url').blur(function () {
+            if ($.trim($(this).val()) == 0) {
+                $this.attr('data-url', dataUrl);
+            } else {
+                $this.attr('data-url', $.trim($(this).val()));
             }
 
         })
@@ -424,7 +431,7 @@
         //        $this.css({'background-color': color});
         //    });
         //}
-        that.bgpicker = new colorpicker(null,null, function (color) {
+        that.bgpicker = new colorpicker(null, null, function (color) {
             $this.css({'background-color': color});
         });
         that.bgpicker.setColor(that.bgpicker.getValue());
@@ -463,7 +470,7 @@
             default: $this.attr('rotation-val') ? Math.round($this.attr('rotation-val') * 100) : 0,
             max: 100,
             unit: '%',
-            fix : 0
+            fix: 0
         }, function (data, val) {
             pro2.update(data);
         });
@@ -483,7 +490,7 @@
             default: $this.attr('blur-val') ? Math.round(15 * ($this.attr('blur-val') / 100)) : 0,
             max: 15,
             unit: '级',
-            fix : 0
+            fix: 0
         }, function (data, val) {
             pro3.update(val);
         });
@@ -498,9 +505,11 @@
 
 
         $('.stitle').text('背景设置');
-        $('.img-set').removeClass('.img-uplodbtn-hide');;
+        $('.img-set').removeClass('.img-uplodbtn-hide');
+        ;
 
-        $('.img-set').removeClass('.img-uplodbtn-hide');;
+        $('.img-set').removeClass('.img-uplodbtn-hide');
+        ;
 
         $('.tab-pane').removeClass('active');
         $('#home').addClass('active');
@@ -533,14 +542,14 @@
         $('#target2').append(step3.getbody());
         $('#target2').append('<br/>');
         $('#target2').append('<hr/>');
-         
+
         //创建图片上传控件
         var uploader = WebUploader.create({
 
             // swf文件路径
-			 
+
             swf: 'http://qingting.huosu.com/public/active/js/Uploader.swf',
-            auto:true,
+            auto: true,
 
             // 文件接收服务端。
             server: 'http://qingting.huosu.com/active/up_img',
@@ -575,7 +584,7 @@
         });
         uploader.on("uploadSuccess", function (file, response) {
             //alert((response));
-			$this.css({
+            $this.css({
                 'background-image': 'url(' + response.content + ')',
                 'background-size': '100% auto'
             });
@@ -595,10 +604,10 @@
      */
     window.initHdpTextarea = function ($this) {
         var bgpicker = new colorpicker(null, {color: $this.css('background-color')}, function (color) {
-            if(color=="none"){
+            if (color == "none") {
 
                 $this.css({'background': 'none'});
-            }else{
+            } else {
 
                 $this.css({'background-color': color});
             }
@@ -611,7 +620,7 @@
         var pro5 = new progressbar({
             target: $this,
             css: 'font-size',
-            val: $this.attr("val")?Math.round($this.attr("val")):$this.css('font-size'),
+            val: $this.attr("val") ? Math.round($this.attr("val")) : $this.css('font-size'),
             max: 72
         }, function (data, val) {
             //console.log(val);
@@ -621,7 +630,7 @@
         var step5 = new steper({
             target: $this,
             css: 'font-size',
-            default: $this.attr("val")?Math.round($this.attr("val")):$this.css('font-size'),
+            default: $this.attr("val") ? Math.round($this.attr("val")) : $this.css('font-size'),
             max: 72,
             unit: 'px'
         }, function (data, val) {
@@ -635,7 +644,8 @@
         $('#target2').empty();
         $('#target3').empty();
         $('#target4').empty();
-        $('.img-set').addClass('.img-uplodbtn-hide');;
+        $('.img-set').addClass('.img-uplodbtn-hide');
+        ;
 
         $('.tab').show();
         $('.stitle').hide();
@@ -744,13 +754,13 @@
      * 文本框初始化
      * @param $this
      */
-    window.initHdpInputText = function($this){
+    window.initHdpInputText = function ($this) {
         //背景色取色器
         var bgpicker = new colorpicker(null, null, function (color) {
-            if(color=="none"){
+            if (color == "none") {
 
                 $this.css({'background': 'none'});
-            }else{
+            } else {
 
                 $this.css({'background-color': color});
             }
@@ -823,21 +833,29 @@
             pro3.update(val);
         });
         //尺寸选择器
-        var pro4 = new progressbar({target: $this, css: 'size', val: ($this.attr('size-val')/3)||parseFloat(1/3), max: 3,sc:'0.1',min:0.1}, function (data, val) {
-            console.log(data+"  "+val);
+        var pro4 = new progressbar({
+            target: $this,
+            css: 'size',
+            val: ($this.attr('size-val') / 3) || parseFloat(1 / 3),
+            max: 3,
+            sc: '0.1',
+            min: 0.1
+        }, function (data, val) {
+            console.log(data + "  " + val);
             step4.update(val);
         });
         var step4 = new steper({
             target: $this,
             css: 'size',
-            default: $this.attr('size-val')||1.0,
+            default: $this.attr('size-val') || 1.0,
             max: 3,
             unit: '倍',
-            step:'0.1',
-            fix:1,
-            min:0.1
+            step: '0.1',
+            fix: 1,
+            min: 0.1
         }, function (data, val) {
-            pro4.update(val);console.log(data+"  "+val);
+            pro4.update(val);
+            console.log(data + "  " + val);
         });
 
         //字体大小选择器
@@ -1020,13 +1038,13 @@
      * 图片初始化
      * @param $this
      */
-    window.initHdpImage = function($this,limitW,limitH,limitS){
+    window.initHdpImage = function ($this, limitW, limitH, limitS) {
 
         var bgpicker = new colorpicker(null, null, function (color) {
-            if(color=="none"){
+            if (color == "none") {
 
                 $this.parent('.hdp-img').css({'background': 'none'});
-            }else{
+            } else {
 
                 $this.parent('.hdp-img').css({'background-color': color});
             }
@@ -1034,39 +1052,47 @@
         bgpicker.setColor(bgpicker.getValue());
 
         //尺寸选择器
-        var pro4 = new progressbar({target: $this, css: 'size', val: ($this.attr('size-val')/3)||parseFloat(1/3), max: 3,sc:'0.1',min:0.1}, function (data, val) {
-            console.log(data+"  "+val);
+        var pro4 = new progressbar({
+            target: $this,
+            css: 'size',
+            val: ($this.attr('size-val') / 3) || parseFloat(1 / 3),
+            max: 3,
+            sc: '0.1',
+            min: 0.1
+        }, function (data, val) {
+            console.log(data + "  " + val);
             step4.update(val);
         });
         var step4 = new steper({
             target: $this,
             css: 'size',
-            default: $this.attr('size-val')||1.0,
+            default: $this.attr('size-val') || 1.0,
             max: 3,
             unit: '倍',
-            step:'0.1',
-            fix:1,
-            min:0.1
+            step: '0.1',
+            fix: 1,
+            min: 0.1
         }, function (data, val) {
-            pro4.update(val);console.log(data+"  "+val);
+            pro4.update(val);
+            console.log(data + "  " + val);
         });
         //旋转角度
         var step2 = new steper({
             target: $this,
             css: 'rotation',
-            default: $this.attr('rotation-val') ? ($this.attr('rotation-val')*100) : 0,
+            default: $this.attr('rotation-val') ? ($this.attr('rotation-val') * 100) : 0,
             max: 100,
             unit: '%',
-            pre:true
+            pre: true
         }, function (data, val) {
             pro2.update(val);
         });
         var pro2 = new progressbar({
             target: $this,
             css: 'rotation',
-            val: $this.attr('rotation-val') ? ($this.attr('rotation-val')*100) : 0,
+            val: $this.attr('rotation-val') ? ($this.attr('rotation-val') * 100) : 0,
             max: 100,
-            pre:true
+            pre: true
         }, function (data, val) {
             step2.update(val);
         });
@@ -1093,8 +1119,6 @@
         $('.stitle').text('图片设置');
 
 
-
-
         $('.tab-pane').removeClass('active');
         $('#home').addClass('active');
         $('.tab').hide();
@@ -1102,9 +1126,6 @@
         $('#target2').empty();
         $('#target3').empty();
         $('#target4').empty();
-
-
-
 
 
         $('#target2').append('<br/>');
@@ -1116,10 +1137,10 @@
 
 
         var isUpload = $this.parent('.hdp-img').attr('data-tip');
-        if(isUpload=="no-upload"){
+        if (isUpload == "no-upload") {
             $('.img-set').html('<b>此图为奖品图片示例，由后台动态生成</b>');
 
-        }else{
+        } else {
             $('.img-set').removeClass('.img-uplodbtn-hide');
         }
 
@@ -1140,24 +1161,24 @@
         $('#target2').append(step3.getbody());
         $('#target2').append('<br/>');
         $('#target2').append('<hr/>');
-        $('#target2').append('<div class="setComm-label">顺序</div>'+
-        '<div class="sequence-btn">'+
-        '<div class="trimming">'+
-        '<a href="javascript:;" class="up-1">'+
-        '前移'+
-        '</a>'+
-        '<a href="javascript:;"class="down-1">'+
-        '后移'+
-        '</a>'+
-        '</div>'+
-        '<div class="control">'+
-        '<a href="javascript:;"class="up-all">'+
-        '顶层'+
-        '</a>'+
-        '<a href="javascript:;"class="down-all">'+
-        '底层'+
-        '</a>'+
-        '</div>'+
+        $('#target2').append('<div class="setComm-label">顺序</div>' +
+        '<div class="sequence-btn">' +
+        '<div class="trimming">' +
+        '<a href="javascript:;" class="up-1">' +
+        '前移' +
+        '</a>' +
+        '<a href="javascript:;"class="down-1">' +
+        '后移' +
+        '</a>' +
+        '</div>' +
+        '<div class="control">' +
+        '<a href="javascript:;"class="up-all">' +
+        '顶层' +
+        '</a>' +
+        '<a href="javascript:;"class="down-all">' +
+        '底层' +
+        '</a>' +
+        '</div>' +
         '</div><br/><br/>');
 
 
@@ -1177,22 +1198,22 @@
             zIndex($this.parent(), "down-all");
         });
 
-        if(isUpload!="no-upload"){
+        if (isUpload != "no-upload") {
             /**
              * 检测图片宽高，并进行一些操作   kiner-tang
              * @type {*|HTMLElement}
              */
             var checkImageWH = function (img) {
                 var result = true;
-                if(limitW||limitH){
-                    if(img.width>limitW||img.height>limitH){
-                        modal.showAlert('尺寸不符合要求(建议图片最大尺寸为:'+limitW+'px * '+limitH+'px)');
+                if (limitW || limitH) {
+                    if (img.width > limitW || img.height > limitH) {
+                        modal.showAlert('尺寸不符合要求(建议图片最大尺寸为:' + limitW + 'px * ' + limitH + 'px)');
                         result = false;
                     }
                 }
-                if(limitS){//建议图片大小，单位为k
-                    if(img.size>limitS*1024){
-                        modal.showAlert('建议图片大小不要超过'+(limitS)+'k');
+                if (limitS) {//建议图片大小，单位为k
+                    if (img.size > limitS * 1024) {
+                        modal.showAlert('建议图片大小不要超过' + (limitS) + 'k');
                         result = false;
                     }
                 }
@@ -1204,10 +1225,10 @@
 
                 // swf文件路径
                 swf: '/assets/js/lib/webuploader/Uploader.swf',
-                auto:true,
+                auto: true,
 
                 // 文件接收服务端。
-                server: root_url+'/upload.json',
+                server: root_url + '/upload.json',
 
                 // 选择文件的按钮。可选。
                 // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -1233,9 +1254,9 @@
                         return;
                     }
                     var shold = checkImageWH(file);
-                    if(shold){
+                    if (shold) {
                         $this.attr('src', src);
-                    }else{
+                    } else {
                         file.setStatus('cancelled');
                     }
                 }, 1, 1);
@@ -1311,7 +1332,7 @@
      * @param obj
      * @param type
      */
-    window.zIndex = function(obj, type) {
+    window.zIndex = function (obj, type) {
         var max = 10, min = 0;
         //$('.swiper-container').changeLayout();
         var index = $(obj).css('z-index');
@@ -1340,7 +1361,7 @@
      * 分享页面遮罩层
      * @param $this
      */
-    window.initHdpMask=function($this) {
+    window.initHdpMask = function ($this) {
         //遮罩层透明度
         var step4 = new steper({
             target: $this,
@@ -1368,7 +1389,8 @@
         $('#target2').empty();
         $('#target3').empty();
         $('#target4').empty();
-        $('.img-set').addClass('.img-uplodbtn-hide');;
+        $('.img-set').addClass('.img-uplodbtn-hide');
+        ;
         $('#target2').append('<br/>');
         $('#target2').append('<br/>');
         $('#target2').append('<div class="setComn-label">遮罩层透明度：</div>');

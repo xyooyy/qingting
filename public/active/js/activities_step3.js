@@ -1,18 +1,17 @@
 $(function () {
 
-    var v = $('.phone-simulation').attr('data-screen')?$('.phone-simulation').attr('data-screen'):"1";
-    v = v==0?"1":v;
+    var v = $('.phone-simulation').attr('data-screen') ? $('.phone-simulation').attr('data-screen') : "1";
+    v = v == 0 ? "1" : v;
 
-    $('.phone-simulation').attr('data-screen',v);
+    $('.phone-simulation').attr('data-screen', v);
 
     $('select[name="screen"]').val(v);
 
     //select美化
-    Select.init({selector: 'select' , value : v});
+    Select.init({selector: 'select', value: v});
 
 
-    $('.phone').css('width',$('.phone-simulation').width()+4);
-
+    $('.phone').css('width', $('.phone-simulation').width() + 4);
 
 
     changeLayout($('.phone-simulation').attr('data-screen'));
@@ -25,37 +24,40 @@ $(function () {
 
     footarea();
 
-    function changeLayout(s){
+    function changeLayout(s) {
         var val = parseInt(s);
 
         switch (val) {
             case 1:
-                $('.phone-simulation').attr('data-screen',1);
-                $(".phone,.share-page").css({"width": "320px", "height": (480)+"px"});
+                $('.phone-simulation').attr('data-screen', 1);
+                $(".phone,.share-page").css({"width": "320px", "height": (480) + "px"});
 
                 break;
             case 2:
 
-                $('.phone-simulation').attr('data-screen',2);
-                $(".phone,.share-page").css({"width": "320px", "height": (568)+"px"});
+                $('.phone-simulation').attr('data-screen', 2);
+                $(".phone,.share-page").css({"width": "320px", "height": (568) + "px"});
                 break;
             case 3:
-                $('.phone-simulation').attr('data-screen',3);
-                $(".phone,.share-page").css({"width": "375px", "height": (667)+"px"});
+                $('.phone-simulation').attr('data-screen', 3);
+                $(".phone,.share-page").css({"width": "375px", "height": (667) + "px"});
                 break;
 
         }
-        $('.start-btn').css({'right':'0px','left':($('.phone').width()-$('.start-btn').width)/2});
+        $('.start-btn').css({'right': '0px', 'left': ($('.phone').width() - $('.start-btn').width) / 2});
         footarea();
     }
 
 
-    function footarea(){
-        $('.footerArea').css({'position':'absolute','left':($('.phone-simulation').width()-$('.footerArea').width())/2});
+    function footarea() {
+        $('.footerArea').css({
+            'position': 'absolute',
+            'left': ($('.phone-simulation').width() - $('.footerArea').width()) / 2
+        });
 
     }
 
-    $('.phone-simulation[data-layout="common"]').find('.start-btn').css('right',20);
+    $('.phone-simulation[data-layout="common"]').find('.start-btn').css('right', 20);
 
     //滑动页面选择
     $("#swiper-choice li").click(function () {
@@ -83,24 +85,24 @@ $(function () {
         if ($(this).hasClass("lay1")) {
             $('.phone-simulation').attr('data-layout', 'common');
             $("#layStyle").attr("href", rootUrl + "/assets/template/common/css/layout.css");
-            $('#laySwiper').attr("href",rootUrl + "/assets/template/common/css/swiper.css");
+            $('#laySwiper').attr("href", rootUrl + "/assets/template/common/css/swiper.css");
             //$('.hdp-btn,.hdp-textarea,.hdp-img').css({top: '', left: '', right: '0', bottom: ''});
-            $('.start-btn').css('right','20px');
+            $('.start-btn').css('right', '20px');
         }
         else if ($(this).hasClass("lay2")) {
             $('.phone-simulation').attr('data-layout', 'symmetric');
             $("#layStyle").attr("href", rootUrl + "/assets/template/symmetric/css/layout.css");
-            $('#laySwiper').attr("href",rootUrl + "/assets/template/symmetric/css/swiper.css");
+            $('#laySwiper').attr("href", rootUrl + "/assets/template/symmetric/css/swiper.css");
             //$('.hdp-btn,.hdp-textarea,.hdp-img').css({top: '', left: '', right: '23%', bottom: ''});
-            $('.start-btn').css({'right':'0px','left':($('.phone').width()-$('.start-btn').width)/2});
+            $('.start-btn').css({'right': '0px', 'left': ($('.phone').width() - $('.start-btn').width) / 2});
         }
         else {
             $('.phone-simulation').attr('data-layout', 'vertical');
             $("#layStyle").attr("href", rootUrl + "/assets/template/vertical/css/layout.css");
-            $('#laySwiper').attr("href",rootUrl + "/assets/template/vertical/css/swiper.css");
+            $('#laySwiper').attr("href", rootUrl + "/assets/template/vertical/css/swiper.css");
             //$('.hdp-btn,.hdp-textarea,.hdp-img').css({top: '', left: '', right: '23%', bottom: ''});
 
-            $('.start-btn').css({'right':'0px','left':($('.phone').width()-$('.start-btn').width)/2});
+            $('.start-btn').css({'right': '0px', 'left': ($('.phone').width() - $('.start-btn').width) / 2});
         }
     });
 
@@ -380,9 +382,9 @@ $(function () {
         $(this).addClass("active");
     });
 
-    if($('.lay-common').attr('data-layout')){
-        $('#layStyle').attr('href',rootUrl + '/assets/template/'+$('.lay-common').attr('data-layout')+'/css/layout.css?ver=20150121161235');
-        $('.'+$('.lay-common').attr('data-layout')).addClass('active').siblings().removeClass('active');
+    if ($('.lay-common').attr('data-layout')) {
+        $('#layStyle').attr('href', rootUrl + '/assets/template/' + $('.lay-common').attr('data-layout') + '/css/layout.css?ver=20150121161235');
+        $('.' + $('.lay-common').attr('data-layout')).addClass('active').siblings().removeClass('active');
     }
 
     //页面初始化时，将选择操作方式置为默认，即一键设置
@@ -394,9 +396,9 @@ setSelectable($('body'), false);
 
 var confirmBtn = [
     {
-        id:"ok",
-        name : "确定",
-        listener : function(){
+        id: "ok",
+        name: "确定",
+        listener: function () {
             $.ajax($('.submit-group .reset').attr('data-url'), {
                 data: {
                     id: hdpUrl.get("id"),
@@ -409,8 +411,8 @@ var confirmBtn = [
                 type: "post",
                 success: function (data, textStatus) {
                     if (data.success) {
-                    		 window.location.reload();
-                    }else{
+                        window.location.reload();
+                    } else {
 
                         modal.showAlert(data.msg);
                     }
@@ -426,16 +428,16 @@ var confirmBtn = [
     },
 
     {
-        id:"close",
-        name : "取消",
-        classes : ['modalClose'],
-        listener : function(modal){
+        id: "close",
+        name: "取消",
+        classes: ['modalClose'],
+        listener: function (modal) {
             modal.hide();
         }
     }
 ];
 
-$('.submit-group').on('click','.reset',function(){
+$('.submit-group').on('click', '.reset', function () {
     modal.resetBtns(confirmBtn);
     modal.showWithTitle("确认后，本页面的所有设置将恢复至初始化状态，并且无法恢复，您确认继续吗？");
 });

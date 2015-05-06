@@ -188,9 +188,9 @@ $(function () {
             dataType: "json",
             type: "post",
             success: function (data) {
-                if(data.success){
+                if (data.success) {
                     next();
-                }else{
+                } else {
                     modal.showAlert(data.msg);
                 }
             },
@@ -242,8 +242,8 @@ $(function () {
                 console.log(data);
                 if (data.success) {//是否成功获取预期数据
                     //$('.recommend .game-list').empty();
-                	var list = data.content.infoToMap;
-                	target.empty();
+                    var list = data.content.infoToMap;
+                    target.empty();
                     for (var i = 0; i < list.length; i++) {
                         var item = list[i];
                         target.append('<li id="' + item.id + '">' +
@@ -264,27 +264,27 @@ $(function () {
                         });
                         //select美化
                         Select.init({selector: 'select'});
-                        
+
                         var paginationMap = data.content.paginationMap;
-                        if(typeof(paginationMap)!="undefined"){
-                        	var currPageNO = paginationMap.paginationData.pageNumber;
-                        	var pagesAvailable = paginationMap.paginationData.pagesAvailable;
-                        	$("#page_pre_a").val(currPageNO-1>0?currPageNO-1:currPageNO);//上一页
-                        	$("#page_next_a").val(currPageNO+1 <= pagesAvailable?currPageNO+1:pagesAvailable);//下一页
-                        	$("#page_current_a").html(paginationMap.paginationData.pageNumber);//当前页面
-                        	$("#allRecordNO").html(paginationMap.paginationData.pagesAvailable);//总页数
-                        	if(currPageNO-1>0){
-                        		$("#page_current_pre").show();
-                        		$("#page_current_pre_a").html(currPageNO-1);
-                        	}else{
-                        		$("#page_current_pre").hide();
-                        	}
-                        	if(currPageNO+1 <= pagesAvailable){
-                        		$("#page_current_next").show();
-                        		$("#page_current_next_a").html(currPageNO+1);
-                        	}else{
-                        		$("#page_current_next").hide();
-                        	}
+                        if (typeof(paginationMap) != "undefined") {
+                            var currPageNO = paginationMap.paginationData.pageNumber;
+                            var pagesAvailable = paginationMap.paginationData.pagesAvailable;
+                            $("#page_pre_a").val(currPageNO - 1 > 0 ? currPageNO - 1 : currPageNO);//上一页
+                            $("#page_next_a").val(currPageNO + 1 <= pagesAvailable ? currPageNO + 1 : pagesAvailable);//下一页
+                            $("#page_current_a").html(paginationMap.paginationData.pageNumber);//当前页面
+                            $("#allRecordNO").html(paginationMap.paginationData.pagesAvailable);//总页数
+                            if (currPageNO - 1 > 0) {
+                                $("#page_current_pre").show();
+                                $("#page_current_pre_a").html(currPageNO - 1);
+                            } else {
+                                $("#page_current_pre").hide();
+                            }
+                            if (currPageNO + 1 <= pagesAvailable) {
+                                $("#page_current_next").show();
+                                $("#page_current_next_a").html(currPageNO + 1);
+                            } else {
+                                $("#page_current_next").hide();
+                            }
 //                        	$("#home_page_a").val(1);//首页
 //                        	$("#end_page_a").val(paginationMap.paginationData.pagesAvailable);//尾页
                         }
@@ -309,7 +309,7 @@ $(function () {
                         $('.choice').removeAttr('data-id');
                     });
 
-                }else{
+                } else {
                     modal.showAlert(data.msg);
                 }
             },
@@ -356,7 +356,7 @@ $(function () {
                     var l = $(".scrollimg-main").children("img").length;
                     var w = 300 * l + 45 * l;
                     $(".scrollimg-main").css({"width": w + "px"});
-                }else{
+                } else {
                     modal.showAlert(data.msg);
                 }
             },
@@ -364,46 +364,46 @@ $(function () {
                 modal.showAlert('网络访问异常');
             }
         });
-        
+
         //分页（下一页）
         $("#page_next").click(function () {
-        	getGame({
-        		target: $(".other-game-main .game-list"),
+            getGame({
+                target: $(".other-game-main .game-list"),
                 page: parseInt($("#page_next_a").val()),
-                url : rootUrl + "/game/list",
-                size:12,
+                url: rootUrl + "/game/list",
+                size: 12,
                 type: ($('select[name="usage"]').val())
-        	});
+            });
         });
         //分页（上一页）
         $("#page_pre").click(function () {
-        	getGame({
-        		target: $(".other-game-main .game-list"),
+            getGame({
+                target: $(".other-game-main .game-list"),
                 page: parseInt($("#page_pre_a").val()),
-                url : rootUrl + "/game/list",
-                size:12,
+                url: rootUrl + "/game/list",
+                size: 12,
                 type: ($('select[name="usage"]').val())
-        	});
+            });
         });
-        
+
         //
         $("#page_current_pre").click(function () {
-        	getGame({
-        		target: $(".other-game-main .game-list"),
+            getGame({
+                target: $(".other-game-main .game-list"),
                 page: parseInt($("#page_current_pre_a").html()),
-                url : rootUrl + "/game/list",
-                size:12,
+                url: rootUrl + "/game/list",
+                size: 12,
                 type: ($('select[name="usage"]').val())
-        	});
+            });
         });
         $("#page_current_next").click(function () {
-        	getGame({
-        		target: $(".other-game-main .game-list"),
-        		page: parseInt($("#page_current_next_a").html()),
-        		url : rootUrl + "/game/list",
-        		size:12,
-        		type: ($('select[name="usage"]').val())
-        	});
+            getGame({
+                target: $(".other-game-main .game-list"),
+                page: parseInt($("#page_current_next_a").html()),
+                url: rootUrl + "/game/list",
+                size: 12,
+                type: ($('select[name="usage"]').val())
+            });
         });
 //        //分页（尾页）
 //        $("#end_page_a").click(function () {

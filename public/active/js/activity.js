@@ -13,30 +13,31 @@ $(function () {
         $('.pop-mod').hide();
         return false;
     });
-    
+
     //删除奖品提示
-    $(".usage").change(function(){
-	  $('body').pop({
-			msg : '检测到你的商业模式发生变化，如果已有中奖名单，为确保在活动预览页面中的奖品统计准确，请对奖品删除后再添加！',
-			btns : [ {
-				text : '确定',
-				red : true,
-				handler : 'close'
-			}]
-		});
-	});
+    $(".usage").change(function () {
+        $('body').pop({
+            msg: '检测到你的商业模式发生变化，如果已有中奖名单，为确保在活动预览页面中的奖品统计准确，请对奖品删除后再添加！',
+            btns: [{
+                text: '确定',
+                red: true,
+                handler: 'close'
+            }]
+        });
+    });
 
     //时间控件选择器调用和初始化
     $('.date-picker').datetimepicker({
         lang: 'ch',
         timepicker: false,
         format: 'Y-m-d',
-		scrollMonth:false,
-		scrollTime:false,
-		scrollInput:false,
-        onChangeDateTime: function (dp, $input) {}
+        scrollMonth: false,
+        scrollTime: false,
+        scrollInput: false,
+        onChangeDateTime: function (dp, $input) {
+        }
     });
-    
+
     $('#check-all').on('ifChecked', function (event) {
         $('.table-advert').find('input:checkbox').iCheck('check');
     }).on('ifUnchecked', function (event) {
@@ -138,7 +139,7 @@ $(function () {
                 id: $ts.find('.picker'),
                 multiple: true
             },
-            fileNumLimit : numLimit || 6, //验证文件总数量, 超出则不允许加入队列
+            fileNumLimit: numLimit || 6, //验证文件总数量, 超出则不允许加入队列
             resize: false,
             auto: true,
             accept: {
@@ -147,37 +148,37 @@ $(function () {
                 mimeTypes: 'image/*'
             }
         });
-        if(typeof pageType !== 'undefined' && pageType === 'edit'){
+        if (typeof pageType !== 'undefined' && pageType === 'edit') {
             $ts.on('click', '.picker', function () {
                 $ts.find('.image-upload-preview').html('');
             });
         }
         // 创建缩略图
-        uploader.on( 'fileQueued', function( file ) {
+        uploader.on('fileQueued', function (file) {
             // 如果为非图片文件，可以不用调用此方法。
             // thumbnailWidth x thumbnailHeight 为 100 x 100
-            uploader.makeThumb( file, function( error, src ) {
-                if ( error ) {
+            uploader.makeThumb(file, function (error, src) {
+                if (error) {
                     $img.replaceWith('<span>不能预览</span>');
                     return;
                 }
-                $preview.append('<div id="'+file.id+'" class="image-item"> <img src="'+src+'" alt="" /> <input type="checkbox" name="" /> <input type="hidden" name="'+name+'[]" value="" /> </div>')
-                $ts.find('#'+file.id+' input[type="checkbox"]').iCheck({
+                $preview.append('<div id="' + file.id + '" class="image-item"> <img src="' + src + '" alt="" /> <input type="checkbox" name="" /> <input type="hidden" name="' + name + '[]" value="" /> </div>')
+                $ts.find('#' + file.id + ' input[type="checkbox"]').iCheck({
                     checkboxClass: 'icheckbox_polaris',
                     radioClass: 'iradio_polaris'
                 });
                 $ts.find('.control').show();
-            }, 320, 520 );
+            }, 320, 520);
         });
         //上传成功
-        uploader.on('uploadSuccess', function(file, res) {
-            $ts.find('#'+file.id).addClass('upload-state-done').find('input[type="hidden"]').val(res.content);
+        uploader.on('uploadSuccess', function (file, res) {
+            $ts.find('#' + file.id).addClass('upload-state-done').find('input[type="hidden"]').val(res.content);
         });
 
         //全选
-        $control.find('.check-all').on('ifChecked', function(event){
+        $control.find('.check-all').on('ifChecked', function (event) {
             $preview.find('input:checkbox').iCheck('check');
-        }).on('ifUnchecked', function(event){
+        }).on('ifUnchecked', function (event) {
             $preview.find('input:checkbox').iCheck('uncheck');
         });
 
@@ -186,13 +187,13 @@ $(function () {
             var $label = $preview.find('.image-item'),
                 len = $label.size();
             for (var i = 0; i < len; i++) {
-                if($label.eq(i).find('.icheckbox_polaris').hasClass('checked')){
+                if ($label.eq(i).find('.icheckbox_polaris').hasClass('checked')) {
                     var id = $label.eq(i).attr('id');
                     uploader.cancelFile(id);
                     $label.eq(i).remove();
                 }
             }
-            if($preview.find('.image-item').size() <= 0){
+            if ($preview.find('.image-item').size() <= 0) {
                 $control.hide();
             }
         });
@@ -205,7 +206,7 @@ $(function () {
             //清内容
             $formPizze.find('.input-pizze-id').val(uuid());
             $formPizze.find('.input-pizze-name, .input-pizze-url, .input-pizze-con, .input-pizze-num, .input-probability').val('');
-            $formPizze.find('.createImg').attr('src','../assets/images/s.png');
+            $formPizze.find('.createImg').attr('src', '../assets/images/s.png');
         } else {
             //写内容
             $formPizze.find('.input-pizze-id').val(opt.id || '');
@@ -256,13 +257,13 @@ $(function () {
 
     //添加一条记录
     var setPizee = function (opt) {
-    	console.debug(opt);
+        console.debug(opt);
         var $list = $('.list-pizze'),
             html = '<li data-id="' + opt.id + '" data-name="' + opt.name + '" data-url="' + opt.url + '" data-con="' + opt.con + '" data-num="' + opt.num + '" data-pic="' + opt.pic + '" data-probability="' + opt.probability + '"> <span class="p-name"> ' + opt.name + ' </span> <span class="p-con"> ' + opt.con + '</span>&nbsp;<span class="p-num">' + opt.num + '份</span> <span class="p-probability"> ' + opt.probability + ' </span>  <span class="op"> <a class="btn-edit" href="#"><i></i>修改</a> <em>|</em> <a class="btn-del" href="#"><i></i>删除</a> </span> <input type="hidden" name="pizze[]" value="' + opt.id + '" /> </li>';
 
         if ($list.find('li[data-id="' + opt.id + '"]').size() > 0) {
             //已存在，修改
-        	$list.find('li[data-id="' + opt.id + '"]').replaceWith(html);
+            $list.find('li[data-id="' + opt.id + '"]').replaceWith(html);
         } else {
             //新增
             $list.find('ul').append(html);
@@ -289,11 +290,11 @@ $(function () {
         var num = $formPizze.find('.input-pizze-num').val();
         var probability = $formPizze.find('.input-probability').val();
         var pic = $formPizze.find('input[name="single-pic"]').val();
-        if(id == "" || name == "" || con == "" || num == "" || probability == ""){
+        if (id == "" || name == "" || con == "" || num == "" || probability == "") {
             //alert('params can not be empty!');
             //alert
             $('body').pop({
-                msg : '全部为必填选项！'
+                msg: '全部为必填选项！'
             });
             return false;
         }
@@ -311,14 +312,22 @@ $(function () {
 //            $formPizze.slideUp();
 //        }, 500);
 
-        if(id == "" || name == "" || con == "" || num == ""){
+        if (id == "" || name == "" || con == "" || num == "") {
             alert("选项不能为空，请您填写。");
             return false;
         }
 
         $.ajax({
             url: rootUrl + '/present/save',
-            data: {'dataId': id, 'name': name, 'url': url, 'quota': num, 'avatar': pic, 'presentName': con, 'probability': probability},
+            data: {
+                'dataId': id,
+                'name': name,
+                'url': url,
+                'quota': num,
+                'avatar': pic,
+                'presentName': con,
+                'probability': probability
+            },
             type: "POST"
         }).done(function (responseData) {
             setPizee({
@@ -336,7 +345,7 @@ $(function () {
         return false;
     });
     //}create\edit
-    
+
     //list {
     //多条记录删除
     $('#multiDel').on('click', function () {
@@ -354,14 +363,14 @@ $(function () {
         if (items != '') {
 
             $('body').pop({
-                msg : '删除活动会同时删除活动关联的获奖人信息,兑奖券和奖品信息,确定要删除选中的活动吗？',
-                btns : [{
-                    text : '取消',
-                    gray : true,
-                    handler : 'close'
-                },{
-                    text : '确定',
-                    handler : function(thisPop, $pop){
+                msg: '删除活动会同时删除活动关联的获奖人信息,兑奖券和奖品信息,确定要删除选中的活动吗？',
+                btns: [{
+                    text: '取消',
+                    gray: true,
+                    handler: 'close'
+                }, {
+                    text: '确定',
+                    handler: function (thisPop, $pop) {
                         //点了确定后，执行ajax
                         $.ajax({
                             url: rootUrl + '/batchRemove',
@@ -370,19 +379,19 @@ $(function () {
                         }).done(function (response) {
                             if (response.success) {
                                 //suc
-                                if(pageType === 'off') {
+                                if (pageType === 'off') {
                                     window.location.href = rootUrl + "/offline/";
-                                }else{
+                                } else {
                                     window.location.href = rootUrl + "/";
                                 }
 
                             } else {
                                 //faile
                                 $('body').pop({
-                                    msg : '删除活动失败,请重试！',
-                                    btns : [{
-                                        text : '确定',
-                                        handler : 'close'
+                                    msg: '删除活动失败,请重试！',
+                                    btns: [{
+                                        text: '确定',
+                                        handler: 'close'
                                     }]
                                 });
                             }
@@ -424,45 +433,45 @@ $(function () {
 //        });
 //        return false;
 //    });
-    
+
     //单条记录删除
     $('.singleDel').on('click', function () {
         //判断选项是否为空
         var $tr = $(this).parents('tr');
-            $('body').pop({
-                msg : '删除活动会同时删除活动关联的获奖人信息,奖品信息,和兑奖券.确定要删除选中的活动吗？',
-                btns : [{
-                    text : '取消',
-                    gray : true,
-                    handler : 'close'
-                },{
-                    text : '确定',
-                    handler : function(thisPop, $pop){
-                        //点了确定后，执行ajax
-                        $.ajax({
-                            url: rootUrl + '/remove',
-							data: {id: $tr.attr('data-id')},
-							type: 'POST',
-							dataType: 'json',
-							async: false,
-							success: function (response) {
-								if (response.success) {
-									$tr.remove();
-									$('body').pop({msg: '删除成功！'});
-								}
-							},
-							error: function () {
-								$('body').pop({msg: '删除失败！'});
-							}
-                        }).fail(function () {
-							//alert('删除失败！！！');
-							$('body').pop({
-								msg: '删除失败！'
-							});
-						});
-                    }
-                }]
-            });
+        $('body').pop({
+            msg: '删除活动会同时删除活动关联的获奖人信息,奖品信息,和兑奖券.确定要删除选中的活动吗？',
+            btns: [{
+                text: '取消',
+                gray: true,
+                handler: 'close'
+            }, {
+                text: '确定',
+                handler: function (thisPop, $pop) {
+                    //点了确定后，执行ajax
+                    $.ajax({
+                        url: rootUrl + '/remove',
+                        data: {id: $tr.attr('data-id')},
+                        type: 'POST',
+                        dataType: 'json',
+                        async: false,
+                        success: function (response) {
+                            if (response.success) {
+                                $tr.remove();
+                                $('body').pop({msg: '删除成功！'});
+                            }
+                        },
+                        error: function () {
+                            $('body').pop({msg: '删除失败！'});
+                        }
+                    }).fail(function () {
+                        //alert('删除失败！！！');
+                        $('body').pop({
+                            msg: '删除失败！'
+                        });
+                    });
+                }
+            }]
+        });
     });
 
     /**
@@ -491,68 +500,67 @@ $(function () {
         return false;
     });
 
-	//构建模态框
-	var modal = new hdpModal();
-	var actid;
-	var err_msg;
-	var err_url = rootUrl+"/";
-	
-	var btn = [
-	   {
-		   id:"edit",
-		   name : "前往修改",
-		   listener:function(modal){
-		   	   matchUrl(err_msg,actid);
-			   window.location.href = err_url;
-		   }
+    //构建模态框
+    var modal = new hdpModal();
+    var actid;
+    var err_msg;
+    var err_url = rootUrl + "/";
 
-	   },
-	   {
-		   id:"cancel",
-		   name:"取消",
-		   classes : ['modalClose'],
-		   listener:function(modal){
-			   modal.hide();
-		   }
-	   }
-   ]; 
+    var btn = [
+        {
+            id: "edit",
+            name: "前往修改",
+            listener: function (modal) {
+                matchUrl(err_msg, actid);
+                window.location.href = err_url;
+            }
 
-	/**
-	 * 根据返回的信息错误信息内容拼url
-	 */
-	function matchUrl(msg,id){
-		switch(msg)
-		{
-		case '您必须选择一款游戏':
-		  err_url+="gameChoose?id="+id;
-		  break;
-		case '活动开始页设定不能为空':
-		  err_url+="begin?id="+id;
-		  break;
-		case '活动结束页设定不能为空':
-		  err_url+="end?id="+id;
-		  break;
-		case '活动分享页设定不能为空':
-		  err_url+="share?id="+id;
-		  break;
-		case '活动已中奖设定不能为空':
-		  err_url+="prizeResult?id="+id;
-		  break;
-		case '活动未中奖设定不能为空':
-		  err_url+="prizeResult?id="+id+"&page=2";
-		  break;
-		case '活动抽奖次数用完设定不能为空':
-		  err_url+="prizeResult?id="+id+"&page=3";
-		  break;
-		case '活动结束时间小于当前时间':
-		  err_url+="basic?id="+id;
-		  break;  
-		default:
-		  //to do
-		  break;
-		}
-	} 
-	
+        },
+        {
+            id: "cancel",
+            name: "取消",
+            classes: ['modalClose'],
+            listener: function (modal) {
+                modal.hide();
+            }
+        }
+    ];
+
+    /**
+     * 根据返回的信息错误信息内容拼url
+     */
+    function matchUrl(msg, id) {
+        switch (msg) {
+            case '您必须选择一款游戏':
+                err_url += "gameChoose?id=" + id;
+                break;
+            case '活动开始页设定不能为空':
+                err_url += "begin?id=" + id;
+                break;
+            case '活动结束页设定不能为空':
+                err_url += "end?id=" + id;
+                break;
+            case '活动分享页设定不能为空':
+                err_url += "share?id=" + id;
+                break;
+            case '活动已中奖设定不能为空':
+                err_url += "prizeResult?id=" + id;
+                break;
+            case '活动未中奖设定不能为空':
+                err_url += "prizeResult?id=" + id + "&page=2";
+                break;
+            case '活动抽奖次数用完设定不能为空':
+                err_url += "prizeResult?id=" + id + "&page=3";
+                break;
+            case '活动结束时间小于当前时间':
+                err_url += "basic?id=" + id;
+                break;
+            default:
+                //to do
+                break;
+        }
+    }
+
     /**
      * 活动上线
      */
@@ -563,25 +571,25 @@ $(function () {
             data: {id: $tr.attr('data-id')},
             type: 'POST'
         }).done(function (response) {
-        	if(response.code == 1){
-        		$('body').pop({
+            if (response.code == 1) {
+                $('body').pop({
                     msg: response.msg
                 });
-        		return;
-        	}
+                return;
+            }
             if (response.success) {
                 //alert('操作成功！');
                 $('body').pop({
                     msg: '操作成功！'
                 });
                 $tr.remove();
-            }else if(!response.success){
-				//上线失败
-				actid = $tr.attr('data-id');
-				err_msg = response.msg;
-				modal.resetBtns(btn);
-				modal.showWithTitle(response.msg);
-			}
+            } else if (!response.success) {
+                //上线失败
+                actid = $tr.attr('data-id');
+                err_msg = response.msg;
+                modal.resetBtns(btn);
+                modal.showWithTitle(response.msg);
+            }
         }).fail(function () {
             //alert('操作失败！！！');
             $('body').pop({
@@ -590,7 +598,7 @@ $(function () {
         });
         return false;
     });
-	
+
     /**
      * 批量上线
      */
@@ -606,30 +614,30 @@ $(function () {
         });
         if (items != '') {
             $('body').pop({
-                msg : '是否要批量上线选中活动？',
-                btns : [{
-                    text : '取消',
-                    gray : true,
-                    handler : 'close'
-                },{
-                    text : '确定',
-                    handler : function(thisPop, $pop){
+                msg: '是否要批量上线选中活动？',
+                btns: [{
+                    text: '取消',
+                    gray: true,
+                    handler: 'close'
+                }, {
+                    text: '确定',
+                    handler: function (thisPop, $pop) {
                         $.ajax({
                             url: rootUrl + '/onlineBatch',
                             data: {ids: items},
                             type: 'POST'
                         }).done(function (response) {
-                        	if(response.code == 1){
-                        		$('body').pop({
+                            if (response.code == 1) {
+                                $('body').pop({
                                     msg: response.msg
                                 });
-                        		return;
-                        	}
+                                return;
+                            }
                             if (response.success) {
                                 //suc
-                                if(pageType === 'off') {
+                                if (pageType === 'off') {
                                     window.location.href = rootUrl + "/offline/";
-                                }else{
+                                } else {
                                     window.location.href = rootUrl + "/";
                                 }
                             } else {
@@ -665,14 +673,14 @@ $(function () {
         });
         if (items != '') {
             $('body').pop({
-                msg : '是否要批量下线选中活动？',
-                btns : [{
-                    text : '取消',
-                    gray : true,
-                    handler : 'close'
-                },{
-                    text : '确定',
-                    handler : function(thisPop, $pop){
+                msg: '是否要批量下线选中活动？',
+                btns: [{
+                    text: '取消',
+                    gray: true,
+                    handler: 'close'
+                }, {
+                    text: '确定',
+                    handler: function (thisPop, $pop) {
 
                         $.ajax({
                             url: rootUrl + '/offlineBatch',
@@ -681,9 +689,9 @@ $(function () {
                         }).done(function (response) {
                             if (response.success) {
                                 //suc
-                                if(pageType === 'off') {
+                                if (pageType === 'off') {
                                     window.location.href = rootUrl + "/offline/";
-                                }else{
+                                } else {
                                     window.location.href = rootUrl + "/";
                                 }
                             } else {
@@ -731,8 +739,8 @@ var setGame = function (data) {
         html = '';
     //因为是单选，直接替换游戏
     ////if ($el.find('li[data-gid="' + data.gid + '"]').size() <= 0) {
-        html = '<li data-gid="' + data.gid + '"><a href="' + data.url + '"> <img src="' + data.logo + '" alt="' + data.gname + '"/> </a> <em class="btn-del">删除</em> <input type="hidden" name="games[]" value="' + data.gid + '" /> </li>';
-        $el.find('ul').html(html);
+    html = '<li data-gid="' + data.gid + '"><a href="' + data.url + '"> <img src="' + data.logo + '" alt="' + data.gname + '"/> </a> <em class="btn-del">删除</em> <input type="hidden" name="games[]" value="' + data.gid + '" /> </li>';
+    $el.find('ul').html(html);
     //}
     refreshNum();
 };
@@ -749,77 +757,77 @@ var uuid = function () {
     };
     return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 };
-$(document).ready(function(){
+$(document).ready(function () {
     var usage1 = "中奖后得到兑换号，关注公众平台后给入口验证此兑换号正确后再真正获得";
     var usage2 = "中奖后获得的优惠券，直接带有对应的商城链接，可直接点击跳转，具体链接在下方奖品处设置";
     var usage3 = "中奖后生成券号，中奖者凭券号给企业方，企业方登录该后台验证券号有效性，并使其作废";
     var usage4 = "以奖励的方式刺激用户分享，获取用户详细资料为主";
     var usage5 = "引导用户关注微信公众号，管理员现场微信扫描派奖";
-    $("#usage-select").bind("change", function(){
+    $("#usage-select").bind("change", function () {
         var selectValue = $(".usage-content .select-target").text();
         // var selectValue = $(this).children('option:selected').val();
-        if("微信关注" == selectValue){
+        if ("微信关注" == selectValue) {
             $("#usage-select .help-inline").html(usage1);
             $(".usage-btn-link").show();
             $("#award").hide();
             $(".usage-prefix").show();
-        }else if("线上引流" == selectValue){
+        } else if ("线上引流" == selectValue) {
             $(".usage-btn-link").hide();
             $("#award").show();
             $(".usage-prefix").hide();
             $("#usage-select .help-inline").html(usage2);
-        }else if("线下引流" == selectValue){
+        } else if ("线下引流" == selectValue) {
             $("#usage-select .help-inline").html(usage3);
             $(".usage-btn-link").hide();
             $("#award").hide();
             $(".usage-prefix").show();
-        }else if("线索收集" == selectValue){
+        } else if ("线索收集" == selectValue) {
             $("#usage-select .help-inline").html(usage4);
             $(".usage-btn-link").hide();
             $("#award").hide();
             $(".usage-prefix").hide();
-        }else if("现场活动" == selectValue){
+        } else if ("现场活动" == selectValue) {
             $("#usage-select .help-inline").html(usage5);
             $("#award").hide();
             $(".usage-btn-link").show();
             $(".usage-prefix").show();
-        }else if("现场扭蛋" == selectValue){
+        } else if ("现场扭蛋" == selectValue) {
             window.location.href = rootUrl + '/liveErnie/create'
         }
     });
     $("#usage-select").trigger("change");
 });
-function activityFormHandler(){
+function activityFormHandler() {
     var name = $("input[name='name']").val();
     var gameCount = $(".game-select li").length;
-	var weixin_title = $("input[name='weixin_title']").val();
-	var weixin_descr = $("textarea[name='weixin_descr']").val();
-	var weixin_imgurl = $("input[name='weixin_imgurl']").val();
-	var weixin_mobile = $("input[name='contactPhone']").val();
-	var weixin_qq = $("input[name='contactQq']").val();
-	var regex = /^1\d{10}$/; 
-    if(name == ""){
+    var weixin_title = $("input[name='weixin_title']").val();
+    var weixin_descr = $("textarea[name='weixin_descr']").val();
+    var weixin_imgurl = $("input[name='weixin_imgurl']").val();
+    var weixin_mobile = $("input[name='contactPhone']").val();
+    var weixin_qq = $("input[name='contactQq']").val();
+    var regex = /^1\d{10}$/;
+    if (name == "") {
         alert("活动名称不能为空");
         return false;
-    }else if(gameCount == 0){
+    } else if (gameCount == 0) {
         alert("你必须选择一款游戏");
         return false;
-    }else if(weixin_title==""){
-		alert("微信分享标题信息不为空");
+    } else if (weixin_title == "") {
+        alert("微信分享标题信息不为空");
         return false;
-	}else if(weixin_descr==""){
-		alert("微信分享描述信息不为空");
+    } else if (weixin_descr == "") {
+        alert("微信分享描述信息不为空");
         return false;
-	}else if(weixin_imgurl==""){
-		alert("微信分享缩略图不为空");
+    } else if (weixin_imgurl == "") {
+        alert("微信分享缩略图不为空");
         return false;
-	}else if($(".form-pizze").is(":visible")){
+    } else if ($(".form-pizze").is(":visible")) {
         return !!window.confirm('奖品处于编辑状态，如果继续可能会丢失正在编辑的奖品。推荐做法是点击奖品下方的保存，而不是本按钮，你确定忽略提示并继续吗？');
-    }else if(weixin_mobile.length==0){
-    	alert("手机号码不能为空！");
-    	return false;
-    }else if(!regex.test(weixin_mobile)){
-    	alert("请输入有效的手机号码！");
-    	return false;
+    } else if (weixin_mobile.length == 0) {
+        alert("手机号码不能为空！");
+        return false;
+    } else if (!regex.test(weixin_mobile)) {
+        alert("请输入有效的手机号码！");
+        return false;
     }
 }

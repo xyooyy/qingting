@@ -33,28 +33,28 @@ $(function () {
     function saveConfig(success) {
         var html = $('.mid').clone();
         //html.find('.btn-current').remove();
-         var url =   "http://qingting.huosu.com/index.php/active/active_submit3_3";
-		 ids=hdpUrl.get("id");
-		 
+        var url = "http://qingting.huosu.com/index.php/active/active_submit3_3";
+        ids = hdpUrl.get("id");
+
         $.ajax(url, {
             data: {
                 id: ids,
                 html: html.html()
-            }, 
+            },
             type: "post",
             success: function (data, text) {
-				// alert(id);
-                if (data>0) { 
-                    window.location.href='./begame4?id='+data;
+                // alert(id);
+                if (data > 0) {
+                    window.location.href = './begame4?id=' + data;
                 } else {
-					    data=data.replace('ischou','');
-						 
-						window.location.href='./begame3_4?id='+data;
-						return false;
-					 
+                    data = data.replace('ischou', '');
+
+                    window.location.href = './begame3_4?id=' + data;
+                    return false;
+
                     window.modal.showAlert(data);
-                } 
-            } 
+                }
+            }
         });
     }
 

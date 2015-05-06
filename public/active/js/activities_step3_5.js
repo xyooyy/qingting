@@ -2,36 +2,35 @@ $(function () {
     /**
      * 判断抽奖结果页面哪个没设置
      */
-	var tag = 0;
-	
+    var tag = 0;
+
     initStep();
 
     /**
      * 根据网页参数判断当前出于第几步
      */
-    function initStep(){
+    function initStep() {
         var p = hdpUrl.get('page');
         $('.link1 a,.link2 a,.link3 a').removeClass('active').removeClass('current');
 
-        $('.uploadBtn').attr('data-step',p);
-        if(!p){
+        $('.uploadBtn').attr('data-step', p);
+        if (!p) {
             $('.link1 a').addClass('current');
-        }else if(p=="1"){
+        } else if (p == "1") {
             $('.link1 a').addClass('current');
-        }else if(p=="2"){
+        } else if (p == "2") {
             $('.link1 a').addClass('active');
             $('.link2 a').addClass('current');
-        }else if(p=="3"){
+        } else if (p == "3") {
             $('.link1 a').addClass('active');
             $('.link2 a').addClass('active');
             $('.link3 a').addClass('current');
-        }else{
+        } else {
             $('.link1 a').addClass('active');
             $('.link2 a').addClass('active');
             $('.link3 a').addClass('active');
         }
     }
-
 
 
     //当用户由第4步时选上一步进入此页面是进行页面初始化
@@ -63,7 +62,7 @@ $(function () {
 
         var html = $('.phone').clone();
         //html.find('.btn-current').remove();
-        saveHtml(type,html.html(),function(){
+        saveHtml(type, html.html(), function () {
             next();
         });
     });
@@ -79,15 +78,15 @@ $(function () {
      * 下一步
      */
     function next() {
-    	if(tag==0){
-    		window.location.href = hdpUrl.set(rootUrl + "/confirm", "id", hdpUrl.get("id"));//设置跳转网页及网页参数
-    	}else if(tag==1){
-    		modal.showWithTitle("奖页面未设置");
-    	}else if(tag==2){
-    		modal.showWithTitle("未中奖页面未设置");
-    	}else if(tag==3){
-    		modal.showWithTitle("次数用完页面未设置");
-    	}
+        if (tag == 0) {
+            window.location.href = hdpUrl.set(rootUrl + "/confirm", "id", hdpUrl.get("id"));//设置跳转网页及网页参数
+        } else if (tag == 1) {
+            modal.showWithTitle("奖页面未设置");
+        } else if (tag == 2) {
+            modal.showWithTitle("未中奖页面未设置");
+        } else if (tag == 3) {
+            modal.showWithTitle("次数用完页面未设置");
+        }
     }
 
     //$('.hdp-btn,.layoutArea .hdp-textarea,.hdp-img').changeLayout();
@@ -158,7 +157,7 @@ $(function () {
     $('.phone-simulation').on('click', '.hdp-btn,.hdp-textarea,.hdp-img,.hdp-widget-group,.hdp-input-text', function (ev) {
         sb(ev);
 
-        if(window.bgposition){
+        if (window.bgposition) {
             window.bgposition.disable();
         }
     });
@@ -570,9 +569,11 @@ $(function () {
          '</div>' +
          '</div><br/><br/>');
 
-         *//**
+         */
+        /**
          * 调节层级关系
-         *//*
+         */
+        /*
          $('.up-1').click(function () {
          zIndex($this.parent(), "up-1");
          });
@@ -846,9 +847,11 @@ $(function () {
          $('.underline').addClass('active');
 
          }
-         *//**
+         */
+        /**
          * 调节层级关系
-         *//*
+         */
+        /*
          $('.up-1').click(function () {
          zIndex($this, "up-1");
          });
@@ -903,7 +906,7 @@ $(function () {
 
     $('.phone-simulation').on('click', '.layoutbox', function (ev) {
 
-        if(window.bgposition){
+        if (window.bgposition) {
             window.bgposition.enable();
         }
 
@@ -1187,9 +1190,11 @@ $(function () {
          $('.input-lable').html($('.input-lable').html() + '<p>(注意:根据礼品信息动态修改，无法手动修改)</p>')
          }
 
-         *//**
+         */
+        /**
          * 调节层级关系
-         *//*
+         */
+        /*
          $('.up-1').click(function () {
          zIndex($this, "up-1");
          });
@@ -1260,9 +1265,9 @@ $(function () {
 
 
         if (!sub) {//是否直接提交
-            var p =$this.attr("data-step")?$this.attr("data-step"):hdpUrl.get("page") ;
+            var p = $this.attr("data-step") ? $this.attr("data-step") : hdpUrl.get("page");
             var type = $('.step.current').parent().clone().attr('data-name');
-            if ( p != "4") {
+            if (p != "4") {
 //                $('.link1 a,.link2 a,.link3 a').removeClass('active').removeClass('current');
             }
             var html = $('.phone').clone();
@@ -1276,10 +1281,10 @@ $(function () {
                 saveHtml(type, html.html(), function () {
                     // location.href = "/html/activities_step3_5.html?id=" + hdpUrl.get("id") + "&page=" + $('.link1').attr('data-hash');
                     modal.resetBtns([{
-                        id:"edit",
-                        name : "确定",
-                        listener:function(modal){
-                        	window.location.href = rootUrl +"/prizeResult?id="+hdpUrl.get("id")+"&page=2";
+                        id: "edit",
+                        name: "确定",
+                        listener: function (modal) {
+                            window.location.href = rootUrl + "/prizeResult?id=" + hdpUrl.get("id") + "&page=2";
                         }
                     }]);
                     modal.showWithTitle("保存成功");
@@ -1292,10 +1297,10 @@ $(function () {
                 saveHtml(type, html.html(), function () {
                     //location.href = "/html/activities_step3_5.html?id=" + hdpUrl.get("id") + "&page=" + $('.link2').attr('data-hash');
                     modal.resetBtns([{
-                        id:"edit",
-                        name : "确定",
-                        listener:function(modal){
-                        	window.location.href = rootUrl +"/prizeResult?id="+hdpUrl.get("id")+"&page=2";
+                        id: "edit",
+                        name: "确定",
+                        listener: function (modal) {
+                            window.location.href = rootUrl + "/prizeResult?id=" + hdpUrl.get("id") + "&page=2";
                         }
                     }]);
                     modal.showWithTitle("保存成功");
@@ -1309,15 +1314,15 @@ $(function () {
                 saveHtml(type, html.html(), function () {
                     //location.href = "/html/activities_step3_5.html?id=" + hdpUrl.get("id") + "&page=" + $('.link3').attr('data-hash');
                     modal.resetBtns([{
-                        id:"edit",
-                        name : "确定",
-                        listener:function(modal){
-                        	window.location.href = rootUrl +"/prizeResult?id="+hdpUrl.get("id")+"&page=3";
+                        id: "edit",
+                        name: "确定",
+                        listener: function (modal) {
+                            window.location.href = rootUrl + "/prizeResult?id=" + hdpUrl.get("id") + "&page=3";
                         }
                     }]);
                     modal.showWithTitle("保存成功");
                 });
-            }else if(p=="3"){
+            } else if (p == "3") {
                 $this.attr("data-step", 3);
 //                $('.link1 a').addClass('active');
 //                $('.link2 a').addClass('active');
@@ -1348,25 +1353,27 @@ $(function () {
         //console.log(steps);
         //submitHtml(steps,success);
     }
+
     function saveHtml(type, html, success) {
-        var url =   "http://qingting.huosu.com/index.php/active/active_submit3_5";
+        var url = "http://qingting.huosu.com/index.php/active/active_submit3_5";
         var html = $('.phone').clone();
-        $.ajax(url,{
+        $.ajax(url, {
             data: {
                 id: hdpUrl.get("id"),
                 html: html.html()
-            }, 
+            },
             type: "post",
-            
+
             success: function (data, textStatus) {
-                 if (data>0) { 
-                    window.location.href='./begame4?id='+data;
-                } else { 
+                if (data > 0) {
+                    window.location.href = './begame4?id=' + data;
+                } else {
                     window.modal.showAlert(data);
-                } 
-            } 
+                }
+            }
         });
     }
+
     //function submitHtml(steps,success){
     //    var url = rootUrl + "/prizeResult/save.json";
     //    console.log(steps);

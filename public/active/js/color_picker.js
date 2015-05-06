@@ -1,4 +1,4 @@
-﻿/**
+/**
  颜色选择器
  **/
 
@@ -119,7 +119,7 @@ colorpicker.prototype.openboard = function () {
         //alert('a');
 
         picker.closeboard();
-        if($(this).hasClass('nocolor')){
+        if ($(this).hasClass('nocolor')) {
 
             input.attr('value', color[$(this).index()]);
 
@@ -128,7 +128,7 @@ colorpicker.prototype.openboard = function () {
             if (picker.callback) {
                 picker.callback.call(this, 'none');
             }
-        }else{
+        } else {
 
             var pickcolor = $(this).css('background-color');
             input.attr('value', color[$(this).index()]);
@@ -159,13 +159,13 @@ colorpicker.prototype.openboard = function () {
 }
 
 
-colorpicker.prototype.getValue = function(){
+colorpicker.prototype.getValue = function () {
 
     return this.inputarea.attr('value');
 
 }
 
-colorpicker.prototype.setColor = function(color){
+colorpicker.prototype.setColor = function (color) {
     this.color = color;
 }
 

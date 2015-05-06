@@ -92,7 +92,7 @@ $(function () {
         //上传成功
         uploader.on('uploadSuccess', function (file, res) {
             $ts.addClass('upload-state-done');
-            if(res.content){
+            if (res.content) {
                 $ts.find('input:hidden').val(res.content);
             }
         });
@@ -120,9 +120,9 @@ $(function () {
 
         //保存设置
         $(".save-set").click(function () {
-            saveConfig(function(){
-                   $(".prize-input").hide();
-                   $(".prize-table").show();
+            saveConfig(function () {
+                $(".prize-input").hide();
+                $(".prize-table").show();
             });
         });
         $(".next").click(function () {
@@ -180,7 +180,7 @@ $(function () {
                     //console.log(data);
                     if (data.success) {
                         setData(data);
-                        if(success){
+                        if (success) {
                             success(data);
                         }
                     } else {

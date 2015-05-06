@@ -4,7 +4,7 @@
 $(function () {
 
 
-    $('.start-btn').css('position','absolute');
+    $('.start-btn').css('position', 'absolute');
 
     /**
      * 控制开始页面开始按钮的显示控制
@@ -27,7 +27,7 @@ $(function () {
 
         // vertical 垂直翻页 horizontal 水平滚动
         mode: 'horizontal',
-        activeIndex:0
+        activeIndex: 0
 
     });
     var initPage = function () {
@@ -94,8 +94,8 @@ $(function () {
         mySwiper.swipeTo(0);
     });
 
-    function save(success) { 
-        var url =   "http://qingting.huosu.com/index.php/active/active_submit3_1";
+    function save(success) {
+        var url = "http://qingting.huosu.com/index.php/active/active_submit3_1";
         var html = $('.phone').clone();
         //html.find('.btn-current').remove();
         console.log(html.html());
@@ -104,15 +104,15 @@ $(function () {
                 id: hdpUrl.get("id"),
                 html: html.html(),
                 step: "3_1"
-            }, 
+            },
             type: "post",
             success: function (data) {
-                 if (data>0) {
-                    window.location.href='./begame3_2?id='+data;
+                if (data > 0) {
+                    window.location.href = './begame3_2?id=' + data;
                 } else {
                     window.modal.showAlert(data);
-                } 
-            } 
+                }
+            }
         });
     }
 
@@ -183,20 +183,21 @@ $(function () {
         initHdpBtn($this);
 
     }
+
     //$('.start-btn').css({'left':$('.start-btn').offset().left-$('.phone-simulation').offset().left,'top':$('.start-btn').offset().top-$('.phone-simulation').offset().top,'position':'absolute'});
 
 
-    $('select[name="set-start-show"]').change(function(){
+    $('select[name="set-start-show"]').change(function () {
         tochange();
     });
 
     /**
-    *   根据参数判断是否仅在最后一页显示开始游戏按钮
-    */
-    function tochange(){
-        if($('select[name="set-start-show"]').val()=="theEnd"){
+     *   根据参数判断是否仅在最后一页显示开始游戏按钮
+     */
+    function tochange() {
+        if ($('select[name="set-start-show"]').val() == "theEnd") {
             $('.btn-area').appendTo($('.swiper-slide:last'));
-        }else{
+        } else {
             $('.btn-area').appendTo($('.swiper-container'));
         }
     }
@@ -231,7 +232,7 @@ $(function () {
                         //$this.css({'right':0});
 
                     },
-                    start:function(event,ui){
+                    start: function (event, ui) {
 
 
                         //$this.css({"left":$this.offset().left-$('.phone-simulation').offset().left});
@@ -474,7 +475,7 @@ $(function () {
                     swf: 'http://qingting.huosu.com/public/active/js/Uploader.swf',
                     chunked: false,
                     chunkSize: 512 * 1024,
-                    server: root_url +'/upload.json',
+                    server: root_url + '/upload.json',
                     // runtimeOrder: 'flash',
 
                     // accept: {
@@ -647,7 +648,7 @@ $(function () {
                                 afterMakeThumb(src, file.id);
                                 //是否将开始按钮放在最后一页
                                 tochange();
-                                if($('select[name="set-start-show"]').val()=='theEnd'){
+                                if ($('select[name="set-start-show"]').val() == 'theEnd') {
                                     tempStartBtn.appendTo($('.swiper-slide:last'));
                                 }
 
@@ -661,7 +662,7 @@ $(function () {
                                     img = $('<img src="' + src + '">');
                                     $wrap.empty().append(img);
                                 } else {
-                                    $.ajax( root_url+'/upload.json', {
+                                    $.ajax(root_url + '/upload.json', {
                                         method: 'POST',
                                         data: src,
                                         dataType: 'json'
