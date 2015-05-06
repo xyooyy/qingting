@@ -5,6 +5,12 @@ session_start();
 
 class Active extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+    }
+
     public function index()
     {
         $this->load->model('active_model');
@@ -52,7 +58,7 @@ class Active extends CI_Controller
         $row = $this->active_model->info('id', $this->input->get('id'));
         $data = array();
 
-        if ($row['html_start1'] != '') $data['html'] = file_get_contents('http://qingting.huosu.com/' . $row['html_start1']);
+        if ($row['html_start1'] != '') $data['html'] = file_get_contents($this->host . $row['html_start1']);
         $data['ischou'] = $row['ischou'];
         $this->load->view('active/begame3_1', $data);
     }
@@ -61,7 +67,7 @@ class Active extends CI_Controller
     {
         $this->load->model('active_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        if ($row['html_end1'] != '') $data['html'] = file_get_contents('http://qingting.huosu.com/' . $row['html_end1']);
+        if ($row['html_end1'] != '') $data['html'] = file_get_contents($this->host . $row['html_end1']);
         $data['ischou'] = $row['ischou'];
 
         $this->load->view('active/begame3_2', $data);
@@ -71,7 +77,7 @@ class Active extends CI_Controller
     {
         $this->load->model('active_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        if ($row['html_fenxiang1'] != '') $data['html'] = file_get_contents('http://qingting.huosu.com/' . $row['html_fenxiang1']);
+        if ($row['html_fenxiang1'] != '') $data['html'] = file_get_contents($this->host . $row['html_fenxiang1']);
 
         $data['ischou'] = $row['ischou'];
         $this->load->view('active/begame3_3', $data);
@@ -88,7 +94,7 @@ class Active extends CI_Controller
     {
         $this->load->model('active_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        if ($row['html_prize1'] != '') $data['html'] = file_get_contents('http://qingting.huosu.com/' . $row['html_prize1']);
+        if ($row['html_prize1'] != '') $data['html'] = file_get_contents($this->host . $row['html_prize1']);
         $this->load->view('active/begame3_5', $data);
     }
 
@@ -115,7 +121,7 @@ class Active extends CI_Controller
         $this->input->set_cookie("gamesid", $this->input->get('id'), 3600);
         $this->tongji('start', $this->input->get('id'));
         //header("Location:./games_end".$games['href']);
-        header("Location:http://qingting.huosu.com/active_games/" . $games['href']);
+        header("Location:" . $this->host . "active_games/" . $games['href']);
     }
 
     //游戏结束页
@@ -126,7 +132,7 @@ class Active extends CI_Controller
         if ($this->input->get('score')) $this->input->set_cookie("score", $this->input->get('score'), 100);
         $this->input->set_cookie("cookie3_2", '1', 100);
         $row = $this->active_model->info('id', $_COOKIE['gamesid']);
-        header("Location:http://qingting.huosu.com/" . $row['html_end']);
+        header("Locition:" . $this->host . $row['html_end']);
     }
 
     //游戏分享页
@@ -138,7 +144,7 @@ class Active extends CI_Controller
         $this->input->set_cookie("cookie3_3", '1', 100);
         $this->tongji('fenxiang', $this->input->get('id'));
         //$this->input->set_cookie("choujiang",$this->input->get('id'),10);
-        header("Location:http://qingting.huosu.com/" . $row['html_fenxiang']);
+        header("Locition:" . $this->host . $row['html_fenxiang']);
     }
 
     //游戏结抽奖
@@ -258,7 +264,7 @@ class Active extends CI_Controller
             file_put_contents($new_file1, $f);
             $f = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $f);
 
-            $erweima = $this->erweima('http://qingting.huosu.com/' . $new_file);
+            $erweima = $this->erweima($this->host . $new_file);
             $str_start = file_get_contents('active/start.html');
             $str_start1 = file_get_contents('active/start_size.html');
             $str_end = file_get_contents('active/end.html');
