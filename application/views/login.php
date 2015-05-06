@@ -30,7 +30,7 @@
 							</p>
                             <p>
 
-								<input type="text" name="reg_rand" class="text" id="yan" value=""  ><img id="code" alt="看不清，换一张" onclick="location.href='?username='+document.getElementById('username').value;"  src="http://120.24.230.34:4000/index.php/admin/rand_create"  title="换张图片"/>
+								<input type="text" name="reg_rand" class="text" id="yan" value=""  ><img id="code" alt="看不清，换一张" onclick="location.href='?username='+document.getElementById('username').value;"  src="http://localhost/index.php/admin/rand_create"  title="换张图片"/>
 								<br>
 							</p>
 							<p class="last">
