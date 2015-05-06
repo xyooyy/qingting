@@ -14,7 +14,7 @@
     <script src="http://www.huosu.com/js/jquery-1.9.1.js"></script>
     <link rel="stylesheet" href="/public/active/css/demo.css">
     <script type="text/javascript">
-        var rootUrl = 'http://qingting.huosu.com';
+        var rootUrl = "<?php echo $_SERVER['HTTP_HOST'];?>";
     </script>
     <!--[if IE 6]>
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>

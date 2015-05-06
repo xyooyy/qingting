@@ -28,5 +28,5 @@ if ($username == '') header("Location:http://qingting.huosu.com");
     </div>
 </div>
 <script>
-    var root_url = 'http://qingting.huosu.com';
+    var root_url = "<?php echo $_SERVER['HTTP_HOST'];?>";
 </script>

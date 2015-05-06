@@ -16,7 +16,7 @@
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
     <![endif]-->
     <script type="text/javascript">
-        var rootUrl = 'http://qingting.huosu.com';
+        var rootUrl = "<?php echo $_SERVER['HTTP_HOST'];?>";
         var activityScene = '';
     </script>
     <style>

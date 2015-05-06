@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/public/active/css/activities_step4.css">
     <link rel="stylesheet" href="/public/active/css/demo.css">
     <script type="text/javascript">
-        var rootUrl = 'http://qingting.huosu.com';
+        var rootUrl = "<?php echo $_SERVER['HTTP_HOST'];?>";
     </script>
     <!--[if IE 6]>
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>

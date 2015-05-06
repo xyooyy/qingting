@@ -38,7 +38,7 @@
 
                 <input type="text" name="reg_rand" class="text" id="yan" value=""><img id="code" alt="看不清，换一张"
                                                                                        onclick="location.href='?username='+document.getElementById('username').value;"
-                                                                                       src="http://<?php echo $_SERVER['HTTP_HOST'];?>/index.php/admin/rand_create"
+                                                                                       src="http://<?php echo $_SERVER['HTTP_HOST'];?>/index.php/admin/rand_createJ"
                                                                                        title="换张图片"/>
                 <br>
             </p>
