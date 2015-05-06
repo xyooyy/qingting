@@ -1355,7 +1355,7 @@ $(function () {
     }
 
     function saveHtml(type, html, success) {
-        var url = "http://qingting.huosu.com/index.php/active/active_submit3_5";
+        var url = "http://"+root_url+"/index.php/active/active_submit3_5";
         var html = $('.phone').clone();
         $.ajax(url, {
             data: {

@@ -18,7 +18,7 @@ $(function () {
     function saveConfig(success) {
         var html = $('.phone').clone();
         //html.find('.btn-current').remove();
-        var url = "http://qingting.huosu.com/index.php/active/active_submit3_2";
+        var url = "http://"+root_url+"/index.php/active/active_submit3_2";
         //alert(html.html());
         $.ajax(url, {
             data: {

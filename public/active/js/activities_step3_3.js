@@ -33,7 +33,7 @@ $(function () {
     function saveConfig(success) {
         var html = $('.mid').clone();
         //html.find('.btn-current').remove();
-        var url = "http://qingting.huosu.com/index.php/active/active_submit3_3";
+        var url = "http://"+rootUrl+"/index.php/active/active_submit3_3";
         ids = hdpUrl.get("id");
 
         $.ajax(url, {
