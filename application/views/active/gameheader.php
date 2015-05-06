@@ -2,7 +2,7 @@
 $username = $this->session->userdata('username');
 
 
-if ($username == '') header("Location:http://qingting.huosu.com");
+if ($username == '') header('Location:http://' . $_SERVER['HTTP_HOST']);
 ?>
 <div id="header_v2">
     <div class="inner">

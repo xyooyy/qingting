@@ -91,7 +91,7 @@
 
                                 <div class="form-group">
                                     <textarea class="input-class"
-                                              style="height:8em; font-size:1.2em; line-height:1.5em;">http://qingting.huosu.com/<?php echo $val['html_start'] ?></textarea>
+                                              style="height:8em; font-size:1.2em; line-height:1.5em;">http://<?php echo $_SERVER['HTTP_HOST'] .'/' . $val['html_start'] ?></textarea>
                                 </div>
                             </div>
                             <div class="act-4-right">
@@ -156,7 +156,7 @@
                                     <label>缩略图</label>
 
                                     <div class="litpic-show">
-                                        <img src="http://qingting.huosu.com/<?php echo $val['fenxiangi'] ?>">
+                                        <img src="http://<?php echo $_SERVER['HTTP_HOST'].'/'. $val['fenxiangi'] ?>">
                                     </div>
                                 </div>
                             </div>

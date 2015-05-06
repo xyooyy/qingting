@@ -268,7 +268,7 @@ class Active extends CI_Controller
             $str_start = file_get_contents('active/start.html');
             $str_start1 = file_get_contents('active/start_size.html');
             $str_end = file_get_contents('active/end.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='http://qingting.huosu.com/" . $new_file . "',share_imgUrl='http://qingting.huosu.com/" . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['title'] . "',share_link='". $this->host . $new_file . "',share_imgUrl='". $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             if (file_put_contents($new_file, $str_start . $share . $f . $str_end . $addtitle . $str_start1 . $share1)) {
                 $data['html_start'] = $new_file;
@@ -288,7 +288,7 @@ class Active extends CI_Controller
             $this->load->model('active_model');
 
             $row = $this->active_model->info('id', $this->input->post('id'));
-            $addtitle = "<script> if(getCookie('cookie3_2')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_2'); }  else { window.location.href='http://qingting.huosu.com/" . $row['html_start'] . "';}</script>";
+            $addtitle = "<script> if(getCookie('cookie3_2')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_2'); }  else { window.location.href='". $this->host . $row['html_start'] . "';}</script>";
 
             $f = $this->input->post('html');
             $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
@@ -303,7 +303,7 @@ class Active extends CI_Controller
             $str_end = file_get_contents('active/end.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
             $str_js = file_get_contents('active/addjs.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='http://qingting.huosu.com/" . $new_file . "',share_imgUrl='http://qingting.huosu.com/" . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['title'] . "',share_link='". $this->host . $new_file . "',share_imgUrl='". $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             if (file_put_contents($new_file, $str_start . $share . $f . $str_js1 . $str_js . $str_end . $addtitle . $share1)) {
                 $data['html_end'] = $new_file;
@@ -322,7 +322,7 @@ class Active extends CI_Controller
         if ($this->input->post('html')) {
             $this->load->model('active_model');
             $row = $this->active_model->info('id', $this->input->post('id'));
-            $addtitle = "<script> if(getCookie('cookie3_3')){ document.title = '" . $row['fenxiangt'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='http://qingting.huosu.com/" . $row['html_start'] . "';}</script>";
+            $addtitle = "<script> if(getCookie('cookie3_3')){ document.title = '" . $row['fenxiangt'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='". $this->host . $row['html_start'] . "';}</script>";
             $f = $this->input->post('html');
             $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
             $new_file1 = $new_file . '1' . '.html';
@@ -331,9 +331,9 @@ class Active extends CI_Controller
             $str_start = file_get_contents('active/start.html');
             $str_end = file_get_contents('active/end.html');
             $str_fenxiang = file_get_contents('active/addjs_fenxiang.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='http://qingting.huosu.com/" . $new_file . "',share_imgUrl='http://qingting.huosu.com/" . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['title'] . "',share_link='". $this->host . $new_file . "',share_imgUrl='". $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
-            $fenxiangi = "<div style='display:none'><img src='http://qingting.huosu.com/" . $row['fenxiangi'] . "'></div>";
+            $fenxiangi = "<div style='display:none'><img src='". $this->host . $row['fenxiangi'] . "'></div>";
             if (file_put_contents($new_file, $str_fenxiang . $str_start . $share . $fenxiangi . $f . $str_end . $addtitle . $share1)) {
                 $data['html_fenxiang'] = $new_file;
                 $data['html_fenxiang1'] = $new_file1;
@@ -367,7 +367,7 @@ class Active extends CI_Controller
             $this->load->model('active_model');
 
             $row = $this->active_model->info('id', $this->input->post('id'));
-            $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','../public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='http://qingting.huosu.com/" . $row['html_start'] . "';}</script>";
+            $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','../public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='". $this->host . $row['html_start'] . "';}</script>";
 
             $f = $this->input->post('html');
             $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
@@ -377,13 +377,13 @@ class Active extends CI_Controller
             $f = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $_POST['id'], $f);
             $f = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $f);
 
-            $prize_url = "<script>var pirze_url='http://qingting.huosu.com/active/games_getprize?id=" . $_POST['id'] . "';";
+            $prize_url = "<script>var pirze_url='". $this->host ."active/games_getprize?id=" . $_POST['id'] . "';";
             $str_start = file_get_contents('active/start.html');
             $str_end = file_get_contents('active/end.html');
             $str_js = file_get_contents('active/addjs.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
             $str_prize = file_get_contents('active/prize.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='http://qingting.huosu.com/" . $new_file . "',share_imgUrl='http://qingting.huosu.com/" . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['title'] . "',share_link='". $this->host . $new_file . "',share_imgUrl='". $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             if (file_put_contents($new_file, $str_start . $share . $f . $str_end . $str_js . $str_js1 . $prize_url . $str_prize . $addtitle . $share1)) {
                 $data['html_prize'] = $new_file;

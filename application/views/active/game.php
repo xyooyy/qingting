@@ -111,7 +111,7 @@ require('gameheader.php');
                             foreach ($list as $v) {
                                 ?>
                                 <div class="item">
-                                    <a href="http://qingting.huosu.com/active_games/<?php echo $v['href']?>"><img
+                                    <a href="http://<?php echo $_SERVER['HTTP_HOST'];?>/active_games/<?php echo $v['href']?>"><img
                                             class="img" src="<?php echo $v['img']?>"></a>
 
                                     <div class="form-group item--name">
