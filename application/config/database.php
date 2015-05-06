@@ -50,8 +50,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = '127.0.0.1';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'qingting';
+$db['default']['password'] = 'qingting';
+$db['default']['database'] = 'test';
 
 /*$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
