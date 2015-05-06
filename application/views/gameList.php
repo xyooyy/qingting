@@ -37,7 +37,7 @@
                                     <p><?php echo $v['info']?></p>
 
                                     <p><a target="_blank"
-                                          href="http://qingting.huosu.com/games/<?php echo $v['keyname']?>/?id=<?php echo $v['id']?>"><input
+                                          href="http://<?php echo $_SERVER['HTTP_HOST'];?>/games/<?php echo $v['keyname']?>/?id=<?php echo $v['id']?>"><input
                                                 type="button" class="b_l" value="浏览"/></a>
                                         <a href="./make?id=<?php echo $v['id']?>"><input type="button" class="b_c"
                                                                                          value="创作"/></a></p>

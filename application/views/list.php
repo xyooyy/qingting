@@ -23,7 +23,7 @@
                         <p><?php echo $v['info']?></p>
                     </div>
                     <div class="con_d3">
-                        <a href="http://qingting.huosu.com/games/<?php echo $v['keyname']?>/?id=<?php echo $v['id']?>"><input
+                        <a href="http://<?php echo $_SERVER['HTTP_HOST'];?>/games/<?php echo $v['keyname']?>/?id=<?php echo $v['id']?>"><input
                                 type="button" value="打开" class="clie con_d3_i"></a>
                         <a href="/index.php/game/make?id=<?php echo $v['id']?>"><input type="button" value="生成游戏"
                                                                                        class="clie con_d3_i"></a>

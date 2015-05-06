@@ -160,8 +160,8 @@
                             $now_href = $list['mid'] ? 'mid=' . $list['mid'] : 'id=' . $list['id'];
                             ?>
                             <iframe
-                                src="http://qingting.huosu.com/games/<?php echo $list['keyname'] ?>/?<?php echo $now_href ?>"
-                                class="http://qingting.huosu.com/games/<?php echo $list['keyname'] ?>/"
+                                src="http://<?php echo $_SERVER['HTTP_HOST'];?>/games/<?php echo $list['keyname'] ?>/?<?php echo $now_href ?>"
+                                class="http://<?php echo $_SERVER['HTTP_HOST'];?>/games/<?php echo $list['keyname'] ?>/"
                                 id="phone"></iframe>
                         </div>
                         <div class="right1_s">
