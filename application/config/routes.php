@@ -47,35 +47,3 @@ $route['404_override'] = '';
 
 
 
-
-
-server {
-    listen  80;
-        server_name  120.24.230.34;
-
-#        access_log  /www/access_ example1.log  main;
-
-        location / {
-        root   /var/lib/jenkins/workspace/www/;
-            index  index.php index.html index.htm;
-        }
-
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-        root   /var/lib/jenkins/workspace/www/;
-        }
-
-       # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-        location ~ \.php$ {
-        root /var/lib/jenkins/workspace/www/;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-            include        fastcgi_params;
-
-        }
-
-        location ~ /\.ht {
-        deny  all;
-        }
-}
