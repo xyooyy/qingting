@@ -242,7 +242,7 @@ require('gameheader.php');
                                                             </div>
                                                             <div class="btnArea">
                                                                 <a class="btn1 hdp-btn hdp-lottery-btn" data-id="url"
-                                                                   data-url="<?php echo $ischou == 1 ? 'http://' .$_SERVER['HTTP_HOST']. '/active/games_choujiang?id=' . $_GET['id'] : '#' ?>"
+                                                     data-url="<?php echo $ischou == 1 ? 'http://' . $_SERVER['HTTP_HOST'] . '/active/games_choujiang?id=' . $_GET['id'] : '#' ?>"
                                                                    href="javascript:;fenxiang">
                                                                     <?php echo $ischou == 1 ? '抽奖' : '分享' ?>
                                                                     <div class="btn-current">

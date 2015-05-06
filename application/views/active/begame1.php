@@ -169,7 +169,7 @@ require('gameheader.php');
                                     <div class="form-single-upload wx-avatar-upload">
                                         <div class="form-fileupload litpci-load" style="height:200px;width:200px;">
                                             <img
-                                                src="<?php echo $val['fenxiangi'] ? 'http://qingting.huosu.com' . $val['fenxiangi'] : '/public/images/s.png' ?>"
+                                                src="<?php echo $val['fenxiangi'] ? 'http://' .$_SERVER['HTTP_HOST'] . $val['fenxiangi'] : '/public/images/s.png' ?>"
                                                 id="now_img"/>
                                             <em class="ico-sucess"></em>
 
