@@ -411,7 +411,10 @@ class Active extends CI_Controller
         // 二维码数据
         $data = $href;
         // 生成的文件名
-        $filename = 'active/' . date("Ymd-") . time() . rand(1, 9999) . '.png';
+        $filename = 'active/' . md5($href) . '.png';
+        if(file_exists($filename)){
+            return $filename;
+        }
         // 纠错级别：L、M、Q、H
         $errorCorrectionLevel = 'L';
         // 点的大小：1到10
