@@ -16,7 +16,7 @@
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
     <![endif]-->
     <script type="text/javascript">
-        var rootUrl = "<?php echo $_SERVER['HTTP_HOST'];?>";
+        var rootUrl =  'http://' + "<?php echo $_SERVER['HTTP_HOST'];?>";
         var activityScene = '';
     </script>
     <style>
@@ -25,7 +25,7 @@
             background: #eeeeee;
             line-height: 28px;
             color: #636363;
-            border: 0 none;
+            /*border: 0 none;*/
             height: 80px;
             overflow: auto;
             padding: 10px 14px;
@@ -93,7 +93,7 @@ require('gameheader.php');
 
                             <div class="form-group">
                                 <label> 活动名称 </label>
-                                <input class="input-class input-name" type="text" name="actName"
+                                <input class="form-control input-name" type="text" name="actName"
                                        value="<?php echo $val['title'] ?>"/>
 
                                 <div class="prompt">
@@ -155,12 +155,12 @@ require('gameheader.php');
                             <div class="wx-share">
                                 <div class="form-group">
                                     <label> 微信分享标题 </label>
-                                    <input class="input-class input-name" type="text" name="wxTitle"
+                                    <input class="form-control input-name" type="text" name="wxTitle"
                                            value="<?php echo $val['fenxiangt'] ?>"/>*如需获取分数的部分写入'#score#'
                                 </div>
                                 <div class="form-group" style="height:auto">
                                     <label>微信分享描述</label>
-                                    <textarea class="form-textarea" placeholder="建议文本描述不要过长"
+                                    <textarea class="form-textarea form-control form-border" placeholder="建议文本描述不要过长"
                                               name="wxDesc"><?php echo $val['fenxiangc'] ?></textarea>
                                 </div>
                                 <div class="form-group form-group-check">

@@ -23,7 +23,6 @@ if ($username == '') header('Location:http://' . $_SERVER['HTTP_HOST']);
             <a class="logout" href="#">
                 [退出]
             </a>
-
         </div>
     </div>
 </div>
