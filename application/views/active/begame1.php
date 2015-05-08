@@ -80,7 +80,7 @@ require('gameheader.php');
 
                             <div class="form-group">
                                 <label> 活动名称 </label>
-                                <input class=" form-control input-name " type="text" name="actName"
+                                <input class=" form-control input-class input-name " type="text" name="actName"
                                        value="<?php echo $val['title'] ?>"/>
 
                                 <div class="prompt">

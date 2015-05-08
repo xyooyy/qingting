@@ -31,7 +31,6 @@ class Admin extends CI_Controller
             }
         }
     }
-
     //后台退出
     public function logout()
     {

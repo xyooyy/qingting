@@ -143,7 +143,15 @@ $(function () {
             window.modal.showAlert("微信分享描述不能为空，请您填写。");
             return false;
         }
-        /* var name = $formActivity.find("input[name='wxImg']").val();
+        var startTime = $formActivity.find("input[name='startTime']").val() + ':00';
+        var endTime = $formActivity.find("input[name='endTime']").val() + ':00';
+        var start = new Date(startTime.replace(/\-/g,'/'));
+        var end = new Date(endTime.replace(/\-/g,'/'));
+        alert(end.getTime() - start.getTime())
+        if(end.getTime() - start.getTime() < 86400000){
+            window.modal.showAlert("您选得时间区域为无效时间，请重新填写");
+            return false;
+        }        /* var name = $formActivity.find("input[name='wxImg']").val();
          if (name == "") {
          window.modal.showAlert("微信分享缩图不能为空，请您上传图片。");
          return false;
@@ -154,7 +162,6 @@ $(function () {
             submitForm($('form').serialize());//提交数据    kiner
         }
     });
-
 
     var timer;
     if ($('.wx-avatar-upload').find('img').attr('src').length != 0) {
