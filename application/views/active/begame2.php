@@ -17,7 +17,7 @@
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
     <![endif]-->
     <script type="text/javascript">
-        var rootUrl = "<?php echo $_SERVER['HTTP_HOST'];?>";
+        var rootUrl = 'http://' + "<?php echo $_SERVER['HTTP_HOST'];?>";
     </script>
 </head>
 <body>
@@ -78,24 +78,30 @@
                                 <div class="recommend">
                                     <ul class="game-list">
                                         <?php
-                                        foreach ($list as $v) {
-                                            ?>
-                                            <a href="./begame2_1?id=<?php echo $_GET['id']?>&gid=<?php echo $v['gid']?>">
-                                                <li id="">
-                                                    <div class="litpic">
-                                                        <img src="<?php echo $v['img']?>"/>
+                                            foreach ($active_games as $v) {
+                                        ?>
+                                            <li id="">
+                                                <div class="litpic">
+                                                <a href="./begame2_1?id=<?php echo $_GET['id']?>&gid=<?php echo $v['gid']?>">
+                                                    <img class="active_game_img" src="<?php echo $v['img']?>"/>
+                                                    <img class="active_game_qrcode" style="display:none;" src="<?php echo $v['qrcode']?>"/>
+                                                </a>
+                                                </div>
+                                                <div class="item-name">
+                                                    <div class="icheckbox_polaris">
+                                                     <input class="kiner-choice-game" type="radio" name="child" data-id="<?php echo $v['gid']?>" value="<?php echo $v['gid']?>"  style="position: absolute; opacity: 0;" />
+                                                     <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
                                                     </div>
-                                                    <div class="item-name">
-                                                        <!--<div class="icheckbox_polaris">
-                                                         <input class="kiner-choice-game" type="radio" name="child" data-id="5" style="position: absolute; opacity: 0;" />
-                                                        </div>-->
+
+                                                    <a href="./begame2_1?id=<?php echo $_GET['id']?>&gid=<?php echo $v['gid']?>">
                                                         <span
-                                                            style="text-align:center;"> <?php echo $v['title']?></span>
-                                                    </div>
-                                                </li>
-                                            </a>
+                                                            style="text-align:center;"> <?php echo $v['title']?>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </li>
                                         <?php
-                                        }
+                                            }
                                         ?>
 
                                     </ul>

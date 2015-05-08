@@ -427,4 +427,36 @@ $(function () {
 
     /**********************kiner**********************/
 
+
+    function init_active_games(){
+        $('.icheckbox_polaris').on('click',function(){
+            var me = this;
+
+            if(! $(me).hasClass('checked')){
+                $('.icheckbox_polaris').removeClass('checked');
+                $(".kiner-choice-game").prop('checked',false);
+                $(me).addClass('checked');
+                $(me).children('.kiner-choice-game').prop('checked',true);
+                $('.next').attr('href', $(me).next().attr('href'));
+
+            }else{
+                $(me).removeClass('checked');
+                $(me).children('.kiner-choice-game').prop('checked',false);
+                $('.next').attr('href', 'javascript:void(0);');
+            }
+        });
+
+        $('.active_game_img').on('mouseover',function(){
+            $(this).next().show();
+            $(this).hide();
+        });
+
+        $('.active_game_qrcode').on('mouseleave',function(){
+            $(this).prev().show();
+            $(this).hide();
+        });
+    }
+
+    init_active_games();
+
 });

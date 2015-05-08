@@ -8,7 +8,13 @@ class Admin extends CI_Controller
     //轻应用列表后台
     public function index()
     {
-        $this->load->view('login');
+        $username = $this->session->userdata('username');
+        $userid = $this->session->userdata('userid');
+        if($username != '' || $userid !=''){
+            header("Location:/index.php/active/index");
+        }else{
+            $this->load->view('login');
+        }
     }
 
     //后台登陆
@@ -34,8 +40,7 @@ class Admin extends CI_Controller
     //后台退出
     public function logout()
     {
-        $_SESSION['username'] = '';
-        $_SESSION['userid'] = '';
+        $this->session->unser_userdata(array("username" => '', "admin" => '', "userid" => ''));
         echo "<script>top.location='./index';</script>";
     }
 
