@@ -32,7 +32,12 @@ class Active extends CI_Controller
         $this->load->model('active_model');
         $this->load->model('active_games_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        $data['list'] = $this->active_games_model->all();
+        $active_games = $this->active_games_model->all();
+        foreach ($active_games as $index => $game) {
+            $href = $this->host . 'active_games/' . $game['href']. '/';
+            $active_games[$index]['qrcode'] = $this->host . $this->erweima($href);
+        }
+        $data['active_games'] = $active_games;
         $data['gid'] = $row['gid'];
         $this->load->view('active/begame2', $data);
     }
@@ -407,7 +412,7 @@ class Active extends CI_Controller
     //生成二维码
     public function erweima($href)
     {
-        include('public/phpqrcode.php');
+        include_once('public/phpqrcode.php');
         // 二维码数据
         $data = $href;
         // 生成的文件名

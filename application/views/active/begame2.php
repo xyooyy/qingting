@@ -78,12 +78,13 @@
                                 <div class="recommend">
                                     <ul class="game-list">
                                         <?php
-                                            foreach ($list as $v) {
+                                            foreach ($active_games as $v) {
                                         ?>
                                             <li id="">
                                                 <div class="litpic">
                                                 <a href="./begame2_1?id=<?php echo $_GET['id']?>&gid=<?php echo $v['gid']?>">
-                                                    <img src="<?php echo $v['img']?>"/>
+                                                    <img class="active_game_img" src="<?php echo $v['img']?>"/>
+                                                    <img class="active_game_qrcode" style="display:none;" src="<?php echo $v['qrcode']?>"/>
                                                 </a>
                                                 </div>
                                                 <div class="item-name">
