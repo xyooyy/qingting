@@ -19,19 +19,6 @@
         var rootUrl =  'http://' + "<?php echo $_SERVER['HTTP_HOST'];?>";
         var activityScene = '';
     </script>
-    <style>
-        body .form-group .form-textarea {
-            width: 400px;
-            background: #eeeeee;
-            line-height: 28px;
-            color: #636363;
-            /*border: 0 none;*/
-            height: 80px;
-            overflow: auto;
-            padding: 10px 14px;
-            resize: none;
-        }
-    </style>
 </head>
 <body class="">
 <?php
@@ -93,7 +80,7 @@ require('gameheader.php');
 
                             <div class="form-group">
                                 <label> 活动名称 </label>
-                                <input class="form-control input-name" type="text" name="actName"
+                                <input class=" form-control input-name " type="text" name="actName"
                                        value="<?php echo $val['title'] ?>"/>
 
                                 <div class="prompt">

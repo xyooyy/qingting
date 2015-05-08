@@ -2,7 +2,17 @@
 .form-single-upload {
     *zoom: 1
 }
-
+body .form-group .form-textarea {
+    width: 400px;
+    background: #eeeeee;
+    line-height: 28px;
+    color: #636363;
+    /*border: 0 none;*/
+    height: 80px;
+    overflow: auto;
+    padding: 10px 14px;
+    resize: none;
+}
 .form-single-upload:before, .form-single-upload:after {
     display: table;
     content: ""
@@ -307,4 +317,5 @@
 .new-eggs-info {
     display: none;
 }
+
 
