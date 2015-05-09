@@ -4,18 +4,18 @@ $(function () {
     //模态框自定义按钮组
     var confirmBtn = [
         {
-            id: "ok",
-            name: "确定并完成下一步",
-            listener: function () {
+            id:"ok",
+            name : "确定并完成下一步",
+            listener : function(){
                 next(1);
             }
         },
 
         {
-            id: "close",
-            name: "关闭",
-            classes: ['window.modalClose'],
-            listener: function (modal) {
+            id:"close",
+            name : "关闭",
+            classes : ['window.modalClose'],
+            listener : function(modal){
                 modal.hide();
             }
         }
@@ -55,10 +55,10 @@ $(function () {
     //时间控件选择器调用和初始化
     $('.date-picker').datetimepicker({
         lang: 'ch',
-        step: 10,
-        format: "Y-m-d H:i",
+        step:10,
+        format:"Y-m-d H:i",
         timepicker: true,
-        showSecond: false,
+        showSecond:false,
         scrollMonth: false,
         scrollTime: false,
         scrollInput: false,
@@ -68,9 +68,7 @@ $(function () {
         }
     });
     getCurrentTime();
-    function getCurrentTime() {
-        $(".ui-datepicker-current").click();
-    }
+    function getCurrentTime() { $(".ui-datepicker-current").click(); }
 
     //单选，多选化
     $('.btn-all input, .check input, .comm-form input[type="radio"]').iCheck({
@@ -85,7 +83,7 @@ $(function () {
     });
 
     //选择商业场景
-    $('input[name="scene"]').on("ifChanged", function () {
+    $('input[name="scene"]').on("ifChanged",function(){
         var c = parseInt($(this).val());
         switch (c) {
             case 1:
@@ -121,12 +119,12 @@ $(function () {
                 break;
         }
     });
-
+    
     //获取表单的值
     var $formActivity = $('.comm-form');
     $formActivity.on('click', '.next', function () {
-
-
+		 
+		
         //保存
         var name = $formActivity.find("input[name='actName']").val();
         if (name == "") {
@@ -143,11 +141,11 @@ $(function () {
             window.modal.showAlert("微信分享描述不能为空，请您填写。");
             return false;
         }
-        /* var name = $formActivity.find("input[name='wxImg']").val();
-         if (name == "") {
-         window.modal.showAlert("微信分享缩图不能为空，请您上传图片。");
-         return false;
-         }*/
+       /* var name = $formActivity.find("input[name='wxImg']").val();
+        if (name == "") {
+            window.modal.showAlert("微信分享缩图不能为空，请您上传图片。");
+            return false;
+        }*/
 
         else {
             //window.modal.showAlert($('form').serialize());
@@ -157,19 +155,19 @@ $(function () {
 
 
     var timer;
-    if ($('.wx-avatar-upload').find('img').attr('src').length != 0) {
+    if($('.wx-avatar-upload').find('img').attr('src').length!=0){
 
         $('.wx-avatar-upload').find('.inner').addClass('bg');
         $('.wx-avatar-upload').find('.inner').hide();
     }
-    $('.wx-avatar-upload').on("mouseover", "img,.inner", function () {
+    $('.wx-avatar-upload').on("mouseover","img,.inner",function(){
         clearInterval(timer);
         $('.wx-avatar-upload').find('.inner').show();
     });
-    $('.wx-avatar-upload').on("mouseout", "img,.inner", function () {
-        timer = setInterval(function () {
+    $('.wx-avatar-upload').on("mouseout","img,.inner",function(){
+        timer = setInterval(function(){
             $('.wx-avatar-upload').find('.inner').hide();
-        }, 30);
+        },30);
     });
 
     /**
@@ -181,15 +179,15 @@ $(function () {
         var url = rootUrl + "/index.php/active/active_submit";
 
         $.ajax(url, {
-            data: data + '&step=1',
+            data: data + '&step=1', 
             type: "post",
             success: function (data) {
-                if (data > 0) {
-                    window.location.href = './begame2?id=' + data;
+                if (data>0) {
+                    window.location.href='./begame2?id='+data;
                 } else {
                     window.modal.showAlert(data);
                 }
-            }
+            } 
         });
     }
 
@@ -198,77 +196,77 @@ $(function () {
      * 跳转到下一页
      */
     function next(id) {
-        var scene = $("input[name='scene']:checked").val();
-        //活动的商业场景和所选的场景不一，并且有需要奖品
-        var hasPrize = $("input[name='hasPrize']:checked").val();
-        if (activityScene == '' || activityScene == scene) {
-            window.location.href = hdpUrl.set("./gameChoose", "id", id);//设置跳转网页及网页参数
-        }
-        //活动场景发生变化
-        if (activityScene != '' && activityScene != scene) {
-            //重置【中奖结果页面】
+    	var scene = $("input[name='scene']:checked").val();
+    	//活动的商业场景和所选的场景不一，并且有需要奖品
+    	var hasPrize = $("input[name='hasPrize']:checked").val();
+    	if(activityScene==''  || activityScene==scene){
+    		window.location.href = hdpUrl.set("./gameChoose", "id", id);//设置跳转网页及网页参数
+    	}
+    	//活动场景发生变化
+    	if(activityScene!='' && activityScene!=scene){
+    		//重置【中奖结果页面】
             $.ajax({
-                url: rootUrl + "/prizeResult/save.json",
-                dataType: "json",
-                type: "post",
-                data: {
-                    id: hdpUrl.get("id"),
-                    html: "",
-                    alreadyWinningHtml: "",
-                    depleteChanceHtml: "",
-                    notWinningHtml: ""
-                },
-                success: function (data) {
-                    if (data.success) {
-                        //活动下线
-                        $.ajax({
-                            url: rootUrl + "/offline.json",
-                            dataType: "json",
-                            type: "post",
-                            data: {
-                                id: hdpUrl.get("id")
-                            },
-                            success: function (data) {
-                                if (data.success) {
-                                    //活动场景发生变化并且需要奖品
-                                    if (activityScene != scene && hasPrize == 1) {
-                                        var btn = [
-                                            {
-                                                id: "ok",
-                                                name: "前往设置",
-                                                listener: function (modal) {
-                                                    window.location.href = hdpUrl.set("./prizeResult", "id", id);
-                                                }
-                                            },
-                                            {
-                                                id: "close",
-                                                name: "下一步",
-                                                classes: ['modalClose'],
-                                                listener: function (modal) {
-                                                    modal.hide();
-                                                    window.location.href = hdpUrl.set("./gameChoose", "id", id);
-                                                }
-                                            }
-                                        ];
-                                        window.modal.resetBtns(btn);
-                                        window.modal.showWithTitle("检测到活动的商业场景有更变，我们已重置了【中奖结果】页的选项!");
-                                    } else {
-                                        window.location.href = hdpUrl.set("./gameChoose", "id", id);//设置跳转网页及网页参数
-                                    }
-                                }
-                            },
-                            error: function (data) {
-                                modal.showAlert('系统给活动下线失败，请手动下线！');
-                            }
-                        });
-                    }
-                },
-                error: function (data, textStatus) {
-                    modal.showAlert('系统重置【中奖结果页面】失败，请手动重置！');
-                }
-            });
-
-        }
+    		  url: rootUrl + "/prizeResult/save.json",
+    		  dataType: "json",
+              type: "post",
+    		  data: {
+                  id: hdpUrl.get("id"),
+                  html: "",
+                  alreadyWinningHtml: "",
+                  depleteChanceHtml: "",
+                  notWinningHtml: ""
+              },
+              success:function (data) {
+            	  if(data.success){
+            		  //活动下线
+                      $.ajax({
+           			   url: rootUrl + "/offline.json",
+           			   dataType: "json",
+           			   type: "post",
+           			   data: {
+           		              id: hdpUrl.get("id")
+           		       },
+           	           success:function (data) {
+           	        	   if(data.success){
+           	        		//活动场景发生变化并且需要奖品
+           	            	if(activityScene!=scene && hasPrize==1){
+           	            		var btn = [
+           	        			            {
+           	        			                id:"ok",
+           	        			                name : "前往设置",
+           	        			                listener:function(modal){
+           	        			                	window.location.href = hdpUrl.set("./prizeResult", "id", id);
+           	        			                }
+           	        			            },
+           	        			            {
+           	        			                id:"close",
+           	        			                name:"下一步",
+           	        			                classes : ['modalClose'],
+           	        			                listener:function(modal){
+           	        			                    modal.hide();
+           	        			                    window.location.href = hdpUrl.set("./gameChoose", "id", id);
+           	        			                }
+           	        			            }
+           	            		        ];
+           	            		window.modal.resetBtns(btn);
+           	            		window.modal.showWithTitle("检测到活动的商业场景有更变，我们已重置了【中奖结果】页的选项!");
+           	            	}else{
+           	            		window.location.href = hdpUrl.set("./gameChoose", "id", id);//设置跳转网页及网页参数
+           	            	}
+           	        	   }
+           		       },
+           		       error: function (data) {
+                              modal.showAlert('系统给活动下线失败，请手动下线！');
+           		       }
+           			 });
+            	  }
+		       },
+              error: function (data, textStatus) {
+                  modal.showAlert('系统重置【中奖结果页面】失败，请手动重置！');
+    	       }
+    		}); 
+            
+    	}
     }
 
     imageUpload();

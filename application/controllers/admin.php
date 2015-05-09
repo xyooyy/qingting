@@ -125,7 +125,6 @@ class Admin extends CI_Controller
     //验证码图片生成
     public function rand_create()
     {
-
         //通知浏览器将要输出PNG图片
         Header("Content-type: image/PNG");
         //准备好随机数发生器种子
@@ -137,7 +136,6 @@ class Admin extends CI_Controller
         $gray = ImageColorAllocate($im, 200, 200, 200); //RGB灰色标识符
         //开始作图
         imagefill($im, 0, 0, $gray);
-        printf('11111111');
         while (($randval = rand() % 100000) < 10000) ;
         {
             $_SESSION["login_check_num"] = $randval;
@@ -150,7 +148,6 @@ class Admin extends CI_Controller
             imagesetpixel($im, rand() % 70, rand() % 30, $randcolor);
         }
         //输出验证图片
-
         ImagePNG($im);
         //销毁图像标识符
         ImageDestroy($im);
