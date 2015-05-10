@@ -125,21 +125,21 @@ require('gameheader.php');
                                 </select>
                             </div>
                             <div class="act-step3" id="uploader">
-                                <!--<div class="left">
+                                <div class="left">
                                     <ul class="choice-layout">
                                         <li class="active lay1">
-                                            <a href="http://act.aiwanpai.com/end?id=581#1">
-                                                <img src="./begame3-2_files/lay-common.png">
+                                            <a href="javascript:void(0);">
+                                                <img src="/public/active/css/images/lay-common.png">
                                             </a>
                                         </li>
                                         <li class="lay2">
-                                            <a href="http://act.aiwanpai.com/end?id=581#1">
-                                                <img src="./begame3-2_files/lay-vertical.png">
+                                            <a href="javascript:void(0);">
+                                                <img src="/public/active/css/images/lay-vertical.png">
                                             </a>
                                         </li>
                                         <li class="lay3">
-                                            <a href="http://act.aiwanpai.com/end?id=581#1">
-                                                <img src="./begame3-2_files/lay-symmetric.png">
+                                            <a href="javascript:void(0);">
+                                                <img src="/public/active/css/images/lay-symmetric.png">
                                             </a>
                                         </li>
                                     </ul>
@@ -201,18 +201,18 @@ require('gameheader.php');
                                         </ul>
                                     </div>
                                     <div class="statusBar">
-                                        <div class="set-select">
+                            <!--             <div class="set-select">
                                             <select name="set-way" class="select-select">
                                                 <option value="1">一键设置</option>
                                                 <option value="2">自定义设置</option>
                                             </select><a href="javascript:;" class="select-target select-theme-default select-enabled select-element-attached-top select-element-attached-left select-target-attached-bottom select-target-attached-left" tabindex="0">一键设置<b></b></a>
-                                        </div>
+                                        </div> -->
                                         <div class="btns">
                                             <div id="filePicker2"></div>
                                             <div class="uploadBtn state-ready">保存设置</div>
                                         </div>
                                     </div>
-                                </div>-->
+                                </div>
                                 <div class="mid">
                                     <div class="phone" unselectable="on" onselectstart="return false;"
                                          style="width: 320px; height: 480px; -webkit-user-select: none;">
@@ -299,17 +299,13 @@ require('gameheader.php');
 
                                         <!-- Nav tabs -->
                                         <ul class="set-nav tab" role="tablist" style="display: none;">
-                                            <li role="presentation">
+                                            <li role="presentation" style="width:50%">
                                                 <a href="http://act.aiwanpai.com/end?id=581#home" role="tab"
                                                    data-toggle="tab">样式</a>
                                             </li>
-                                            <li role="presentation" class="active">
+                                            <li role="presentation" class="active" style="width:50%">
                                                 <a href="http://act.aiwanpai.com/end?id=581#profile" role="tab"
                                                    data-toggle="tab">格式</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="http://act.aiwanpai.com/end?id=581#messages" role="tab"
-                                                   data-toggle="tab">排序</a>
                                             </li>
                                         </ul>
                                         <h3 class="stitle" style="text-align: center; margin-bottom: -20px;">背景设置</h3>

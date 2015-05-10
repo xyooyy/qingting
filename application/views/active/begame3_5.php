@@ -262,17 +262,13 @@ require('gameheader.php');
 
                                         <!-- Nav tabs -->
                                         <ul class="set-nav tab" role="tablist" style="display: none;">
-                                            <li role="presentation" class="active">
+                                            <li role="presentation" class="active" style="width:50%">
                                                 <a href="http://act.aiwanpai.com/prizeResult?id=549#home" role="tab"
                                                    data-toggle="tab">样式</a>
                                             </li>
-                                            <li role="presentation">
+                                            <li role="presentation" style="width:50%">
                                                 <a href="http://act.aiwanpai.com/prizeResult?id=549#profile" role="tab"
                                                    data-toggle="tab">格式</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="http://act.aiwanpai.com/prizeResult?id=549#messages" role="tab"
-                                                   data-toggle="tab">排序</a>
                                             </li>
                                         </ul>
 

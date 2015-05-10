@@ -123,41 +123,41 @@ require('gameheader.php');
                                 </select>
                             </div>
                             <div class="act-step3" id="uploader">
-                                <!--<div class="left">
+                                <div class="left">
                                     &nbsp;
                                     <ul class="choice-layout" id="swiper-choice">
                                         <li class="active lay1 common">
-                                            <a href="http://act.aiwanpai.com/begin?id=549#1">
-                                                <img src="./begame3_files/swiper-lay1.png">
+                                            <a href="javascript:void(0)">
+                                                <img src="/public/active/css/imagess/swiper-lay1.png">
                                             </a>
                                         </li>
                                         <li class="lay2 symmetric">
-                                            <a href="http://act.aiwanpai.com/begin?id=549#1">
-                                                <img src="./begame3_files/swiper-lay2.png">
+                                            <a href="javascript:void(0)">
+                                                <img src="/public/active/css/imagess/swiper-lay2.png">
                                             </a>
                                         </li>
                                         <li class="lay3 vertical">
-                                            <a href="http://act.aiwanpai.com/begin?id=549#1">
-                                                <img src="./begame3_files/swiper-lay3.png">
+                                            <a href="javascript:void(0)">
+                                                <img src="/public/active/css/imagess/swiper-lay3.png">
                                             </a>
                                         </li>
                                     </ul>
                                     <div class="statusBar">
-                                        <div class="save-config">保存设置</div>
+                               <!--          <div class="save-config">保存设置</div>
                                         <div class="set-select">
                                             <select name="set-way" class="select-select">
                                                 <option value="1">一键设置</option>
                                                 <option value="2">自定义设置</option>
                                             </select><a href="javascript:;" class="select-target select-theme-default select-enabled select-element-attached-left select-target-attached-left select-element-attached-top select-target-attached-bottom" tabindex="0">一键设置<b></b></a>
-                                        </div>
-                                        <div class="set-select">
+                                        </div> -->
+                                 <!--        <div class="set-select">
                                             <select name="set-start-show" class="select-select">
                                             	<option value="theEnd" selected="selected">仅末页显示开始按钮</option>
                                                 <option value="all">每页均显示开始按钮</option>
                                             </select><a href="javascript:;" class="select-target select-theme-default select-enabled select-element-attached-left select-target-attached-left select-element-attached-top select-target-attached-bottom" tabindex="0">仅末页显示开始按钮<b></b></a>
-                                        </div>
+                                        </div> -->
                                     </div>
-                                </div>-->
+                                </div>
                                 <div class="mid">
                                     <div class="phone" style="width: 320px; height: 480px;">
                                         <div class="phone-simulation lay-common" data-layout="symmetric"
