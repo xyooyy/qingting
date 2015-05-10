@@ -9,7 +9,11 @@ $(function () {
         });
 
         $('.next').on('click',function(){
-            if($(".kiner-choice-game:checked").length == 0){
+            //just for begame2_1
+            if($(this).hasClass('no_validate')){
+                return true;
+            }
+            else if($(".kiner-choice-game:checked").length == 0){
                 window.modal.showAlert('至少选择一个游戏');
                 return false;
             }

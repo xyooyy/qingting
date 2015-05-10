@@ -131,7 +131,7 @@ require('gameheader.php');
                                 <a class="pre" href="./begame2?id=<?php echo $_GET['id'] ?>">
                                     上一步
                                 </a>
-                                <a class="next"
+                                <a class="next no_validate"
                                    href="./begame3?id=<?php echo $_GET['id'] ?>&gid=<?php echo $_GET['gid'] ?>">
                                     下一步
                                 </a>
