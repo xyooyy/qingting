@@ -27,5 +27,5 @@ if ($username == '') header('Location:http://' . $_SERVER['HTTP_HOST']);
     </div>
 </div>
 <script>
-    var root_url = "<?php echo $_SERVER['HTTP_HOST'];?>";
+    var root_url = "http://" + "<?php echo $_SERVER['HTTP_HOST'];?>";
 </script>

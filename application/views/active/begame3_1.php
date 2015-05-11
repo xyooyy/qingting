@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/public/active/css/demo.css">
     <script type="text/javascript">
         var rootUrl =  'http://' + "<?php echo $_SERVER['HTTP_HOST'];?>";
-//        var rootUrl = 'http://act.aiwanpai.com';
     </script>
     <!--[if IE 6]>
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
@@ -129,17 +128,17 @@ require('gameheader.php');
                                     <ul class="choice-layout" id="swiper-choice">
                                         <li class="active lay1 common">
                                             <a href="javascript:void(0)">
-                                                <img src="/public/active/css/imagess/swiper-lay1.png">
+                                                <img src="/public/active/css/images/swiper-lay1.png">
                                             </a>
                                         </li>
                                         <li class="lay2 symmetric">
                                             <a href="javascript:void(0)">
-                                                <img src="/public/active/css/imagess/swiper-lay2.png">
+                                                <img src="/public/active/css/images/swiper-lay2.png">
                                             </a>
                                         </li>
                                         <li class="lay3 vertical">
                                             <a href="javascript:void(0)">
-                                                <img src="/public/active/css/imagess/swiper-lay3.png">
+                                                <img src="/public/active/css/images/swiper-lay3.png">
                                             </a>
                                         </li>
                                     </ul>
@@ -245,17 +244,13 @@ require('gameheader.php');
 
                                             <!-- Nav tabs -->
                                             <ul class="set-nav" role="tablist">
-                                                <li role="presentation">
+                                                <li role="presentation" style="width:50%;">
                                                     <a href="http://act.aiwanpai.com/begin?id=549#home" role="tab"
                                                        data-toggle="tab">样式</a>
                                                 </li>
-                                                <li role="presentation" class="active">
+                                                <li role="presentation" class="active" style="width:50%;">
                                                     <a href="http://act.aiwanpai.com/begin?id=549#profile" role="tab"
                                                        data-toggle="tab">格式</a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a href="http://act.aiwanpai.com/begin?id=549#messages" role="tab"
-                                                       data-toggle="tab">排序</a>
                                                 </li>
                                             </ul>
 

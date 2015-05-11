@@ -548,11 +548,11 @@
 
             // swf文件路径
 
-            swf: 'http://qingting.huosu.com/public/active/js/Uploader.swf',
+            swf: rootUrl + '/public/active/js/Uploader.swf',
             auto: true,
 
             // 文件接收服务端。
-            server: 'http://qingting.huosu.com/active/up_img',
+            server: rootUrl + '/active/up_img',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.

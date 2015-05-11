@@ -84,22 +84,22 @@ $(function () {
         $(this).addClass("active");
         if ($(this).hasClass("lay1")) {
             $('.phone-simulation').attr('data-layout', 'common');
-            $("#layStyle").attr("href", rootUrl + "/assets/template/common/css/layout.css");
-            $('#laySwiper').attr("href", rootUrl + "/assets/template/common/css/swiper.css");
+            $("#layStyle").attr("href", rootUrl + "/public/active/css/common/css/layout.css");
+            $('#laySwiper').attr("href", rootUrl + "/public/active/css/common/css/swiper.css");
             //$('.hdp-btn,.hdp-textarea,.hdp-img').css({top: '', left: '', right: '0', bottom: ''});
             $('.start-btn').css('right', '20px');
         }
         else if ($(this).hasClass("lay2")) {
             $('.phone-simulation').attr('data-layout', 'symmetric');
-            $("#layStyle").attr("href", rootUrl + "/assets/template/symmetric/css/layout.css");
-            $('#laySwiper').attr("href", rootUrl + "/assets/template/symmetric/css/swiper.css");
+            $("#layStyle").attr("href", rootUrl + "/public/active/css/symmetric/css/layout.css");
+            $('#laySwiper').attr("href", rootUrl + "/public/active/css/symmetric/css/swiper.css");
             //$('.hdp-btn,.hdp-textarea,.hdp-img').css({top: '', left: '', right: '23%', bottom: ''});
             $('.start-btn').css({'right': '0px', 'left': ($('.phone').width() - $('.start-btn').width) / 2});
         }
         else {
             $('.phone-simulation').attr('data-layout', 'vertical');
-            $("#layStyle").attr("href", rootUrl + "/assets/template/vertical/css/layout.css");
-            $('#laySwiper').attr("href", rootUrl + "/assets/template/vertical/css/swiper.css");
+            $("#layStyle").attr("href", rootUrl + "/public/active/css/vertical/css/layout.css");
+            $('#laySwiper').attr("href", rootUrl + "/public/active/css/vertical/css/swiper.css");
             //$('.hdp-btn,.hdp-textarea,.hdp-img').css({top: '', left: '', right: '23%', bottom: ''});
 
             $('.start-btn').css({'right': '0px', 'left': ($('.phone').width() - $('.start-btn').width) / 2});
@@ -383,7 +383,7 @@ $(function () {
     });
 
     if ($('.lay-common').attr('data-layout')) {
-        $('#layStyle').attr('href', rootUrl + '/assets/template/' + $('.lay-common').attr('data-layout') + '/css/layout.css?ver=20150121161235');
+        $('#layStyle').attr('href', rootUrl + '/public/active/css/' + $('.lay-common').attr('data-layout') + '/css/layout.css?ver=20150121161235');
         $('.' + $('.lay-common').attr('data-layout')).addClass('active').siblings().removeClass('active');
     }
 

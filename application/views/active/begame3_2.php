@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/public/active/css/layout.css" id="layStyle">
     <link rel="stylesheet" href="/public/active/css/demo.css">
     <script type="text/javascript">
-        var rootUrl = 'http://act.aiwanpai.com';
+        var rootUrl = 'http://' + '<?php echo $_SERVER['HTTP_HOST']; ?>';
         var websiteUrl = 'http://localhost:8081/aiwanpai-game-website';
     </script>
     <!--[if IE 6]>
@@ -243,7 +243,7 @@ require('gameheader.php');
                                                             <div class="btnArea">
                                                                 <a class="btn1 hdp-btn hdp-lottery-btn" data-id="url"
                                                      data-url="<?php echo $ischou == 1 ? 'http://' . $_SERVER['HTTP_HOST'] . '/active/games_choujiang?id=' . $_GET['id'] : '#' ?>"
-                                                                   href="javascript:;fenxiang">
+                                                                   href="javascript:void(0)">
                                                                     <?php echo $ischou == 1 ? '抽奖' : '分享' ?>
                                                                     <div class="btn-current">
                                                                         <i class="btn-current-i tl"></i>
@@ -328,7 +328,7 @@ require('gameheader.php');
                                                         <hr>
                                                         <div class="setColor-label">背景颜色：</div>
                                                         <div class="inputArea"
-                                                             style="cursor:pointer;margin-top:1px;box-shadow:0 0 2px gray; border:3px solid rgb(250,250,250) ;display:inline-block;float:right;margin-left:20px;width:88px;height:30px;background:url(http://test.aiwanpai.com/managers/assets/css/res/nullcolor.jpg);border-radius:0px;"></div>
+                                                             style="cursor:pointer;margin-top:1px;box-shadow:0 0 2px gray; border:3px solid rgb(250,250,250) ;display:inline-block;float:right;margin-left:20px;width:88px;height:30px;background:url(/public/active/css/images/nullcolor.jpg);border-radius:0px;"></div>
                                                         <br>
                                                         <hr>
                                                         <div class="setComn-label">旋转角度：</div>

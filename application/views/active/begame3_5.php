@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/public/active/css/activities_step3.css">
     <link rel="stylesheet" href="/public/active/css/layout.css" id="layStyle">
     <script type="text/javascript">
-        var rootUrl = 'http://act.aiwanpai.com';
+        var rootUrl = "http://" + "<?php echo $_SERVER['HTTP_HOST'];?>";
     </script>
     <!--[if IE 6]>
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
@@ -313,7 +313,7 @@ require('gameheader.php');
                                                         <hr>
                                                         <div class="setColor-label">背景颜色：</div>
                                                         <div class="inputArea"
-                                                             style="cursor:pointer;margin-top:1px;box-shadow:0 0 2px gray; border:3px solid rgb(250,250,250) ;display:inline-block;float:right;margin-left:20px;width:88px;height:30px;background:url(http://test.aiwanpai.com/managers/assets/css/res/nullcolor.jpg);border-radius:0px;"></div>
+                                                             style="cursor:pointer;margin-top:1px;box-shadow:0 0 2px gray; border:3px solid rgb(250,250,250) ;display:inline-block;float:right;margin-left:20px;width:88px;height:30px;background:url(/public/active/css/images/nullcolor.jpg);border-radius:0px;"></div>
                                                         <br>
                                                         <hr>
                                                         <div class="setComn-label">旋转角度：</div>
