@@ -147,7 +147,6 @@ $(function () {
         var endTime = $formActivity.find("input[name='endTime']").val() + ':00';
         var start = new Date(startTime.replace(/\-/g,'/'));
         var end = new Date(endTime.replace(/\-/g,'/'));
-        alert(end.getTime() - start.getTime())
         if(end.getTime() - start.getTime() < 86400000){
             window.modal.showAlert("您选得时间区域为无效时间，请重新填写");
             return false;
@@ -323,8 +322,8 @@ function imageUpload() {
         }
         //上传
         uploader = WebUploader.create({
-            swf: rootUrl + '/assets/js/lib/webuploader/Uploader.swf',
-            server: rootUrl + '/upload.json',//必须全路径
+            swf: rootUrl + '/public/active/js/Uploader.swf',
+            //server: rootUrl + '/upload.json',//必须全路径
             pick: {
                 id: $ts.find('.picker'),
                 multiple: false
@@ -337,10 +336,16 @@ function imageUpload() {
                 mimeTypes: 'image/*'
             }
         });
-
         // 创建缩略图
+        uploader.on('beforeFileQueued', function (file, res) {
+            console.log(file)
+
+        if(file.size > 80000){
+            window.modal.showAlert("图片大小不为最佳的200*200");
+
+        }
+        })
         uploader.on('fileQueued', function (file) {
-            // 如果为非图片文件，可以不用调用此方法。
             // thumbnailWidth x thumbnailHeight 为 100 x 100
             uploader.makeThumb(file, function (error, src) {
                 if (error) {
