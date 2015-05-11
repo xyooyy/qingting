@@ -95,7 +95,7 @@ $(function () {
     });
 
     function save(success) {
-        var url = "http://qingting.huosu.com/index.php/active/active_submit3_1";
+        var url = rootUrl + "/index.php/active/active_submit3_1";
         var html = $('.phone').clone();
         //html.find('.btn-current').remove();
         console.log(html.html());
@@ -472,7 +472,7 @@ $(function () {
                     },
                     dnd: '#dndArea',
                     paste: '#uploader',
-                    swf: 'http://qingting.huosu.com/public/active/js/Uploader.swf',
+                    swf: rootUrl + '/public/active/js/Uploader.swf',
                     chunked: false,
                     chunkSize: 512 * 1024,
                     server: root_url + '/upload.json',
