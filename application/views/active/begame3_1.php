@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/public/active/css/layout.css" id="layStyle">
     <link rel="stylesheet" href="/public/active/css/demo.css">
     <script type="text/javascript">
-        var rootUrl = 'http://act.aiwanpai.com';
+        var rootUrl = 'http://' + '<?php echo $_SERVER['HTTP_HOST']; ?>';
     </script>
     <!--[if IE 6]>
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
@@ -128,17 +128,17 @@ require('gameheader.php');
                                     <ul class="choice-layout" id="swiper-choice">
                                         <li class="active lay1 common">
                                             <a href="javascript:void(0)">
-                                                <img src="/public/active/css/imagess/swiper-lay1.png">
+                                                <img src="/public/active/css/images/swiper-lay1.png">
                                             </a>
                                         </li>
                                         <li class="lay2 symmetric">
                                             <a href="javascript:void(0)">
-                                                <img src="/public/active/css/imagess/swiper-lay2.png">
+                                                <img src="/public/active/css/images/swiper-lay2.png">
                                             </a>
                                         </li>
                                         <li class="lay3 vertical">
                                             <a href="javascript:void(0)">
-                                                <img src="/public/active/css/imagess/swiper-lay3.png">
+                                                <img src="/public/active/css/images/swiper-lay3.png">
                                             </a>
                                         </li>
                                     </ul>
