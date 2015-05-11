@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/public/active/css/layout.css" id="layStyle">
     <link rel="stylesheet" href="/public/active/css/demo.css">
     <script type="text/javascript">
-        var rootUrl = 'http://act.aiwanpai.com';
+        var rootUrl = 'http://' + '<?php echo $_SERVER['HTTP_HOST']; ?>';
         var websiteUrl = 'http://localhost:8081/aiwanpai-game-website';
     </script>
     <!--[if IE 6]>

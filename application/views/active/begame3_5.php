@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/public/active/css/activities_step3.css">
     <link rel="stylesheet" href="/public/active/css/layout.css" id="layStyle">
     <script type="text/javascript">
-        var rootUrl = 'http://act.aiwanpai.com';
+        var rootUrl = "http://" + "<?php echo $_SERVER['HTTP_HOST'];?>";
     </script>
     <!--[if IE 6]>
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/public/active/css/layout.css" id="layStyle">
     <link rel="stylesheet" href="/public/active/css/demo.css">
     <script type="text/javascript">
-        var rootUrl = "<?php echo $_SERVER['HTTP_HOST'];?>";
+        var rootUrl = "http://" + "<?php echo $_SERVER['HTTP_HOST'];?>";
     </script>
     <!--[if IE 6]>
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
