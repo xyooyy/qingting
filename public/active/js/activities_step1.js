@@ -62,6 +62,7 @@ $(function () {
         scrollMonth: false,
         scrollTime: false,
         scrollInput: false,
+        minDate: new Date(),
         beforeShow: getCurrentTime,
         onChangeDateTime: function (dp, $input) {
             $(".xdsoft_datetimepicker").hide();
