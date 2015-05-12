@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteCond %{REQUEST_URI} !^.*(.css|.js|.gif|.png|.jpg|.jpeg)$
+RewriteCond %{REQUEST_URI} !^.*(.html|.css|.js|.gif|.png|.jpg|.jpeg)$
 RewriteCond $1 !^(index\.php|images|js|css|upload|public|active_games|robots\.txt)
 RewriteRule ^(.*)$ /index.php/$1 [L]
 DirectoryIndex index.php index.html index.htm
