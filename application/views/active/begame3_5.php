@@ -125,7 +125,7 @@ require('gameheader.php');
                                 </select>
                             </div>
                             <div class="act-step3" id="uploader">
-                                <!--<div class="left">
+                                <div class="left">
                                     <ul class="choice-layout">
                                         <li class="active lay1">
                                             <a href="javascript:;">
@@ -144,12 +144,6 @@ require('gameheader.php');
                                         </li>
                                     </ul>
                                     <div class="statusBar">
-                                        <div class="set-select">
-                                            <select name="set-way" class="select-select">
-                                                <option value="1">一键设置</option>
-                                                <option value="2">自定义设置</option>
-                                            </select>
-                                        </div>
                                         <div class="btns">
                                             <div id="filePicker2"></div>
                                             <a class="uploadBtn state-ready" href="javascript:;" data-name="alreadyWinning">
@@ -157,7 +151,7 @@ require('gameheader.php');
                                             </a>
                                         </div>
                                     </div>
-                                </div>-->
+                                </div>
                                 <div class="mid" data-scene="3">
                                     <div class="phone active" style="width: 320px; height: 480px;">
 

@@ -51,8 +51,8 @@ $(function () {
             $fileupload = $ts.find('.form-fileupload');
         //上传
         uploader = WebUploader.create({
-            swf: rootUrl + '/assets/js/lib/webuploader/Uploader.swf',
-            server: rootUrl + '/upload.json',//必须全路径
+            swf: rootUrl + '/public/active/js/Uploader.swf',
+            // server: rootUrl + '/upload.json',//必须全路径
             pick: {
                 id: $ts.find('.picker'),
                 multiple: false
@@ -105,10 +105,10 @@ $(function () {
             $(".prize-input").show();
             $(".add-btn a").click(function () {
                 $(".prize-input").find('input').val('');
-                $(".prize-input").find('.form-fileupload img').attr('src', rootUrl + '/assets/images/s.png');
+                $(".prize-input").find('.form-fileupload img').attr('src', rootUrl + '/public/active/css/images/s.png');
                 if (myImg) {
                     uploader.removeFile(myImg);
-                    $(".prize-input").find('.form-fileupload img').attr('src', rootUrl + '/assets/images/s.png');
+                    $(".prize-input").find('.form-fileupload img').attr('src', rootUrl + '/public/active/css/images/s.png');
                 }
                 if ($(".prize-input").is(":hidden")) {
                     $(".prize-input").show();
@@ -231,49 +231,7 @@ $(function () {
         }
     }
 
-    $('.prize-table').on('click', '.del', function () {
-        //modal.showA//alert($(this).attr('data-id'));
-        var $this = $(this);
-        $.ajax(rootUrl + '/prize/remove.json', {
-            data: {
-                id: $(this).attr('data-id')
-            },
-            dataType: "json",
-            type: "post",
-            success: function (data, text) {
-                if (data.success) {
-                    setData(data);
-                    if ($('.prize-table tbody tr').length == 0) {
-                        $('.prize-table').hide();
-                    }
-                } else {
-                    modal.showAlert(data.msg);
-                }
-            },
-            error: function () {
-            }
-        });
-    });
     $('.prize-table').on('click', '.update', function () {
         $(".prize-input").show();
-        $.ajax(rootUrl + '/prize/get.json', {
-            data: {
-                id: $(this).attr('data-id')
-            },
-            dataType: "json",
-            type: "post",
-            success: function (data, text) {
-                $('input[name="id"]').val(data.content.id);
-                $('input[name="title"]').val(data.content.title);
-                $('input[name="name"]').val(data.content.name);
-                $('input[name="quota"]').val(data.content.quota);
-                $('input[name="avatar"]').val(data.content.avatar);
-                $('input[name="probability"]').val(data.content.probability);
-                $('input[name="url"]').val(data.content.url);
-
-                $('.form-fileupload img').attr('src', data.content.avatar);
-            }
-        });
-        //alert($(this).attr('data-id'));
     });
 });

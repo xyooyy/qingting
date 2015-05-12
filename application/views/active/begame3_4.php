@@ -264,8 +264,7 @@ require('gameheader.php');
                                                 <label>
                                                     &nbsp;
                                                 </label>
-                                                <a href="javascript:;" class="save-set1"
-                                                   onClick="$('#fimg').val($('#jiangpin_img').attr('src'));$('#prize_form').submit();setTimeout(loadprize,2000);">
+                                                <a href="javascript:;" class="save-set1 save_settings">
                                                     保存设置
                                                 </a>
                                             </div>
@@ -322,6 +321,39 @@ require('gameheader.php');
 <script src="/public/active/js/UrlHelper.js"></script>
 <script src="/public/active/js/activities_step3_4.js"></script>
 <script>
+    $('.save_settings').on('click',function(){
+        if($('#p_title').val().trim() == ''){
+            window.modal.showAlert('请输入奖项标题');
+            return false;
+        }
+
+        if($('#p_name').val().trim() == ''){
+            window.modal.showAlert('请输入奖品名称');
+            return false;
+        }
+
+        if($('#p_count').val().trim() == ''){
+            window.modal.showAlert('请输入奖品数量');
+            return false;
+        }
+
+        if($('#p_size').val().trim() == ''){
+            window.modal.showAlert('请输入中奖概率');
+            return false;
+        }
+
+        if($('#p_href').val().trim() == ''){
+            window.modal.showAlert('请输入奖品链接');
+            return false;
+        }
+
+        $('#fimg').val($('#jiangpin_img').attr('src'));
+        $('#prize_form').submit();
+        $('#p_title').val('');
+        setTimeout(loadprize,2000);
+
+    })
+
     setTimeout(loadprize, 1300);
     function loadprize() {
         var timestamp = (new Date()).valueOf();
@@ -333,12 +365,12 @@ require('gameheader.php');
     var isshow = 1;
     $("#addchou").click(function () {
         if (isshow == 1){
-            $('.prize-input.').show();
+            $('.prize-input').show();
             isshow = 0;
         }
         else
         {
-            $('.prize-input.').hide();
+            $('.prize-input').hide();
             isshow = 1;
         }
     })
