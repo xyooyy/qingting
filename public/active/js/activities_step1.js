@@ -338,10 +338,8 @@ function imageUpload() {
         });
         // 创建缩略图
         uploader.on('beforeFileQueued', function (file, res) {
-            console.log(file)
-
         if(file.size > 80000){
-            window.modal.showAlert("图片大小不为最佳的200*200");
+            window.modal.showAlert("图片大小应为30k以内");
 
         }
         })
