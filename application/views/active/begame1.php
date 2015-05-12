@@ -122,6 +122,7 @@ require('gameheader.php');
                                 <!--新增  二维码 kiner-->
                                 <div class="code">
                                     <a href="#"><!--<img src="./begame1_files/1.jpg" alt="玩儿命加载中..." />--></a>
+                                    <img src="/public/images/code_huosu.png">
                                 </div>
                             </div>
                             <div class="yesOrNo has-prize">
@@ -142,7 +143,7 @@ require('gameheader.php');
                             <div class="wx-share">
                                 <div class="form-group">
                                     <label> 微信分享标题 </label>
-                                    <input class="form-control input-name" type="text" name="wxTitle"
+                                    <input class="form-control input-name input-background" type="text" name="wxTitle"
                                            value="<?php echo $val['fenxiangt'] ?>"/>*如需获取分数的部分写入'#score#'
                                 </div>
                                 <div class="form-group" style="height:auto">
@@ -218,7 +219,7 @@ require('gameheader.php');
                                             <div class="form-single-upload new-eggs-prize-upload">
                                                 <div class="form-fileupload litpci-load"
                                                      style="height:200px;width:200px;">
-                                                    <img src="./begame1_files/s.png"/>
+                                                    <img src="/public/images/s.png"/>
                                                     <em class="ico-sucess"></em>
                                                     <input type="hidden" name="avatar" value=""/>
 

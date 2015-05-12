@@ -93,32 +93,32 @@ $(function () {
 
                 $(".commercial-content h3").text("品牌传播");
                 $(".commercial-content p").text("在品牌宣传的同时加入游戏，令传播更生动有趣，后续不设置奖励实现销售转化。");
-                $(".code img").attr('src', rootUrl + '/assets/images/scene-demo/1.jpg');
+                $(".code img").attr('src', rootUrl + '/public/images/code_huosu.png');
                 break;
             case 2:
                 $(".commercial-content h3").text("微信关注");
                 $(".commercial-content p").text("商家撰写微信关注的引导性文章，并在官微中设置【我要兑奖】的链接。用户通过文章关注官微，并在官微中进行兑换操作，以便达成吸粉目的，建议月度或季度执行一次。");
-                $(".code img").attr('src', rootUrl + '/assets/images/scene-demo/2.jpg');
+                $(".code img").attr('src', rootUrl + '/public/images/code_huosu.png');
                 break;
             case 3:
                 $(".commercial-content h3").text("商城引流");
                 $(".commercial-content p").text("适合电商购物平台及电商卖家派发优惠券，把微信用户引流到商城，实现电商销售转化。建议商家通过网上受认证的软件生成优惠券链接，并在活动中奖页面中做好优惠券兑换的操作指引。");
-                $(".code img").attr('src', rootUrl + '/assets/images/scene-demo/3.jpg');
+                $(".code img").attr('src', rootUrl + '/public/images/code_huosu.png');
                 break;
             case 4:
                 $(".commercial-content h3").text("线下引流");
                 $(".commercial-content p").text("适合实体店、连锁店使用，商家多以代金券、优惠券作为活动奖励，在中奖页面中显示实体店具体位置信息，最终引流到店，实现消费。");
-                $(".code img").attr('src', rootUrl + '/assets/images/scene-demo/5.jpg');
+                $(".code img").attr('src', rootUrl + '/public/images/code_huosu.png');
                 break;
             case 5:
                 $(".commercial-content h3").text("展会活动");
                 $(".commercial-content p").text("针对展会特点，该场景设有两种兑奖方式，供商家选用，第一种是用户分享活动到朋友圈即可兑奖，第二种是用户关注官微进行兑奖操作。");
-                $(".code img").attr('src', rootUrl + '/assets/images/scene-demo/5.jpg');
+                $(".code img").attr('src', rootUrl + '/public/images/code_huosu.png');
                 break;
             case 6:
                 $(".commercial-content h3").text("销售线索收集");
                 $(".commercial-content p").text("用户体验最佳的商业场景，玩游戏填写姓名、手机及地址，坐等商家邮寄礼品到家。最终帮助商家收集销售线索，其中以汽车、保险等传统行业尤为适用。");
-                $(".code img").attr('src', rootUrl + '/assets/images/scene-demo/6.jpg');
+                $(".code img").attr('src', rootUrl + '/public/images/code_huosu.png');
                 break;
         }
     });
@@ -146,9 +146,9 @@ $(function () {
         }
         var startTime = $formActivity.find("input[name='startTime']").val() + ':00';
         var endTime = $formActivity.find("input[name='endTime']").val() + ':00';
-        var start = new Date(startTime.replace(/\-/g,'/'));
-        var end = new Date(endTime.replace(/\-/g,'/'));
-        if(end.getTime() - start.getTime() < 86400000){
+        var start = new Date(startTime.replace(/\-/g, '/'));
+        var end = new Date(endTime.replace(/\-/g, '/'));
+        if (end.getTime() - start.getTime() < 86400000) {
             window.modal.showAlert("您选得时间区域为无效时间，请重新填写");
             return false;
         }        /* var name = $formActivity.find("input[name='wxImg']").val();
@@ -339,10 +339,15 @@ function imageUpload() {
         });
         // 创建缩略图
         uploader.on('beforeFileQueued', function (file, res) {
-        if(file.size > 80000){
-            window.modal.showAlert("图片大小应为30k以内");
+            setTimeout(function () {
+                if (file._info.width != 200 || file._info.height != 200) {
+                    window.modal.showAlert("图片大小不为最佳的200×200");
+                }
+            }, 100)
+            if (file.size > 80000) {
+                window.modal.showAlert("图片大小应为30k以内");
 
-        }
+            }
         })
         uploader.on('fileQueued', function (file) {
             // thumbnailWidth x thumbnailHeight 为 100 x 100
