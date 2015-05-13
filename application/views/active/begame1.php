@@ -2,25 +2,15 @@
 <!-- saved from url=(0029)http://act.aiwanpai.com/basic -->
 <html lang="zh-cn">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta charset="UTF-8"/>
     <title>基本资料</title>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
-    <meta name="keywords" content=""/>
-    <meta name="description" content="your description"/>
-    <link rel="stylesheet" href="/public/active/css/common.css"/>
-    <link rel="stylesheet" href="/public/active/css/bootstrap.min.css"/>
+    <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/activities_step1.css"/>
     <link rel="stylesheet" href="/public/active/css/demo.css"/>
-    <!--[if IE 6]>
-    <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
-    <![endif]-->
     <script type="text/javascript">
-        var rootUrl =  'http://' + "<?php echo $_SERVER['HTTP_HOST'];?>";
         var activityScene = '';
     </script>
 </head>
-<body class="">
+<body>
 <?php
 require('gameheader.php');
 ?>
@@ -271,17 +261,8 @@ require('gameheader.php');
         </div>
     </div>
 </div>
-<script src="/public/active/js/jquery.js"></script>
-<script src="/public/active/js/bootstrap.min.js"></script>
-<script src="/public/active/js/hdp-modal.js"></script>
-<script src="/public/active/js/app.js"></script>
-<script src="/public/active/js/dropmenu.js"></script>
-<script src="/public/active/js/icheck.min.js"></script>
-<script src="/public/active/js/select.js"></script>
-<script src="/public/active/js/jquery.datetimepicker.js"></script>
-<script src="/public/active/js/UrlHelper.js"></script>
-<script src="/public/active/js/webuploader.js"></script>
 <script src="/public/active/js/activities_step1.js"></script>
+<?php require('common_library.php') ?>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
      style="display: none;">

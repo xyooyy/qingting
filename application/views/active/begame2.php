@@ -2,23 +2,11 @@
 <!-- saved from url=(0041)http://act.aiwanpai.com/gameChoose?id=549 -->
 <html lang="zh-cn">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta charset="UTF-8"/>
     <title>新建活动-步骤2 - </title>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
-    <meta name="keywords" content=""/>
-    <meta name="description" content="your description"/>
-    <link rel="stylesheet" href="/public/active/css/common.css"/>
-    <link rel="stylesheet" href="/public/active/css/bootstrap.min.css"/>
+    <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/pagination.css"/>
     <link rel="stylesheet" href="/public/active/css/activities_step2.css"/>
     <link rel="stylesheet" href="/public/active/css/demo.css"/>
-    <!--[if IE 6]>
-    <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
-    <![endif]-->
-    <script type="text/javascript">
-        var rootUrl = 'http://' + "<?php echo $_SERVER['HTTP_HOST'];?>";
-    </script>
 </head>
 <body>
 <?php require('gameheader.php'); ?>
@@ -127,10 +115,6 @@
         </div>
     </div>
 </div>
-<script src="/public/active/js/jquery.js"></script>
-<script src="/public/active/js/bootstrap.min.js"></script>
-<script src="/public/active/js/hdp-modal.js"></script>
-<script src="/public/active/js/app.js"></script>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
@@ -140,12 +124,9 @@
         </div>
     </div>
 </div>
-<script src="/public/active/js/dropmenu.js"></script>
-<script src="/public/active/js/icheck.min.js"></script>
-<script src="/public/active/js/select.js"></script>
-<script src="/public/active/js/jquery.datetimepicker.js"></script>
-<script src="/public/active/js/UrlHelper.js"></script>
-<script src="/public/active/js/webuploader.js"></script>
+
+
+<?php require('common_library.php') ?>
 <script src="/public/active/js/activities_step2.js"></script>
 <div
     class="select select-theme-default select-element select-enabled select-abutted select-abutted-left select-abutted-top select-element-attached-top select-element-attached-left select-target-attached-bottom select-target-attached-left"
