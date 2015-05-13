@@ -82,8 +82,6 @@ $(function () {
     //     }
     // });
 
-    doUploader();
-
     function save(success) {
         var url = rootUrl + '/index.php/active/active_submit3_1';
         var html = $('.phone').clone();
@@ -122,9 +120,6 @@ $(function () {
         }
     }
     show_has_saved_img();
-
-
-
 
     /**
      * 显示按钮编辑项
@@ -205,15 +200,13 @@ $(function () {
         }
     });
 
+    doUploader();
 
     function doUploader(completeCallback) {
         (function ($) {
             // 当domReady的时候开始初始化
             $(function () {
-
-
                 re_init_swiper();
-
 
                 /**
                  * 检测图片宽高，并进行一些操作   kiner-tang
@@ -246,87 +239,84 @@ $(function () {
                 var $wrap = $('#uploader'),
 
                 // 图片容器
-                    $queue = $('<ul></ul>')
-                        .prependTo($wrap.find('.right .img-load')),
+                $queue = $('<ul></ul>').prependTo($wrap.find('.right .img-load')),
 
                 // 状态栏，包括进度和控制按钮
-                    $statusBar = $wrap.find('.statusBar'),
+                $statusBar = $wrap.find('.statusBar'),
 
                 // 文件总体选择信息。
-                    $info = $statusBar.find('.info'),
+                $info = $statusBar.find('.info'),
 
                 // 上传按钮
-                    $upload = $wrap.find('.uploadBtn'),
+                $upload = $wrap.find('.uploadBtn'),
 
                 // 没选择文件之前的内容。
-                    $placeHolder = $wrap.find('.placeholder'),
+                $placeHolder = $wrap.find('.placeholder'),
 
-                    $progress = $statusBar.find('.progress').hide(),
+                $progress = $statusBar.find('.progress').hide(),
 
                 // 添加的文件数量
-                    fileCount = 0,
+                fileCount = 0,
 
                 // 添加的文件总大小
-                    fileSize = 0,
+                fileSize = 0,
 
                 // 优化retina, 在retina下这个值是2
-                    ratio = window.devicePixelRatio || 1,
+                ratio = window.devicePixelRatio || 1,
 
                 // 缩略图大小
-                    thumbnailWidth = 1,
-                    thumbnailHeight = 1,
+                thumbnailWidth = 1,
+                thumbnailHeight = 1,
 
                 // 可能有pedding, ready, uploading, confirm, done.
-                    state = 'pedding',
+                state = 'pedding',
 
                 // 所有文件的进度信息，key为file id
-                    percentages = {},
+                percentages = {},
                 // 判断浏览器是否支持图片的base64
-                    isSupportBase64 = (function () {
-                        var data = new Image();
-                        var support = true;
-                        data.onload = data.onerror = function () {
-                            if (this.width != 1 || this.height != 1) {
-                                support = false;
-                            }
+                isSupportBase64 = (function () {
+                    var data = new Image();
+                    var support = true;
+                    data.onload = data.onerror = function () {
+                        if (this.width != 1 || this.height != 1) {
+                            support = false;
                         }
-                        data.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-                        return support;
-                    })(),
+                    }
+                    data.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+                    return support;
+                })(),
 
                 // 检测是否已经安装flash，检测flash的版本
-                    flashVersion = (function () {
-                        var version;
+                flashVersion = (function () {
+                    var version;
 
+                    try {
+                        version = navigator.plugins['Shockwave Flash'];
+                        version = version.description;
+                    } catch (ex) {
                         try {
-                            version = navigator.plugins['Shockwave Flash'];
-                            version = version.description;
-                        } catch (ex) {
-                            try {
-                                version = new ActiveXObject('ShockwaveFlash.ShockwaveFlash')
-                                    .GetVariable('$version');
-                            } catch (ex2) {
-                                version = '0.0';
-                            }
+                            version = new ActiveXObject('ShockwaveFlash.ShockwaveFlash')
+                                .GetVariable('$version');
+                        } catch (ex2) {
+                            version = '0.0';
                         }
-                        version = version.match(/\d+/g);
-                        return parseFloat(version[0] + '.' + version[1], 10);
-                    })(),
+                    }
+                    version = version.match(/\d+/g);
+                    return parseFloat(version[0] + '.' + version[1], 10);
+                })(),
 
-                    supportTransition = (function () {
-                        var s = document.createElement('p').style,
-                            r = 'transition' in s ||
-                                'WebkitTransition' in s ||
-                                'MozTransition' in s ||
-                                'msTransition' in s ||
-                                'OTransition' in s;
-                        s = null;
-                        return r;
-                    })(),
+                supportTransition = (function () {
+                    var s = document.createElement('p').style,
+                        r = 'transition' in s ||
+                            'WebkitTransition' in s ||
+                            'MozTransition' in s ||
+                            'msTransition' in s ||
+                            'OTransition' in s;
+                    s = null;
+                    return r;
+                })()
 
-                // WebUploader实例
-                    uploader;
-
+                //down and install flash
                 if (!WebUploader.Uploader.support('flash') && WebUploader.browser.ie) {
 
                     // flash 安装了但是版本过低。
@@ -386,8 +376,9 @@ $(function () {
                     label = "添加图片";
                 }
 
+                // WebUploader实例
                 // 实例化
-                uploader = WebUploader.create({
+                var uploader = WebUploader.create({
                     pick: {
                         id: '#filePicker',
                         label: label
@@ -437,6 +428,7 @@ $(function () {
                 });
                 var imgurls = [];
                 uploader.on("uploadSuccess", function (file, response) {
+                    // response come from accept_img echo
                     imgurls.push(response);
                 });
                 uploader.on("uploadComplete", function () {
@@ -493,18 +485,7 @@ $(function () {
                 // 当有文件添加进来时执行，负责view的创建
                 function addFile(file) {
 
-                    /*  for(var o in my["_events"][1]["ctx2"]){
-
-                     console.log(o);
-                     console.log(my["_events"][1]["ctx2"][o]);
-                     console.log("====================================");
-                     }*/
-
-
-//                for(var i in file){
-//                    console.log(i);
-//                    //console.log(file["_events"]);
-//                }
+                    console.log(file)
                     var $li = $('<li id="' + file.id + '" data-id="preview-img">' +
                         '<p class="title">' + file.name + '</p>' +
                         '<p class="imgWrap"></p>' +
@@ -637,18 +618,11 @@ $(function () {
                         $li.removeClass('state-' + prev).addClass('state-' + cur);
                     });
 
-                    //$li.on( 'mouseenter', function() {
-                    //    $btns.stop().animate({height: 30});
-                    //});
-                    //
-                    //$li.on( 'mouseleave', function() {
-                    //    $btns.stop().animate({height: 0});
-                    //});
 
                     $btns.on('click', 'span', function () {
                         uploader.removeFile(file);
                         $('#' + $(this).attr('del-id')).remove();
-                        mySwiper.reInit();
+                        re_init_swiper();
                     });
 
                     $li.appendTo($queue);
