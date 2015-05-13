@@ -2,22 +2,11 @@
 <!-- saved from url=(0030)http://act.aiwanpai.com/draft/ -->
 <html lang="zh-cn">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
     <title>活动管理</title>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="keywords" content="">
-    <meta name="description" content="your description">
-    <link rel="stylesheet" href="/public/active/css/common.css">
+    <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/pagination.css">
     <link rel="stylesheet" href="/public/active/css/activity.css">
-    <!--[if IE 6]>
-    <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
-    <![endif]-->
-    <script type="text/javascript">
-        var rootUrl = '';
-    </script>
-    <script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script>
+    <!--    <script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script>-->
 </head>
 <body>
 
@@ -42,6 +31,14 @@ require('gameheader.php');
                             <i class="sidebar-icon sidebar-manage"></i>
             <span>
                 活动管理
+            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/active/ticket" >
+                            <i class="sidebar-icon sidebar-number"></i>
+            <span>
+                券号管理
             </span>
                         </a>
                     </li>
@@ -156,13 +153,12 @@ require('gameheader.php');
 <script>
     var pageType = 'on';
 </script>
-<script src="/public/active/js/jquery.js"></script>
 <script src="/public/active/js/dropmenu.js"></script>
 <script src="/public/active/js/hdp-modal.js"></script>
 <script src="/public/active/js/icheck.min.js"></script>
 <script src="/public/active/js/select.js"></script>
-<script src="/public/active/js/prompt.js"></script>
 <script src="/public/active/js/jquery.datetimepicker.js"></script>
+<script src="/public/active/js/UrlHelper.js"></script>
 <script src="/public/active/js/webuploader.js"></script>
 <script src="/public/active/js/activity.js"></script>
 

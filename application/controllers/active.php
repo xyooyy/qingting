@@ -10,7 +10,10 @@ class Active extends CI_Controller
         parent::__construct();
         $this->host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
     }
-
+    public  function ticket()
+    {
+        $this->load->view('active/ticket');
+    }
     public function index()
     {
         $this->load->model('active_model');

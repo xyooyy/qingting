@@ -1,0 +1,51 @@
+.game-manager--search {
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    padding: 0 30px 20px;
+    margin-bottom: 15px;
+}
+
+.game-manager--search h3 {
+    font-size: 18px;
+    color: #BCBCBA;
+    font-weight: 400;
+    float: left;
+    _display: inline;
+    margin-right: 40px;
+}
+
+.game-manager--search form {
+    float: left;
+    _display: inline;
+    font-size: 16px;
+}
+
+.game-manager--search input {
+    line-height: 16px;
+    overflow: hidden;
+    width: 460px;
+    padding: 12px 10px;
+    background-color: #EEEEEE;
+    border: 0 none;
+    outline: 0 none;
+}
+
+.game-manager--search .select-target {
+    line-height: 34px;
+    color: #636363;
+    width: 125px;
+    padding: 0 1.8em 0 1em;
+    height: 40px;
+    margin: 0 10px;
+}
+
+.game-manager--search button {
+    width: 145px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    background-color: #FA6567;
+}

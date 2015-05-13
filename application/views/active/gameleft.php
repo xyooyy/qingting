@@ -17,6 +17,14 @@
             </a>
         </li>
         <li>
+            <a href="/active/ticket" >
+                <i class="sidebar-icon sidebar-number"></i>
+            <span>
+                券号管理
+            </span>
+            </a>
+        </li>
+        <li>
             <a href="/active/games">
                 <i class="sidebar-icon sidebar-game"></i>
                 <span>

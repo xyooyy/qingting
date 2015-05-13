@@ -43,6 +43,14 @@ require('gameheader.php');
                         </a>
                     </li>
                     <li>
+                        <a href="/active/ticket">
+                            <i class="sidebar-icon sidebar-number"></i>
+            <span>
+                券号管理
+            </span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/active/games" class="active">
                             <i class="sidebar-icon sidebar-game"></i>
                 <span>
@@ -59,7 +67,7 @@ require('gameheader.php');
                     <div class="nav">
                         <ul>
                             <li>
-                                <a href="./games_files/games.html" class="cur">游戏列表</a>
+                                <a href="#" class="cur">游戏列表</a>
                             </li>
                         </ul>
                     </div>
@@ -111,12 +119,12 @@ require('gameheader.php');
                             foreach ($list as $v) {
                                 ?>
                                 <div class="item">
-                                    <a href="http://<?php echo $_SERVER['HTTP_HOST'];?>/active_games/<?php echo $v['href']?>"><img
-                                            class="img" src="<?php echo $v['img']?>"></a>
+                                    <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/active_games/<?php echo $v['href'] ?>"><img
+                                            class="img" src="<?php echo $v['img'] ?>"></a>
 
                                     <div class="form-group item--name">
                                         <label>
-                                            <!--<div class="icheckbox_polaris"><input type="checkbox" name="child" data-id="65a6e04bded911e482f2ac162d89ee80" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); border: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;"></ins></div>--><?php echo $v['title']?>
+                                            <!--<div class="icheckbox_polaris"><input type="checkbox" name="child" data-id="65a6e04bded911e482f2ac162d89ee80" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); border: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;"></ins></div>--><?php echo $v['title'] ?>
                                         </label>
                                     </div>
                                     <div class="item--gameinfo">

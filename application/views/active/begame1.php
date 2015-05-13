@@ -23,7 +23,7 @@ require('gameheader.php');
             <div class="top-nav">
                 <div class="w1036">
                     <ul>
-                        <li><a href="http://act.aiwanpai.com/basic#1"> 活动计划 </a></li>
+                        <li><a href="#"> 活动计划 </a></li>
                     </ul>
                     <a class="create-btn" href="./begame1_files/begame1.html"> 新建活动 </a>
                 </div>
