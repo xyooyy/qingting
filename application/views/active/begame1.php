@@ -105,7 +105,7 @@ require('gameheader.php');
 
                                 <div>
                                     <input type="radio" name="scene"
-                                           value="1" <?php echo $val['type'] == 1 ? 'checked' : ''; ?>  data-id="1"/>&nbsp;品牌传播&nbsp;&nbsp;&nbsp;&nbsp;
+                                           value="1" <?php echo 1 == 1 ? 'checked' : ''; ?>  data-id="1"/>&nbsp;品牌传播&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="scene"
                                            value="2" <?php echo $val['type'] == 2 ? 'checked' : ''; ?> data-id="2"/>&nbsp;微信关注&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="scene"
@@ -114,6 +114,9 @@ require('gameheader.php');
                                            value="4" <?php echo $val['type'] == 4 ? 'checked' : ''; ?> data-id="4"/>&nbsp;线下导流&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="scene"
                                            value="5" <?php echo $val['type'] == 5 ? 'checked' : ''; ?> data-id="5"/>&nbsp;展会活动&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="scene"
+                                           value="6" <?php echo $val['type'] == 6 ? 'checked' : ''; ?> data-id="6"/>&nbsp;销售线索收集&nbsp;&nbsp;&nbsp;&nbsp;
+
                                 </div>
 
                             </div>

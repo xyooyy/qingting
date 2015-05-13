@@ -68,7 +68,7 @@ body .form-group .form-textarea {
     right: 0;
     bottom: 0;
     z-index: 5;
-    background: url(images/success.png)
+    /*background: url(images/success.png)*/
 }
 
 .form-single-upload .form-fileupload .inner {
@@ -192,7 +192,7 @@ body .form-group .form-textarea {
     display: block;
     width: 25px;
     height: 25px;
-    /*background-image: url(images/icon-prompt.png);*/
+    background-image: url(../../active/css/images/icon-prompt.png);
     background-size: 100%;
     cursor: pointer
 }
@@ -222,7 +222,7 @@ body .form-group .form-textarea {
     cursor: pointer;
     position: relative;
     z-index: 10;
-    /*background: #eee url(images/ico_date.png) no-repeat right 10px top 10px;*/
+    background: #eee url(../../active/css/images/ico_date.png) no-repeat right 10px top 10px;
     outline: 0
 }
 
