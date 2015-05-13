@@ -67,7 +67,7 @@ require('gameheader.php');
                     <div class="nav">
                         <ul>
                             <li>
-                                <a href="#" class="cur">游戏列表</a>
+                                <a href="" class="cur">游戏列表</a>
                             </li>
                         </ul>
                     </div>
@@ -148,14 +148,7 @@ require('gameheader.php');
                             </div>
                         </div>
                     </div>
-                    <!-- }主内容 -->
-                    <div class="copyright" style="text-align: center; margin:20px 0 0 0">
-                        <div class="inner">
-                            <p>Copyright ©
-                                <a target="_blank" href="http://www.aiwanpai.com/aiwanpai_version.html"> Version
-                                    0.1.1</a></p>
-                        </div>
-                    </div>
+                <?php require('qingting_footer.php') ?>
                 </div>
             </div>
         </div>

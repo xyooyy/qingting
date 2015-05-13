@@ -2,22 +2,10 @@
 <!-- saved from url=(0038)http://act.aiwanpai.com/confirm?id=549 -->
 <html lang="zh-cn">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
     <title>新建活动-步骤4</title>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="keywords" content="">
-    <meta name="description" content="your description">
-    <link rel="stylesheet" href="/public/active/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/active/css/common.css">
+    <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/activities_step4.css">
     <link rel="stylesheet" href="/public/active/css/demo.css">
-    <script type="text/javascript">
-        var rootUrl = "<?php echo $_SERVER['HTTP_HOST'];?>";
-    </script>
-    <!--[if IE 6]>
-    <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
-    <![endif]-->
 </head>
 <body>
 
@@ -171,31 +159,19 @@
                             </div>
                         </form>
                     </div>
-                    <div id="footer">
-                        Copyright © All Rights Reserved
-                    </div>
+                <?php require('qingting_footer.php') ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script src="./js/jquery.js"></script>
-<script src="./js/bootstrap.min.js"></script>
-<script src="./js/hdp-modal.js"></script>
-<script src="./js/app.js"></script>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
         <div class="modal-success-alert"><span class="text">这是标题</span><a href="javascript:;">确定</a></div>
     </div>
 </div>
-<script src="./js/dropmenu.js"></script>
-<script src="./js/icheck.min.js"></script>
-<script src="./js/select.js"></script>
-<script src="./js/UrlHelper.js"></script>
-<script src="./js/jquery.datetimepicker.js"></script>
-<script src="./js/webuploader.js"></script>
+<?php require('common_library.php') ?>
 <script src="./js/activities_step4.js"></script>
 
 </body>

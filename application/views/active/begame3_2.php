@@ -2,24 +2,14 @@
 <!-- saved from url=(0034)http://act.aiwanpai.com/end?id=581 -->
 <html lang="zh-cn">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
     <title>新建活动-步骤3</title>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="keywords" content="">
-    <meta name="description" content="your description">
-    <link rel="stylesheet" href="/public/active/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/active/css/common.css">
+    <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/activities_step3.css">
     <link rel="stylesheet" href="/public/active/css/layout.css" id="layStyle">
     <link rel="stylesheet" href="/public/active/css/demo.css">
-    <script type="text/javascript">
-        var rootUrl = 'http://' + '<?php echo $_SERVER['HTTP_HOST']; ?>';
-        var websiteUrl = 'http://localhost:8081/aiwanpai-game-website';
-    </script>
-    <!--[if IE 6]>
-    <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
-    <![endif]-->
+<!--    <script type="text/javascript">-->
+<!--        var websiteUrl = 'http://localhost:8081/aiwanpai-game-website';-->
+<!--//    </script>-->
 </head>
 <body unselectable="on" onselectstart="return false;" style="-webkit-user-select: none;">
 
@@ -417,33 +407,24 @@ require('gameheader.php');
                             </div>
                         </form>
                     </div>
-                    <div id="footer">
-                        Copyright
-                    </div>
+                <?php require('qingting_footer.php') ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="/public/active/js/jquery.js"></script>
-<script src="/public/active/js/bootstrap.min.js"></script>
-<script src="/public/active/js/hdp-modal.js"></script>
-<script src="/public/active/js/app.js"></script>
+
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
         <div class="modal-success-alert"><span class="text">这是标题</span><a href="javascript:;">确定</a></div>
     </div>
 </div>
-<script src="/public/active/js/dropmenu.js"></script>
-<script src="/public/active/js/icheck.min.js"></script>
-<script src="/public/active/js/select.js"></script>
-<script src="/public/active/js/jquery.datetimepicker.js"></script>
-<script src="/public/active/js/webuploader.js"></script>
+<?php require('common_library.php') ?>
 <script src="/public/active/js/hammer.min.js"></script>
 <script src="/public/active/js/jquery-ui.min.js"></script>
 <script src="/public/active/js/jqtool.js"></script>
-<script src="/public/active/js/UrlHelper.js"></script>
 <script src="/public/active/js/progressbar.js"></script>
 <script src="/public/active/js/step.js"></script>
 <script src="/public/active/js/background-position.js"></script>
