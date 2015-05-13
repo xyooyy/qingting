@@ -143,14 +143,14 @@ require('gameheader.php');
                                         </li>
                                     </ul>
                                     <div class="statusBar">
-                               <!--          <div class="save-config">保存设置</div>
-                                        <div class="set-select">
+                                        <div class="save-config">保存设置</div>
+                               <!--          <div class="set-select">
                                             <select name="set-way" class="select-select">
                                                 <option value="1">一键设置</option>
                                                 <option value="2">自定义设置</option>
                                             </select><a href="javascript:;" class="select-target select-theme-default select-enabled select-element-attached-left select-target-attached-left select-element-attached-top select-target-attached-bottom" tabindex="0">一键设置<b></b></a>
-                                        </div> -->
-                                 <!--        <div class="set-select">
+                                        </div>
+                                        <div class="set-select">
                                             <select name="set-start-show" class="select-select">
                                             	<option value="theEnd" selected="selected">仅末页显示开始按钮</option>
                                                 <option value="all">每页均显示开始按钮</option>
@@ -228,10 +228,10 @@ require('gameheader.php');
                                                 <span class="percentage" style="width: 0%;"></span>
                                             </div>
                                             <div class="info">共0张（0B），已上传0张</div>
-                                            <!--<div class="btns">
+                                            <div class="btns">
                                                 <div id="filePicker2"></div>
                                                 <div class="uploadBtn state-pedding">开始上传</div>
-                                            </div>-->
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="btn-set">
