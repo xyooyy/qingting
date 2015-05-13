@@ -2,21 +2,11 @@
  * Created by Administrator on 2015/1/14.
  */
 $(function () {
+    // $('.start-btn').css('position', 'absolute');
 
-
-    $('.start-btn').css('position', 'absolute');
-
-    /**
-     * 控制开始页面开始按钮的显示控制
-     * all 所有幻灯片都显示
-     * theEnd 只在最后一个幻灯片图片显示
-     */
-    startBtnInit();
     /**
      * 手指滑动效果
      */
-
-
     var mySwiper = new Swiper('.swiper-container', {
 
         // 分页容器
@@ -30,24 +20,27 @@ $(function () {
         activeIndex: 0
 
     });
-    var initPage = function () {
-
-        mySwiper.reInit();
-
-    };
-
     mySwiper.swipeTo(0);
 
-    var tempStartBtn = $('.btn-area').clone(true);
+    var re_init_swiper = function () {
+        mySwiper.reInit();
+        mySwiper.swipeTo(0);
+    };
 
-    function startBtnInit() {
-        var value = $('.phone-simulation').attr('data-start');
-        $("select[name='set-start-show'] option[value='" + value + "']").attr("selected", true);
-    }
+    /**
+     * 控制开始页面开始按钮的显示控制
+     * all 所有幻灯片都显示
+     * theEnd 只在最后一个幻灯片图片显示
+     */
+    // startBtnInit();
+    // function startBtnInit() {
+    //     var value = $('.phone-simulation').attr('data-start');
+    //     $("select[name='set-start-show'] option[value='" + value + "']").attr("selected", true);
+    // }
 
-    $("select[name='set-start-show']").change(function () {
-        $('.phone-simulation').attr('data-start', $(this).val());
-    });
+    // $("select[name='set-start-show']").change(function () {
+    //     $('.phone-simulation').attr('data-start', $(this).val());
+    // });
 
     /*******************************    kiner start     **************************************/
 
@@ -60,28 +53,11 @@ $(function () {
         $('.img-load').show();
     });
 
-    $('.save-config').unbind('click').click(function () {
-        if (window.canSave) {
-            save(function () {
-                modal.showAlert("保存成功");
-            });
-        } else {
-            modal.showAlert("请先上传图片后再保存设置");
-        }
-    });
-
-    doUploader();
-
-
-    //单击上一步
-    $('.pre').click(function () {
-        pre();
-    });
     //单击下一步
     $('.next').click(function () {
         if (window.canSubmit) {
             save(function () {
-                next();
+                $.noop();
             });
         } else {
             modal.showAlert('文件正在上传，请稍候...');
@@ -89,10 +65,24 @@ $(function () {
     });
 
     $('select[name="screen"]').change(function () {
-        mySwiper.reInit();
-
-        mySwiper.swipeTo(0);
+        re_init_swiper();
     });
+    $('.btns').on('click', '.state-pedding', function () {
+        modal.showAlert('请先添加图片再进行上传');
+    });
+
+
+    // $('.save-config').unbind('click').click(function () {
+    //     if (window.canSave) {
+    //         save(function () {
+    //             modal.showAlert("保存成功");
+    //         });
+    //     } else {
+    //         modal.showAlert("请先上传图片后再保存设置");
+    //     }
+    // });
+
+    doUploader();
 
     function save(success) {
         var url = rootUrl + '/index.php/active/active_submit3_1';
@@ -116,91 +106,61 @@ $(function () {
         });
     }
 
+    function show_has_saved_img(){
+        if ($('.swiper-wrapper').find('img').length > 0) {
+            $('.uploadBtn').text('开始上传').hide();
+            $('.swiper-wrapper').find('img').each(function (index, ele) {
 
-    /**
-     * 上一步
-     */
-    function pre() {
-        window.location.href = hdpUrl.set(rootUrl + "/gameChoose", {"id": hdpUrl.get("id"), "ispre": true});//设置跳转网页及网页参数
+                var $li = $('<li>' +
+                '<p class="imgWrap"><img src="' + $(this).attr('src') + '"></p>' +
+                '</li>');
+                if (!$('.tempRead').get(0)) {
+                    $('<ul class="tempRead"></ul>').insertBefore($('.queueList'));
+                }
+                $('.img-load ul').append($li);
+            });
+        }
     }
-
-    /**
-     * 下一步
-     */
-    function next() {
-        //alert(hdpUrl.get("aid"));
-        window.location.href = hdpUrl.set(rootUrl + "/end", "id", hdpUrl.get("id"));//设置跳转网页及网页参数
-
-        //window.location.href = hdpUrl.set("./activities_step3_2.html", "aid", a);//设置跳转网页及网页参数
-    }
-
-    if ($('.swiper-wrapper').find('img').length > 0) {
-
-        $('.uploadBtn').text('开始上传').hide();
-        $('.swiper-wrapper').find('img').each(function (index, ele) {
-
-            var $li = $('<li>' +
-            '<p class="imgWrap"><img src="' + $(this).attr('src') + '"></p>' +
-            '</li>');
-            if (!$('.tempRead').get(0)) {
-                $('<ul class="tempRead"></ul>').insertBefore($('.queueList'));
-            }
-
-            $('.img-load ul').append($li);
-            //
-            //    $btns = $('<div class="file-panel">' +
-            //    '<span class="del" del-id="' + file.id + '">x</span></div>').appendTo($li)
-
-        });
+    show_has_saved_img();
 
 
-    }
 
-
-    $('.btns').on('click', '.state-pedding', function () {
-        modal.showAlert('请先添加图片再进行上传');
-    });
 
     /**
      * 显示按钮编辑项
      */
     $('.phone .lay-common').on('click', '.hdp-btn', function () {
         var $this = $(this);
-        hdpBtnEditor($this);
+        show_style_editor_warpper($this);
     });
-
-    $('.footerArea').css('button');
 
     /**
      * 操作按钮工具栏初始化
      * @param $this
      */
-    function hdpBtnEditor($this) {
-
+    function show_style_editor_warpper($this) {
         $('.btn-set').show();
         $('.img-load').hide();
-
         initHdpBtn($this);
-
     }
 
     //$('.start-btn').css({'left':$('.start-btn').offset().left-$('.phone-simulation').offset().left,'top':$('.start-btn').offset().top-$('.phone-simulation').offset().top,'position':'absolute'});
 
 
-    $('select[name="set-start-show"]').change(function () {
-        tochange();
-    });
+    // $('select[name="set-start-show"]').change(function () {
+    //     tochange();
+    // });
 
-    /**
-     *   根据参数判断是否仅在最后一页显示开始游戏按钮
-     */
-    function tochange() {
-        if ($('select[name="set-start-show"]').val() == "theEnd") {
-            $('.btn-area').appendTo($('.swiper-slide:last'));
-        } else {
-            $('.btn-area').appendTo($('.swiper-container'));
-        }
-    }
+    // /**
+    //  *   根据参数判断是否仅在最后一页显示开始游戏按钮
+    //  */
+    // function tochange() {
+    //     if ($('select[name="set-start-show"]').val() == "theEnd") {
+    //         $('.btn-area').appendTo($('.swiper-slide:last'));
+    //     } else {
+    //         $('.btn-area').appendTo($('.swiper-container'));
+    //     }
+    // }
 
     /**
      * 按钮编辑
@@ -253,7 +213,7 @@ $(function () {
 //                        $this.css({'left': pre + '%', 'top': pre2 + '%'});
 
                         //显示操作栏
-                        hdpBtnEditor($this);
+                        show_style_editor_warpper($this);
                         //$(this).remove();
                         //$(this).css({
                         //    'top': ui.position.top,
@@ -287,7 +247,7 @@ $(function () {
             $(function () {
 
 
-                initPage();
+                re_init_swiper();
 
 
                 /**
@@ -649,6 +609,7 @@ $(function () {
                                 //是否将开始按钮放在最后一页
                                 tochange();
                                 if ($('select[name="set-start-show"]').val() == 'theEnd') {
+                                    var tempStartBtn = $('.btn-area').clone(true);
                                     tempStartBtn.appendTo($('.swiper-slide:last'));
                                 }
 
