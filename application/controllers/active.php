@@ -257,27 +257,27 @@ class Active extends CI_Controller
     //开始页提交
     public function active_submit3_1()
     {
-        if ($this->input->post('html')) {
+        $phone_html = $this->input->post('html');
+        if ($phone_html) {
             $this->load->model('active_model');
-            $row = $this->active_model->info('id', $this->input->post('id'));
-            $addtitle = "<script>  document.title = '" . $row['title'] . "'; </script>";
-            $f = $this->input->post('html');
+            $current_active = $this->active_model->info('id', $this->input->post('id'));
+            $page_title = "<script>  document.title = '" . $current_active['title'] . "'; </script>";
 
-            $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
-            $new_file1 = $new_file . '1' . '.html';
-            $new_file .= '.html';
-            file_put_contents($new_file1, $f);
-            $f = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $f);
+            $genereated_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
+            $base_file = $genereated_file . '1' . '.html';
+            $genereated_file .= '.html';
+            file_put_contents($base_file, $phone_html);
+            $phone_html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $phone_html);
 
-            $erweima = $this->erweima($this->host . $new_file);
+            $erweima = $this->erweima($this->host . $genereated_file);
             $str_start = file_get_contents('active/start.html');
             $str_start1 = file_get_contents('active/start_size.html');
             $str_end = file_get_contents('active/end.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "',end_time = '". date('Y-m-d H:i:s', $row['endtime']) ."';</script>";
+            $share = "<script>var share_title='" . $current_active['title'] . "',share_link='" . $this->host . $genereated_file . "',share_imgUrl='" . $this->host . $current_active['fenxiangi'] . "',share_desc='" . $current_active['fenxiangc'] . "',end_time = '". date('Y-m-d H:i:s', $current_active['endtime']) ."';</script>";
             $share1 = file_get_contents('active/share.html');
-            if (file_put_contents($new_file, $str_start . $share . $f . $str_end . $addtitle . $str_start1 . $share1 )) {
-                $data['html_start'] = $new_file;
-                $data['html_start1'] = $new_file1;
+            if (file_put_contents($genereated_file, $str_start . $share . $phone_html . $str_end . $page_title . $str_start1 . $share1 )) {
+                $data['html_start'] = $genereated_file;
+                $data['html_start1'] = $base_file;
                 $data['erweima'] = $erweima;
                 $this->active_model->edit($data, $this->input->post('id'));
             };
@@ -475,5 +475,22 @@ class Active extends CI_Controller
     {
         require_once './public/share/config.php';
         echo '{"appId":"' . $appid . '","timestamp":"' . $thisTime . '","nonceStr":"' . $nonceStr . '","signature":"' . $signature . '"}';
+    }
+
+    public function accept_img(){
+        $base_imgae_name =  './upload/active/' . date("Ymd") . time();
+        if(! empty($_FILES)){
+            if($_FILES['file']['error'] > 0){
+                echo json_encode(array('success'=>false, 'error_code'=> $_FILES["file"]["error"], 'code'=> -1, 'content'=>null,'msg'=>null,'resubmitToken'=>null ));
+            }
+            $img_name = $base_imgae_name . $_FILES['file']['name'];
+            move_uploaded_file($_FILES['file']['tmp_name'], $img_name);
+            echo json_encode(array('success'=>true, 'code'=>0, 'content'=>$this->host . $img_name, 'msg' => null , 'resubmitToken'=> null));
+        }else{
+            $img_file = file_get_getcontents('php://input');
+            file_put_contents($base_imgae_name.'.jpg', $img_file);
+            echo json_encode(array('success'=>true, 'code' => 0, 'content'=>$this->host. $base_imgae_name . 'jpg', 'msg'=>null, 'resubmitToken'=>null));
+        }
+
     }
 }
