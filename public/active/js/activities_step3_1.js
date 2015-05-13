@@ -475,7 +475,7 @@ $(function () {
                     swf: rootUrl + '/public/active/js/Uploader.swf',
                     chunked: false,
                     chunkSize: 512 * 1024,
-                    server: root_url + '/upload.json',
+                    server: root_url + '/active/accept_img',
                     // runtimeOrder: 'flash',
 
                     // accept: {
@@ -662,7 +662,7 @@ $(function () {
                                     img = $('<img src="' + src + '">');
                                     $wrap.empty().append(img);
                                 } else {
-                                    $.ajax(root_url + '/upload.json', {
+                                    $.ajax(root_url + '/upload.json/active/accept_img', {
                                         method: 'POST',
                                         data: src,
                                         dataType: 'json'
