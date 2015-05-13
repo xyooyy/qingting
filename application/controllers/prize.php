@@ -34,7 +34,7 @@ class Prize extends CI_Controller
                 $wximg = $new_file;
             };
         }
-        if ($wximg) $data['p_img'] = substr($this->host, 0, strlen($this->host) - 1) . $wximg;
+        if ($wximg) $data['p_img'] = $this->host . $wximg;
         $data['p_title'] = $this->input->post('p_title');
         $data['p_count'] = $this->input->post('p_count');
         $data['p_size'] = $this->input->post('p_size');

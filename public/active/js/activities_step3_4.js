@@ -1,36 +1,5 @@
 $(function () {
 
-    var id = hdpUrl.get("id");
-    //if (id) {
-    //    var url = rootUrl + "/prize/list.json";
-    //    $.ajax(url, {
-    //        data: {
-    //            id: id
-    //        },
-    //        dataType: "json",
-    //        type: "post",
-    //        success: function (data, text) {
-    //            if (data.success) {
-    //                setData(data);
-    //                $(".prize-input").hide();
-    //                $(".prize-table").show();
-    //            }else{
-    //
-    //                modal.showAlert(data.msg);
-    //            }
-    //        },
-    //        error: function (data, text) {
-    //
-    //            modal.showAlert('网络访问异常');
-    //        }
-    //    });
-    //}
-    //单选，多选化
-    $('.btn-all input, .check input, .comm-form input[type="radio"]').iCheck({
-        checkboxClass: 'icheckbox_polaris',
-        radioClass: 'iradio_polaris'
-    });
-
     /**
      * 检测图片宽高，并进行一些操作   kiner-tang
      * @type {*|HTMLElement}
@@ -52,7 +21,7 @@ $(function () {
         //上传
         uploader = WebUploader.create({
             swf: rootUrl + '/public/active/js/Uploader.swf',
-            // server: rootUrl + '/upload.json',//必须全路径
+            server: rootUrl + '/active/accept_img',//必须全路径
             pick: {
                 id: $ts.find('.picker'),
                 multiple: false
@@ -96,142 +65,51 @@ $(function () {
                 $ts.find('input:hidden').val(res.content);
             }
         });
-
-        $(".prize-set").show();
-        $('.prize-info').show();
-
-        //添加奖品
-        $(".add-btn a").click(function () {
-            $(".prize-input").show();
-            $(".add-btn a").click(function () {
-                $(".prize-input").find('input').val('');
-                $(".prize-input").find('.form-fileupload img').attr('src', rootUrl + '/public/active/css/images/s.png');
-                if (myImg) {
-                    uploader.removeFile(myImg);
-                    $(".prize-input").find('.form-fileupload img').attr('src', rootUrl + '/public/active/css/images/s.png');
-                }
-                if ($(".prize-input").is(":hidden")) {
-                    $(".prize-input").show();
-                } else {
-                    $(".prize-input").hide();
-                }
-            });
-        });
-
-        //保存设置
-        $(".save-set").click(function () {
-            saveConfig(function () {
-                $(".prize-input").hide();
-                $(".prize-table").show();
-            });
-        });
-        $(".next").click(function () {
-            var url = rootUrl + "/prizeInfo/save.json";
-            $.ajax(url, {
-                data: {
-                    'id': hdpUrl.get("id"),
-                    'convertCodePrefix': $('input[name="convertCodePrefix"]').val(),
-                    'lotteryTotal': $('input[name="lotteryTotal"]').val(),
-                    'todayLotteryTotal': $('input[name="todayLotteryTotal"]').val(),
-                    'enableShare': $('input[name="enableShare"]:checked').val()
-                },
-                dataType: "json",
-                type: "post",
-                success: function (data, text) {
-                    if (data.success) {
-                        next();
-                    } else {
-                        modal.showAlert(data.msg);
-                    }
-                },
-                error: function (data, text) {
-                    //modal.showAlert('网络访问异常');
-                }
-            });
-        });
-        $(".pre").click(function () {
-            saveConfig();
-            pre();
-        });
-
-        /**
-         * 上一步
-         */
-        function pre() {
-            window.location.href = hdpUrl.set(rootUrl + "/share", {"id": hdpUrl.get("id"), "ispre": true});//设置跳转网页及网页参数
-        }
-
-        /**
-         * 下一步
-         */
-        function next() {
-            window.location.href = hdpUrl.set(rootUrl + "/prizeResult", "id", hdpUrl.get("id"));//设置跳转网页及网页参数
-        }
-
-        function saveConfig(success) {
-
-            var url = rootUrl + "/prize/save.json";
-
-            $.ajax(url, {
-                data: $('form').serialize() + '&activity.id=' + hdpUrl.get("id"),
-                dataType: "json",
-                type: "post",
-                success: function (data, text) {
-                    //console.log(data);
-                    if (data.success) {
-                        setData(data);
-                        if (success) {
-                            success(data);
-                        }
-                    } else {
-                        modal.showAlert(data.msg);
-                    }
-                },
-                error: function (data, text) {
-
-                    //modal.showAlert('网络访问异常');
-                }
-            });
-        }
     });
 
-    function setData(data) {
-        //console.log(data);
-        //next();
-        $(".prize-input").hide();
-        $('.prize-table').show();
-        $('.prize-table tbody').empty();
-        for (var d in data.content) {
-            var res = data.content[d];
-            $('.prize-table tbody').append(' <tr>' +
-            '<td class="title">' +
-            res.title +
-            '</td>' +
-            '<td class="name">' +
-            res.name +
-            '</td>' +
-            '<td class="number">' +
-            res.quota + '份' +
-            '</td>' +
-            '<td class="probability">' +
-            res.probability + '%' +
-            '</td>' +
-            '<td class="control">' +
-            '<a href="javascript:;" class="update" data-id="' + res.id + '">' +
-            '<i class="icon icon-edit"></i>' +
-            '修改' +
-            '</a>' +
-            '|' +
-            '<a href="javascript:;" class="del" data-id="' + res.id + '">' +
-            '<i class="icon icon-del"></i>' +
-            '删除' +
-            '</a>' +
-            '</td>' +
-            '</tr>');
+    $('.save_settings').on('click',function(){
+        if($('#p_title').val().trim() == ''){
+            window.modal.showAlert('请输入奖项标题');
+            return false;
         }
+
+        if($('#p_name').val().trim() == ''){
+            window.modal.showAlert('请输入奖品名称');
+            return false;
+        }
+
+        if($('#p_count').val().trim() == ''){
+            window.modal.showAlert('请输入奖品数量');
+            return false;
+        }
+
+        if($('#p_size').val().trim() == ''){
+            window.modal.showAlert('请输入中奖概率');
+            return false;
+        }
+
+        if($('#p_href').val().trim() == ''){
+            window.modal.showAlert('请输入奖品链接');
+            return false;
+        }
+
+        $('#fimg').val($('#jiangpin_img').attr('src'));
+        $('#prize_form').submit();
+        $('#p_title').val('');
+        setTimeout(load_prize,100);
+
+    })
+
+
+    function load_prize(){
+        setTimeout(function(){
+            var timestamp = (new Date()).valueOf();
+            $(".prize-table").load('/index.php/prize/index?tm=' + timestamp + '&id=' + hdpUrl.get('id'));
+        }, 1000);
     }
+    load_prize();
 
-    $('.prize-table').on('click', '.update', function () {
-        $(".prize-input").show();
-    });
+    $("#addchou").click(function () {
+         $('.prize-input').toggle();
+    })
 });
