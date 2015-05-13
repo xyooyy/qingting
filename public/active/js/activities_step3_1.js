@@ -171,7 +171,7 @@ $(function () {
         var $this = $(this);
 
         if ($(".phone-simulation").hasClass("lay-custom")) {
-
+            //默认进入else
             if ($('select[name="set-way"]').val() == "1") {//当选择一件设置时，禁止用户拖动组件
                 try {
                     $this.draggable("disable");
@@ -179,48 +179,15 @@ $(function () {
 
                 }
             } else {//当选择了自定义设置时显示操作菜单，并赋予拖动与删除等高级操作
-
                 $this.draggable({
                     cancel: ".close",
                     handler: ".drag",
                     zIndex: 99999,
                     containment: ".phone",
 
-                    drag: function (ev, ui) {
-
-                        //alert("1:"+($this.offset().left-$('.phone-simulation').offset().left));
-                        //$this.css({'right':0});
-
-                    },
-                    start: function (event, ui) {
-
-
-                        //$this.css({"left":$this.offset().left-$('.phone-simulation').offset().left});
-                        //$this.css({'margin':'0'});
-
-                        //alert("2:"+($this.offset().left-$('.phone-simulation').offset().left));
-                    },
                     stop: function (event, ui) {
-
-                        //alert("3:"+($this.offset().left-$('.phone-simulation').offset().left));
-//                        var l = $this.offset().left - $this.parent().offset().left;
-//                        var al = $('.phone').width();
-//                        var pre = Math.round((l / al) * 100);
-//                        var t = $this.offset().top - $this.parent().offset().top;
-//                        var at = $('.phone').height();
-//                        var pre2 = Math.round((t / at) * 100);
-////
-//                        $this.css({'left': pre + '%', 'top': pre2 + '%'});
-
                         //显示操作栏
                         show_style_editor_warpper($this);
-                        //$(this).remove();
-                        //$(this).css({
-                        //    'top': ui.position.top,
-                        //    'left': ui.position.left,
-                        //    'position': 'absolute',
-                        //    'cursor': 'auto'
-                        //});
                     }
                 });
                 $this.draggable("enable");
@@ -231,9 +198,7 @@ $(function () {
             }
         } else {
             try {
-                //console.log($this.children(".custom-menu").html());
                 $this.draggable('disable');
-
             } catch (Exception) {
                 //console.log("无法解除绑定");
             }
