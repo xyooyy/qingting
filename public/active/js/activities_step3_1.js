@@ -607,7 +607,7 @@ $(function () {
                                 }
                                 afterMakeThumb(src, file.id);
                                 //是否将开始按钮放在最后一页
-                                tochange();
+                                // tochange();
                                 if ($('select[name="set-start-show"]').val() == 'theEnd') {
                                     var tempStartBtn = $('.btn-area').clone(true);
                                     tempStartBtn.appendTo($('.swiper-slide:last'));
