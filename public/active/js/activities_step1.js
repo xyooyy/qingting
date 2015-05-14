@@ -145,6 +145,10 @@ $(function () {
                 window.modal.showAlert("微信分享描述不能为空，请您填写。");
                 return false;
             }
+            if($('#now_img')[0].src == rootUrl + '/public/images/s.png'){
+                window.modal.showAlert("微信分享缩图不能为空，请您上传图片。");
+                return false;
+            }
             var startTime = $formActivity.find("input[name='startTime']").val() + ':00';
             var endTime = $formActivity.find("input[name='endTime']").val() + ':00';
             var start = new Date(startTime.replace(/\-/g, '/'));
