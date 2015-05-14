@@ -131,6 +131,40 @@
                                         <img src="<?php echo $val['games']['img'] ?>">
                                     </div>
                                 </div>
+                                <div style=<?php echo $val['ischou'] != 1 ? "display:none" : "" ?>>
+                                    <div class="bar">
+                                        奖品信息
+                                    </div>
+                                    <div class="form-group mb15">
+                                        <label>兑换码前缀</label>
+                                        <span class="prize-show-text"><?php echo $val['prize_t'] ?></span>
+                                        <label>每天抽奖次数</label>
+                                        <span class="prize-show-text"><?php echo $val['prize_c'] ?></span>
+                                        <label>每天派奖个数</label>
+                                        <span class="prize-show-text"><?php echo $val['prize_c1'] ?></span>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>奖项标题</th>
+                                            <th>奖品名称</th>
+                                            <th>奖品数量</th>
+                                            <th>实际中奖(仅供参考)</th>
+                                            <th>中奖概率</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                        <td><?php echo $val['prize']['p_title'] ?></td>
+                                        <td><?php echo $val['prize']['p_name'] ?></td>
+                                        <td><?php echo $val['prize']['p_count'] ?></td>
+                                        <td><?php echo $val['prize']['p_size'] ?></td>
+                                        <td><?php echo $val['prize']['p_size'] ?></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                                 <div class="bar">
                                     微信分享
                                 </div>

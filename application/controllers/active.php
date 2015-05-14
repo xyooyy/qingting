@@ -110,10 +110,14 @@ class Active extends CI_Controller
     {
         $this->load->model('active_model');
         $this->load->model('active_games_model');
+        $this->load->model('prize_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
+        $_GET['aid'] = $row['id'];
+        $prize = $this->prize_model->info('aid',$this->input->get('aid'));
         $_GET['gid'] = $row['gid'];
         $games = $this->active_games_model->info('gid', $this->input->get('gid'));
         $data['val'] = $row;
+        $data['val']['prize'] = $prize;
         $data['val']['games'] = $games;
         $this->load->view('active/begame4', $data);
     }
