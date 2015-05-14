@@ -79,7 +79,7 @@
 
                                 <div class="form-group">
                                     <textarea class="input-class"
-                                              style="height:8em; font-size:1.2em; line-height:1.5em;">http://<?php echo $_SERVER['HTTP_HOST'] .'/' . $val['html_start'] ?></textarea>
+                                              style="height:8em; font-size:1.2em; line-height:1.5em;">http://<?php echo $_SERVER['HTTP_HOST'] . '/' . $val['html_start'] ?></textarea>
                                 </div>
                             </div>
                             <div class="act-4-right">
@@ -110,7 +110,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label>选择商业场景</label>
-                                    <span class="content-show-text"><?php echo $val['type'] ?></span>
+                                    <span class="content-show-text"><?php if ($val['type'] == 1) {
+                                            echo '品牌传播';
+                                        } elseif ($val['type'] == 2) {
+                                            echo '微信关注';
+                                        } elseif ($val['type'] == 3) {
+                                            echo '商城引流';
+                                        } elseif ($val['type'] == 4) {
+                                            echo '线下导流';
+                                        } elseif ($val['type'] == 5) {
+                                            echo '展会活动';
+                                        } elseif ($val['type'] == 6) {
+                                            echo '销售线索收集';
+                                        } ?></span>
                                 </div>
                                 <div class="form-group form-group-check mb30">
                                     <label>选取游戏</label>
@@ -144,7 +156,7 @@
                                     <label>缩略图</label>
 
                                     <div class="litpic-show">
-                                        <img src="http://<?php echo $_SERVER['HTTP_HOST'].'/'. $val['fenxiangi'] ?>">
+                                        <img src="http://<?php echo $_SERVER['HTTP_HOST'] . '/' . $val['fenxiangi'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -153,13 +165,13 @@
                                 <a class="pre" href="./begame3_3?id=<?php echo $_GET['id'] ?>">
                                     上一步
                                 </a>
-                                <a class="next" href="./index">
+                                <a class="next">
                                     确认提交
                                 </a>
                             </div>
                         </form>
                     </div>
-                <?php require('qingting_footer.php') ?>
+                    <?php require('qingting_footer.php') ?>
                 </div>
             </div>
         </div>
@@ -172,7 +184,7 @@
     </div>
 </div>
 <?php require('common_library.php') ?>
-<script src="./js/activities_step4.js"></script>
+<script src="/public/active/js/activities_step4.js"></script>
 
 </body>
 </html>

@@ -7,9 +7,30 @@ $(function () {
         pre();
     });
     $('.next').click(function () {
-        saveConfig(function (id) {
-            next(id);
-        });
+        var btn = [
+            {
+                id: "ok",
+                name: "返回活动列表",
+                listener: function (modal) {
+                window.location.href = rootUrl + '/active/index'
+                }
+
+            },
+            {
+                id: "close",
+                name: "继续编辑",
+                classes: ['modalClose'],
+                listener: function (modal) {
+                    modal.hide();
+                }
+            }
+        ];
+        modal.resetBtns(btn);
+        modal.showWithTitle("活动创建完成!");
+
+        //saveConfig(function (id) {
+            //next(id);
+        //});
     });
 
     $('.uploadBtn').click(function () {
