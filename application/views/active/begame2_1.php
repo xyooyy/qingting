@@ -23,12 +23,12 @@ require('gameheader.php');
                 <div class="w1036">
                     <ul>
                         <li>
-                            <a href="http://act.aiwanpai.com/gameChoose?id=549#1">
+                            <a href="#">
                                 活动计划
                             </a>
                         </li>
                     </ul>
-                    <a class="create-btn" href="http://act.aiwanpai.com/gameChoose?id=549#1">
+                    <a class="create-btn" href="#">
                         新建活动
                     </a>
                 </div>

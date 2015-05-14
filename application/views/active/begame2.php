@@ -17,9 +17,9 @@
             <div class="top-nav">
                 <div class="w1036">
                     <ul>
-                        <li><a href="http://act.aiwanpai.com/gameChoose?id=549#1"> 活动计划 </a></li>
+                        <li><a href="#"> 活动计划 </a></li>
                     </ul>
-                    <a class="create-btn" href="http://act.aiwanpai.com/gameChoose?id=549#1"> 新建活动 </a>
+                    <a class="create-btn" href="#"> 新建活动 </a>
                 </div>
             </div>
             <div class="content-wrap">

@@ -40,7 +40,7 @@ class Admin extends CI_Controller
     //后台退出
     public function logout()
     {
-        $this->session->unser_userdata(array("username" => '', "admin" => '', "userid" => ''));
+        $this->session->unset_userdata(array("username" => '', "admin" => '', "userid" => ''));
         echo "<script>top.location='./index';</script>";
     }
 

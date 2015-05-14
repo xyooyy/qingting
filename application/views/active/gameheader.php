@@ -20,7 +20,7 @@ if ($username == '') header('Location:http://' . $_SERVER['HTTP_HOST']);
             <a class="login-question" href="#">
                 <i class="icon icon-question"></i>
             </a>
-            <a class="logout" href="#">
+            <a class="logout" href="/admin/logout" >
                 [退出]
             </a>
         </div>

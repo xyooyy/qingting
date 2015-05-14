@@ -14,7 +14,7 @@
     <!--[if IE 6]>
     <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
     <![endif]-->
-    <script type="text/javascript" charset="utf-8" src="/public/active/js/get.js"></script>
+<!--    <script type="text/javascript" charset="utf-8" src="/public/active/js/get.js"></script>-->
 </head>
 <body>
 
