@@ -132,12 +132,7 @@ require('gameheader.php');
                         </div>
                     </div>
                 </div>
-                <div class="copyright" style="text-align: center; margin:20px 0 0 0">
-                    <div class="inner">
-                        <p>Copyright ©
-                            Version 0.1.1 </p>
-                    </div>
-                </div>
+            <?php require('qingting_footer.php') ?>
             </div>
         </div>
     </div>

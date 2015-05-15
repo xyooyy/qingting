@@ -253,9 +253,7 @@ require('gameheader.php');
                             <!-- <input type="submit" > -->
                         </form>
                     </div>
-                    <div id="footer">
-                        Copyright &copy; All Rights Reserved
-                    </div>
+                    <?php require('qingting_footer.php') ?>
                 </div>
             </div>
         </div>
