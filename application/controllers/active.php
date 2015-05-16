@@ -398,20 +398,20 @@ class Active extends CI_Controller
     public function active_submit3_5()
     {
         $id = $this->input->post('id');
-        if ($this->input->post('html')) {
-            $type = $this->input->post('type');
-            $this->load->model('active_model');
+        $phone_html = $this->input->post('html');
+        $type = $this->input->post('type');
 
-            $row = $this->active_model->info('id', $this->input->post('id'));
+        if ($phone_html) {
+            $this->load->model('active_model');
+            $row = $this->active_model->info('id', $id);
             $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','../public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
 
-            $f = $this->input->post('html');
-            $new_file = 'active/' . md5('active_'.$id.'_'.$type);
-            $new_file1 = $new_file . '1' . '.html';
-            $new_file .= '.html';
-            file_put_contents($new_file1, $f);
-            $f = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $_POST['id'], $f);
-            $f = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $f);
+            $generated_file = 'active/a_' . md5('active_'.$id.'_'.$type);
+            $base_html = $generated_file . '1' . '.html';
+            $generated_file .= '.html';
+            file_put_contents($base_html, $phone_html);
+            $phone_html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $_POST['id'], $phone_html);
+            $phone_html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $phone_html);
 
             $prize_url = "<script>var pirze_url='" . $this->host . "active/games_getprize?id=" . $_POST['id'] . "';";
             $str_start = file_get_contents('active/start.html');
@@ -419,21 +419,21 @@ class Active extends CI_Controller
             $str_js = file_get_contents('active/addjs.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
             $str_prize = file_get_contents('active/prize.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $generated_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
-            if (file_put_contents($new_file, $str_start . $share . $f . $str_end . $str_js . $str_js1 . $prize_url . $str_prize . $addtitle . $share1)) {
+            if (file_put_contents($generated_file, $str_start . $share . $phone_html . $str_end . $str_js . $str_js1 . $prize_url . $str_prize . $addtitle . $share1)) {
                 switch ($type) {
                     case 'alreadyWinningHtml':
-                        $data['html_prize'] = $new_file;
-                        $data['html_prize1'] = $new_file1;
+                        $data['html_prize'] = $generated_file;
+                        $data['html_prize1'] = $base_html;
                         break;
                     case 'notWinningHtml':
-                        $data['html_prize_not_win'] = $new_file;
-                        $data['html_prize_not_win1'] = $new_file1;
+                        $data['html_prize_not_win'] = $generated_file;
+                        $data['html_prize_not_win1'] = $base_html;
                         break;
                     case 'depleteChanceHtml':
-                        $data['html_prize_delete_chance'] = $new_file;
-                        $data['html_prize_delete_chance1'] = $new_file1;
+                        $data['html_prize_delete_chance'] = $generated_file;
+                        $data['html_prize_delete_chance1'] = $base_html;
                         break;
                     default:
                         break;
