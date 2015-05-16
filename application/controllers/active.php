@@ -102,8 +102,30 @@ class Active extends CI_Controller
     {
         $this->load->model('active_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        if ($row['html_prize1'] != '') $data['html'] = file_get_contents($this->host . $row['html_prize1']);
-        $this->load->view('active/begame3_5', $data);
+
+        $page = $this->input->get('page');
+        if(! $page){
+            $page = '1';
+        }
+
+        if($page == '1'){
+            if ($row['html_prize1'] != ''){
+                $data['html'] = file_get_contents($this->host . $row['html_prize1']);
+            }
+            $this->load->view('active/begame3_5', $data);
+        }elseif ($page == '2') {
+            if ($row['html_prize1'] != ''){
+                $data['html'] = file_get_contents($this->host . $row['html_prize_not_win1']);
+            }
+            $this->load->view('active/begame3_5_not_winning',$data);
+        }elseif($page == '3'){
+            if ($row['html_prize1'] != ''){
+                $data['html'] = file_get_contents($this->host . $row['html_prize_delete_chance1']);
+            }
+            $this->load->view('active/begame3_5_deplete_chance',$data);
+        }else{
+            $this->load->view('active/begame3_5', $data);
+        }
     }
 
     public function begame4()
@@ -376,6 +398,7 @@ class Active extends CI_Controller
     public function active_submit3_5()
     {
         if ($this->input->post('html')) {
+            $type = $this->input->post('type');
             $this->load->model('active_model');
 
             $row = $this->active_model->info('id', $this->input->post('id'));
@@ -398,8 +421,22 @@ class Active extends CI_Controller
             $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             if (file_put_contents($new_file, $str_start . $share . $f . $str_end . $str_js . $str_js1 . $prize_url . $str_prize . $addtitle . $share1)) {
-                $data['html_prize'] = $new_file;
-                $data['html_prize1'] = $new_file1;
+                switch ($type) {
+                    case 'alreadyWinningHtml':
+                        $data['html_prize'] = $new_file;
+                        $data['html_prize1'] = $new_file1;
+                        break;
+                    case 'notWinningHtml':
+                        $data['html_prize_not_win'] = $new_file;
+                        $data['html_prize_not_win1'] = $new_file1;
+                        break;
+                    case 'depleteChanceHtml':
+                        $data['html_prize_delete_chance'] = $new_file;
+                        $data['html_prize_delete_chance1'] = $new_file1;
+                        break;
+                    default:
+                        break;
+                }
 
                 $this->active_model->edit($data, $this->input->post('id'));
             };

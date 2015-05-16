@@ -71,21 +71,27 @@ $(function () {
      * 上一步
      */
     function pre() {
-        window.location.href = hdpUrl.set(rootUrl + "/prize", {"id": hdpUrl.get("id"), "ispre": true});//设置跳转网页及网页参数
+        var id =  hdpUrl.get("id") || 1;
+        var page = hdpUrl.get("page") || 1;
+
+        if(page == 1){
+            window.location.href = rootUrl + '/active/begame3_4?id=' + id;
+        }else{
+            window.location.href = rootUrl + '/active/begame3_5?id=' + id + '&page=' +  (parseInt(page) - 1);
+        }
     }
 
     /**
      * 下一步
      */
     function next() {
-        if (tag == 0) {
-            window.location.href = hdpUrl.set(rootUrl + "/confirm", "id", hdpUrl.get("id"));//设置跳转网页及网页参数
-        } else if (tag == 1) {
-            modal.showWithTitle("奖页面未设置");
-        } else if (tag == 2) {
-            modal.showWithTitle("未中奖页面未设置");
-        } else if (tag == 3) {
-            modal.showWithTitle("次数用完页面未设置");
+        var id =  hdpUrl.get("id");
+        var page = hdpUrl.get("page") || 1;
+
+        if(page == 3){
+            window.location.href = rootUrl + '/active/begame4?id=' + id
+        }else{
+            window.location.href = rootUrl + '/active/begame3_5?id=' + id + '&page=' +  (parseInt(page) + 1);
         }
     }
 
@@ -1262,103 +1268,35 @@ $(function () {
 
     //提交
     function save($this, sub, success) {
-
-
         if (!sub) {//是否直接提交
-            var p = $this.attr("data-step") ? $this.attr("data-step") : hdpUrl.get("page");
+            var current_page = $this.attr("data-step") ? $this.attr("data-step") : (hdpUrl.get("page") ? hdpUrl.get("page") : '1');
             var type = $('.step.current').parent().clone().attr('data-name');
-            if (p != "4") {
-//                $('.link1 a,.link2 a,.link3 a').removeClass('active').removeClass('current');
-            }
+
             var html = $('.phone').clone();
             html.find('.btn-current').remove();
-            if (!p) {
-
-                $this.attr("data-step", 1);
-//                $('.link1 a').addClass('active');
-//                $('.link2 a').addClass('current');
-//                $('.link3 a').removeClass('active');
+            if (current_page == "1") {
                 saveHtml(type, html.html(), function () {
-                    // location.href = "/html/activities_step3_5.html?id=" + hdpUrl.get("id") + "&page=" + $('.link1').attr('data-hash');
-                    modal.resetBtns([{
-                        id: "edit",
-                        name: "确定",
-                        listener: function (modal) {
-                            window.location.href = rootUrl + "/prizeResult?id=" + hdpUrl.get("id") + "&page=2";
-                        }
-                    }]);
-                    modal.showWithTitle("保存成功");
+                    location.href = "/active/begame3_5?id=" + hdpUrl.get("id") + "&page=2" ;
                 });
 
-            } else if (p == "1") {
-                $this.attr("data-step", 2);
-//                $('.link1 a').addClass('active');
-//                $('.link2 a').addClass('current');
+            } else if (current_page == "2") {
                 saveHtml(type, html.html(), function () {
-                    //location.href = "/html/activities_step3_5.html?id=" + hdpUrl.get("id") + "&page=" + $('.link2').attr('data-hash');
-                    modal.resetBtns([{
-                        id: "edit",
-                        name: "确定",
-                        listener: function (modal) {
-                            window.location.href = rootUrl + "/prizeResult?id=" + hdpUrl.get("id") + "&page=2";
-                        }
-                    }]);
-                    modal.showWithTitle("保存成功");
+                    location.href = "/active/begame3_5?id=" + hdpUrl.get("id") + "&page=3";
                 });
-
-            } else if (p == "2") {
-                $this.attr("data-step", 3);
-//                $('.link1 a').addClass('active');
-//                $('.link2 a').addClass('active');
-//                $('.link3 a').addClass('current');
+            } else if (current_page == "3") {
                 saveHtml(type, html.html(), function () {
-                    //location.href = "/html/activities_step3_5.html?id=" + hdpUrl.get("id") + "&page=" + $('.link3').attr('data-hash');
-                    modal.resetBtns([{
-                        id: "edit",
-                        name: "确定",
-                        listener: function (modal) {
-                            window.location.href = rootUrl + "/prizeResult?id=" + hdpUrl.get("id") + "&page=3";
-                        }
-                    }]);
-                    modal.showWithTitle("保存成功");
-                });
-            } else if (p == "3") {
-                $this.attr("data-step", 3);
-//                $('.link1 a').addClass('active');
-//                $('.link2 a').addClass('active');
-//                $('.link3 a').addClass('current');
-                saveHtml(type, html.html(), function () {
-                    //location.href = "/html/activities_step3_5.html?id=" + hdpUrl.get("id") + "&page=" + $('.link3').attr('data-hash');
-
-                    modal.showAlert("保存成功");
+                    location.href = "/active/begame3_5?id=" + hdpUrl.get("id") + "&page=" + $('.link3').attr('data-hash');
                 });
             }
         }
-        //var myhtml = $('.phone').clone();
-        //myhtml.find('.btn-current').remove();
-        //if(!$this.attr("data-step")){
-        //    if(!p){
-        //
-        //        steps["step1"] = myhtml.html();
-        //    }else{
-        //        alert(p);
-        //        steps["step"+p] = myhtml.html();
-        //    }
-        //}
-        //if($this.attr("data-step")!="completed"){
-        //
-        //    steps["step"+$this.attr('data-step')] = myhtml.html();
-        //}
-        //
-        //console.log(steps);
-        //submitHtml(steps,success);
     }
 
     function saveHtml(type, html, success) {
-        var url = rootUrl +"/index.php/active/active_submit3_5";
+        var url = rootUrl+"/index.php/active/active_submit3_5";
         var html = $('.phone').clone();
         $.ajax(url, {
             data: {
+                'type': type,
                 id: hdpUrl.get("id"),
                 html: html.html()
             },
@@ -1366,7 +1304,8 @@ $(function () {
 
             success: function (data, textStatus) {
                 if (data > 0) {
-                    window.location.href = './begame4?id=' + data;
+                    success();
+                    // window.location.href = './begame4?id=' + data;
                 } else {
                     window.modal.showAlert(data);
                 }
@@ -1374,42 +1313,20 @@ $(function () {
         });
     }
 
-    //function submitHtml(steps,success){
-    //    var url = rootUrl + "/prizeResult/save.json";
-    //    console.log(steps);
-    //    $.ajax(url, {
-    //        data: $.extend({
-    //            id: hdpUrl.get('id')
-    //        }, steps),
-    //        dataType: "json",
-    //        type: "post",
-    //        success: function (data, textStatus) {
-    //            //next();
-    //            if (success)
-    //                success();
-    //        },
-    //        error: function (data, textStatus) {
-    //            // next();
-    //        }
-    //    });
-    //}
 
-    var type;
+
     $('.link1,.link2,.link3').click(function () {
+        var type;
         initStep();
         var _this = $(this);
         type = $('.step.current').parent().clone().attr('data-name');
 
-        $(this).find('a').addClass('current').end().siblings().find('a').not('.completed').removeClass('current');
-        //$(this).find('a').removeClass('active');
-        //$('.current').addClass('active').removeClass('current');
-        //$(this).find('a').addClass('current').end().siblings().find('a').not('.completed').removeClass('current');
-        //$('.uploadBtn').attr('data-step',$(this).attr('data-hash'));
+
 
         var myhtml = $('.phone').clone();
         myhtml.find('.btn-current').remove();
         saveHtml(type, myhtml.html(), function (data) {
-            window.location.href = rootUrl + "/prizeResult?id=" + hdpUrl.get('id') + "&page=" + _this.attr('data-hash');
+            window.location.href = rootUrl + "/active/begame3_5?id=" + hdpUrl.get('id') + "&page=" + _this.attr('data-hash');
         });
     });
 
