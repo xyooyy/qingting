@@ -114,12 +114,12 @@ class Active extends CI_Controller
             }
             $this->load->view('active/begame3_5', $data);
         }elseif ($page == '2') {
-            if ($row['html_prize1'] != ''){
+            if ($row['html_prize_not_win1'] != ''){
                 $data['html'] = file_get_contents($this->host . $row['html_prize_not_win1']);
             }
             $this->load->view('active/begame3_5_not_winning',$data);
         }elseif($page == '3'){
-            if ($row['html_prize1'] != ''){
+            if ($row['html_prize_delete_chance1'] != ''){
                 $data['html'] = file_get_contents($this->host . $row['html_prize_delete_chance1']);
             }
             $this->load->view('active/begame3_5_deplete_chance',$data);

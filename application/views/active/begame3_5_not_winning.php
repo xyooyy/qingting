@@ -145,14 +145,14 @@ require('gameheader.php');
                                     <div class="phone active" style="width: 320px; height: 480px;">
 
                                         <div class="phone-simulation lay-common ui-droppable" data-screen="1" data-layout="vertical">
-                                            <div class="layoutBg" style="height: 100%; background-image: url(http://act.aiwanpai.com/uploads/images//9fd7e5aeb832f7c8b9fe8f10d8ca76f7.jpg); background-size: 100%;">
+                                            <div class="layoutBg" style="height: 100%;">
                                             </div>
                                             <div class="layoutbox" style="height: 100%; width: 100%;">
                                                 <div class="layoutArea">
                                                     <div class="layoutArea">
                                                         <div class="prize-show">
                                                             <div class="prize-litpic hdp-img" style="position: static;">
-                                                                <img src="http://act.aiwanpai.com/assets/images/no-prize.png" id="prize-img">
+                                                                <img src="/public/active/css/images/no-prize.png" id="prize-img">
                                                             </div>
                                                             <p class="hdp-textarea active" data-input="true" style="color: rgb(16, 16, 16); position: static;">
                                                                                                         <span class="text-main" id="prizeName-text">请不要灰心，继续碰运气啦~</span>
@@ -210,11 +210,11 @@ require('gameheader.php');
                                         <!-- Nav tabs -->
                                         <ul class="set-nav tab" role="tablist" style="display: none;">
                                             <li role="presentation" class="active" style="width:50%">
-                                                <a href="http://act.aiwanpai.com/prizeResult?id=549#home" role="tab"
+                                                <a href="javascript:void(0)" role="tab"
                                                    data-toggle="tab">样式</a>
                                             </li>
                                             <li role="presentation" style="width:50%">
-                                                <a href="http://act.aiwanpai.com/prizeResult?id=549#profile" role="tab"
+                                                <a href="javascript:void(0)" role="tab"
                                                    data-toggle="tab">格式</a>
                                             </li>
                                         </ul>
