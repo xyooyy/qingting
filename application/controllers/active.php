@@ -257,7 +257,7 @@ class Active extends CI_Controller
         if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $f, $result)) {
             $type = $result[2];
             if ($type = 'jpeg') $type = 'jpg';
-            $new_file = './upload/active/' . date("Ymd-") . time() . rand(1, 9999) . '.' . $type;
+            $new_file = './upload/active/u/' . date("Ymd-") . time() . rand(1, 9999) . '.' . $type;
             if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $f)))) {
                 $wximg = $new_file;
             };
@@ -292,7 +292,7 @@ class Active extends CI_Controller
             $current_active = $this->active_model->info('id', $this->input->post('id'));
             $page_title = "<script>  document.title = '" . $current_active['title'] . "'; </script>";
 
-            $genereated_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
+            $genereated_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $base_file = $genereated_file . '1' . '.html';
             $genereated_file .= '.html';
             file_put_contents($base_file, $phone_html);
@@ -325,7 +325,7 @@ class Active extends CI_Controller
             $addtitle = "<script> if(getCookie('cookie3_2')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_2'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
 
             $f = $this->input->post('html');
-            $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
+            $new_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $new_file1 = $new_file . '1' . '.html';
             $new_file .= '.html';
             file_put_contents($new_file1, $f);
@@ -358,7 +358,7 @@ class Active extends CI_Controller
             $row = $this->active_model->info('id', $this->input->post('id'));
             $addtitle = "<script> if(getCookie('cookie3_3')){ document.title = '" . $row['fenxiangt'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
             $f = $this->input->post('html');
-            $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
+            $new_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $new_file1 = $new_file . '1' . '.html';
             $new_file .= '.html';
             file_put_contents($new_file1, $f);
@@ -406,7 +406,7 @@ class Active extends CI_Controller
             $row = $this->active_model->info('id', $id);
             $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','../public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
 
-            $generated_file = 'active/a_' . md5('active_'.$id.'_'.$type);
+            $generated_file = 'active/u/' . md5('active_'.$id.'_'.$type);
             $base_html = $generated_file . '1' . '.html';
             $generated_file .= '.html';
             file_put_contents($base_html, $phone_html);
@@ -461,7 +461,7 @@ class Active extends CI_Controller
         // 二维码数据
         $data = $href;
         // 生成的文件名
-        $filename = 'active/' . md5($href) . '.png';
+        $filename = 'active/u/' . md5($href) . '.png';
         if (file_exists($filename)) {
             return $filename;
         }
@@ -477,7 +477,7 @@ class Active extends CI_Controller
     //图片上传
     public function up_img()
     {
-        $config['upload_path'] = "active/";
+        $config['upload_path'] = "active/u/";
         $config['allowed_types'] = "gif|jpg|png";
         $config['file_name'] = date("Ymd") . rand(1, 999);
         $config['max_size'] = "20000";
@@ -523,7 +523,7 @@ class Active extends CI_Controller
     }
 
     public function accept_img(){
-        $base_imgae_name =  './upload/active/' . date("Ymd") . time();
+        $base_imgae_name =  './upload/active/u/' . date("Ymd") . time();
         if(! empty($_FILES)){
             if($_FILES['file']['error'] > 0){
                 echo json_encode(array('success'=>false, 'error_code'=> $_FILES["file"]["error"], 'code'=> -1, 'content'=>null,'msg'=>null,'resubmitToken'=>null ));
