@@ -397,6 +397,7 @@ class Active extends CI_Controller
     //抽奖结束页面提交
     public function active_submit3_5()
     {
+        $id = $this->input->post('id');
         if ($this->input->post('html')) {
             $type = $this->input->post('type');
             $this->load->model('active_model');
@@ -405,7 +406,7 @@ class Active extends CI_Controller
             $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','../public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
 
             $f = $this->input->post('html');
-            $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
+            $new_file = 'active/' . md5('active_'.$id.'_'.$type);
             $new_file1 = $new_file . '1' . '.html';
             $new_file .= '.html';
             file_put_contents($new_file1, $f);
