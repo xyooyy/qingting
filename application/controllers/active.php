@@ -404,7 +404,7 @@ class Active extends CI_Controller
         if ($phone_html) {
             $this->load->model('active_model');
             $row = $this->active_model->info('id', $id);
-            $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','../public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
+            $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','/public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
 
             $generated_file = 'active/u/' . md5('active_'.$id.'_'.$type);
             $base_html = $generated_file . '1' . '.html';

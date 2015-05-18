@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <title>轻应用-最大h5游戏分发平台</title>
 <!--jQuery-->
-    <script type="text/javascript" src="http://qingting.huosu.com/public/js/game-handler.js"></script>
+    <script type="text/javascript" src="/public/js/game-handler.js"></script>
 <script type="text/javascript" src="js/createjs.min.js"></script>
 <script type="text/javascript" src="js/zepto.min.js"></script>
 <script src="js/common.js"></script>
@@ -39,7 +39,7 @@
 		        "tTitle": "打企鹅-",
 		        "tContent": "打企鹅-"
 		};
-				
+
 		function goHome(){
 			window.location=mebtnopenurl;
 		}
@@ -65,7 +65,7 @@
 		function hideAd(){
 		}
 		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-		    
+
 		    WeixinJSBridge.on('menu:share:appmessage', function(argv) {
 		        WeixinJSBridge.invoke('sendAppMessage', {
 		            "img_url": window.shareData.imgUrl,
@@ -122,7 +122,7 @@
 	        }
 			</script>
 			<div style="display: none;">
-			 
+
 			</div>
 </body>
 </html>
