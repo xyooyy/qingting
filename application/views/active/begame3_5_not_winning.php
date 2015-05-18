@@ -140,84 +140,49 @@ require('gameheader.php');
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="mid" data-scene="3">
                                     <div class="phone active" style="width: 320px; height: 480px;">
 
-                                        <div class="phone-simulation lay-common ui-droppable" data-layout="vertical"
-                                             data-screen="1">
-                                            <div class="layoutBg hdp-layoutBg" style="height: 100%;">
-                                                <!--<img class="hdp-layoutBg">-->
+                                        <div class="phone-simulation lay-common ui-droppable" data-screen="1" data-layout="vertical">
+                                            <div class="layoutBg" style="height: 100%;">
                                             </div>
-                                            <div class="layoutAuto">
-                                                <div class="layoutbox" style="height: 100%; width: 100%;">
+                                            <div class="layoutbox" style="height: 100%; width: 100%;">
+                                                <div class="layoutArea">
                                                     <div class="layoutArea">
                                                         <div class="prize-show">
-                                                            <div class="prize-litpic hdp-img" data-tip="no-upload">
-                                                                <img src="/public/active/css/images/litpic.jpg"
-                                                                     id="prize-img">
+                                                            <div class="prize-litpic hdp-img" style="position: static;">
+                                                                <img src="/public/active/css/images/no-prize.png" id="prize-img">
                                                             </div>
-                                                            <p class="hdp-textarea" data-input="false"
-                                                               style="color: #101010">
-                                                                <span class="text-main"
-                                                                      id="prizeName-text">可口可乐一箱</span>
+                                                            <p class="hdp-textarea active" data-input="true" style="color: rgb(16, 16, 16); position: static;">
+                                                                                                        <span class="text-main" id="prizeName-text">请不要灰心，继续碰运气啦~</span>
                                                             </p>
-
-                                                            <p class="hdp-textarea" style="color: #101010">
-                                                                <span class="text-main" id="tip-text">喜欢该奖品，点击【立即领奖】，了解详细的兑奖操作。</span>
-                                                            </p>
-
-                                                            <div class="btnArea">
-                                                                <a class="btn1 hdp-btn hdp-acceptPrize-btn active"
-                                                                   href="javascript:;" data-id="url" data-url="#">
-                                                                    立即领奖
-                                                                    <div class="btn-current">
-                                                                        <i class="btn-current-i tl"></i>
-                                                                        <i class="btn-current-i tr"></i>
-                                                                        <i class="btn-current-i bl"></i>
-                                                                        <i class="btn-current-i br"></i>
-                                                                    </div>
-                                                                </a>
-                                                                <a class="btn2 hdp-btn hdp-replay-btn"
-                                                                   href="javascript:;">
-                                                                    再玩一次
-                                                                    <div class="btn-current">
-                                                                        <i class="btn-current-i tl"></i>
-                                                                        <i class="btn-current-i tr"></i>
-                                                                        <i class="btn-current-i bl"></i>
-                                                                        <i class="btn-current-i br"></i>
-                                                                    </div>
-                                                                </a>
-                                                                <a class="btn3 hdp-btn hdp-share-btn"
-                                                                   href="javascript:;fenxiang">
-                                                                    我要分享
-                                                                    <div class="btn-current">
-                                                                        <i class="btn-current-i tl"></i>
-                                                                        <i class="btn-current-i tr"></i>
-                                                                        <i class="btn-current-i bl"></i>
-                                                                        <i class="btn-current-i br"></i>
-                                                                    </div>
-                                                                </a>
-                                                                <a class="btn4 hdp-btn hdp-attention-btn"
-                                                                   href="javascript:;" data-id="url" data-url="#">
-                                                                    关注我们
-                                                                    <div class="btn-current">
-                                                                        <i class="btn-current-i tl"></i>
-                                                                        <i class="btn-current-i tr"></i>
-                                                                        <i class="btn-current-i bl"></i>
-                                                                        <i class="btn-current-i br"></i>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
                                                         </div>
+                                                        <div class="btnArea">
+                                                            <a class="btn1 hdp-btn hdp-replay-btn" href="javascript:;" style="position: static;">
+                                                                再玩一次
+
+                                                            </a>
+                                                            <a class="btn2 hdp-btn hdp-share-btn" href="javascript:;" style="position: static;">
+                                                                我要分享
+
+                                                            </a>
+                                                            <a class="btn3 hdp-btn hdp-attention-btn" href="javascript:;" data-id="url" data-url="http://t.cn/RzZEU8M" style="position: static;">
+                                                                关注我们
+
+                                                            </a>
+                                                        </div>
+
                                                         <div class="footerArea" style="position: absolute; left: 16px;">
-                                                            <div class="copyright hdp-textarea">
-                                                                <span class="text-main">蜻蜓提供技术支持</span>
+                                                            <div class="copyright hdp-textarea" style="position: static;">
+                                                                <span class="text-main">由爱玩派提供技术支持</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="act-step3-4-nav">

@@ -102,8 +102,30 @@ class Active extends CI_Controller
     {
         $this->load->model('active_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        if ($row['html_prize1'] != '') $data['html'] = file_get_contents($this->host . $row['html_prize1']);
-        $this->load->view('active/begame3_5', $data);
+
+        $page = $this->input->get('page');
+        if(! $page){
+            $page = '1';
+        }
+
+        if($page == '1'){
+            if ($row['html_prize1'] != ''){
+                $data['html'] = file_get_contents($this->host . $row['html_prize1']);
+            }
+            $this->load->view('active/begame3_5', $data);
+        }elseif ($page == '2') {
+            if ($row['html_prize_not_win1'] != ''){
+                $data['html'] = file_get_contents($this->host . $row['html_prize_not_win1']);
+            }
+            $this->load->view('active/begame3_5_not_winning',$data);
+        }elseif($page == '3'){
+            if ($row['html_prize_delete_chance1'] != ''){
+                $data['html'] = file_get_contents($this->host . $row['html_prize_delete_chance1']);
+            }
+            $this->load->view('active/begame3_5_deplete_chance',$data);
+        }else{
+            $this->load->view('active/begame3_5', $data);
+        }
     }
 
     public function begame4()
@@ -235,7 +257,7 @@ class Active extends CI_Controller
         if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $f, $result)) {
             $type = $result[2];
             if ($type = 'jpeg') $type = 'jpg';
-            $new_file = './upload/active/' . date("Ymd-") . time() . rand(1, 9999) . '.' . $type;
+            $new_file = './upload/active/u/' . date("Ymd-") . time() . rand(1, 9999) . '.' . $type;
             if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $f)))) {
                 $wximg = $new_file;
             };
@@ -270,7 +292,7 @@ class Active extends CI_Controller
             $current_active = $this->active_model->info('id', $this->input->post('id'));
             $page_title = "<script>  document.title = '" . $current_active['title'] . "'; </script>";
 
-            $genereated_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
+            $genereated_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $base_file = $genereated_file . '1' . '.html';
             $genereated_file .= '.html';
             file_put_contents($base_file, $phone_html);
@@ -303,7 +325,7 @@ class Active extends CI_Controller
             $addtitle = "<script> if(getCookie('cookie3_2')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_2'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
 
             $f = $this->input->post('html');
-            $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
+            $new_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $new_file1 = $new_file . '1' . '.html';
             $new_file .= '.html';
             file_put_contents($new_file1, $f);
@@ -336,7 +358,7 @@ class Active extends CI_Controller
             $row = $this->active_model->info('id', $this->input->post('id'));
             $addtitle = "<script> if(getCookie('cookie3_3')){ document.title = '" . $row['fenxiangt'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
             $f = $this->input->post('html');
-            $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
+            $new_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $new_file1 = $new_file . '1' . '.html';
             $new_file .= '.html';
             file_put_contents($new_file1, $f);
@@ -375,19 +397,21 @@ class Active extends CI_Controller
     //抽奖结束页面提交
     public function active_submit3_5()
     {
-        if ($this->input->post('html')) {
-            $this->load->model('active_model');
+        $id = $this->input->post('id');
+        $phone_html = $this->input->post('html');
+        $type = $this->input->post('type');
 
-            $row = $this->active_model->info('id', $this->input->post('id'));
+        if ($phone_html) {
+            $this->load->model('active_model');
+            $row = $this->active_model->info('id', $id);
             $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','../public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
 
-            $f = $this->input->post('html');
-            $new_file = 'active/' . date("Ymd-") . time() . rand(1, 9999);
-            $new_file1 = $new_file . '1' . '.html';
-            $new_file .= '.html';
-            file_put_contents($new_file1, $f);
-            $f = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $_POST['id'], $f);
-            $f = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $f);
+            $generated_file = 'active/u/' . md5('active_'.$id.'_'.$type);
+            $base_html = $generated_file . '1' . '.html';
+            $generated_file .= '.html';
+            file_put_contents($base_html, $phone_html);
+            $phone_html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $_POST['id'], $phone_html);
+            $phone_html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $phone_html);
 
             $prize_url = "<script>var pirze_url='" . $this->host . "active/games_getprize?id=" . $_POST['id'] . "';";
             $str_start = file_get_contents('active/start.html');
@@ -395,11 +419,25 @@ class Active extends CI_Controller
             $str_js = file_get_contents('active/addjs.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
             $str_prize = file_get_contents('active/prize.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $generated_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
-            if (file_put_contents($new_file, $str_start . $share . $f . $str_end . $str_js . $str_js1 . $prize_url . $str_prize . $addtitle . $share1)) {
-                $data['html_prize'] = $new_file;
-                $data['html_prize1'] = $new_file1;
+            if (file_put_contents($generated_file, $str_start . $share . $phone_html . $str_end . $str_js . $str_js1 . $prize_url . $str_prize . $addtitle . $share1)) {
+                switch ($type) {
+                    case 'alreadyWinningHtml':
+                        $data['html_prize'] = $generated_file;
+                        $data['html_prize1'] = $base_html;
+                        break;
+                    case 'notWinningHtml':
+                        $data['html_prize_not_win'] = $generated_file;
+                        $data['html_prize_not_win1'] = $base_html;
+                        break;
+                    case 'depleteChanceHtml':
+                        $data['html_prize_delete_chance'] = $generated_file;
+                        $data['html_prize_delete_chance1'] = $base_html;
+                        break;
+                    default:
+                        break;
+                }
 
                 $this->active_model->edit($data, $this->input->post('id'));
             };
@@ -423,7 +461,7 @@ class Active extends CI_Controller
         // 二维码数据
         $data = $href;
         // 生成的文件名
-        $filename = 'active/' . md5($href) . '.png';
+        $filename = 'active/u/' . md5($href) . '.png';
         if (file_exists($filename)) {
             return $filename;
         }
@@ -439,7 +477,7 @@ class Active extends CI_Controller
     //图片上传
     public function up_img()
     {
-        $config['upload_path'] = "active/";
+        $config['upload_path'] = "active/u/";
         $config['allowed_types'] = "gif|jpg|png";
         $config['file_name'] = date("Ymd") . rand(1, 999);
         $config['max_size'] = "20000";
@@ -485,7 +523,7 @@ class Active extends CI_Controller
     }
 
     public function accept_img(){
-        $base_imgae_name =  './upload/active/' . date("Ymd") . time();
+        $base_imgae_name =  './upload/active/u/' . date("Ymd") . time();
         if(! empty($_FILES)){
             if($_FILES['file']['error'] > 0){
                 echo json_encode(array('success'=>false, 'error_code'=> $_FILES["file"]["error"], 'code'=> -1, 'content'=>null,'msg'=>null,'resubmitToken'=>null ));

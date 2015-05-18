@@ -583,9 +583,8 @@
             }, 1, 1);
         });
         uploader.on("uploadSuccess", function (file, response) {
-            //alert((response));
             $this.css({
-                'background-image': 'url(' + response.content + ')',
+                'background-image': 'url(' + rootUrl + '/active/' + response.content + ')',
                 'background-size': '100% auto'
             });
             //window.bgposition = new bg_position({target: $this, helper: $('.layoutbox'), islimit: true});//绑定背景移动组件
