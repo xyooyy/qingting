@@ -166,7 +166,7 @@ class Active extends CI_Controller
         if ($this->input->get('score')) $this->input->set_cookie("score", $this->input->get('score'), 100);
         $this->input->set_cookie("cookie3_2", '1', 100);
         $row = $this->active_model->info('id', $_COOKIE['gamesid']);
-        header("Locition:" . $this->host . $row['html_end']);
+        header("Location:" . $this->host . $row['html_end']);
     }
 
     //游戏分享页
