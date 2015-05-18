@@ -13,12 +13,14 @@ class Active_model extends CI_Model
      * 获取信息
      * @return array
      */
-    public function where()
+    public function where($type,$id)
     {
         $where[] = 'id > 0';
         $where[] = "userid=" . $this->session->userdata('userid');
-        if ($this->input->get('type')) $where[] = "type like '%" . $this->input->get('type') . "%'";
-        if ($this->input->get('id')) $where[] = "id=" . $this->input->get('id');
+        $type ? $where[] = $type : '';
+        $id ? $where[] = $id : '';
+//        if ($this->input->get('type')) $where[] = "type like '%" . $this->input->get('type') . "%'";
+//        if ($this->input->get('id')) $where[] = "id=" . $this->input->get('id');
         return $where;
     }
 

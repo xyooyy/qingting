@@ -42,11 +42,11 @@ $(function () {
                 // alert(id);
                 if (data > 0) {
                     success();
-                    // window.location.href = './begame4?id=' + data;
+                    window.location.href = './begame4?id=' + data;
                 } else {
                     data = data.replace('ischou', '');
                     success();
-                    // window.location.href = './begame3_4?id=' + data;
+                    window.location.href = './begame3_4?id=' + data;
                     return false;
 
                     window.modal.showAlert(data);
