@@ -21,7 +21,9 @@ class Active extends CI_Controller
 
         $this->load->view('active/active', $data);
     }
-
+    public function data(){
+        $this->load->view('active/data');
+    }
     public function begame1()
     {
         $this->load->model('active_model');
