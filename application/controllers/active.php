@@ -332,8 +332,14 @@ class Active extends CI_Controller
             $f = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $_POST['id'], $f);
             $f = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $f);
 
-
             $str_start = file_get_contents('active/start.html');
+            if(strpos($f,'data-layout="symmetric"')){
+                $str_start = str_replace('/public/active/css/layout.css','/public/active/css/symmetric/css/layout.css',$str_start);
+            };
+            if(strpos($f,'data-layout="vertical"')){
+                $str_start = str_replace('/public/active/css/layout.css','/public/active/css/vertical/css/layout.css',$str_start);
+            };
+
             $str_end = file_get_contents('active/end.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
             $str_js = file_get_contents('active/addjs.html');
