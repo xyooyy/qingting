@@ -178,7 +178,7 @@ class Active extends CI_Controller
         $this->input->set_cookie("cookie3_3", '1', 100);
         $this->tongji('fenxiang', $this->input->get('id'));
         //$this->input->set_cookie("choujiang",$this->input->get('id'),10);
-        header("Locition:" . $this->host . $row['html_fenxiang']);
+        header("Location:" . $this->host . $row['html_fenxiang']);
     }
 
     //游戏结抽奖
