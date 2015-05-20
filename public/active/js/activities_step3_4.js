@@ -36,6 +36,18 @@ $(function () {
         });
 
         // 创建缩略图
+        uploader.on('beforeFileQueued', function (file, res) {
+            setTimeout(function () {
+                if (file._info.width != 200 || file._info.height != 200) {
+                    window.modal.showAlert("图片大小不为最佳的150×150");
+                }
+            }, 100)
+            if (file.size > 80000) {
+                window.modal.showAlert("图片大小应为30k以内");
+
+            }
+        })
+
         uploader.on('fileQueued', function (file) {
             // 如果为非图片文件，可以不用调用此方法。
             // thumbnailWidth x thumbnailHeight 为 100 x 100
@@ -46,16 +58,17 @@ $(function () {
                 }
 
                 //进行图片宽高的判断
-                var shold = checkImageWH(file);
+                //var shold = checkImageWH(file);
+                //alert(shold);
                 myImg = file;
-                if (shold) {
+                //if (shold) {
                     $ts.find('.inner').addClass('bg');
                     $ts.find('img').attr('src', src);
-                } else {
-                    file.setStatus('cancelled');
-                }
+                //} else {
+                //    file.setStatus('cancelled');
+                //}
 
-                return shold;
+                //return shold;
             }, 288, 240);
         });
         //上传成功
