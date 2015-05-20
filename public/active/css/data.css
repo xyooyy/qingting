@@ -2444,3 +2444,9 @@ a {
 .ifr-game-select .game-list li p.view a {
     color: #a0a0a0;
 }
+.data_div_bottom{
+    margin-bottom: 15px;
+}
+.game_status{
+    color: red;
+}

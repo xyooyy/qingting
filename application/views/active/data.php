@@ -6,6 +6,7 @@
     <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/pagination.css">
     <link rel="stylesheet" href="/public/active/css/activity.css">
+    <link rel="stylesheet" href="/public/active/css/data.css">
     <!--    <script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script>-->
 </head>
 <body>
@@ -22,7 +23,86 @@ require('gameheader.php');
         </div>
         <div class="col-main">
             <div class="main-wrap">
-                                <?php require('qingting_footer.php') ?>
+                <div class="cont-topbar">
+                    <div class="nav">
+                        <ul>
+                            <li>
+                                <a class="cur" href="http://act.aiwanpai.com/data/">投放指标数据</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stat-warp">
+                    <div class="bor mod-search">
+                        <label>搜索查看活动数据</label>
+
+                        <form action="" method="get">
+                            <input name="keyword" type="text" value="" placeholder="输入关键字">
+                            <select name="online" class="select-select">
+                                <option value="">全部活动</option>
+                                <option value="1">在线活动</option>
+                                <option value="0">离线活动</option>
+                            </select>
+                            <button type="submit">开始搜索</button>
+                        </form>
+                    </div>
+                    <div class="bor">
+                        <div class="mod-ads">
+                            <div class="hd">
+                                <p>搜索结果：
+                                    <b><?php echo count($list) . '条' ?></b>相关结果</p>
+                            </div>
+                            <div class="bd">
+                                <ul class="list-ads">
+                                    <?php foreach ($list as $v) { ?>
+                                        <li>
+                                            <div class="act">
+                                                <a href="http://act.aiwanpai.com/data/584ff5bdfdf011e482f2ac162d89ee80/show"
+                                                   class="btn-data-rep">数据报告</a>
+
+                                                <!-- <a href="#" class="btn-follow-game">关注游戏</a>  -->
+                                            </div>
+                                            <div class="cont">
+                                                <div class="pic">
+                                                    <img
+                                                        src=<?php echo $v['img'] ?>
+                                                        alt="" style="width:128px;height:128px;">
+                                                </div>
+                                                <dl class="info">
+                                                    <div class="data_div_bottom"><?php echo $v['title'] ?></div>
+                                                    <!--                                                    <dd>分类：飞行射击</dd>-->
+                                                    <!--                                                    <dd>-->
+                                                    <span class="item">状态：
+                                                            <b class="game_status"><?php if (date('y-m-d h:i:s', time()) > date('y-m-d h:i:s', $v['endtime'])) {
+                                                                    echo "离线";
+                                                                } else {
+                                                                    echo "在线";
+                                                                } ?></b>
+                                                    </span>
+                                                    </dd>
+                                                    <dd>
+                                                    <span class="item">开始时间：
+                                                        <b><?php echo $v['starttime'] ? date('Y-m-d', $v['starttime']) : '' ?></b>
+                                                    </span>
+                                                    <span class="item">结束时间：
+                                                        <b><?php echo $v['endtime'] ? date('Y-m-d', $v['endtime']) : '' ?></b>
+                                                    </span>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                                <div class="pagination center sk_pager">
+                                    <ul>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php require('qingting_footer.php') ?>
             </div>
         </div>
     </div>

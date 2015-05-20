@@ -23,7 +23,7 @@ class Active extends CI_Controller
     }
     public function data(){
         $this->load->model('active_model');
-        $data['list'] = $this->active_model->all();
+        $data['list'] = $this->active_model->game_active();
         $this->load->view('active/data',$data);
     }
     public function begame1()
@@ -426,6 +426,15 @@ class Active extends CI_Controller
 
             $prize_url = "<script>var pirze_url='" . $this->host . "active/games_getprize?id=" . $_POST['id'] . "';";
             $str_start = file_get_contents('active/start.html');
+            $str_start = file_get_contents('active/start.html');
+            if(strpos($phone_html,'data-layout="symmetric"')){
+                $str_start = str_replace('/public/active/css/layout.css','/public/active/css/symmetric/css/layout.css',$str_start);
+            };
+            if(strpos($phone_html,'data-layout="vertical"')){
+                $str_start = str_replace('/public/active/css/layout.css','/public/active/css/vertical/css/layout.css',$str_start);
+            };
+
+
             $str_end = file_get_contents('active/end.html');
             $str_js = file_get_contents('active/addjs.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
