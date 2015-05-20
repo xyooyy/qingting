@@ -22,7 +22,9 @@ class Active extends CI_Controller
         $this->load->view('active/active', $data);
     }
     public function data(){
-        $this->load->view('active/data');
+        $this->load->model('active_model');
+        $data['list'] = $this->active_model->all();
+        $this->load->view('active/data',$data);
     }
     public function begame1()
     {
@@ -103,8 +105,9 @@ class Active extends CI_Controller
     public function begame3_5()
     {
         $this->load->model('active_model');
+        $this->load->model('prize_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-
+        $data['prize'] = $this->prize_model->info('aid',$this->input->get('id'));
         $page = $this->input->get('page');
         if(! $page){
             $page = '1';

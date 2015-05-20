@@ -153,8 +153,9 @@ require('gameheader.php');
                                                     <div class="layoutArea">
                                                         <div class="prize-show">
                                                             <div class="prize-litpic hdp-img" data-tip="no-upload">
-                                                                <img src="/public/active/css/images/litpic.jpg"
-                                                                     id="prize-img">
+                                                                    <img src=<?php echo $prize['p_img'] ? $prize['p_img'] : "/public/active/css/images/litpic.jpg" ?> >
+<!--                                                                <img src="/public/active/css/images/litpic.jpg"-->
+<!--                                                                     id="prize-img">-->
                                                             </div>
                                                             <p class="hdp-textarea" data-input="false"
                                                                style="color: #101010">
