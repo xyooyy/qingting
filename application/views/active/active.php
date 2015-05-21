@@ -92,9 +92,7 @@ require('gameheader.php');
                         </div>
                         <div class="pagination center sk_pager">
                             <ul>
-                                <li class="current">
-                                    <span>1</span>
-                                </li>
+                                <?php echo $page ?>
                             </ul>
                         </div>
                     </div>

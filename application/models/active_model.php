@@ -29,10 +29,10 @@ class Active_model extends CI_Model
         $where = " where " . implode(" and ", $this->where());
         //排序方式,默认id排序
         $order = $this->input->get('order') > 0 ? $this->input->get('order') : 'id ';
-        //分页开始值
-        $start = $_GET['p'] ? ($_GET['p'] - 1) * $end : 0;
         //分页结束值
-        $end = $_GET['end'] ? $_GET['end'] : 20;
+        $end = $_GET['end'] ? $_GET['end'] : 10;
+        //分页开始值
+        $start = $_GET['p'] ? ($_GET['p']) : 0;
         $sql = "select * from " . $this->table . $where . " order by " . $order . " limit " . $start . "," . $end;
 
         $query = $this->db->query($sql);
@@ -41,14 +41,15 @@ class Active_model extends CI_Model
     }
     public function game_active(){
         $where = " where " . implode(" and ", $this->where());
+        $keyword = $_GET['keyword'] ? $_GET['keyword'] : '';
+//        $where .= "  and  active.title='" . $keyword . "'";
         //排序方式,默认id排序
         $order = $this->input->get('order') > 0 ? $this->input->get('order') : 'id ';
-        //分页开始值
-        $start = $_GET['p'] ? ($_GET['p'] - 1) * $end : 0;
         //分页结束值
-        $end = $_GET['end'] ? $_GET['end'] : 20;
+        $end = $_GET['end'] ? $_GET['end'] : 5;
+        //分页开始值
+        $start = $_GET['p'] ? ($_GET['p']) : 0;
         $sql = "select * from " . $this->game .  " JOIN "  . $this->table . " ON active.gid = active_games.gid " . $where . " order by " . $order . " limit " . $start . "," . $end;
-
         $query = $this->db->query($sql);
         $row = $query->result_array();
         return $row;

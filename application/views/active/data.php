@@ -36,7 +36,7 @@ require('gameheader.php');
                     <div class="bor mod-search">
                         <label>搜索查看活动数据</label>
 
-                        <form action="" method="get">
+                        <form action="/active/data" method="get">
                             <input name="keyword" type="text" value="" placeholder="输入关键字">
                             <select name="online" class="select-select">
                                 <option value="">全部活动</option>
@@ -50,7 +50,7 @@ require('gameheader.php');
                         <div class="mod-ads">
                             <div class="hd">
                                 <p>搜索结果：
-                                    <b><?php echo count($list) . '条' ?></b>相关结果</p>
+                                    <b><?php echo $count . '条' ?></b>相关结果</p>
                             </div>
                             <div class="bd">
                                 <ul class="list-ads">
@@ -95,7 +95,7 @@ require('gameheader.php');
                                 </ul>
                                 <div class="pagination center sk_pager">
                                     <ul>
-
+                                        <?php echo $page ?>
                                     </ul>
                                 </div>
                             </div>
