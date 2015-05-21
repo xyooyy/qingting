@@ -38,11 +38,11 @@ require('gameheader.php');
 
                         <form action="/active/data" method="get">
                             <input name="keyword" type="text" value="" placeholder="输入关键字">
-                            <select name="online" class="select-select">
-                                <option value="">全部活动</option>
-                                <option value="1">在线活动</option>
-                                <option value="0">离线活动</option>
-                            </select>
+<!--                            <select name="online" class="select-select">-->
+<!--                                <option value="">全部活动</option>-->
+<!--                                <option value="1">在线活动</option>-->
+<!--                                <option value="0">离线活动</option>-->
+<!--                            </select>-->
                             <button type="submit">开始搜索</button>
                         </form>
                     </div>

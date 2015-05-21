@@ -39,10 +39,10 @@ class Active_model extends CI_Model
         $row = $query->result_array();
         return $row;
     }
+    //根据搜索条件筛选
     public function game_active(){
         $where = " where " . implode(" and ", $this->where());
-        $keyword = $_GET['keyword'] ? $_GET['keyword'] : '';
-//        $where .= "  and  active.title='" . $keyword . "'";
+        $where .= $_GET['keyword'] ?  " and  active.title='" . $_GET['keyword'] . "'" : '';
         //排序方式,默认id排序
         $order = $this->input->get('order') > 0 ? $this->input->get('order') : 'id ';
         //分页结束值
@@ -54,6 +54,17 @@ class Active_model extends CI_Model
         $row = $query->result_array();
         return $row;
     }
+    //根据条件keyword获取总数量
+    public function key_con()
+    {
+        $where = " where " . implode(" and ", $this->where());
+        $where .= $_GET['keyword'] ?  " and  title='" . $_GET['keyword'] . "'" : '';
+        $sql = "select count(*) from " . $this->table . $where;
+        $query = $this->db->query($sql);
+        $row = $query->result_array();
+        return $row[0]["count(*)"];
+    }
+
     //获取总数量
     public function con()
     {

@@ -31,14 +31,14 @@ class Active extends CI_Controller
         $this->load->model('active_model');
         $data['list'] = $this->active_model->game_active();
         $this->load->library('pagination');
-        $config['base_url'] = '/active/data?';
-        $config['total_rows'] = $this->active_model->con();
+        $config['base_url'] = $_SERVER[PATH_INFO] . '?keyword=' . $_GET['keyword'];
+        $config['total_rows'] = $this->active_model->key_con();
         $config['per_page'] = 5;
         $config['page_query_string'] = TRUE;
         $config['query_string_segment'] = 'p';
         $this->pagination->initialize($config);
         $data['page'] = $this->pagination->create_links();
-        $data['count'] = $this->active_model->con();
+        $data['count'] = $this->active_model->key_con();
         $this->load->view('active/data',$data);
     }
     public function begame1()
