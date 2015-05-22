@@ -11,7 +11,7 @@
     <meta name="screen-orientation" content="portrait"/>
     <meta name="x5-fullscreen" content="true"/>
     <meta name="360-fullscreen" content="true"/>
-    <script type="text/javascript" src="http://qingting.huosu.com/public/js/game-handler.js"></script>
+    <script type="text/javascript" src="/public/js/game-handler.js"></script>
 
     <style>
         body {
@@ -46,19 +46,19 @@
 
 
 <script>
-    function shareTimeline() {  
-      WeixinJSBridge.invoke('shareTimeline',{  
-        "img_url": "http://meiriq-file.b0.upaiyun.com/h5game/moji/resource/image/games_icon.png",  
-        "img_width": "135",  
-        "img_height": "135",  
-        "link": window.location.href,  
-        "desc": "坚持20秒你就是纯汉子",  
-        "title": "坚持20秒你就是纯汉子"  
-      }, function(res) {  
-        _report('timeline', res.err_msg);  
-      });  
+    function shareTimeline() {
+      WeixinJSBridge.invoke('shareTimeline',{
+        "img_url": "http://meiriq-file.b0.upaiyun.com/h5game/moji/resource/image/games_icon.png",
+        "img_width": "135",
+        "img_height": "135",
+        "link": window.location.href,
+        "desc": "坚持20秒你就是纯汉子",
+        "title": "坚持20秒你就是纯汉子"
+      }, function(res) {
+        _report('timeline', res.err_msg);
+      });
     }
-    // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。  
+    // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
       // 分享到朋友圈
       WeixinJSBridge.on('menu:share:timeline', function(argv){

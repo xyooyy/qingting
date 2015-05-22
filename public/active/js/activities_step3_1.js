@@ -2,21 +2,11 @@
  * Created by Administrator on 2015/1/14.
  */
 $(function () {
+    // $('.start-btn').css('position', 'absolute');
 
-
-    $('.start-btn').css('position','absolute');
-
-    /**
-     * 控制开始页面开始按钮的显示控制
-     * all 所有幻灯片都显示
-     * theEnd 只在最后一个幻灯片图片显示
-     */
-    startBtnInit();
     /**
      * 手指滑动效果
      */
-
-
     var mySwiper = new Swiper('.swiper-container', {
 
         // 分页容器
@@ -27,27 +17,30 @@ $(function () {
 
         // vertical 垂直翻页 horizontal 水平滚动
         mode: 'horizontal',
-        activeIndex:0
+        activeIndex: 0
 
     });
-    var initPage = function () {
-
-        mySwiper.reInit();
-
-    };
-
     mySwiper.swipeTo(0);
 
-    var tempStartBtn = $('.btn-area').clone(true);
+    var re_init_swiper = function () {
+        mySwiper.reInit();
+        mySwiper.swipeTo(0);
+    };
 
-    function startBtnInit() {
-        var value = $('.phone-simulation').attr('data-start');
-        $("select[name='set-start-show'] option[value='" + value + "']").attr("selected", true);
-    }
+    /**
+     * 控制开始页面开始按钮的显示控制
+     * all 所有幻灯片都显示
+     * theEnd 只在最后一个幻灯片图片显示
+     */
+    // startBtnInit();
+    // function startBtnInit() {
+    //     var value = $('.phone-simulation').attr('data-start');
+    //     $("select[name='set-start-show'] option[value='" + value + "']").attr("selected", true);
+    // }
 
-    $("select[name='set-start-show']").change(function () {
-        $('.phone-simulation').attr('data-start', $(this).val());
-    });
+    // $("select[name='set-start-show']").change(function () {
+    //     $('.phone-simulation').attr('data-start', $(this).val());
+    // });
 
     /*******************************    kiner start     **************************************/
 
@@ -60,28 +53,11 @@ $(function () {
         $('.img-load').show();
     });
 
-    $('.save-config').unbind('click').click(function () {
-        if (window.canSave) {
-            save(function () {
-                modal.showAlert("保存成功");
-            });
-        } else {
-            modal.showAlert("请先上传图片后再保存设置");
-        }
-    });
-
-    doUploader();
-
-
-    //单击上一步
-    $('.pre').click(function () {
-        pre();
-    });
     //单击下一步
     $('.next').click(function () {
         if (window.canSubmit) {
             save(function () {
-                next();
+                $.noop();
             });
         } else {
             modal.showAlert('文件正在上传，请稍候...');
@@ -89,13 +65,25 @@ $(function () {
     });
 
     $('select[name="screen"]').change(function () {
-        mySwiper.reInit();
-
-        mySwiper.swipeTo(0);
+        re_init_swiper();
+    });
+    $('.btns').on('click', '.state-pedding', function () {
+        modal.showAlert('请先添加图片再进行上传');
     });
 
-    function save(success) { 
-        var url =   "http://qingting.huosu.com/index.php/active/active_submit3_1";
+
+    // $('.save-config').unbind('click').click(function () {
+    //     if (window.canSave) {
+    //         save(function () {
+    //             modal.showAlert("保存成功");
+    //         });
+    //     } else {
+    //         modal.showAlert("请先上传图片后再保存设置");
+    //     }
+    // });
+
+    function save(success) {
+        var url = rootUrl + '/index.php/active/active_submit3_1';
         var html = $('.phone').clone();
         //html.find('.btn-current').remove();
         console.log(html.html());
@@ -104,102 +92,70 @@ $(function () {
                 id: hdpUrl.get("id"),
                 html: html.html(),
                 step: "3_1"
-            }, 
+            },
             type: "post",
             success: function (data) {
-                 if (data>0) {
-                    window.location.href='./begame3_2?id='+data;
+                if (data > 0) {
+                    window.location.href = './begame3_2?id=' + data;
                 } else {
                     window.modal.showAlert(data);
-                } 
-            } 
-        });
-    }
-
-
-    /**
-     * 上一步
-     */
-    function pre() {
-        window.location.href = hdpUrl.set(rootUrl + "/gameChoose", {"id": hdpUrl.get("id"), "ispre": true});//设置跳转网页及网页参数
-    }
-
-    /**
-     * 下一步
-     */
-    function next() {
-        //alert(hdpUrl.get("aid"));
-        window.location.href = hdpUrl.set(rootUrl + "/end", "id", hdpUrl.get("id"));//设置跳转网页及网页参数
-
-        //window.location.href = hdpUrl.set("./activities_step3_2.html", "aid", a);//设置跳转网页及网页参数
-    }
-
-    if ($('.swiper-wrapper').find('img').length > 0) {
-
-        $('.uploadBtn').text('开始上传').hide();
-        $('.swiper-wrapper').find('img').each(function (index, ele) {
-
-            var $li = $('<li>' +
-            '<p class="imgWrap"><img src="' + $(this).attr('src') + '"></p>' +
-            '</li>');
-            if (!$('.tempRead').get(0)) {
-                $('<ul class="tempRead"></ul>').insertBefore($('.queueList'));
+                }
             }
-
-            $('.img-load ul').append($li);
-            //
-            //    $btns = $('<div class="file-panel">' +
-            //    '<span class="del" del-id="' + file.id + '">x</span></div>').appendTo($li)
-
         });
-
-
     }
 
+    function show_has_saved_img(){
+        if ($('.swiper-wrapper').find('img').length > 0) {
+            $('.uploadBtn').text('开始上传').hide();
+            $('.swiper-wrapper').find('img').each(function (index, ele) {
 
-    $('.btns').on('click', '.state-pedding', function () {
-        modal.showAlert('请先添加图片再进行上传');
-    });
+                var $li = $('<li>' +
+                '<p class="imgWrap"><img src="' + $(this).attr('src') + '"></p>' +
+                '</li>');
+                if (!$('.tempRead').get(0)) {
+                    $('<ul class="tempRead"></ul>').insertBefore($('.queueList'));
+                }
+                $('.img-load ul').append($li);
+            });
+        }
+    }
+    show_has_saved_img();
 
     /**
      * 显示按钮编辑项
      */
     $('.phone .lay-common').on('click', '.hdp-btn', function () {
         var $this = $(this);
-        hdpBtnEditor($this);
+        show_style_editor_warpper($this);
     });
-
-    $('.footerArea').css('button');
 
     /**
      * 操作按钮工具栏初始化
      * @param $this
      */
-    function hdpBtnEditor($this) {
-
+    function show_style_editor_warpper($this) {
         $('.btn-set').show();
         $('.img-load').hide();
-
         initHdpBtn($this);
-
     }
+
     //$('.start-btn').css({'left':$('.start-btn').offset().left-$('.phone-simulation').offset().left,'top':$('.start-btn').offset().top-$('.phone-simulation').offset().top,'position':'absolute'});
 
 
-    $('select[name="set-start-show"]').change(function(){
-        tochange();
-    });
+    // $('select[name="set-start-show"]').change(function () {
+    //     tochange();
+    // });
 
-    /**
-    *   根据参数判断是否仅在最后一页显示开始游戏按钮
-    */
-    function tochange(){
-        if($('select[name="set-start-show"]').val()=="theEnd"){
-            $('.btn-area').appendTo($('.swiper-slide:last'));
-        }else{
-            $('.btn-area').appendTo($('.swiper-container'));
-        }
-    }
+    // /**
+    //  *   根据参数判断是否仅在最后一页显示开始游戏按钮
+    //  */
+    // function tochange() {
+    //     if ($('select[name="set-start-show"]').val() == "theEnd") {
+    //         $('.btn-area').appendTo($('.swiper-slide:last'));
+    //     } else {
+    //         $('.btn-area').appendTo($('.swiper-container'));
+    //     }
+    // }
 
     /**
      * 按钮编辑
@@ -210,7 +166,7 @@ $(function () {
         var $this = $(this);
 
         if ($(".phone-simulation").hasClass("lay-custom")) {
-
+            //默认进入else
             if ($('select[name="set-way"]').val() == "1") {//当选择一件设置时，禁止用户拖动组件
                 try {
                     $this.draggable("disable");
@@ -218,48 +174,15 @@ $(function () {
 
                 }
             } else {//当选择了自定义设置时显示操作菜单，并赋予拖动与删除等高级操作
-
                 $this.draggable({
                     cancel: ".close",
                     handler: ".drag",
                     zIndex: 99999,
                     containment: ".phone",
 
-                    drag: function (ev, ui) {
-
-                        //alert("1:"+($this.offset().left-$('.phone-simulation').offset().left));
-                        //$this.css({'right':0});
-
-                    },
-                    start:function(event,ui){
-
-
-                        //$this.css({"left":$this.offset().left-$('.phone-simulation').offset().left});
-                        //$this.css({'margin':'0'});
-
-                        //alert("2:"+($this.offset().left-$('.phone-simulation').offset().left));
-                    },
                     stop: function (event, ui) {
-
-                        //alert("3:"+($this.offset().left-$('.phone-simulation').offset().left));
-//                        var l = $this.offset().left - $this.parent().offset().left;
-//                        var al = $('.phone').width();
-//                        var pre = Math.round((l / al) * 100);
-//                        var t = $this.offset().top - $this.parent().offset().top;
-//                        var at = $('.phone').height();
-//                        var pre2 = Math.round((t / at) * 100);
-////
-//                        $this.css({'left': pre + '%', 'top': pre2 + '%'});
-
                         //显示操作栏
-                        hdpBtnEditor($this);
-                        //$(this).remove();
-                        //$(this).css({
-                        //    'top': ui.position.top,
-                        //    'left': ui.position.left,
-                        //    'position': 'absolute',
-                        //    'cursor': 'auto'
-                        //});
+                        show_style_editor_warpper($this);
                     }
                 });
                 $this.draggable("enable");
@@ -270,24 +193,20 @@ $(function () {
             }
         } else {
             try {
-                //console.log($this.children(".custom-menu").html());
                 $this.draggable('disable');
-
             } catch (Exception) {
                 //console.log("无法解除绑定");
             }
         }
     });
 
+    doUploader();
 
     function doUploader(completeCallback) {
         (function ($) {
             // 当domReady的时候开始初始化
             $(function () {
-
-
-                initPage();
-
+                re_init_swiper();
 
                 /**
                  * 检测图片宽高，并进行一些操作   kiner-tang
@@ -320,87 +239,84 @@ $(function () {
                 var $wrap = $('#uploader'),
 
                 // 图片容器
-                    $queue = $('<ul></ul>')
-                        .prependTo($wrap.find('.right .img-load')),
+                $queue = $('<ul></ul>').prependTo($wrap.find('.right .img-load')),
 
                 // 状态栏，包括进度和控制按钮
-                    $statusBar = $wrap.find('.statusBar'),
+                $statusBar = $wrap.find('.statusBar'),
 
                 // 文件总体选择信息。
-                    $info = $statusBar.find('.info'),
+                $info = $statusBar.find('.info'),
 
                 // 上传按钮
-                    $upload = $wrap.find('.uploadBtn'),
+                $upload = $wrap.find('.uploadBtn'),
 
                 // 没选择文件之前的内容。
-                    $placeHolder = $wrap.find('.placeholder'),
+                $placeHolder = $wrap.find('.placeholder'),
 
-                    $progress = $statusBar.find('.progress').hide(),
+                $progress = $statusBar.find('.progress').hide(),
 
                 // 添加的文件数量
-                    fileCount = 0,
+                fileCount = 0,
 
                 // 添加的文件总大小
-                    fileSize = 0,
+                fileSize = 0,
 
                 // 优化retina, 在retina下这个值是2
-                    ratio = window.devicePixelRatio || 1,
+                ratio = window.devicePixelRatio || 1,
 
                 // 缩略图大小
-                    thumbnailWidth = 1,
-                    thumbnailHeight = 1,
+                thumbnailWidth = 1,
+                thumbnailHeight = 1,
 
                 // 可能有pedding, ready, uploading, confirm, done.
-                    state = 'pedding',
+                state = 'pedding',
 
                 // 所有文件的进度信息，key为file id
-                    percentages = {},
+                percentages = {},
                 // 判断浏览器是否支持图片的base64
-                    isSupportBase64 = (function () {
-                        var data = new Image();
-                        var support = true;
-                        data.onload = data.onerror = function () {
-                            if (this.width != 1 || this.height != 1) {
-                                support = false;
-                            }
+                isSupportBase64 = (function () {
+                    var data = new Image();
+                    var support = true;
+                    data.onload = data.onerror = function () {
+                        if (this.width != 1 || this.height != 1) {
+                            support = false;
                         }
-                        data.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-                        return support;
-                    })(),
+                    }
+                    data.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+                    return support;
+                })(),
 
                 // 检测是否已经安装flash，检测flash的版本
-                    flashVersion = (function () {
-                        var version;
+                flashVersion = (function () {
+                    var version;
 
+                    try {
+                        version = navigator.plugins['Shockwave Flash'];
+                        version = version.description;
+                    } catch (ex) {
                         try {
-                            version = navigator.plugins['Shockwave Flash'];
-                            version = version.description;
-                        } catch (ex) {
-                            try {
-                                version = new ActiveXObject('ShockwaveFlash.ShockwaveFlash')
-                                    .GetVariable('$version');
-                            } catch (ex2) {
-                                version = '0.0';
-                            }
+                            version = new ActiveXObject('ShockwaveFlash.ShockwaveFlash')
+                                .GetVariable('$version');
+                        } catch (ex2) {
+                            version = '0.0';
                         }
-                        version = version.match(/\d+/g);
-                        return parseFloat(version[0] + '.' + version[1], 10);
-                    })(),
+                    }
+                    version = version.match(/\d+/g);
+                    return parseFloat(version[0] + '.' + version[1], 10);
+                })(),
 
-                    supportTransition = (function () {
-                        var s = document.createElement('p').style,
-                            r = 'transition' in s ||
-                                'WebkitTransition' in s ||
-                                'MozTransition' in s ||
-                                'msTransition' in s ||
-                                'OTransition' in s;
-                        s = null;
-                        return r;
-                    })(),
+                supportTransition = (function () {
+                    var s = document.createElement('p').style,
+                        r = 'transition' in s ||
+                            'WebkitTransition' in s ||
+                            'MozTransition' in s ||
+                            'msTransition' in s ||
+                            'OTransition' in s;
+                    s = null;
+                    return r;
+                })()
 
-                // WebUploader实例
-                    uploader;
-
+                //down and install flash
                 if (!WebUploader.Uploader.support('flash') && WebUploader.browser.ie) {
 
                     // flash 安装了但是版本过低。
@@ -460,8 +376,9 @@ $(function () {
                     label = "添加图片";
                 }
 
+                // WebUploader实例
                 // 实例化
-                uploader = WebUploader.create({
+                var uploader = WebUploader.create({
                     pick: {
                         id: '#filePicker',
                         label: label
@@ -471,10 +388,10 @@ $(function () {
                     },
                     dnd: '#dndArea',
                     paste: '#uploader',
-                    swf: 'http://qingting.huosu.com/public/active/js/Uploader.swf',
+                    swf: rootUrl + '/public/active/js/Uploader.swf',
                     chunked: false,
                     chunkSize: 512 * 1024,
-                    server: root_url +'/upload.json',
+                    server: root_url + '/active/accept_img',
                     // runtimeOrder: 'flash',
 
                     // accept: {
@@ -511,6 +428,7 @@ $(function () {
                 });
                 var imgurls = [];
                 uploader.on("uploadSuccess", function (file, response) {
+                    // response come from accept_img echo
                     imgurls.push(response);
                 });
                 uploader.on("uploadComplete", function () {
@@ -567,18 +485,7 @@ $(function () {
                 // 当有文件添加进来时执行，负责view的创建
                 function addFile(file) {
 
-                    /*  for(var o in my["_events"][1]["ctx2"]){
-
-                     console.log(o);
-                     console.log(my["_events"][1]["ctx2"][o]);
-                     console.log("====================================");
-                     }*/
-
-
-//                for(var i in file){
-//                    console.log(i);
-//                    //console.log(file["_events"]);
-//                }
+                    console.log(file)
                     var $li = $('<li id="' + file.id + '" data-id="preview-img">' +
                         '<p class="title">' + file.name + '</p>' +
                         '<p class="imgWrap"></p>' +
@@ -646,8 +553,9 @@ $(function () {
                                 }
                                 afterMakeThumb(src, file.id);
                                 //是否将开始按钮放在最后一页
-                                tochange();
-                                if($('select[name="set-start-show"]').val()=='theEnd'){
+                                // tochange();
+                                if ($('select[name="set-start-show"]').val() == 'theEnd') {
+                                    var tempStartBtn = $('.btn-area').clone(true);
                                     tempStartBtn.appendTo($('.swiper-slide:last'));
                                 }
 
@@ -661,7 +569,7 @@ $(function () {
                                     img = $('<img src="' + src + '">');
                                     $wrap.empty().append(img);
                                 } else {
-                                    $.ajax( root_url+'/upload.json', {
+                                    $.ajax(root_url + '/upload.json/active/accept_img', {
                                         method: 'POST',
                                         data: src,
                                         dataType: 'json'
@@ -710,18 +618,11 @@ $(function () {
                         $li.removeClass('state-' + prev).addClass('state-' + cur);
                     });
 
-                    //$li.on( 'mouseenter', function() {
-                    //    $btns.stop().animate({height: 30});
-                    //});
-                    //
-                    //$li.on( 'mouseleave', function() {
-                    //    $btns.stop().animate({height: 0});
-                    //});
 
                     $btns.on('click', 'span', function () {
                         uploader.removeFile(file);
                         $('#' + $(this).attr('del-id')).remove();
-                        mySwiper.reInit();
+                        re_init_swiper();
                     });
 
                     $li.appendTo($queue);
