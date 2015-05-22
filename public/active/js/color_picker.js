@@ -1,4 +1,4 @@
-﻿/**
+/**
  颜色选择器
  **/
 
@@ -7,15 +7,15 @@ function colorpicker(ele, option, callback) {
 
     this.callback = callback;
     this.option = option;
-    this.color = 'url(http://test.aiwanpai.com/managers/assets/css/res/nullcolor.jpg)';
+    this.color = 'url(/public/active/css/images/nullcolor.jpg)';
     this.box = ele;
     if (option) {
-        this.color = (option['color']) ? (option['color']) : 'url(http://test.aiwanpai.com/managers/assets/css/res/nullcolor.jpg)';
+        this.color = (option['color']) ? (option['color']) : 'url(/public/active/css/images/nullcolor.jpg)';
         this.width = (option['width']) ? (option['width']) : 60;
         //console.log("没有参数");
     }
     else {
-        this.color = 'url(http://test.aiwanpai.com/managers/assets/css/res/nullcolor.jpg)';
+        this.color = 'url(/public/active/css/images/nullcolor.jpg)';
     }
     this.init();
 }
@@ -119,16 +119,16 @@ colorpicker.prototype.openboard = function () {
         //alert('a');
 
         picker.closeboard();
-        if($(this).hasClass('nocolor')){
+        if ($(this).hasClass('nocolor')) {
 
             input.attr('value', color[$(this).index()]);
 
-            picker.inputarea.css({'background': 'url(http://test.aiwanpai.com/managers/assets/css/res/nullcolor.jpg)'});
+            picker.inputarea.css({'background': 'url(/public/active/css/images/nullcolor.jpg)'});
 
             if (picker.callback) {
                 picker.callback.call(this, 'none');
             }
-        }else{
+        } else {
 
             var pickcolor = $(this).css('background-color');
             input.attr('value', color[$(this).index()]);
@@ -159,13 +159,13 @@ colorpicker.prototype.openboard = function () {
 }
 
 
-colorpicker.prototype.getValue = function(){
+colorpicker.prototype.getValue = function () {
 
     return this.inputarea.attr('value');
 
 }
 
-colorpicker.prototype.setColor = function(color){
+colorpicker.prototype.setColor = function (color) {
     this.color = color;
 }
 

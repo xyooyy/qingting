@@ -9,7 +9,7 @@
     <meta name="screen-orientation" content="portrait"/>
     <meta name="x5-fullscreen" content="true"/>
     <meta name="360-fullscreen" content="true"/>
-    <script type="text/javascript" src="http://qingting.huosu.com/public/js/game-handler.js"></script>
+    <script type="text/javascript" src="/public/js/game-handler.js"></script>
 
     <style>
         body, canvas, div {
@@ -71,7 +71,7 @@
     }
 
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-        
+
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', {
                 "img_url": window.shareData.imgUrl,

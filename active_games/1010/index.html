@@ -9,7 +9,7 @@
     <meta name="screen-orientation" content="portrait"/>
     <meta name="x5-fullscreen" content="true"/>
     <meta name="360-fullscreen" content="true"/>
-    <script type="text/javascript" src="http://qingting.huosu.com/public/js/game-handler.js"></script>
+    <script type="text/javascript" src="/public/js/game-handler.js"></script>
     <style>
       body { text-align: center; background: #ffffff; padding: 0; border: 0; margin: 0; height: 100%; }
       html { -ms-touch-action: none; overflow: hidden; }
@@ -39,7 +39,7 @@
         .sbg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;text-align:center;color:#fff;font-size:26px;line-height:1.7em;background:rgba(0,0,0,0.85);}
         .sbg .arron{ position:absolute;top:8px;right:8px;width:100px;height:100px;background:url(./img/arron.png) no-repeat; background-size:100px 100px;}
         .sbg p{padding-top:78px;}
-    </style>  
+    </style>
 	<script>
        var _czc = _czc || [];
     </script>
@@ -50,19 +50,19 @@
     <p id="msg">请点击右上角<br>点击【分享到朋友圈】<br>找最爱的深爱的相爱的亲爱的人<br>一起来玩游戏吧！</p>
 </div>
   <div id="spn"></div>
- 
+
   <div id="share" ontouchstart="document.getElementById('share').style.display='none';" onclick="document.getElementById('share').style.display='none';">
     <img src="./img/share.png" alt="">
   </div>
-  
+
 <div style="position:relative;" id="gameDiv">
 <div id="games"></div>
 </div>
 <script>var document_class = "Main";</script>
-<script type="text/javascript" src=“http://qingting.huosu.com/public/js/game-handler.js”></script>
+<script type="text/javascript" src=“/public/js/game-handler.js”></script>
 <script src="js/egret_require.js"></script>
 <script src="js/egret_loader.js"></script>
-<script src="js/game-min.js"></script> 
+<script src="js/game-min.js"></script>
 <script>
     egret_h5.startGame();
     var time = setInterval(function (){
@@ -81,13 +81,13 @@
             "tTitle": "#1010#高智商高逼格的俄罗斯方块",
             "tContent": "#1010#高智商高逼格的俄罗斯方块"
     };
-    
+
     function do_share(){
        //_czc.push(['_trackEvent', '点击', '分享游戏按钮']);
        // document.getElementById("share").style.display = "block";
 	share();
     }
-    
+
     function share(){
         document.getElementById("sbg").className="sbgshow";
         window.setTimeout(hiddenMe, 3000);
@@ -124,7 +124,7 @@
 
     <script type="text/javascript">
 
-      
+
       function onShareFriends(res) {
         dp_share();
       }

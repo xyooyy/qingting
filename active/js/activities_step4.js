@@ -23,7 +23,7 @@ $(function () {
         html.find('.btn-current').remove();
         var url = rootUrl + "/confirm/save.json";
         var err_msg;
-       
+
         var btn2 = [
                {
                    id:"edit",
@@ -42,8 +42,8 @@ $(function () {
                        modal.hide();
                    }
                }
-           ];        
-        
+           ];
+
 
         //window.modal.showAlert(html.html());
         $.ajax(url, {
@@ -141,13 +141,13 @@ $(function () {
       	  break;
     	case '活动结束时间小于当前时间':
             err_url+="basic?id="+hdpUrl.get("id");
-          break;      	  
+          break;
     	default:
     	  //to do
     	  break;
     	}
-    } 
-    
+    }
+
 });
 
 $(document).scroll(function() {

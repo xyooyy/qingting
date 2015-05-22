@@ -1,57 +1,25 @@
 <!DOCTYPE html>
 <!-- saved from url=(0030)http://act.aiwanpai.com/draft/ -->
-<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
+<html lang="zh-cn">
+<head>
     <title>活动管理</title>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="keywords" content="">
-    <meta name="description" content="your description">
-    <link rel="stylesheet" href="/public/active/css/common.css">
+    <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/pagination.css">
     <link rel="stylesheet" href="/public/active/css/activity.css">
-    <!--[if IE 6]>
-    <script type="text/javascript">document.execCommand("BackgroundImageCache", false, true);</script>
-    <![endif]-->
-    <script type="text/javascript">
-        var rootUrl = '';
-    </script>
-<script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script></head>
+    <!--    <script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script>-->
+</head>
 <body>
- 
- <?php 
+
+<?php
 require('gameheader.php');
-?> 
+?>
 <div class="wrap">
     <div class="grid-c2">
         <div class="col-aside">
- <div class="sidebar">
-    <ul>
-        <li>
-            <a href="/active/begame1" >
-                <i class="sidebar-icon sidebar-create"></i>
-            <span>
-                新建活动
-            </span>
-            </a>
-        </li>
-        <li>
-            <a href="/active/index" class="active">
-                <i class="sidebar-icon sidebar-manage"></i>
-            <span>
-                活动管理
-            </span>
-            </a>
-        </li> 
-        <li>
-            <a href="/active/games" >
-                <i class="sidebar-icon sidebar-game"></i>
-                <span>
-                    游戏中心
-                </span>
-            </a>
-        </li>
-    </ul>
-</div>        </div>
+            <?php
+            require('gameleft.php');
+            ?>
+        </div>
         <div class="col-main">
             <div class="main-wrap">
                 <div class="cont-topbar">
@@ -60,7 +28,7 @@ require('gameheader.php');
                             <li>
                                 <a class="cur" href="#">活动管理</a>
                             </li>
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -74,10 +42,10 @@ require('gameheader.php');
                                         </span>
                                         <span id="multiDel" class="btn-del">
                                             <i></i>批量删除</span>
-                                             
+
                                         <span id="batch_offline" class="btn-check">
                                             <i></i>批量离线</span>
-                                            
+
                             </div>-->
                         </div>
                         <div class="table-advert">
@@ -88,10 +56,11 @@ require('gameheader.php');
                                     <col style="width:20%;">
                                     <col style="width:20%;">
                                     <col style="width:20%;">
-                                    
+
                                     <col style="width:20%;">
                                 </colgroup>
-                                <tbody><tr>
+                                <tbody>
+                                <tr>
                                     <th></th>
                                     <th>活动名称</th>
                                     <th>开始时间</th>
@@ -99,64 +68,65 @@ require('gameheader.php');
                                     <th>奖项管理</th>
                                     <th>操作</th>
                                 </tr>
-                                <?php foreach($list as $v){?>
-                                <tr  id="hide_<?php echo $v['id']?>">
-                                    <td class="spec">
-                                              <!-- <span class="check">
-                                                    <div class="icheckbox_polaris"> </div>
-                                                </span>--> 
-                                    </td>
-                                    <td><?php echo $v['title']?></td>
-                                    <td><?php echo $v['starttime']?date('Y-m-d H:i',$v['starttime']):''?></td>
-                                    <td><?php echo $v['endtime']?date('Y-m-d H:i',$v['endtime']):''?></td>
-                                    <td><?php echo $v['ischou']==1?'<a href="/prize_log/index?aid='.$v['id'].'" style="text-decoration:underline;">中奖名单</a>':''?></td>
-                                    <td width="30%">
-                                        <a href="./begame4?id=<?php echo $v['id']?>">预览</a>&nbsp;&nbsp;| 
-                                        <a href="./begame1?id=<?php echo $v['id']?>">编辑</a>&nbsp;&nbsp;| 
-                                        <a href="#" onClick="del_active(<?php echo $v['id']?>)"  >删除</a>
-                                    </td>
-                                </tr>
-                                 <?php }?>
-                                 
-                            </tbody></table>
+                                <?php foreach ($list as $v) { ?>
+                                    <tr id="hide_<?php echo $v['id'] ?>">
+                                        <td class="spec">
+                                            <!-- <span class="check">
+                                                  <div class="icheckbox_polaris"> </div>
+                                              </span>-->
+                                        </td>
+                                        <td><?php echo $v['title'] ?></td>
+                                        <td><?php echo $v['starttime'] ? date('Y-m-d H:i', $v['starttime']) : '' ?></td>
+                                        <td><?php echo $v['endtime'] ? date('Y-m-d H:i', $v['endtime']) : '' ?></td>
+                                        <td><?php echo $v['ischou'] == 1 ? '<a href="/prize_log/index?aid=' . $v['id'] . '" style="text-decoration:underline;">中奖名单</a>' : '' ?></td>
+                                        <td width="30%">
+                                            <a href="./begame4?id=<?php echo $v['id'] ?>">预览</a>&nbsp;&nbsp;|
+                                            <a href="./begame1?id=<?php echo $v['id'] ?>">编辑</a>&nbsp;&nbsp;|
+                                            <a href="#" onClick="del_active(<?php echo $v['id'] ?>)">删除</a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+
+                                </tbody>
+                            </table>
                         </div>
                         <div class="pagination center sk_pager">
                             <ul>
-<li class="current">
-        <span>1</span>
-</li>
+                                <?php echo $page ?>
                             </ul>
                         </div>
                     </div>
                 </div>
-<div class="copyright" style="text-align: center; margin:20px 0 0 0">
-    <div class="inner">
-        <p>Copyright ©
-               Version 0.1.1 </p>
-    </div>
-</div>            </div>
+                <?php require('qingting_footer.php') ?>
+            </div>
         </div>
     </div>
 </div>
- <script>
-function del_active(id){ 
-   $.get("/index.php/active/del?id="+id,function(data){
-	   $("#hide_"+id).hide();
-	    } );
-}
+<script>
+    function del_active(id) {
+        $.get("/index.php/active/del?id=" + id, function (data) {
+            $("#hide_" + id).hide();
+        });
+    }
 </script>
 <div id="pop-overlay" class="hidden" style="z-index: 1"></div>
 <script>
     var pageType = 'on';
 </script>
-<script src="/public/active/js/jquery.js"></script>
 <script src="/public/active/js/dropmenu.js"></script>
 <script src="/public/active/js/hdp-modal.js"></script>
 <script src="/public/active/js/icheck.min.js"></script>
 <script src="/public/active/js/select.js"></script>
-<script src="/public/active/js/prompt.js"></script>
 <script src="/public/active/js/jquery.datetimepicker.js"></script>
+<script src="/public/active/js/UrlHelper.js"></script>
 <script src="/public/active/js/webuploader.js"></script>
 <script src="/public/active/js/activity.js"></script>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"><div class="modal-dialog"><div class="modal-success-alert"><span class="text">这是标题</span><a href="javascript:;">确定</a></div></div></div></body></html>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-success-alert"><span class="text">这是标题</span><a href="javascript:;">确定</a></div>
+    </div>
+</div>
+</body>
+</html>
