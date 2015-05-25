@@ -57,7 +57,7 @@ require('gameheader.php');
                                     <?php foreach ($list as $v) { ?>
                                         <li>
                                             <div class="act">
-                                                <a href="http://act.aiwanpai.com/data/584ff5bdfdf011e482f2ac162d89ee80/show"
+                                                <a href=<?php echo '/active/data_info?id='  . $v['id'] ?>
                                                    class="btn-data-rep">数据报告</a>
 
                                                 <!-- <a href="#" class="btn-follow-game">关注游戏</a>  -->

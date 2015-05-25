@@ -40,11 +40,30 @@ class Tongji_model extends CI_Model
     public function con()
     {
         $where = $this->where();
-        $where[] = " 1=1 ";
+        $where[] = "1 = 1 ";
         $sql = "select count(*) from " . $this->table . " where " . implode(' and ', $where);
         $query = $this->db->query($sql);
         $row = $query->result_array();
         return $row[0]["count(*)"];
+    }
+
+    //根据条件获取con
+    public function key_con($tfrom, $tval)
+    {
+        $sql = "select count(*) from " . $this->table . " where aid = " . $this->input->get('id') . " and " . $tfrom . " = '" . $tval . " '";
+        $query = $this->db->query($sql);
+        $row = $query->result_array();
+        return $row[0]["count(*)"];
+    }
+
+    //去重
+    public function dis_con()
+    {
+        $sql = "select *, count(distinct ip) from " . $this->table . " where aid = " . $this->input->get('id') ." group by ip";
+        $query = $this->db->query($sql);
+        $row = $query->result_array();
+        return $row;
+
     }
 
     //添加信息
