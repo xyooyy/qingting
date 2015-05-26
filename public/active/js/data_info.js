@@ -17,7 +17,8 @@ $(function () {
             var val = $input.val();
             var time;
             if (val) {
-                time = Date.parse(val);
+                time = Date.parse(val).toString();
+                time=time.substring(0,time.length-3);
             }
             ;
             if (time) {
@@ -46,7 +47,7 @@ $(function () {
             if (time) {
                 $.ajax({
                     type: "GET",
-                    url: "../ajax_activity_count_visit/" + activityId,
+                    //url: "../ajax_activity_count_visit/" + activityId,
                     data: "time=" + time,
                     dataType: "text",
                     success: function (result) {
@@ -117,7 +118,7 @@ function loadCountValues(time) {
     $("#click_count").text("");
     $.ajax({
         type: "GET",
-        url: root_url + "/data/" + activityId + "/get_basic_info",
+        url: root_url + "/active/date_info?id="   + activityId,
         data: "time=" + time,
         dataType: "json",
         success: function (result) {
@@ -129,9 +130,11 @@ function loadCountValues(time) {
                 playersCount = result.players_count;
                 clickCount = result.click_count;
                 date = result.date;
+                fenxiang = result.fenxiang;
             }
             $("#players_count").text(playersCount);
             $("#click_count").text(clickCount);
+            $("#fenxiang").text(fenxiang);
             $("#date_input").val(date);
         }
     });

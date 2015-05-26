@@ -50,7 +50,8 @@ class Tongji_model extends CI_Model
     //根据条件获取con
     public function key_con($tfrom, $tval)
     {
-        $sql = "select count(*) from " . $this->table . " where aid = " . $this->input->get('id') . " and " . $tfrom . " = '" . $tval . " '";
+        $ti = $_GET['time'] ? $_GET['time'] : time();
+        $sql = "select count(*) from " . $this->table . " where aid = " . $this->input->get('id') . " and tm < " . $ti . " and " . $tfrom . " = '" . $tval . " '";
         $query = $this->db->query($sql);
         $row = $query->result_array();
         return $row[0]["count(*)"];
@@ -59,7 +60,8 @@ class Tongji_model extends CI_Model
     //去重
     public function dis_con()
     {
-        $sql = "select *, count(distinct ip) from " . $this->table . " where aid = " . $this->input->get('id') ." group by ip";
+        $ti = $_GET['time'] ? $_GET['time'] : time();
+        $sql = "select *, count(distinct ip) from " . $this->table . " where aid = " . $this->input->get('id') . " and tm < " . $ti ." group by ip";
         $query = $this->db->query($sql);
         $row = $query->result_array();
         return $row;

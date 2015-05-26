@@ -56,7 +56,7 @@ require('gameheader.php');
                                     <div id="players_count" class="user-num"><?php echo $uv ?></div>
 
 
-                                    <div class="collect-num"><?php echo $fenxiang ?></div>
+                                    <div class="collect-num" id = "fenxiang"><?php echo $fenxiang ?></div>
 
                                     <div id="click_count" class="click-num"><?php echo $click ?></div>
                                 </div>
@@ -276,7 +276,7 @@ require('gameheader.php');
 
 <script type="text/javascript" >
     var stayTimeDatas = eval('({"values":[[0,0,0,0,0,0]],"keys":["00:00—04:00","04:00—08:00","08:00—12:00","12:00—16:00","16:00—20:00","20:00—00:00"]})');
-    var activityId = 'a8b0edbbfeb411e482f2ac162d8a9b20';
+    var activityId = <?php echo $_GET['id'] ?>;
     var visit_record = "";
     var a = <?php echo '222' ?>;
     var visit_region = <?php echo '"' . $area . '"' ?>;

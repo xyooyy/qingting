@@ -25,6 +25,17 @@ class Active extends CI_Controller
         $this->load->view('active/data_info', $row);
     }
 
+    public function date_info(){
+        $this->load->model('tongji_model');
+        $fenxiang = $this->tongji_model->key_con('type', 'fenxiang');
+//        print_r($_GET['time']);
+        $click = $this->tongji_model->key_con('type', 'start');
+        $uv = count($this->tongji_model->dis_con());
+
+        echo json_encode(array('success' => true, 'fenxiang' => $fenxiang, 'click_count' => $click, 'players_count' => $uv , 'date' =>  date('Y-m-d',$_GET['time']) ));
+
+    }
+
     public function ticket()
     {
         $this->load->view('active/ticket');
