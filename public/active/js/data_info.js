@@ -1,13 +1,13 @@
 $(function () {
-    //select缇庡寲
+    //select美化
     Select.init({
         selector: '.mod-search select, .pop-game-select select'
     });
 
-    //************鐢绘姤琛�***********
-    //璁垮鍋滅暀鏃堕棿缁熻
+    //************画报�?***********
+    //访客停留时间统计
     loadstayTimeStatistics(stayTimeDatas);
-    //鏃ユ湡杈撳叆妗嗗け鍘荤劍鐐圭殑鏃跺€欙紝鏇存柊娓告垙鏁板拰鏀惰棌鏁�
+    //日期输入框失去焦点的时候，更新游戏数和收藏�?
     $("#date_input").datetimepicker({
         lang: 'ch',
         timepicker: false,
@@ -27,10 +27,10 @@ $(function () {
     });
 
 
-    //鏉ヨ璁板綍鎶ヨ〃
+    //来访记录报�〃
     load_visit_record(visit_record);
 
-    //鏉ヨ璁板綍鏃ユ湡杈撳叆妗嗗け鍘荤劍鐐圭殑鏃跺€欙紝鏇存柊娓告垙鏁板拰鏀惰棌鏁�
+    //来访记录日期输入框失去焦点的时候，更新游戏数和收藏�?
     $("#date_input_visit").datetimepicker({
         lang: 'ch',
         timepicker: false,
@@ -58,7 +58,7 @@ $(function () {
     });
 
 
-    //娲诲姩璁垮鍦板煙淇℃伅
+    //活动访客地域信息
 
     load_visit_region(visit_region);
 
@@ -66,7 +66,7 @@ $(function () {
 
 
 function loadstayTimeStatistics(datas) {
-    //娓告垙娲昏穬鏃堕棿缁熻
+    //游戏活跃时间统计
     $('#stay_time_statistics').highcharts({
         chart: {
             type: 'column',
@@ -87,7 +87,7 @@ function loadstayTimeStatistics(datas) {
             allowDecimals: false,
             min: 0,
             title: {
-                text: '鐜╁',
+                text: '玩家',
                 align: 'high'
             },
             labels: {
@@ -111,7 +111,7 @@ function loadstayTimeStatistics(datas) {
 }
 
 
-//鍔犺浇鐜╁鏁板拰鐐瑰嚮鏁�
+//加载玩家数和点击�?
 function loadCountValues(time) {
     $("#players_count").text("");
     $("#click_count").text("");
@@ -121,7 +121,7 @@ function loadCountValues(time) {
         data: "time=" + time,
         dataType: "json",
         success: function (result) {
-            //鏄剧ず鐜╁鏁板拰鐐瑰嚮鏁�
+            //显示玩家数和点击�?
             var playersCount = 0;
             var clickCount = 0;
             var date = "";
@@ -137,15 +137,15 @@ function loadCountValues(time) {
     });
 }
 
-//瀵煎嚭
+//导出
 function export_charts(aid) {
     var stay_time_statistics = $('#stay_time_statistics').highcharts();
     var visit_record = $('#visit_record').highcharts();
     var visit_region = $('#region').highcharts();
     var svgsJson = {
-        "娲诲姩璁垮淇℃伅": visit_region.getSVG(),
-        "娲诲姩鍙備笌鑰呮潵璁胯褰�:": visit_record.getSVG(),
-        "娲诲姩璁垮鍋滅暀鏃堕棿锛�": stay_time_statistics.getSVG()
+        "活动访客信息": visit_region.getSVG(),
+        "活动参与者来访记录:": visit_record.getSVG(),
+        "活动访客停留时间": stay_time_statistics.getSVG()
     };
     var svgs = JSON.stringify(svgsJson);
     $("#svgs").val(svgs);
@@ -153,7 +153,7 @@ function export_charts(aid) {
     $("#export_form").submit();
 }
 
-//鍔犺浇娲诲姩璁垮璁板綍
+//加载活动访客记录
 function load_visit_record(data) {
 
 
@@ -175,7 +175,7 @@ function load_visit_record(data) {
             zoomType: 'xy'
         },
         title: {
-            text: '娲诲姩鍙備笌鑰呮潵璁胯褰�' + $("#date_input_visit").val(),
+            text: '活动参与者来访记录' + $("#date_input_visit").val(),
             style: {
                 fontFamily: 'Microsoft YaHei',
                 fontSize: '30px',
@@ -185,7 +185,7 @@ function load_visit_record(data) {
         xAxis: {
             title: {
                 enabled: true,
-                text: '灏忔椂(H)'
+                text: '小时(H)'
             },
             startOnTick: true,
             endOnTick: true,
@@ -193,7 +193,7 @@ function load_visit_record(data) {
         },
         yAxis: {
             title: {
-                text: '鍒嗛挓 (M)'
+                text: '分钟 (M)'
             }
         },
         legend: {
@@ -224,7 +224,7 @@ function load_visit_record(data) {
                 },
                 tooltip: {
                     headerFormat: '{series.name}',
-                    pointFormat: '{point.x}鏃秢point.y}鍒�'
+                    pointFormat: '{point.x}时{point.y}分'
                 }
             }
         },
@@ -235,7 +235,7 @@ function load_visit_record(data) {
 
 function load_visit_region(data) {
     if (data == "") {
-        data = [['鏆傛棤鏁版嵁', 1]];
+        data = [['暂无数据', 1]];
     } else {
         data = eval('(' + data + ')');
     }
@@ -274,7 +274,7 @@ function load_visit_region(data) {
         },
         series: [{
             type: 'pie',
-            name: '姣斾緥',
+            name: '比例',
             data: data
         }]
     });
