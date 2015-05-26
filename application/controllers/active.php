@@ -17,11 +17,12 @@ class Active extends CI_Controller
         $this->load->model('tongji_model');
         $this->load->model('active_games_model');
         $row['active'] = $this->active_model->info('id', $this->input->get('id'));
-        $row['game'] = $this->active_games_model->info('gid',$row['active']['gid']);
-        $row['fenxiang'] = $this->tongji_model->key_con('type','fenxiang');
-        $row['click'] = $this->tongji_model->key_con('type','start');
-        $row['uv'] =count($this->tongji_model->dis_con()) ;
-        $this->load->view('active/data_info',$row);
+        $row['game'] = $this->active_games_model->info('gid', $row['active']['gid']);
+        $row['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang');
+        $row['click'] = $this->tongji_model->key_con('type', 'start');
+        $row['uv'] = count($this->tongji_model->dis_con());
+        $row['area'] = $this->tongji_model->con_area();
+        $this->load->view('active/data_info', $row);
     }
 
     public function ticket()
@@ -569,16 +570,18 @@ class Active extends CI_Controller
             }
         }
         $domain = strpos($ip, ',');
-        if($domain){
+        if ($domain) {
             $ip = substr($ip, 0, strpos($ip, ','));
         };
+         $this->load->model('tongji_model');
+        $area = json_decode($this->tongji_model->send_post('http://ip.taobao.com/service/getIpInfo.php?ip=' . $ip),true)['data']['region'];
 
-        $this->load->model('tongji_model');
         if ($id > 0 && $tp != '') {
             $data['aid'] = $id;
             $data['type'] = $tp;
             $data['pid'] = $pid ? $pid : 0;
-           $data['ip'] = $ip;
+            $data['ip'] = $ip;
+            $data['area'] = $area;
             $data['tm'] = time();
             $this->tongji_model->ins($data);
         }
@@ -607,4 +610,7 @@ class Active extends CI_Controller
         }
 
     }
+
+
+
 }

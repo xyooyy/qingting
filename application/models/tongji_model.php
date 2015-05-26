@@ -65,7 +65,22 @@ class Tongji_model extends CI_Model
         return $row;
 
     }
+    //去重计数因为转换不了要的指定格式，所以拼得字符串
+    public function con_area(){
+        $sql = "select area, count(*) from " . $this->table . " where aid = " . $this->input->get('id') ." group by area";
+        $query = $this->db->query($sql);
+        $row = $query->result_array();
+        $test = '';
+        $count = $this->key_con('type', 'start');
+        foreach($row as $a){
+            $a['count(*)'] = $a['count(*)'] / $count;
+            $a['area'] = "'" . $a['area'] . "'";
+            $test .= '[' . $a['area'] . ',' . $a['count(*)'] .'],';
+        };
+        $result .=  '[' . $test . ']';
+        return $result;
 
+    }
     //添加信息
     public function ins($data)
     {
@@ -99,6 +114,27 @@ class Tongji_model extends CI_Model
         $this->db->where($where);
         $status = $this->db->update($this->table, $data);
         return $status;
+    }
+    //根据ip请求淘宝地域信息
+    public function send_post($url)
+    {
+
+
+//        $postdata = http_build_query($post_data);
+
+        $options = array(
+            'http' => array(
+                'method' => 'GET',
+
+                'header' => 'Content-type:application/x-www-form-urlencoded',
+//                'content' => $postdata,
+                'timeout' => 15 * 60 // 超时时间（单位:s）
+            )
+        );
+        $context = stream_context_create($options);
+        $result = file_get_contents($url , false, $context);
+
+        return $result;
     }
 
 }

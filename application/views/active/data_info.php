@@ -66,84 +66,7 @@ require('gameheader.php');
                     <div class="game-section" style="margin-bottom:20px">
                         <div class="mod-stat game-stay-time bor">
                             <div id="region" style="width:600px;height:350px;" data-highcharts-chart="2">
-                                <div class="highcharts-container" id="highcharts-6"
-                                     style="position: relative; overflow: hidden; width: 600px; height: 350px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                                    <svg version="1.1"
-                                         style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;"
-                                         xmlns="http://www.w3.org/2000/svg" width="600" height="350">
-                                        <desc>Created with Highcharts 4.0.4</desc>
-                                        <defs>
-                                            <clipPath id="highcharts-7">
-                                                <rect x="0" y="0" width="580" height="280"></rect>
-                                            </clipPath>
-                                        </defs>
-                                        <rect x="0" y="0" width="600" height="350" strokeWidth="0" fill="#FFFFFF"
-                                              class=" highcharts-background"></rect>
-                                        <g class="highcharts-button" style="cursor:default;" stroke-linecap="round"
-                                           transform="translate(566,10)"><title>Chart context menu</title>
-                                            <rect x="0.5" y="0.5" width="24" height="22" strokeWidth="1" fill="white"
-                                                  stroke="none" stroke-width="1" rx="2" ry="2"></rect>
-                                            <path fill="#E0E0E0"
-                                                  d="M 6 6.5 L 20 6.5 M 6 11.5 L 20 11.5 M 6 16.5 L 20 16.5"
-                                                  stroke="#666" stroke-width="3" zIndex="1"></path>
-                                            <text x="0" zIndex="1" style="color:black;fill:black;" y="13"></text>
-                                        </g>
-                                        <g class="highcharts-series-group" zIndex="3">
-                                            <g class="highcharts-series highcharts-tracker" visibility="visible"
-                                               zIndex="0.1" transform="translate(10,55) scale(1 1)"
-                                               style="cursor:pointer;">
-                                                <path fill="#7cb5ec"
-                                                      d="M 289.97657758157504 10.00000238525952 A 115 115 0 1 1 289.8402673071218 10.000110932806436 L 290 125 A 0 0 0 1 0 290 125 Z"
-                                                      stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round"
-                                                      transform="translate(0,0)"></path>
-                                            </g>
-                                            <g class="highcharts-markers" visibility="visible" zIndex="0.1"
-                                               transform="translate(10,55) scale(1 1)"></g>
-                                        </g>
-                                        <text x="300" text-anchor="middle" class="highcharts-title" zIndex="4"
-                                              style="color:#636363;font-size:30px;font-family:Microsoft YaHei;fill:#636363;width:536px;"
-                                              y="36">活动访客地域信息
-                                        </text>
-                                        <g class="highcharts-data-labels highcharts-tracker" visibility="visible"
-                                           zIndex="6" transform="translate(10,55) scale(1 1)" opacity="1"
-                                           style="cursor:pointer;">
-                                            <path fill="none" d="M 295 270 C 290 270 290 262 290 251 L 290 240"
-                                                  stroke="#000000" stroke-width="1"></path>
-                                            <g zIndex="1" style="cursor:pointer;" transform="translate(300,260)">
-                                                <text x="3" zIndex="1"
-                                                      style="font-size:11px;color:#000000;fill:#000000;" y="16">
-                                                    <tspan style="font-weight:bold">河北省</tspan>
-                                                    <tspan dx="0">: 100.0 %</tspan>
-                                                </text>
-                                            </g>
-                                        </g>
-                                        <g class="highcharts-legend" zIndex="7">
-                                            <g zIndex="1">
-                                                <g></g>
-                                            </g>
-                                        </g>
-                                        <g class="highcharts-tooltip" zIndex="8"
-                                           style="cursor:default;padding:0;white-space:nowrap;"
-                                           transform="translate(0,-9999)">
-                                            <path fill="none"
-                                                  d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0"
-                                                  isShadow="true" stroke="black" stroke-opacity="0.049999999999999996"
-                                                  stroke-width="5" transform="translate(1, 1)"></path>
-                                            <path fill="none"
-                                                  d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0"
-                                                  isShadow="true" stroke="black" stroke-opacity="0.09999999999999999"
-                                                  stroke-width="3" transform="translate(1, 1)"></path>
-                                            <path fill="none"
-                                                  d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0"
-                                                  isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1"
-                                                  transform="translate(1, 1)"></path>
-                                            <path fill="rgba(249, 249, 249, .85)"
-                                                  d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0"></path>
-                                            <text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;"
-                                                  y="21"></text>
-                                        </g>
-                                    </svg>
-                                </div>
+
                             </div>
                         </div>
                         <div class="mod-stat game-stay-time bor" style="width:340px;margin-left:20px">
@@ -455,12 +378,7 @@ require('gameheader.php');
                     </div>
                 </div>
                 <div class="copyright" style="text-align: center; margin:20px 0 0 0">
-                    <div class="inner">
-                        <p>Copyright ©
-                            <a href="http://www.aiwanpai.com">爱玩派 www.aiwanpai.com</a> ，All Rights Reserved. <a
-                                target="_blank" href="http://www.aiwanpai.com/aiwanpai_version.html"> Version 0.1.1</a>
-                        </p>
-                    </div>
+                    <?php require 'qingting_footer.php' ?>
                 </div>
             </div>
         </div>
@@ -478,13 +396,17 @@ require('gameheader.php');
 <script src="/public/active/js/jquery.datetimepicker.js"></script>
 <script src="/public/active/js/UrlHelper.js"></script>
 <script src="/public/active/js/webuploader.js"></script>
-<script src="/public/active/js/activity.js"></script>
+<script src="/public/active/js/highchart.js"></script>
+<script src="/public/active/js/exporting.js"></script>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-     style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-success-alert"><span class="text">这是标题</span><a href="javascript:;">确定</a></div>
-    </div>
-</div>
+<script src="/public/active/js/data_info.js"></script>
+
+<script type="text/javascript" >
+    var stayTimeDatas = eval('({"values":[[0,0,0,0,0,0]],"keys":["00:00—04:00","04:00—08:00","08:00—12:00","12:00—16:00","16:00—20:00","20:00—00:00"]})');
+    var activityId = 'a8b0edbbfeb411e482f2ac162d8a9b20';
+    var visit_record = "";
+    var a = <?php echo '222' ?>;
+    var visit_region = <?php echo '"' . $area . '"' ?>;
+</script>
 </body>
 </html>
