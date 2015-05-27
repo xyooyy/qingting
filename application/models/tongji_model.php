@@ -57,32 +57,71 @@ class Tongji_model extends CI_Model
         return $row[0]["count(*)"];
     }
 
+    //活动停留时间段
+    public function active_stay()
+    {
+//        $ti = $_GET['time'] ? $_GET['time'] : time();
+//        $sql =
+        $time1 = strtotime(date('Y-m-d 00:00:00'));
+        $time2 = strtotime(date('Y-m-d 04:00:00'));
+        $time3 = strtotime(date('Y-m-d 08:00:00'));
+        $time4 = strtotime(date('Y-m-d 12:00:00'));
+        $time5 = strtotime(date('Y-m-d 16:00:00'));
+        $time6 = strtotime(date('Y-m-d 20:00:00'));
+        $time7 = strtotime(date('Y-m-d 24:00:00'));
+//        $ti = $_GET['time'] ? $_GET['time'] : time();
+        $stay_data = [];
+        $stay_data[] = $this->time_sql($time1,$time2)[0]['count'] == '' ? '0' : $this->time_sql($time1,$time2)[0]['count'];
+        $stay_data[] = $this->time_sql($time2,$time3)[0]['count']  == '' ? '0' : $this->time_sql($time2,$time3)[0]['count'];
+        $stay_data[] = $this->time_sql($time3,$time4)[0]['count'] == '' ? '0' : $this->time_sql($time3,$time4)[0]['count'];
+        $stay_data[] = $this->time_sql($time4,$time5)[0]['count'] == '' ? '0' : $this->time_sql($time4,$time5)[0]['count'];
+        $stay_data[] = $this->time_sql($time5,$time6)[0]['count'] == '' ? '0' : $this->time_sql($time5,$time6)[0]['count'];
+        $stay_data[] = $this->time_sql($time6,$time7)[0]['count'] == '' ? '0' : $this->time_sql($time6,$time7)[0]['count'];
+
+        return $stay_data;
+
+    }
+
+
+
+    public function time_sql($start,$end){
+        $sql = "select  count(distinct  ip )  as count from " . $this->table . " where aid = " . $this->input->get('id') .
+            " and tm > " . $start . " and tm <  " . $end .
+            " and " . 'type' . " = '" . 'start' . " ' " .
+            " group by ip ";
+        $query = $this->db->query($sql);
+        $row = $query->result_array();
+        return $row;
+    }
     //去重
     public function dis_con()
     {
         $ti = $_GET['time'] ? $_GET['time'] : time();
-        $sql = "select *, count(distinct ip) from " . $this->table . " where aid = " . $this->input->get('id') . " and tm < " . $ti ." group by ip";
+        $sql = "select *, count(distinct ip) from " . $this->table . " where aid = " . $this->input->get('id') . " and tm < " . $ti . " group by ip";
         $query = $this->db->query($sql);
         $row = $query->result_array();
         return $row;
 
     }
+
     //去重计数因为转换不了要的指定格式，所以拼得字符串
-    public function con_area(){
-        $sql = "select area, count(*) from " . $this->table . " where aid = " . $this->input->get('id') ." group by area";
+    public function con_area()
+    {
+        $sql = "select area, count(*) from " . $this->table . " where aid = " . $this->input->get('id') . " group by area";
         $query = $this->db->query($sql);
         $row = $query->result_array();
         $test = '';
         $count = $this->key_con('type', 'start');
-        foreach($row as $a){
+        foreach ($row as $a) {
             $a['count(*)'] = $a['count(*)'] / $count;
             $a['area'] = "'" . $a['area'] . "'";
-            $test .= '[' . $a['area'] . ',' . $a['count(*)'] .'],';
+            $test .= '[' . $a['area'] . ',' . $a['count(*)'] . '],';
         };
-        $result .=  '[' . $test . ']';
+        $result .= '[' . $test . ']';
         return $result;
 
     }
+
     //添加信息
     public function ins($data)
     {
@@ -117,6 +156,7 @@ class Tongji_model extends CI_Model
         $status = $this->db->update($this->table, $data);
         return $status;
     }
+
     //根据ip请求淘宝地域信息
     public function send_post($url)
     {
@@ -134,7 +174,7 @@ class Tongji_model extends CI_Model
             )
         );
         $context = stream_context_create($options);
-        $result = file_get_contents($url , false, $context);
+        $result = file_get_contents($url, false, $context);
 
         return $result;
     }

@@ -537,7 +537,7 @@
                 year: "%Y"
             },
             headerFormat: '<span style="font-size: 10px">{point.key}</span><br/>',
-            pointFormat: '<span style="color:{series.color}">鈼�</span> {series.name}: <b>{point.y}</b><br/>',
+            pointFormat: '<span style="color:{series.color}">●</span> {series.name}: <b>{point.y}</b><br/>',
             shadow: !0,
             snap: Ib ? 25 : 10,
             style: {color: "#333333", cursor: "default", fontSize: "12px", padding: "8px", whiteSpace: "nowrap"}
@@ -4398,7 +4398,7 @@
     H.bar = qa;
     ca.scatter = w(T, {
         lineWidth: 0, tooltip: {
-            headerFormat: '<span style="color:{series.color}">鈼�</span> <span style="font-size: 10px;"> {series.name}</span><br/>',
+            headerFormat: '<span style="color:{series.color}">●</span> <span style="font-size: 10px;"> {series.name}</span><br/>',
             pointFormat: "x: <b>{point.x}</b><br/>y: <b>{point.y}</b><br/>"
         }, stickyTracking: !1
     });
@@ -9429,7 +9429,7 @@
     H.bar = qa;
     ca.scatter = w(T, {
         lineWidth: 0, tooltip: {
-            headerFormat: '<span style="color:{series.color}">鈼�</span> <span style="font-size: 10px;"> {series.name}</span><br/>',
+            headerFormat: '<span style="color:{series.color}">●</span> <span style="font-size: 10px;"> {series.name}</span><br/>',
             pointFormat: "x: <b>{point.x}</b><br/>y: <b>{point.y}</b><br/>"
         }, stickyTracking: !1
     });

@@ -275,7 +275,7 @@ require('gameheader.php');
 <script src="/public/active/js/data_info.js"></script>
 
 <script type="text/javascript" >
-    var stayTimeDatas = eval('({"values":[[0,0,0,0,0,0]],"keys":["00:00—04:00","04:00—08:00","08:00—12:00","12:00—16:00","16:00—20:00","20:00—00:00"]})');
+    var stayTimeDatas = eval('({"values":[ <?php echo $stay ?> ],"keys":["00:00—04:00","04:00—08:00","08:00—12:00","12:00—16:00","16:00—20:00","20:00—00:00"]})');
     var activityId = <?php echo $_GET['id'] ?>;
     var visit_record = "";
     var a = <?php echo '222' ?>;

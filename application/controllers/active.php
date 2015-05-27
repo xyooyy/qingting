@@ -16,23 +16,24 @@ class Active extends CI_Controller
         $this->load->model('active_model');
         $this->load->model('tongji_model');
         $this->load->model('active_games_model');
-        $row['active'] = $this->active_model->info('id', $this->input->get('id'));
-        $row['game'] = $this->active_games_model->info('gid', $row['active']['gid']);
-        $row['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang');
-        $row['click'] = $this->tongji_model->key_con('type', 'start');
-        $row['uv'] = count($this->tongji_model->dis_con());
-        $row['area'] = $this->tongji_model->con_area();
-        $this->load->view('active/data_info', $row);
+        $info['active'] = $this->active_model->info('id', $this->input->get('id'));
+        $info['game'] = $this->active_games_model->info('gid', $info['active']['gid']);
+        $info['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang');
+        $info['click'] = $this->tongji_model->key_con('type', 'start');
+        $info['uv'] = count($this->tongji_model->dis_con());
+        $info['area'] = $this->tongji_model->con_area();
+        $info['stay'] = '[' . implode(',',$this->tongji_model->active_stay()) . ']';
+        $this->load->view('active/data_info', $info);
     }
 
-    public function date_info(){
+    public function date_info()
+    {
         $this->load->model('tongji_model');
         $fenxiang = $this->tongji_model->key_con('type', 'fenxiang');
-//        print_r($_GET['time']);
         $click = $this->tongji_model->key_con('type', 'start');
         $uv = count($this->tongji_model->dis_con());
 
-        echo json_encode(array('success' => true, 'fenxiang' => $fenxiang, 'click_count' => $click, 'players_count' => $uv , 'date' =>  date('Y-m-d',$_GET['time']) ));
+        echo json_encode(array('success' => true, 'fenxiang' => $fenxiang, 'click_count' => $click, 'players_count' => $uv, 'date' => date('Y-m-d', $_GET['time'])));
 
     }
 
@@ -584,8 +585,8 @@ class Active extends CI_Controller
         if ($domain) {
             $ip = substr($ip, 0, strpos($ip, ','));
         };
-         $this->load->model('tongji_model');
-        $area = json_decode($this->tongji_model->send_post('http://ip.taobao.com/service/getIpInfo.php?ip=' . $ip),true)['data']['region'];
+        $this->load->model('tongji_model');
+        $area = json_decode($this->tongji_model->send_post('http://ip.taobao.com/service/getIpInfo.php?ip=' . $ip), true)['data']['region'];
 
         if ($id > 0 && $tp != '') {
             $data['aid'] = $id;
@@ -621,7 +622,6 @@ class Active extends CI_Controller
         }
 
     }
-
 
 
 }

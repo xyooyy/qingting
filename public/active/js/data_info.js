@@ -96,7 +96,7 @@ function loadstayTimeStatistics(datas) {
             }
         },
         tooltip: {
-            valueSuffix: ' 浜�'
+            valueSuffix: '人'
         },
         legend: {
             enabled: false
@@ -105,7 +105,7 @@ function loadstayTimeStatistics(datas) {
             enabled: false
         },
         series: [{
-            name: '鏃堕棿娈�',
+            name: '时间段',
             data: datas.values[0]
         }]
     });
