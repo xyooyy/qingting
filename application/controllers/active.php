@@ -22,7 +22,7 @@ class Active extends CI_Controller
         $info['click'] = $this->tongji_model->key_con('type', 'start');
         $info['uv'] = count($this->tongji_model->dis_con());
         $info['area'] = $this->tongji_model->con_area();
-        $info['stay'] = '[' . implode(',',$this->tongji_model->active_stay()) . ']';
+        $info['stay'] = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
         $this->load->view('active/data_info', $info);
     }
 
@@ -373,8 +373,7 @@ class Active extends CI_Controller
             $this->load->model('active_model');
 
             $row = $this->active_model->info('id', $this->input->post('id'));
-            $addtitle = "<script> if(getCookie('cookie3_2')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_2'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
-
+            $addtitle = "<script> if(getCookie('cookie3_2')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);share_title=share_title.replace('#score#',score);document.title=str; delCookie('cookie3_2'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
             $f = $this->input->post('html');
             $new_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $new_file1 = $new_file . '1' . '.html';
@@ -394,7 +393,7 @@ class Active extends CI_Controller
             $str_end = file_get_contents('active/end.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
             $str_js = file_get_contents('active/addjs.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['fenxiangt'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             if (file_put_contents($new_file, $str_start . $share . $f . $str_js1 . $str_js . $str_end . $addtitle . $share1)) {
                 $data['html_end'] = $new_file;
@@ -413,7 +412,7 @@ class Active extends CI_Controller
         if ($this->input->post('html')) {
             $this->load->model('active_model');
             $row = $this->active_model->info('id', $this->input->post('id'));
-            $addtitle = "<script> if(getCookie('cookie3_3')){ document.title = '" . $row['fenxiangt'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
+            $addtitle = "<script> if(getCookie('cookie3_3')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);share_title=share_title.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
             $f = $this->input->post('html');
             $new_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $new_file1 = $new_file . '1' . '.html';
@@ -422,7 +421,7 @@ class Active extends CI_Controller
             $str_start = file_get_contents('active/start.html');
             $str_end = file_get_contents('active/end.html');
             $str_fenxiang = file_get_contents('active/addjs_fenxiang.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['fenxiangt'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             $fenxiangi = "<div style='display:none'><img src='" . $this->host . $row['fenxiangi'] . "'></div>";
             if (file_put_contents($new_file, $str_fenxiang . $str_start . $share . $fenxiangi . $f . $str_end . $addtitle . $share1)) {
@@ -461,7 +460,7 @@ class Active extends CI_Controller
         if ($phone_html) {
             $this->load->model('active_model');
             $row = $this->active_model->info('id', $id);
-            $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','/public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
+            $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);share_title=share_title.replace('#score#',score);document.title=str;$('#layStyle').attr('href','/public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
 
             $generated_file = 'active/u/' . md5('active_' . $id . '_' . $type);
             $base_html = $generated_file . '1' . '.html';
@@ -485,7 +484,7 @@ class Active extends CI_Controller
             $str_js = file_get_contents('active/addjs.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
             $str_prize = file_get_contents('active/prize.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $generated_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['fenxiangt'] . "',share_link='" . $this->host . $generated_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             if (file_put_contents($generated_file, $str_start . $share . $phone_html . $str_end . $str_js . $str_js1 . $prize_url . $str_prize . $addtitle . $share1)) {
                 switch ($type) {
