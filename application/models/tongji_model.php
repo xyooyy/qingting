@@ -35,7 +35,13 @@ class Tongji_model extends CI_Model
         $row = $query->result_array();
         return $row;
     }
-
+    //获取basic_info
+    public function basic_info(){
+        $sql = "select tm,ip,basic_info from " . $this->table . " where aid = " . $this->input->get('id') . " and type = 'start' ";
+        $query = $this->db->query($sql);
+        $info = $query->result_array();
+        return $info;
+    }
     //获取总数量
     public function con()
     {
@@ -71,28 +77,26 @@ class Tongji_model extends CI_Model
         $time7 = strtotime(date('Y-m-d 24:00:00'));
 //        $ti = $_GET['time'] ? $_GET['time'] : time();
         $stay_data = [];
-        $stay_data[] = $this->time_sql($time1,$time2)[0]['count'] == '' ? '0' : $this->time_sql($time1,$time2)[0]['count'];
-        $stay_data[] = $this->time_sql($time2,$time3)[0]['count']  == '' ? '0' : $this->time_sql($time2,$time3)[0]['count'];
-        $stay_data[] = $this->time_sql($time3,$time4)[0]['count'] == '' ? '0' : $this->time_sql($time3,$time4)[0]['count'];
-        $stay_data[] = $this->time_sql($time4,$time5)[0]['count'] == '' ? '0' : $this->time_sql($time4,$time5)[0]['count'];
-        $stay_data[] = $this->time_sql($time5,$time6)[0]['count'] == '' ? '0' : $this->time_sql($time5,$time6)[0]['count'];
-        $stay_data[] = $this->time_sql($time6,$time7)[0]['count'] == '' ? '0' : $this->time_sql($time6,$time7)[0]['count'];
-
+        $stay_data[] = count($this->time_sql($time1, $time2));
+        $stay_data[] = count($this->time_sql($time2, $time3));
+        $stay_data[] = count($this->time_sql($time3, $time4));
+        $stay_data[] = count($this->time_sql($time4, $time5));
+        $stay_data[] = count($this->time_sql($time5, $time6));
+        $stay_data[] = count($this->time_sql($time6, $time7));
         return $stay_data;
-
     }
 
 
-
-    public function time_sql($start,$end){
-        $sql = "select  count(distinct  ip )  as count from " . $this->table . " where aid = " . $this->input->get('id') .
+    public function time_sql($start, $end)
+    {
+        $sql = "select *, count(distinct  ip )   from " . $this->table . " where aid = " . $this->input->get('id') .
             " and tm > " . $start . " and tm <  " . $end .
-            " and " . 'type' . " = '" . 'start' . " ' " .
             " group by ip ";
         $query = $this->db->query($sql);
         $row = $query->result_array();
         return $row;
     }
+
     //去重
     public function dis_con()
     {

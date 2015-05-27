@@ -47,7 +47,7 @@ $(function () {
             if (time) {
                 $.ajax({
                     type: "GET",
-                    //url: "../ajax_activity_count_visit/" + activityId,
+                    url: "/active/activity_count_visit",
                     data: "time=" + time,
                     dataType: "text",
                     success: function (result) {

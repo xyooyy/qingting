@@ -23,6 +23,7 @@ class Active extends CI_Controller
         $info['uv'] = count($this->tongji_model->dis_con());
         $info['area'] = $this->tongji_model->con_area();
         $info['stay'] = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
+        $info['basic_info'] = $this->tongji_model->basic_info();
         $this->load->view('active/data_info', $info);
     }
 
@@ -34,6 +35,11 @@ class Active extends CI_Controller
         $uv = count($this->tongji_model->dis_con());
 
         echo json_encode(array('success' => true, 'fenxiang' => $fenxiang, 'click_count' => $click, 'players_count' => $uv, 'date' => date('Y-m-d', $_GET['time'])));
+
+    }
+
+    public function activity_count_visit()
+    {
 
     }
 
@@ -593,6 +599,7 @@ class Active extends CI_Controller
             $data['pid'] = $pid ? $pid : 0;
             $data['ip'] = $ip;
             $data['area'] = $area;
+            $data['basic_info'] = $_SERVER['HTTP_USER_AGENT'];
             $data['tm'] = time();
             $this->tongji_model->ins($data);
         }
