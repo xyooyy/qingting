@@ -1,3 +1,4 @@
+var a;
 $(function () {
     //select美化
     Select.init({
@@ -18,7 +19,7 @@ $(function () {
             var time;
             if (val) {
                 time = Date.parse(val).toString();
-                time=time.substring(0,time.length-3);
+                time = time.substring(0, time.length - 3);
             }
             ;
             if (time) {
@@ -41,17 +42,27 @@ $(function () {
             var val = $input.val();
             var time;
             if (val) {
-                time = Date.parse(val);
+                time = Date.parse(val).toString();
+                time = time.substring(0, time.length - 3);
             }
             ;
             if (time) {
                 $.ajax({
                     type: "GET",
-                    url: "/active/activity_count_visit",
+                    url: "/active/activity_count_visit?id=" + activityId,
                     data: "time=" + time,
-                    dataType: "text",
+                    dataType: "json",
                     success: function (result) {
-                        load_visit_record(result);
+                        var visit_array = [];
+                        for (var i = 0; i < result.count_visit.length; i++) {
+                            var date = new Date(result.count_visit[i].tm*1000);
+                            var c = {'name': result.count_visit[i].basic_info, 'data': [[date.getHours(), date.getMinutes()]]};
+                            visit_array.push(c);
+                        }
+                        load_visit(visit_array);
+                        var stayTimeDatas = eval('({"values":[ ' + result.stay_time + '],"keys":["00:00—04:00","04:00—08:00","08:00—12:00","12:00—16:00","16:00—20:00","20:00—00:00"]})');
+                        loadstayTimeStatistics(stayTimeDatas);
+
                     }
                 });
             }
@@ -118,7 +129,7 @@ function loadCountValues(time) {
     $("#click_count").text("");
     $.ajax({
         type: "GET",
-        url: root_url + "/active/date_info?id="   + activityId,
+        url: root_url + "/active/date_info?id=" + activityId,
         data: "time=" + time,
         dataType: "json",
         success: function (result) {
@@ -170,8 +181,13 @@ function load_visit_record(data) {
     } else {
         visit_data = "[]";
     }
+    load_visit(visit_data);
+}
 
-
+function load_visit(visit_data){
+    if(visit_data.length == 0){
+        visit_data = "[]";
+    }
     $('#visit_record').highcharts({
         chart: {
             type: 'scatter',
@@ -235,6 +251,7 @@ function load_visit_record(data) {
     });
 
 }
+
 
 function load_visit_region(data) {
     if (data == "") {

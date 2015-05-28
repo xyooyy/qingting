@@ -40,7 +40,11 @@ class Active extends CI_Controller
 
     public function activity_count_visit()
     {
-
+        $this->load->model('tongji_model');
+        $info = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
+        $count_visit = $this->tongji_model->basic_info();
+//        print_r($count_visit);
+        echo json_encode(array('count_visit' => $count_visit,'stay_time' => $info));
     }
 
     public function ticket()

@@ -37,7 +37,9 @@ class Tongji_model extends CI_Model
     }
     //获取basic_info
     public function basic_info(){
-        $sql = "select tm,ip,basic_info from " . $this->table . " where aid = " . $this->input->get('id') . " and type = 'start' ";
+        $time = strtotime(date('Y-m-d 24:00:00',$_GET['time'] ? $_GET['time'] : time())) ;
+        $time0 = strtotime(date('Y-m-d 00:00:00',$_GET['time'] ? $_GET['time'] : time()));
+        $sql = "select tm,ip,basic_info from " . $this->table . " where aid = " . $this->input->get('id') . " and tm< " . $time . " and tm > " . $time0 . " and type = 'start' ";
         $query = $this->db->query($sql);
         $info = $query->result_array();
         return $info;
@@ -68,13 +70,13 @@ class Tongji_model extends CI_Model
     {
 //        $ti = $_GET['time'] ? $_GET['time'] : time();
 //        $sql =
-        $time1 = strtotime(date('Y-m-d 00:00:00'));
-        $time2 = strtotime(date('Y-m-d 04:00:00'));
-        $time3 = strtotime(date('Y-m-d 08:00:00'));
-        $time4 = strtotime(date('Y-m-d 12:00:00'));
-        $time5 = strtotime(date('Y-m-d 16:00:00'));
-        $time6 = strtotime(date('Y-m-d 20:00:00'));
-        $time7 = strtotime(date('Y-m-d 24:00:00'));
+        $time1 = strtotime(date(date('Y-m-d 00:00:00',$_GET['time'] ? $_GET['time'] : time())));
+        $time2 = strtotime(date(date('Y-m-d 04:00:00',$_GET['time'] ? $_GET['time'] : time())));
+        $time3 = strtotime(date(date('Y-m-d 08:00:00',$_GET['time'] ? $_GET['time'] : time())));
+        $time4 = strtotime(date(date('Y-m-d 12:00:00',$_GET['time'] ? $_GET['time'] : time())));
+        $time5 = strtotime(date(date('Y-m-d 16:00:00',$_GET['time'] ? $_GET['time'] : time())));
+        $time6 = strtotime(date(date('Y-m-d 20:00:00',$_GET['time'] ? $_GET['time'] : time())));
+        $time7 = strtotime(date(date('Y-m-d 24:00:00',$_GET['time'] ? $_GET['time'] : time())));
 //        $ti = $_GET['time'] ? $_GET['time'] : time();
         $stay_data = [];
         $stay_data[] = count($this->time_sql($time1, $time2));
