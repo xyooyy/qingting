@@ -108,8 +108,8 @@ require('gameheader.php');
                                 </div>
                                 <div class="state-num">
                                     <span>今日回访率</span>
-                                    <em>0%</em>
-                                    <i>昨日回访：0%</i>
+                                    <em><?php echo $return . '%'?></em>
+                                    <i>昨日回访：<?php echo $yestday . '%' ?></i>
                                 </div>
                             </div>
                         </div>

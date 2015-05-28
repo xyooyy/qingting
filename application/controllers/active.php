@@ -24,6 +24,10 @@ class Active extends CI_Controller
         $info['area'] = $this->tongji_model->con_area();
         $info['stay'] = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
         $info['basic_info'] = $this->tongji_model->basic_info();
+        $today = strtotime(date('Y-m-d 00:00:00', time()));
+        $yestday = strtotime(date('Y-m-d 00:00:00', time()-24*60*60));
+        $info['return'] = $this->tongji_model->return_ip($today) * 100;
+        $info['yestday'] = $this->tongji_model->return_ip($yestday) * 100;
         $this->load->view('active/data_info', $info);
     }
 
