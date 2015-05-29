@@ -76,7 +76,7 @@ require('gameheader.php');
                                 style="margin: 30px 30px;width:280px;height:300px;background:#b2c3db;color: #FFF;text-align: center;">
                                 <p style="font-size:45px;padding:25px">活动曝光量</p>
 
-                                <p style="font-size:100px;"><?php echo  $uv + 300 ?></p>
+                                <p style="font-size:100px;"><?php echo  $uv + $fenxiang +  300 ?></p>
                             </div>
                         </div>
                     </div>

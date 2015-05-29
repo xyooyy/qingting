@@ -175,7 +175,7 @@ require('gameheader.php');
 
                                                         <div class="footerArea" style="position: absolute; left: 16px;">
                                                             <div class="copyright hdp-textarea" style="position: static;">
-                                                                <span class="text-main">由爱玩派提供技术支持</span>
+                                                                <span class="text-main">蜻蜓提供技术支持</span>
                                                             </div>
                                                         </div>
                                                     </div>
