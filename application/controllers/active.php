@@ -28,11 +28,11 @@ class Active extends CI_Controller
         $this->load->model('tongji_model');
         $this->load->model('active_games_model');
 
-        $data['active'] = $this->active_model->info('id', $this->input->get('id'));
-        $data['game'] = $this->active_games_model->info('gid', $data['active']['gid']);
-        $data['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang');
-        $data['click'] = $this->tongji_model->key_con('type', 'start');
-        $data['uv'] = count($this->tongji_model->dis_con());
+        $data['active'] = $this->active_model->get_field('title' , 'gid' ,'id', $this->input->get('id'));
+        $data['game'] = $this->active_games_model->get_field('img', 'gid', $data['active']['gid']);
+        $data['count']['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang');
+        $data['count']['click'] = $this->tongji_model->key_con('type', 'start');
+        $data['count']['uv'] = count($this->tongji_model->dis_con());
         $data['area'] = $this->tongji_model->con_area();
         $data['stay'] = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
         $data['basic_info'] = $this->tongji_model->basic_info();
@@ -41,7 +41,7 @@ class Active extends CI_Controller
         $yestday = strtotime(date('Y-m-d 00:00:00', time()-24*60*60));
         $data['return_visit']['today'] = $this->tongji_model->return_ip($today) * 100;
         $data['return_visit']['yestday'] = $this->tongji_model->return_ip($yestday) * 100;
-        $this->load->view('active/data_info', $data);
+        $this->load->view('active/data_center', $data);
     }
 
     public function date_info()

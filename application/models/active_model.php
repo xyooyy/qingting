@@ -92,6 +92,14 @@ class Active_model extends CI_Model
         $row = $query->result_array();
         return $row[0];
     }
+    //获取单个信息的单个属性
+    public function get_field($field_title,$field_gid,$tfrom, $tval)
+    {
+        $sql = "select " . $field_title . "," . $field_gid . "  from " . $this->table . " where " . $tfrom . "='" . $tval . "' limit 1";
+        $query = $this->db->query($sql);
+        $row = $query->result_array();
+        return $row[0];
+    }
 
     //删除信息
     public function del($id)

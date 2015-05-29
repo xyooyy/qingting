@@ -54,12 +54,12 @@ require('gameheader.php');
                                            value= <?php echo date("Y-m-d") ?>>
                                 </div>
                                 <div class="game-nums">
-                                    <div id="players_count" class="user-num"><?php echo $uv ?></div>
+                                    <div id="players_count" class="user-num"><?php echo $count['uv'] ?></div>
 
 
-                                    <div class="collect-num" id="fenxiang"><?php echo $fenxiang ?></div>
+                                    <div class="collect-num" id="fenxiang"><?php echo $count['fenxiang'] ?></div>
 
-                                    <div id="click_count" class="click-num"><?php echo $click ?></div>
+                                    <div id="click_count" class="click-num"><?php echo $count['click'] ?></div>
                                 </div>
                             </div>
                         </div>
@@ -136,6 +136,7 @@ require('gameheader.php');
 <script src="/public/active/js/webuploader.js"></script>
 <script src="/public/active/js/highchart.js"></script>
 <script src="/public/active/js/exporting.js"></script>
+<script src="/public/active/js/data_report.js"></script>
 
 <script type="text/javascript">
     var stayTimeDatas = eval('({"values":[ <?php echo $stay ?> ],"keys":["00:00—04:00","04:00—08:00","08:00—12:00","12:00—16:00","16:00—20:00","20:00—00:00"]})');
