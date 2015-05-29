@@ -70,7 +70,7 @@ class Active extends CI_Controller
         $this->load->view('active/active', $data);
     }
 
-    public function data()
+    public function data_center()
     {
         $this->load->model('active_model');
         $data['list'] = $this->active_model->game_active();
