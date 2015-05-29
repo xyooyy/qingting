@@ -27,7 +27,7 @@ require('gameheader.php');
                     <div class="nav">
                         <ul>
                             <li>
-                                <a class="cur" href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/active/data_center' ?>">投放指标数据</a>
+                                <a class="cur" href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/active/dataCenter' ?>">投放指标数据</a>
                             </li>
                         </ul>
                     </div>
@@ -36,7 +36,7 @@ require('gameheader.php');
                     <div class="bor mod-search">
                         <label>搜索查看活动数据</label>
 
-                        <form action="/active/data_center" method="get">
+                        <form action="/active/dataCenter" method="get">
                             <input name="keyword" type="text" value="" placeholder="输入关键字">
 <!--                            <select name="online" class="select-select">-->
 <!--                                <option value="">全部活动</option>-->

@@ -11,6 +11,14 @@ class Active extends CI_Controller
         $this->host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
     }
 
+    public function _remap($method){
+        if($method == 'dataCenter'){
+            $this->data_center();
+        }else{
+            $this->$method();
+        }
+    }
+
     public function data_info()
     {
         $this->load->model('active_model');
