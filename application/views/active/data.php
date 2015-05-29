@@ -6,7 +6,7 @@
     <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/pagination.css">
     <link rel="stylesheet" href="/public/active/css/activity.css">
-    <link rel="stylesheet" href="/public/active/css/data.css">
+    <link rel="stylesheet" href="/public/active/css/data_center.css">
     <!--    <script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script>-->
 </head>
 <body>
