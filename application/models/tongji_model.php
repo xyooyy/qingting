@@ -61,6 +61,7 @@ class Tongji_model extends CI_Model
     //获取回访率
     public function return_ip($time)
     {
+        $end_time = $time + 24*60*60;
         $sql_array = "select ip, count(distinct  ip )  from " . $this->table . " where aid =  " . $this->input->get('id') . " and tm < " . $time . " group by ip";
         $query = $this->db->query($sql_array);
         $today_ip = $query->result_array();
@@ -69,7 +70,7 @@ class Tongji_model extends CI_Model
             $array .= "'" . $i['ip'] . "',";
         }
         $array = substr($array, 0, -1);
-        $sql = "select ip from " . $this->table . " where aid =  " . $this->input->get('id') . " and tm >  " . $time . " and ip in (  "  . $array . ')' ;
+        $sql = "select ip from " . $this->table . " where aid =  " . $this->input->get('id') . " and tm >  " . $time .  " and tm < " . $end_time  . " and ip in (  "  . $array . ')' ;
         $query_array = $this->db->query($sql);
 
         $result = count($query_array->result_array()) / $this->today_ip($time);
@@ -77,7 +78,8 @@ class Tongji_model extends CI_Model
     }
     //今天不重复ip
     public function today_ip($time){
-        $sql_array = "select ip, count(distinct  ip )  from " . $this->table . " where aid =  " . $this->input->get('id') . " and tm > " . $time . " group by ip";
+        $end_time = $time + 24*60*60;
+        $sql_array = "select ip, count(distinct  ip )  from " . $this->table . " where aid =  " . $this->input->get('id') . " and tm > " . $time . " and tm < " . $end_time  . " group by ip";
         $query = $this->db->query($sql_array);
         $today_ip = count($query->result_array());
         return $today_ip;
