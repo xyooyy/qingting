@@ -57,7 +57,7 @@ require('gameheader.php');
                                     <?php foreach ($active_games as $v) { ?>
                                         <li>
                                             <div class="act">
-                                                <a href=<?php echo '/active/data_info?id='  . $v['id'] ?>
+                                                <a href=<?php echo '/active/dataReport?id='  . $v['id'] ?>
                                                    class="btn-data-rep">数据报告</a>
 
                                                 <!-- <a href="#" class="btn-follow-game">关注游戏</a>  -->
