@@ -6,7 +6,7 @@
     <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/pagination.css">
     <link rel="stylesheet" href="/public/active/css/activity.css">
-    <link rel="stylesheet" href="/public/active/css/data.css">
+    <link rel="stylesheet" href="/public/active/css/data_center.css">
     <!--    <script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script>-->
 </head>
 <body>
@@ -27,7 +27,7 @@ require('gameheader.php');
                     <div class="nav">
                         <ul>
                             <li>
-                                <a class="cur" href="http://act.aiwanpai.com/data/">投放指标数据</a>
+                                <a class="cur" href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/active/dataCenter' ?>">投放指标数据</a>
                             </li>
                         </ul>
                     </div>
@@ -36,7 +36,7 @@ require('gameheader.php');
                     <div class="bor mod-search">
                         <label>搜索查看活动数据</label>
 
-                        <form action="/active/data" method="get">
+                        <form action="/active/dataCenter" method="get">
                             <input name="keyword" type="text" value="" placeholder="输入关键字">
 <!--                            <select name="online" class="select-select">-->
 <!--                                <option value="">全部活动</option>-->
@@ -54,10 +54,10 @@ require('gameheader.php');
                             </div>
                             <div class="bd">
                                 <ul class="list-ads">
-                                    <?php foreach ($list as $v) { ?>
+                                    <?php foreach ($active_games as $v) { ?>
                                         <li>
                                             <div class="act">
-                                                <a href=<?php echo '/active/data_info?id='  . $v['id'] ?>
+                                                <a href=<?php echo '/active/dataReport?id='  . $v['id'] ?>
                                                    class="btn-data-rep">数据报告</a>
 
                                                 <!-- <a href="#" class="btn-follow-game">关注游戏</a>  -->

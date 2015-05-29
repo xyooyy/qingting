@@ -11,24 +11,37 @@ class Active extends CI_Controller
         $this->host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
     }
 
-    public function data_info()
+    public function _remap($method){
+        if($method == 'dataCenter'){
+            $this->data_center();
+        }elseif($method == 'dataReport'){
+            $this->data_report();
+        }
+        else{
+            $this->$method();
+        }
+    }
+
+    public function data_report()
     {
         $this->load->model('active_model');
         $this->load->model('tongji_model');
         $this->load->model('active_games_model');
-        $info['active'] = $this->active_model->info('id', $this->input->get('id'));
-        $info['game'] = $this->active_games_model->info('gid', $info['active']['gid']);
-        $info['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang');
-        $info['click'] = $this->tongji_model->key_con('type', 'start');
-        $info['uv'] = count($this->tongji_model->dis_con());
-        $info['area'] = $this->tongji_model->con_area();
-        $info['stay'] = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
-        $info['basic_info'] = $this->tongji_model->basic_info();
+
+        $data['active'] = $this->active_model->info('id', $this->input->get('id'));
+        $data['game'] = $this->active_games_model->info('gid', $data['active']['gid']);
+        $data['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang');
+        $data['click'] = $this->tongji_model->key_con('type', 'start');
+        $data['uv'] = count($this->tongji_model->dis_con());
+        $data['area'] = $this->tongji_model->con_area();
+        $data['stay'] = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
+        $data['basic_info'] = $this->tongji_model->basic_info();
+
         $today = strtotime(date('Y-m-d 00:00:00', time()));
         $yestday = strtotime(date('Y-m-d 00:00:00', time()-24*60*60));
-        $info['return'] = $this->tongji_model->return_ip($today) * 100;
-        $info['yestday'] = $this->tongji_model->return_ip($yestday) * 100;
-        $this->load->view('active/data_info', $info);
+        $data['return_visit']['today'] = $this->tongji_model->return_ip($today) * 100;
+        $data['return_visit']['yestday'] = $this->tongji_model->return_ip($yestday) * 100;
+        $this->load->view('active/data_info', $data);
     }
 
     public function date_info()
@@ -70,10 +83,12 @@ class Active extends CI_Controller
         $this->load->view('active/active', $data);
     }
 
-    public function data()
+    public function data_center()
     {
         $this->load->model('active_model');
-        $data['list'] = $this->active_model->game_active();
+
+        $data['active_games'] = $this->active_model->game_active();
+
         $this->load->library('pagination');
         $config['base_url'] = $_SERVER[PATH_INFO] . '?keyword=' . $_GET['keyword'];
         $config['total_rows'] = $this->active_model->key_con();
@@ -83,6 +98,7 @@ class Active extends CI_Controller
         $this->pagination->initialize($config);
         $data['page'] = $this->pagination->create_links();
         $data['count'] = $this->active_model->key_con();
+
         $this->load->view('active/data', $data);
     }
 

@@ -5,8 +5,7 @@
     <title>数据中心</title>
     <?php require('static_file.php') ?>
     <link rel="stylesheet" href="/public/active/css/pagination.css">
-    <link rel="stylesheet" href="/public/active/css/data_info.css">
-    <!--    <script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script>-->
+    <link rel="stylesheet" href="/public/active/css/data_report.css">
 </head>
 <body>
 
@@ -42,8 +41,8 @@ require('gameheader.php');
                                 <a href="javascript:void(0)">
 
                                     <img
-                                        src= <?php echo $game['img'] ?>
-                                        alt="" style="width:240px;height:240px;">
+                                        src= "<?php echo $game['img'] ?>"
+                                        alt="游戏缩略图" style="width:240px;height:240px;">
                                 </a>
                             </div>
                             <div class="game-r">
@@ -108,8 +107,8 @@ require('gameheader.php');
                                 </div>
                                 <div class="state-num">
                                     <span>今日回访率</span>
-                                    <em><?php echo $return . '%'?></em>
-                                    <i>昨日回访：<?php echo $yestday . '%' ?></i>
+                                    <em><?php echo $return_visit['today'] . '%'?></em>
+                                    <i>昨日回访：<?php echo $return_visit['yestday'] . '%' ?></i>
                                 </div>
                             </div>
                         </div>
@@ -124,6 +123,7 @@ require('gameheader.php');
 </div>
 
 <div id="pop-overlay" class="hidden" style="z-index: 1"></div>
+
 <script>
     var pageType = 'on';
 </script>
@@ -137,18 +137,16 @@ require('gameheader.php');
 <script src="/public/active/js/highchart.js"></script>
 <script src="/public/active/js/exporting.js"></script>
 
-<script src="/public/active/js/data_info.js"></script>
-
 <script type="text/javascript">
     var stayTimeDatas = eval('({"values":[ <?php echo $stay ?> ],"keys":["00:00—04:00","04:00—08:00","08:00—12:00","12:00—16:00","16:00—20:00","20:00—00:00"]})');
     var activityId = <?php echo $_GET['id'] ?>;
+//  visit_record = "{name: 'Mozilla/5.0 (Linux; U; Android 4.1.1; zh-cn; M032 Build/JRO03H) AppleWebKit/533.1 (KHTML, like Gecko)Version/4.0 MQQBrowser/5.4 TBS/025411 Mobile Safari/533.1 MicroMessenger/6.1.0.66_r1062275.542 NetType/WIFI来自： 访问IP: 27.184.52.134, 123.151.12.152 访问时间：',color: 'rgba(223, 83, 83, .5)',data: [[5, 37]]}";
     var visit_record = "<?php foreach($basic_info as $f) { ?>
     <?php echo '{name:' . "'" .  $f['basic_info'] . '<br>' . ' 访问IP: ' .  $f['ip'] . " 访问时间：'" . ',data: [[ ' . date('H',$f['tm']) . ',' . date('i',$f['tm'])   . "]]}" ?>
     <?php } ?>"
     visit_record   =   visit_record.replace(/\s+/g,"");
     visit_record = visit_record.replace(/}{/g,'}&{')
-//    var visit_record = "{name: 'Mozilla/5.0 (Linux; U; Android 4.1.1; zh-cn; M032 Build/JRO03H) AppleWebKit/533.1 (KHTML, like Gecko)Version/4.0 MQQBrowser/5.4 TBS/025411 Mobile Safari/533.1 MicroMessenger/6.1.0.66_r1062275.542 NetType/WIFI来自： 访问IP: 27.184.52.134, 123.151.12.152 访问时间：',color: 'rgba(223, 83, 83, .5)',data: [[5, 37]]}";
-    var a = <?php echo '222' ?>;
+
     var visit_region = <?php echo '"' . $area . '"' ?>;
 </script>
 </body>
