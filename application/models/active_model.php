@@ -33,7 +33,7 @@ class Active_model extends CI_Model
         $end = $_GET['end'] ? $_GET['end'] : 10;
         //分页开始值
         $start = $_GET['p'] ? ($_GET['p']) : 0;
-        $sql = "select * from " . $this->table . $where . " order by " . $order . " limit " . $start . "," . $end;
+        $sql = "select * from " . $this->table . $where . " order by " . $order  . " desc limit " . $start . "," . $end;
 
         $query = $this->db->query($sql);
         $row = $query->result_array();
