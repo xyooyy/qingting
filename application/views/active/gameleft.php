@@ -41,7 +41,7 @@
             </a>
         </li>
         <li>
-            <a href="/active/data" class=<?php if (stristr($_SERVER[PHP_SELF], '/active/data')) {
+            <a href="/active/dataCenter" class=<?php if (stristr($_SERVER[PHP_SELF], '/active/data')) {
                 echo 'active';
             } ?>>
                 <i class="sidebar-icon sidebar-data"></i>

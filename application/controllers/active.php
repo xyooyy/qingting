@@ -10,10 +10,65 @@ class Active extends CI_Controller
         parent::__construct();
         $this->host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
     }
-    public  function ticket()
+
+    public function _remap($method){
+        if($method == 'dataCenter'){
+            $this->data_center();
+        }elseif($method == 'dataReport'){
+            $this->data_report();
+        }
+        else{
+            $this->$method();
+        }
+    }
+
+    public function data_report()
+    {
+        $this->load->model('active_model');
+        $this->load->model('tongji_model');
+        $this->load->model('active_games_model');
+
+        $data['active'] = $this->active_model->get_field('title' , 'gid' ,'id', $this->input->get('id'));
+        $data['game'] = $this->active_games_model->get_field('img', 'gid', $data['active']['gid']);
+        $data['count']['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang');
+        $data['count']['click'] = $this->tongji_model->key_con('type', 'start');
+        $data['count']['uv'] = count($this->tongji_model->dis_con());
+        $data['area'] = $this->tongji_model->con_area();
+        $data['stay'] = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
+        $data['basic_info'] = $this->tongji_model->basic_info();
+
+        $today = strtotime(date('Y-m-d 00:00:00', time()));
+        $yestday = strtotime(date('Y-m-d 00:00:00', time()-24*60*60));
+        $data['return_visit']['today'] = $this->tongji_model->return_ip($today) * 100;
+        $data['return_visit']['yestday'] = $this->tongji_model->return_ip($yestday) * 100;
+        $this->load->view('active/data_center', $data);
+    }
+
+    public function date_info()
+    {
+        $this->load->model('tongji_model');
+        $fenxiang = $this->tongji_model->key_con('type', 'fenxiang');
+        $click = $this->tongji_model->key_con('type', 'start');
+        $uv = count($this->tongji_model->dis_con());
+
+        echo json_encode(array('success' => true, 'fenxiang' => $fenxiang, 'click_count' => $click, 'players_count' => $uv, 'date' => date('Y-m-d', $_GET['time'])));
+
+    }
+
+    public function activity_count_visit()
+    {
+        $this->load->model('tongji_model');
+        $info = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
+        $count_visit = $this->tongji_model->basic_info();
+//        print_r($count_visit);
+        echo json_encode(array('count_visit' => $count_visit,'stay_time' => $info));
+    }
+
+    public function ticket()
     {
         $this->load->view('active/ticket');
     }
+
     public function index()
     {
         $this->load->model('active_model');
@@ -27,9 +82,13 @@ class Active extends CI_Controller
         $data['page'] = $this->pagination->create_links();
         $this->load->view('active/active', $data);
     }
-    public function data(){
+
+    public function data_center()
+    {
         $this->load->model('active_model');
-        $data['list'] = $this->active_model->game_active();
+
+        $data['active_games'] = $this->active_model->game_active();
+
         $this->load->library('pagination');
         $config['base_url'] = $_SERVER[PATH_INFO] . '?keyword=' . $_GET['keyword'];
         $config['total_rows'] = $this->active_model->key_con();
@@ -39,8 +98,10 @@ class Active extends CI_Controller
         $this->pagination->initialize($config);
         $data['page'] = $this->pagination->create_links();
         $data['count'] = $this->active_model->key_con();
-        $this->load->view('active/data',$data);
+
+        $this->load->view('active/data', $data);
     }
+
     public function begame1()
     {
         $this->load->model('active_model');
@@ -122,28 +183,28 @@ class Active extends CI_Controller
         $this->load->model('active_model');
         $this->load->model('prize_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        $data['prize'] = $this->prize_model->info('aid',$this->input->get('id'));
+        $data['prize'] = $this->prize_model->info('aid', $this->input->get('id'));
         $page = $this->input->get('page');
-        if(! $page){
+        if (!$page) {
             $page = '1';
         }
 
-        if($page == '1'){
-            if ($row['html_prize1'] != ''){
+        if ($page == '1') {
+            if ($row['html_prize1'] != '') {
                 $data['html'] = file_get_contents($this->host . $row['html_prize1']);
             }
             $this->load->view('active/begame3_5', $data);
-        }elseif ($page == '2') {
-            if ($row['html_prize_not_win1'] != ''){
+        } elseif ($page == '2') {
+            if ($row['html_prize_not_win1'] != '') {
                 $data['html'] = file_get_contents($this->host . $row['html_prize_not_win1']);
             }
-            $this->load->view('active/begame3_5_not_winning',$data);
-        }elseif($page == '3'){
-            if ($row['html_prize_delete_chance1'] != ''){
+            $this->load->view('active/begame3_5_not_winning', $data);
+        } elseif ($page == '3') {
+            if ($row['html_prize_delete_chance1'] != '') {
                 $data['html'] = file_get_contents($this->host . $row['html_prize_delete_chance1']);
             }
-            $this->load->view('active/begame3_5_deplete_chance',$data);
-        }else{
+            $this->load->view('active/begame3_5_deplete_chance', $data);
+        } else {
             $this->load->view('active/begame3_5', $data);
         }
     }
@@ -155,7 +216,7 @@ class Active extends CI_Controller
         $this->load->model('prize_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
         $_GET['aid'] = $row['id'];
-        $prize = $this->prize_model->info('aid',$this->input->get('aid'));
+        $prize = $this->prize_model->info('aid', $this->input->get('aid'));
         $_GET['gid'] = $row['gid'];
         $games = $this->active_games_model->info('gid', $this->input->get('gid'));
         $data['val'] = $row;
@@ -322,9 +383,9 @@ class Active extends CI_Controller
             $str_start = file_get_contents('active/start.html');
             $str_start1 = file_get_contents('active/start_size.html');
             $str_end = file_get_contents('active/end.html');
-            $share = "<script>var share_title='" . $current_active['title'] . "',share_link='" . $this->host . $genereated_file . "',share_imgUrl='" . $this->host . $current_active['fenxiangi'] . "',share_desc='" . $current_active['fenxiangc'] . "',end_time = '". date('Y-m-d H:i:s', $current_active['endtime']) ."';</script>";
+            $share = "<script>var share_title='" . $current_active['title'] . "',share_link='" . $this->host . $genereated_file . "',share_imgUrl='" . $this->host . $current_active['fenxiangi'] . "',share_desc='" . $current_active['fenxiangc'] . "',end_time = '" . date('Y-m-d H:i:s', $current_active['endtime']) . "';</script>";
             $share1 = file_get_contents('active/share.html');
-            if (file_put_contents($genereated_file, $str_start . $share . $phone_html . $str_end . $page_title . $str_start1 . $share1 )) {
+            if (file_put_contents($genereated_file, $str_start . $share . $phone_html . $str_end . $page_title . $str_start1 . $share1)) {
                 $data['html_start'] = $genereated_file;
                 $data['html_start1'] = $base_file;
                 $data['erweima'] = $erweima;
@@ -342,8 +403,7 @@ class Active extends CI_Controller
             $this->load->model('active_model');
 
             $row = $this->active_model->info('id', $this->input->post('id'));
-            $addtitle = "<script> if(getCookie('cookie3_2')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_2'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
-
+            $addtitle = "<script> if(getCookie('cookie3_2')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);share_title=share_title.replace('#score#',score);document.title=str; delCookie('cookie3_2'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
             $f = $this->input->post('html');
             $new_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $new_file1 = $new_file . '1' . '.html';
@@ -353,17 +413,17 @@ class Active extends CI_Controller
             $f = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $f);
 
             $str_start = file_get_contents('active/start.html');
-            if(strpos($f,'data-layout="symmetric"')){
-                $str_start = str_replace('/public/active/css/layout.css','/public/active/css/symmetric/css/layout.css',$str_start);
+            if (strpos($f, 'data-layout="symmetric"')) {
+                $str_start = str_replace('/public/active/css/layout.css', '/public/active/css/symmetric/css/layout.css', $str_start);
             };
-            if(strpos($f,'data-layout="vertical"')){
-                $str_start = str_replace('/public/active/css/layout.css','/public/active/css/vertical/css/layout.css',$str_start);
+            if (strpos($f, 'data-layout="vertical"')) {
+                $str_start = str_replace('/public/active/css/layout.css', '/public/active/css/vertical/css/layout.css', $str_start);
             };
 
             $str_end = file_get_contents('active/end.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
             $str_js = file_get_contents('active/addjs.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['fenxiangt'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             if (file_put_contents($new_file, $str_start . $share . $f . $str_js1 . $str_js . $str_end . $addtitle . $share1)) {
                 $data['html_end'] = $new_file;
@@ -382,7 +442,7 @@ class Active extends CI_Controller
         if ($this->input->post('html')) {
             $this->load->model('active_model');
             $row = $this->active_model->info('id', $this->input->post('id'));
-            $addtitle = "<script> if(getCookie('cookie3_3')){ document.title = '" . $row['fenxiangt'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
+            $addtitle = "<script> if(getCookie('cookie3_3')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);share_title=share_title.replace('#score#',score);document.title=str; delCookie('cookie3_3'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
             $f = $this->input->post('html');
             $new_file = 'active/u/' . date("Ymd-") . time() . rand(1, 9999);
             $new_file1 = $new_file . '1' . '.html';
@@ -391,7 +451,7 @@ class Active extends CI_Controller
             $str_start = file_get_contents('active/start.html');
             $str_end = file_get_contents('active/end.html');
             $str_fenxiang = file_get_contents('active/addjs_fenxiang.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['fenxiangt'] . "',share_link='" . $this->host . $new_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             $fenxiangi = "<div style='display:none'><img src='" . $this->host . $row['fenxiangi'] . "'></div>";
             if (file_put_contents($new_file, $str_fenxiang . $str_start . $share . $fenxiangi . $f . $str_end . $addtitle . $share1)) {
@@ -430,9 +490,9 @@ class Active extends CI_Controller
         if ($phone_html) {
             $this->load->model('active_model');
             $row = $this->active_model->info('id', $id);
-            $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);document.title=str;$('#layStyle').attr('href','/public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
+            $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);share_title=share_title.replace('#score#',score);document.title=str;$('#layStyle').attr('href','/public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
 
-            $generated_file = 'active/u/' . md5('active_'.$id.'_'.$type);
+            $generated_file = 'active/u/' . md5('active_' . $id . '_' . $type);
             $base_html = $generated_file . '1' . '.html';
             $generated_file .= '.html';
             file_put_contents($base_html, $phone_html);
@@ -442,11 +502,11 @@ class Active extends CI_Controller
             $prize_url = "<script>var pirze_url='" . $this->host . "active/games_getprize?id=" . $_POST['id'] . "';";
             $str_start = file_get_contents('active/start.html');
             $str_start = file_get_contents('active/start.html');
-            if(strpos($phone_html,'data-layout="symmetric"')){
-                $str_start = str_replace('/public/active/css/layout.css','/public/active/css/symmetric/css/layout.css',$str_start);
+            if (strpos($phone_html, 'data-layout="symmetric"')) {
+                $str_start = str_replace('/public/active/css/layout.css', '/public/active/css/symmetric/css/layout.css', $str_start);
             };
-            if(strpos($phone_html,'data-layout="vertical"')){
-                $str_start = str_replace('/public/active/css/layout.css','/public/active/css/vertical/css/layout.css',$str_start);
+            if (strpos($phone_html, 'data-layout="vertical"')) {
+                $str_start = str_replace('/public/active/css/layout.css', '/public/active/css/vertical/css/layout.css', $str_start);
             };
 
 
@@ -454,7 +514,7 @@ class Active extends CI_Controller
             $str_js = file_get_contents('active/addjs.html');
             $str_js1 = file_get_contents('active/addjs_end.html');
             $str_prize = file_get_contents('active/prize.html');
-            $share = "<script>var share_title='" . $row['title'] . "',share_link='" . $this->host . $generated_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
+            $share = "<script>var share_title='" . $row['fenxiangt'] . "',share_link='" . $this->host . $generated_file . "',share_imgUrl='" . $this->host . $row['fenxiangi'] . "',share_desc='" . $row['fenxiangc'] . "';</script>";
             $share1 = file_get_contents('active/share.html');
             if (file_put_contents($generated_file, $str_start . $share . $phone_html . $str_end . $str_js . $str_js1 . $prize_url . $str_prize . $addtitle . $share1)) {
                 switch ($type) {
@@ -541,11 +601,29 @@ class Active extends CI_Controller
     //统计数据
     public function tongji($tp, $id, $pid)
     {
+        if ($_SERVER["HTTP_X_FORWARDED_FOR"]) {
+            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } else {
+            if ($_SERVER["HTTP_CLIENT_IP"]) {
+                $ip = $_SERVER["HTTP_CLIENT_IP"];
+            } else {
+                $ip = $_SERVER["REMOTE_ADDR"];
+            }
+        }
+        $domain = strpos($ip, ',');
+        if ($domain) {
+            $ip = substr($ip, 0, strpos($ip, ','));
+        };
         $this->load->model('tongji_model');
+        $area = json_decode($this->tongji_model->send_post('http://ip.taobao.com/service/getIpInfo.php?ip=' . $ip), true)['data']['region'];
+
         if ($id > 0 && $tp != '') {
             $data['aid'] = $id;
             $data['type'] = $tp;
             $data['pid'] = $pid ? $pid : 0;
+            $data['ip'] = $ip;
+            $data['area'] = $area;
+            $data['basic_info'] = $_SERVER['HTTP_USER_AGENT'];
             $data['tm'] = time();
             $this->tongji_model->ins($data);
         }
@@ -557,20 +635,23 @@ class Active extends CI_Controller
         echo '{"appId":"' . $appid . '","timestamp":"' . $thisTime . '","nonceStr":"' . $nonceStr . '","signature":"' . $signature . '"}';
     }
 
-    public function accept_img(){
-        $base_imgae_name =  './upload/active/u/' . date("Ymd") . time();
-        if(! empty($_FILES)){
-            if($_FILES['file']['error'] > 0){
-                echo json_encode(array('success'=>false, 'error_code'=> $_FILES["file"]["error"], 'code'=> -1, 'content'=>null,'msg'=>null,'resubmitToken'=>null ));
+    public function accept_img()
+    {
+        $base_imgae_name = './upload/active/u/' . date("Ymd") . time();
+        if (!empty($_FILES)) {
+            if ($_FILES['file']['error'] > 0) {
+                echo json_encode(array('success' => false, 'error_code' => $_FILES["file"]["error"], 'code' => -1, 'content' => null, 'msg' => null, 'resubmitToken' => null));
             }
             $img_name = $base_imgae_name . $_FILES['file']['name'];
             move_uploaded_file($_FILES['file']['tmp_name'], $img_name);
-            echo json_encode(array('success'=>true, 'code'=>0, 'content'=>$this->host . $img_name, 'msg' => null , 'resubmitToken'=> null));
-        }else{
+            echo json_encode(array('success' => true, 'code' => 0, 'content' => $this->host . $img_name, 'msg' => null, 'resubmitToken' => null));
+        } else {
             $img_file = file_get_getcontents('php://input');
-            file_put_contents($base_imgae_name.'.jpg', $img_file);
-            echo json_encode(array('success'=>true, 'code' => 0, 'content'=>$this->host. $base_imgae_name . 'jpg', 'msg'=>null, 'resubmitToken'=>null));
+            file_put_contents($base_imgae_name . '.jpg', $img_file);
+            echo json_encode(array('success' => true, 'code' => 0, 'content' => $this->host . $base_imgae_name . 'jpg', 'msg' => null, 'resubmitToken' => null));
         }
 
     }
+
+
 }

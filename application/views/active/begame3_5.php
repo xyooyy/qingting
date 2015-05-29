@@ -160,7 +160,7 @@ require('gameheader.php');
                                                             <p class="hdp-textarea" data-input="false"
                                                                style="color: #101010">
                                                                 <span class="text-main"
-                                                                      id="prizeName-text">可口可乐一箱</span>
+                                                                      id="prizeName-text"><?php echo $prize['p_title'] ?></span>
                                                             </p>
 
                                                             <p class="hdp-textarea" style="color: #101010">
