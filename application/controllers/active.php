@@ -73,7 +73,9 @@ class Active extends CI_Controller
     public function data_center()
     {
         $this->load->model('active_model');
-        $data['list'] = $this->active_model->game_active();
+
+        $data['active_games'] = $this->active_model->game_active();
+
         $this->load->library('pagination');
         $config['base_url'] = $_SERVER[PATH_INFO] . '?keyword=' . $_GET['keyword'];
         $config['total_rows'] = $this->active_model->key_con();
@@ -83,6 +85,7 @@ class Active extends CI_Controller
         $this->pagination->initialize($config);
         $data['page'] = $this->pagination->create_links();
         $data['count'] = $this->active_model->key_con();
+
         $this->load->view('active/data', $data);
     }
 

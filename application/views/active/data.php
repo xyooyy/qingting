@@ -54,7 +54,7 @@ require('gameheader.php');
                             </div>
                             <div class="bd">
                                 <ul class="list-ads">
-                                    <?php foreach ($list as $v) { ?>
+                                    <?php foreach ($active_games as $v) { ?>
                                         <li>
                                             <div class="act">
                                                 <a href=<?php echo '/active/data_info?id='  . $v['id'] ?>
