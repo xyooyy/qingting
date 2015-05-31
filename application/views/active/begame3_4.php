@@ -101,7 +101,7 @@ require('gameheader.php');
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="./begame3_5?id=<?php echo $_GET['id'] ?>">
+                                        <a href="./begame3_5?id=<?php echo $_GET['id'] ?>" class="checked_status_for_next">
                                             <i class="icon"></i>
                                             抽奖结果
                                         </a>
@@ -273,7 +273,7 @@ require('gameheader.php');
                                 <a class="pre" href="/index.php/active/begame3_3?id=<?php echo $_GET['id'] ?>">
                                     上一步
                                 </a>
-                                <a class="next" href="javascript:;" onClick="$('#prize_form1').submit();">
+                                <a class="next checked_status_for_next" href="javascript:;" >
                                     下一步
                                 </a>
                             </div>

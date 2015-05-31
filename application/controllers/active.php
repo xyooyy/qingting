@@ -182,6 +182,12 @@ class Active extends CI_Controller
     {
         $this->load->model('active_model');
         $this->load->model('prize_model');
+        $id = $this->input->get('id');
+        $is_finish_set_prize = $this->active_model->is_finish_set_prize($id);
+        if(! $is_finish_set_prize){
+            header('Location:/active/begame3_4?id=' . $id);
+        }
+
         $row = $this->active_model->info('id', $this->input->get('id'));
         $data['prize'] = $this->prize_model->info('aid', $this->input->get('id'));
         $page = $this->input->get('page');
