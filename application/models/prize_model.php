@@ -84,7 +84,7 @@ class Prize_model extends CI_Model
 
     public function get_count($where){
         $this->db->where($where);
-        return $this->db->count_all_results();
+        return $this->db->count_all_results($this->table);
     }
 
 }

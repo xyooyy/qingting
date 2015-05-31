@@ -220,6 +220,7 @@ class Active extends CI_Controller
         $this->load->model('active_model');
         $this->load->model('active_games_model');
         $this->load->model('prize_model');
+        $id = $this->input->get('id');
         $row = $this->active_model->info('id', $this->input->get('id'));
         $_GET['aid'] = $row['id'];
         $prize = $this->prize_model->info('aid', $this->input->get('aid'));
@@ -228,6 +229,7 @@ class Active extends CI_Controller
         $data['val'] = $row;
         $data['val']['prize'] = $prize;
         $data['val']['games'] = $games;
+        $data['is_finish_set_prize'] = $this->active_model->is_finish_set_prize($id)?1:0;
         $this->load->view('active/begame4', $data);
     }
 
