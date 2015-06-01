@@ -41,8 +41,9 @@ class Prize_log_model extends CI_Model
     //获取总数量
     public function con()
     {
-        $where = $this->where();
-        $where[] = " 1=1 ";
+//        $where = $this->where();
+//        $where[] = " 1=1 ";
+        $where[] = "aid=" . $this->input->get('aid');
         $sql = "select count(*) from " . $this->table . " where " . implode(' and ', $where);
         $query = $this->db->query($sql);
         $row = $query->result_array();
