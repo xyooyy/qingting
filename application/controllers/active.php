@@ -496,6 +496,7 @@ class Active extends CI_Controller
         $type = $this->input->post('type');
 
         if ($phone_html) {
+            $this->load->model('prize_model');
             $this->load->model('active_model');
             $row = $this->active_model->info('id', $id);
             $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);share_title=share_title.replace('#score#',score);document.title=str;$('#layStyle').attr('href','/public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
@@ -504,6 +505,7 @@ class Active extends CI_Controller
             $base_html = $generated_file . '1' . '.html';
             $generated_file .= '.html';
             file_put_contents($base_html, $phone_html);
+            $phone_html = str_replace('javascript:;prize_href', $this->prize_model->info('aid',$_POST['id'])['p_href']  , $phone_html);
             $phone_html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $_POST['id'], $phone_html);
             $phone_html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $phone_html);
 

@@ -169,7 +169,7 @@ require('gameheader.php');
 
                                                             <div class="btnArea">
                                                                 <a class="btn1 hdp-btn hdp-acceptPrize-btn active"
-                                                                   href="javascript:;" data-id="url" data-url="#">
+                                                                   href="javascript:;prize_href" data-id="url" data-url="#">
                                                                     立即领奖
                                                                     <div class="btn-current">
                                                                         <i class="btn-current-i tl"></i>
