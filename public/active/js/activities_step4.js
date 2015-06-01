@@ -7,6 +7,31 @@ $(function () {
         pre();
     });
     $('.next').click(function () {
+        var go_back_to_edit_prize_btn = [
+            {
+                id: "ok",
+                name: "返回添加奖项",
+                listener: function (modal) {
+                    window.location.href = rootUrl + '/active/begame3_4?id=' +hdpUrl.get("id")
+                }
+
+            },
+            {
+                id: "close",
+                name: "稍后添加",
+                classes: ['modalClose'],
+                listener: function (modal) {
+                    modal.hide();
+                }
+            }
+
+        ]
+        if($(this).data('is_finish_set_prize') == '0'){
+            modal.resetBtns(go_back_to_edit_prize_btn);
+            modal.showWithTitle("活动创建未完成!");
+            return;
+        }
+
         var btn = [
             {
                 id: "ok",

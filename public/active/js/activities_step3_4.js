@@ -125,4 +125,22 @@ $(function () {
     $("#addchou").click(function () {
          $('.prize-input').toggle();
     })
+
+    function is_can_over_set_prize(){
+        var prize_size = $('.prize-table tbody tr').length;
+        if(prize_size == 0){
+            window.modal.showAlert("奖项信息不能为空，请添加奖项");
+        }
+        return prize_size != 0;
+    }
+
+    $('.checked_status_for_next').on('click',function(){
+        return is_can_over_set_prize();
+    })
+
+    $('.next').on('click',function(){
+        if(is_can_over_set_prize()){
+            $('#prize_form1').submit();
+        }
+    })
 });

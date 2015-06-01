@@ -118,6 +118,25 @@ class Active_model extends CI_Model
         return $status;
     }
 
+    public function is_finish_set_prize($id){
+        $this->db->select('ischou,prize_t, prize_c, prize_c1');
+        $this->db->where(array('id'=>$id));
+        $query_object = $this->db->get($this->table);
+        $active = $query_object->row();
+
+        if($active->ischou == 1){
+            if($active->prize_t == '' || $active->prize_c == 0 || $active->prize_c1 == 0){
+                return false;
+            }
+            $this->load->model('prize_model');
+            $prize_count = $this->prize_model->get_count(array('aid'=>$id));
+            if($prize_count == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
 
 ?>
