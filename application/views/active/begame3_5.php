@@ -169,7 +169,7 @@ require('gameheader.php');
 
                                                             <div class="btnArea">
                                                                 <a class="btn1 hdp-btn hdp-acceptPrize-btn active"
-                                                                   href="javascript:;" data-id="url" data-url="#">
+                                                                   href="javascript:;prize_href" data-id="url" data-url="#">
                                                                     立即领奖
                                                                     <div class="btn-current">
                                                                         <i class="btn-current-i tl"></i>
@@ -199,7 +199,7 @@ require('gameheader.php');
                                                                     </div>
                                                                 </a>
                                                                 <a class="btn4 hdp-btn hdp-attention-btn"
-                                                                   href="javascript:;" data-id="url" data-url="#">
+                                                                   href="javascript:;pay_attention" data-id="url" data-url="#">
                                                                     关注我们
                                                                     <div class="btn-current">
                                                                         <i class="btn-current-i tl"></i>

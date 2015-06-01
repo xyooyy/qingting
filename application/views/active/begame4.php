@@ -199,7 +199,7 @@
                                 <a class="pre" href="./begame3_3?id=<?php echo $_GET['id'] ?>">
                                     上一步
                                 </a>
-                                <a class="next">
+                                <a class="next" data-is_finish_set_prize="<?php echo $is_finish_set_prize ?>">
                                     确认提交
                                 </a>
                             </div>
