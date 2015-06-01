@@ -199,7 +199,7 @@ require('gameheader.php');
                                                                     </div>
                                                                 </a>
                                                                 <a class="btn4 hdp-btn hdp-attention-btn"
-                                                                   href="javascript:;" data-id="url" data-url="#">
+                                                                   href="javascript:;pay_attention" data-id="url" data-url="#">
                                                                     关注我们
                                                                     <div class="btn-current">
                                                                         <i class="btn-current-i tl"></i>

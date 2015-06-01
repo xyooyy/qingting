@@ -277,7 +277,7 @@ class Active extends CI_Controller
         $row = $this->active_model->info('id', $this->input->get('id'));
         $this->input->set_cookie("cookie3_5", '1', 100);
         $this->tongji('choujiang', $this->input->get('id'));
-        header("Location:/" . $row['html_prize']);
+        header("Location:/" . $row['html_prize_not_win']);
     }
 
     public function games_getprize()
@@ -295,6 +295,7 @@ class Active extends CI_Controller
         if ($con > $row['prize_c1']) {
             $return['pirze_t'] = '';
             $return['title'] = '该抽奖已停止';
+            $return['html'] = '';
         } else {
             if ($_COOKIE['prize_count'] < 1) $this->input->set_cookie("prize_count", 1, 84600);
 
@@ -306,7 +307,10 @@ class Active extends CI_Controller
             if ($_COOKIE['prize_count'] > $row['prize_c']) {
                 $return['pirze_t'] = '';
                 $return['title'] = '你今日的抽奖次数已用光，请明日再来';
-
+                $html = file_get_contents($row['html_prize_delete_chance1']);
+                $html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $this->input->get('id'), $html);
+                $html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $this->input->get('id'), $html);
+                $return['html'] = $html;
             } else {
                 for ($i = 0; $i < count($data); $i++) {
                     $prize = rand(1, floor(100 / $data[$i]['p_size']));
@@ -324,11 +328,18 @@ class Active extends CI_Controller
                         $data_p['prize_t'] = $return['pirze_t'];
                         $data_p['prizeid'] = $data[$i]['id'];
                         $this->prize_log_model->ins($data_p);
+                        $phone_html = file_get_contents($row['html_prize1']);
+                        $phone_html = str_replace('javascript:;prize_href', $this->prize_model->info('aid',$this->input->get('id'))['p_href']  , $phone_html);
+                        $phone_html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $this->input->get('id'), $phone_html);
+                        $phone_html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $this->input->get('id'), $phone_html);
+                        $return['html'] = $phone_html;
                         break;
                     } else {
                         $return['pirze_t'] = '';
                         $return['title'] = '很遗憾，木有中奖，不要灰心 再玩一次还能参与抽奖';
                         $return['img'] = '';
+                        $return['html'] = '';
+
                     }
 
                 }

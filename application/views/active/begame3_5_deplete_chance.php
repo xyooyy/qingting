@@ -163,11 +163,11 @@ require('gameheader.php');
                                                                 再玩一次
 
                                                             </a>
-                                                            <a class="btn2 hdp-btn hdp-share-btn" href="javascript:;" style="position: static;">
+                                                            <a class="btn2 hdp-btn hdp-share-btn" href="javascript:;fenxiang" style="position: static;">
                                                                 我要分享
 
                                                             </a>
-                                                            <a class="btn3 hdp-btn hdp-attention-btn" href="javascript:;" data-id="url" data-url="http://t.cn/RzZEU8M" style="position: static;">
+                                                            <a class="btn3 hdp-btn hdp-attention-btn" href="javascript:;pay_attention" data-id="url" data-url="http://t.cn/RzZEU8M" style="position: static;">
                                                                 关注我们
 
                                                             </a>
