@@ -27,10 +27,10 @@ require('gameheader.php');
                             <li>
                                 <a class="cur" href="">投放指标数据</a>
                             </li>
-                            <li class="btn-gamelist">
-                                <a onclick="export_charts('a8b0edbbfeb411e482f2ac162d8a9b20')"
-                                   href="javascript:void(0)">导出报表</a>
-                            </li>
+<!--                            <li class="btn-gamelist">-->
+<!--                                <a onclick="export_charts('a8b0edbbfeb411e482f2ac162d8a9b20')"-->
+<!--                                   href="javascript:void(0)">导出报表</a>-->
+<!--                            </li>-->
                         </ul>
                     </div>
                 </div>

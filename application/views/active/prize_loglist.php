@@ -17,7 +17,7 @@
     <script type="text/javascript">
         var rootUrl = '';
     </script>
-    <script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script>
+<!--    <script type="text/javascript" charset="utf-8" src="./活动管理_files/get.js"></script>-->
 </head>
 <body>
 
@@ -28,32 +28,9 @@ require('gameheader.php');
     <div class="grid-c2">
         <div class="col-aside">
             <div class="sidebar">
-                <ul>
-                    <li>
-                        <a href="/active/begame1">
-                            <i class="sidebar-icon sidebar-create"></i>
-            <span>
-                新建活动
-            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/active/index" class="active">
-                            <i class="sidebar-icon sidebar-manage"></i>
-            <span>
-                活动管理
-            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/active/games">
-                            <i class="sidebar-icon sidebar-game"></i>
-                <span>
-                    游戏中心
-                </span>
-                        </a>
-                    </li>
-                </ul>
+                <?php
+                require('gameleft.php');
+                ?>
             </div>
         </div>
         <div class="col-main">

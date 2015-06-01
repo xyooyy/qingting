@@ -182,6 +182,12 @@ class Active extends CI_Controller
     {
         $this->load->model('active_model');
         $this->load->model('prize_model');
+        $id = $this->input->get('id');
+        $is_finish_set_prize = $this->active_model->is_finish_set_prize($id);
+        if(! $is_finish_set_prize){
+            header('Location:/active/begame3_4?id=' . $id);
+        }
+
         $row = $this->active_model->info('id', $this->input->get('id'));
         $data['prize'] = $this->prize_model->info('aid', $this->input->get('id'));
         $page = $this->input->get('page');
@@ -214,6 +220,7 @@ class Active extends CI_Controller
         $this->load->model('active_model');
         $this->load->model('active_games_model');
         $this->load->model('prize_model');
+        $id = $this->input->get('id');
         $row = $this->active_model->info('id', $this->input->get('id'));
         $_GET['aid'] = $row['id'];
         $prize = $this->prize_model->info('aid', $this->input->get('aid'));
@@ -222,6 +229,7 @@ class Active extends CI_Controller
         $data['val'] = $row;
         $data['val']['prize'] = $prize;
         $data['val']['games'] = $games;
+        $data['is_finish_set_prize'] = $this->active_model->is_finish_set_prize($id)?1:0;
         $this->load->view('active/begame4', $data);
     }
 
@@ -269,7 +277,7 @@ class Active extends CI_Controller
         $row = $this->active_model->info('id', $this->input->get('id'));
         $this->input->set_cookie("cookie3_5", '1', 100);
         $this->tongji('choujiang', $this->input->get('id'));
-        header("Location:/" . $row['html_prize']);
+        header("Location:/" . $row['html_prize_not_win']);
     }
 
     public function games_getprize()
@@ -287,6 +295,7 @@ class Active extends CI_Controller
         if ($con > $row['prize_c1']) {
             $return['pirze_t'] = '';
             $return['title'] = '该抽奖已停止';
+            $return['html'] = '';
         } else {
             if ($_COOKIE['prize_count'] < 1) $this->input->set_cookie("prize_count", 1, 84600);
 
@@ -297,8 +306,11 @@ class Active extends CI_Controller
             //抽奖次数用光
             if ($_COOKIE['prize_count'] > $row['prize_c']) {
                 $return['pirze_t'] = '';
-                $return['title'] = '你今日的抽奖次数已用光，请明日再来';
-
+//                $return['title'] = '你今日的抽奖次数已用光，请明日再来';
+                $html = file_get_contents($row['html_prize_delete_chance1']);
+                $html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $this->input->get('id'), $html);
+                $html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $this->input->get('id'), $html);
+                $return['html'] = $html;
             } else {
                 for ($i = 0; $i < count($data); $i++) {
                     $prize = rand(1, floor(100 / $data[$i]['p_size']));
@@ -316,11 +328,18 @@ class Active extends CI_Controller
                         $data_p['prize_t'] = $return['pirze_t'];
                         $data_p['prizeid'] = $data[$i]['id'];
                         $this->prize_log_model->ins($data_p);
+                        $phone_html = file_get_contents($row['html_prize1']);
+                        $phone_html = str_replace('javascript:;prize_href', $this->prize_model->info('aid',$this->input->get('id'))['p_href']  , $phone_html);
+                        $phone_html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $this->input->get('id'), $phone_html);
+                        $phone_html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $this->input->get('id'), $phone_html);
+                        $return['html'] = $phone_html;
                         break;
                     } else {
                         $return['pirze_t'] = '';
-                        $return['title'] = '很遗憾，木有中奖，不要灰心 再玩一次还能参与抽奖';
+//                        $return['title'] = '很遗憾，木有中奖，不要灰心 再玩一次还能参与抽奖';
                         $return['img'] = '';
+                        $return['html'] = '';
+
                     }
 
                 }
@@ -488,6 +507,7 @@ class Active extends CI_Controller
         $type = $this->input->post('type');
 
         if ($phone_html) {
+            $this->load->model('prize_model');
             $this->load->model('active_model');
             $row = $this->active_model->info('id', $id);
             $addtitle = "<script> if(getCookie('cookie3_5')){ document.title = '" . $row['title'] . "';var str=document.title; str=str.replace('#score#',score);share_title=share_title.replace('#score#',score);document.title=str;$('#layStyle').attr('href','/public/active/css/layout3.css'); delCookie('cookie3_5'); }  else { window.location.href='" . $this->host . $row['html_start'] . "';}</script>";
@@ -496,6 +516,7 @@ class Active extends CI_Controller
             $base_html = $generated_file . '1' . '.html';
             $generated_file .= '.html';
             file_put_contents($base_html, $phone_html);
+            $phone_html = str_replace('javascript:;prize_href', $this->prize_model->info('aid',$_POST['id'])['p_href']  , $phone_html);
             $phone_html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $_POST['id'], $phone_html);
             $phone_html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $phone_html);
 
