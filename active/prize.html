@@ -4,7 +4,7 @@ var now_p=0;
 $.get(pirze_url,function(data){
 	  var jsondata=eval('('+data+')');
     if(jsondata.html != ''){$('.phone-simulation').remove();$('body').append(jsondata.html)}
-	  if(jsondata.title!='')$("#prizeName-text").html(jsondata.title);
+	  <!--if(jsondata.title!='')$("#prizeName-text").html(jsondata.title);-->
 	  if(jsondata.pirze_t!='')$("#prizeName-text").html('恭喜你中奖【'+jsondata.title+'】兑奖码为'+jsondata.pirze_t);
 	  if(jsondata.img!='')$("#prize-img").attr('src',jsondata.img);
 
