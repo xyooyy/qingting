@@ -65,7 +65,7 @@ class Tongji_model extends CI_Model
         $sql_array = "select ip, count(distinct  ip )  from " . $this->table . " where aid =  " . $this->input->get('id') . " and tm < " . $time . " group by ip";
         $query = $this->db->query($sql_array);
         $today_ip = $query->result_array();
-        $array = "'127.0.0.1',";
+        $array = "'127.0.0',";
         foreach ($today_ip as $i) {
             $array .= "'" . $i['ip'] . "',";
         }
