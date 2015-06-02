@@ -306,6 +306,10 @@ class Active extends CI_Controller
             //抽奖次数用光
             if ($_COOKIE['prize_count'] > $row['prize_c']) {
                 $return['pirze_t'] = '';
+<<<<<<< HEAD
+=======
+                $return['title'] = '';
+>>>>>>> dev
 //                $return['title'] = '你今日的抽奖次数已用光，请明日再来';
                 $html = file_get_contents($row['html_prize_delete_chance1']);
                 $html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $this->input->get('id'), $html);
@@ -336,6 +340,10 @@ class Active extends CI_Controller
                         break;
                     } else {
                         $return['pirze_t'] = '';
+<<<<<<< HEAD
+=======
+                        $return['title'] = '';
+>>>>>>> dev
 //                        $return['title'] = '很遗憾，木有中奖，不要灰心 再玩一次还能参与抽奖';
                         $return['img'] = '';
                         $return['html'] = '';
