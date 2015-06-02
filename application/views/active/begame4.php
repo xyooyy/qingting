@@ -158,8 +158,8 @@
                                         <td><?php echo $val['prize']['p_title'] ?></td>
                                         <td><?php echo $val['prize']['p_name'] ?></td>
                                         <td><?php echo $val['prize']['p_count'] ?></td>
-                                        <td><?php echo $val['prize']['p_size'] ?></td>
-                                        <td><?php echo $val['prize']['p_size'] ?></td>
+                                        <td><?php echo $val['prize']['p_size'] . '%' ?></td>
+                                        <td><?php echo $val['prize']['p_size'] . '%' ?></td>
                                         </tr>
                                         </tbody>
                                     </table>
