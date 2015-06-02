@@ -138,7 +138,7 @@ function main() {
                     break;
                 case o:
                     n = new P(Q);
-                    a.createLosePage();
+                    a.createLosePage(p);
                     if (J < p) {
                         J = p;
                         c.localStorage.setItem("renzhe_bastScore", "" + J)
@@ -725,8 +725,8 @@ function main() {
                 a.drawBtn(a.btns.btn_resume)
             }
         };
-        a.createLosePage = function () {
-            gameOverHandlerFunction();
+        a.createLosePage = function (score) {
+            gameOverHandlerFunction(score);
             if (!a.btns.btn_back1) {
                 a.btns.btn_back1 = {img: c.getImage("an_3"),
                     x: 50, y: 282, w: 96, h: 26, pressed: 0};
