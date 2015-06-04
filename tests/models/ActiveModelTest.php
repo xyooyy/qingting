@@ -15,17 +15,36 @@ class ActiveModelTest extends CIUnit_TestCase
         parent::setUp();
         $this->CI->load->model('active_model');
         $this->_pcm = $this->CI->active_model;
+        $this->session_user_id = 10;
+        $session = array('userid'=>$this->session_user_id);
+        $this->_pcm->session->set_userdata($session);
+
+    }
+
+    public function tearDown(){
+        $clear_data_sql = "truncate table " . $this->_pcm->table;
+        $this->_pcm->db->query($clear_data_sql);
     }
 
     public function test_where(){
-        $session_user_id = array('userid'=>'10');
-        $expend = array('id > 0', 'userid=10');
-        $get_data = '';
-        $this->_pcm->session->set_userdata($session_user_id);
-
+        $expend = array('id > 0', 'userid='.$this->session_user_id);
+        $get_data = null;
+      
         $get_data = $this->_pcm ->where();
 
         $this->assertEquals($expend, $get_data);
+    }
+
+    public function test_all(){
+        $expend_all_count = 0;
+        $get_data = null;
+        $order='id';
+        $start=0;
+        $end=10;
+
+        $get_data = $this->_pcm->all($order, $start,$end);
+
+        $this->assertEquals($expend_all_count, count($get_data));
     }
 
 }
