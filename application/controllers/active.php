@@ -71,8 +71,15 @@ class Active extends CI_Controller
 
     public function index()
     {
+        $order = $order = $this->input->get('order') > 0 ? $this->input->get('order') : 'id ';
+
+        //分页开始值
+        $start = $_GET['p'] ? ($_GET['p']) : 0;
+        //分页结束值
+        $end = $_GET['end'] ? $_GET['end'] : 10;
+
         $this->load->model('active_model');
-        $data['list'] = $this->active_model->all();
+        $data['list'] = $this->active_model->all($order,$start,$end);
         $this->load->library('pagination');
         $config['base_url'] = '/active/index?';
         $config['total_rows'] = $this->active_model->con();
