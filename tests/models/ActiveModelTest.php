@@ -47,4 +47,30 @@ class ActiveModelTest extends CIUnit_TestCase
         $this->assertEquals($expend_all_count, count($get_data));
     }
 
+    public function test_insert(){
+        $expend_active_id = 1;
+        $get_data;
+        $data= array(
+                'title' => '吃饭了',
+                'type' => 1,
+                'fenxiangt'=>'饭好了#score#吃不吃吧',
+                'fenxiangc'=>'听见没',
+                'starttime'=>'1430390820',
+                'endtime'=>'1430995620',
+                'gid'=>3,
+                'ischou'=>1,
+                'prize_t'=>'qt',
+                'prize_c'=>3,
+                'prize_c1'=>100,
+                'prize_s'=>0,
+                'userid'=>$this->session_user_id
+            );
+
+        $get_data = $this->_pcm->ins($data);
+
+        $this->assertEquals($expend_active_id, $get_data);
+
+
+    }
+
 }
