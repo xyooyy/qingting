@@ -35,7 +35,7 @@ class ActiveModelTest extends CIUnit_TestCase
         $this->assertEquals($expend, $get_data);
     }
 
-    public function test_all(){
+    public function test_all_before_insert_data(){
         $expend_all_count = 0;
         $get_data = null;
         $order='id';
@@ -69,8 +69,35 @@ class ActiveModelTest extends CIUnit_TestCase
         $get_data = $this->_pcm->ins($data);
 
         $this->assertEquals($expend_active_id, $get_data);
+    }
 
+    public function test_all_after_insert_data(){
+            $expend_all_count = 1;
+            $get_data = null;
+            $order='id';
+            $start=0;
+            $end=10;
 
+            $data= array(
+                'title' => '吃饭了',
+                'type' => 1,
+                'fenxiangt'=>'饭好了#score#吃不吃吧',
+                'fenxiangc'=>'听见没',
+                'starttime'=>'1430390820',
+                'endtime'=>'1430995620',
+                'gid'=>3,
+                'ischou'=>1,
+                'prize_t'=>'qt',
+                'prize_c'=>3,
+                'prize_c1'=>100,
+                'prize_s'=>0,
+                'userid'=>$this->session_user_id
+            );
+
+            $this->_pcm->ins($data);
+            $get_data = $this->_pcm->all($order, $start,$end);
+
+            $this->assertEquals($expend_all_count, count($get_data));
     }
 
 }
