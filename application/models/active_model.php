@@ -26,7 +26,7 @@ class Active_model extends CI_Model
 
     public function all()
     {
-        $where = " where " . implode(" and ", $this->where());
+        $where = " where " . implode(" and ", array('id > 0', 'userid='.$this->session->userdata('userid')));
         //排序方式,默认id排序
         $order = $this->input->get('order') > 0 ? $this->input->get('order') : 'id ';
         //分页结束值
@@ -41,7 +41,7 @@ class Active_model extends CI_Model
     }
     //根据搜索条件筛选
     public function game_active(){
-        $where = " where " . implode(" and ", $this->where());
+        $where = " where " . implode(" and ", array('id > 0', 'userid='.$this->session->userdata('userid')));
         $where .= $_GET['keyword'] ?  " and  active.title='" . $_GET['keyword'] . "'" : '';
         //排序方式,默认id排序
         $order = $this->input->get('order') > 0 ? $this->input->get('order') : 'id ';
@@ -57,7 +57,7 @@ class Active_model extends CI_Model
     //根据条件keyword获取总数量
     public function key_con()
     {
-        $where = " where " . implode(" and ", $this->where());
+        $where = " where " . implode(" and ", array('id > 0', 'userid='.$this->session->userdata('userid')));
         $where .= $_GET['keyword'] ?  " and  title='" . $_GET['keyword'] . "'" : '';
         $sql = "select count(*) from " . $this->table . $where;
         $query = $this->db->query($sql);
@@ -68,7 +68,7 @@ class Active_model extends CI_Model
     //获取总数量
     public function con()
     {
-        $where = $this->where();
+        $where = array('id > 0', 'userid='.$this->session->userdata('userid'));
         $where[] = " 1=1 ";
         $sql = "select count(*) from " . $this->table . " where " . implode(' and ', $where);
         $query = $this->db->query($sql);
