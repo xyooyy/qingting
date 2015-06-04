@@ -24,15 +24,11 @@ class Active_model extends CI_Model
         return $where;
     }
 
-    public function all()
+    public function all($order='id', $start=0, $end=10)
     {
+
         $where = " where " . implode(" and ", array('id > 0', 'userid='.$this->session->userdata('userid')));
         //排序方式,默认id排序
-        $order = $this->input->get('order') > 0 ? $this->input->get('order') : 'id ';
-        //分页结束值
-        $end = $_GET['end'] ? $_GET['end'] : 10;
-        //分页开始值
-        $start = $_GET['p'] ? ($_GET['p']) : 0;
         $sql = "select * from " . $this->table . $where . " order by " . $order  . " desc limit " . $start . "," . $end;
 
         $query = $this->db->query($sql);
