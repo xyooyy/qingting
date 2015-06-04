@@ -62,6 +62,7 @@ class Tongji_model extends CI_Model
     public function return_ip($time)
     {
         $end_time = $time + 24*60*60;
+        //当前时间之前的所有不重复ip
         $sql_array = "select ip, count(distinct  ip )  from " . $this->table . " where aid =  " . $this->input->get('id') . " and tm < " . $time . " group by ip";
         $query = $this->db->query($sql_array);
         $today_ip = $query->result_array();
@@ -70,6 +71,7 @@ class Tongji_model extends CI_Model
             $array .= "'" . $i['ip'] . "',";
         }
         $array = substr($array, 0, -1);
+        //找到大于当前时间小于当前时间24小时之后的不重复ip是否在 之前查找到的$sql_array中
         $sql = "select ip from " . $this->table . " where aid =  " . $this->input->get('id') . " and tm >  " . $time .  " and tm < " . $end_time  . " and ip in (  "  . $array . ')' ;
         $query_array = $this->db->query($sql);
 
