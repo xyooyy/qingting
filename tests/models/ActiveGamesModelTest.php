@@ -20,43 +20,73 @@ class ActiveGamesModelTest extends CIUnit_TestCase
     {
         parent::setUp();
 
-        /*
-        * this is an example of how you would load a product model,
-        * load fixture data into the test database (assuming you have the fixture yaml files filled with data for your tables),
-        * and use the fixture instance variable
-
-        $this->CI->load->model('Product_model', 'pm');
-        $this->pm=$this->CI->pm;
-        $this->dbfixt('users', 'products');
-
-        the fixtures are now available in the database and so:
-        $this->users_fixt;
-        $this->products_fixt;
-
-        */
-
         $this->CI->load->model('active_games_model');
         $this->_pcm = $this->CI->active_games_model;
     }
 
-//	public function tearDown()
-//	{
-//		parent::tearDown();
-//	}
+	public function tearDown()
+	{
+		parent::tearDown();
+	}
 
     // ------------------------------------------------------------------------
+    /**
+     * // * @dataProvider where_provider
+     */
 
-    public function test_get_field()
+
+    public function test_where($type, $gid, $expend)
     {
-        $actual = $this->_pcm->get_field('title', 'gid', '1');
-        $this->assertEquals('1010', $actual['title']);
+
+        $sql = $this->_pcm->where($type, $gid);
+        $this->assertEquals($expend, $sql);
     }
 
-    public function test_edit()
+    public function where_provider()
     {
-        $data['title'] = 'test';
-        $update_data = $this->_pcm->edit($data, '2');
-        $this->assertEquals(true, $update_data);
+        return array(
+            array('', '1', array('gid > 0', 'gid=1')),
+            array('', '', array('gid > 0')),
+            array('', '4', array('gid > 0', 'gid=4'))
+        );
+    }
+
+    /**
+     * // * @dataProvider all_provider
+     */
+
+
+    public function test_all($type, $gid, $order, $p_start, $p_end, $expend)
+    {
+        $active_games_data = $this->_pcm->all($type, $gid, $order, $p_start, $p_end);
+        $this->assertEquals($expend, count($active_games_data));
+    }
+
+    public function all_provider()
+    {
+        return array(
+            array('', '', '', 1, 15, 15),
+            array('', '', '', 1, 5, 5),
+            array('', '1', '', 1, 15, 1)
+        );
+    }
+
+    /**
+     * // * @dataProvider con_provider
+     */
+
+    public function test_con($type, $gid, $expend)
+    {
+        $con = $this->_pcm->con($type, $gid);
+        $this->assertEquals($expend, $con);
+    }
+
+    public function con_provider()
+    {
+        return array(
+            array('', '1', 1),
+            array('', '', 15)
+        );
     }
 
     /**
@@ -76,6 +106,44 @@ class ActiveGamesModelTest extends CIUnit_TestCase
 
         );
     }
+
+    /**
+     * // * @dataProvider get_field_provider
+     */
+
+
+    public function test_get_field($field,$tfrom, $tval,$expend)
+    {
+        $actual = $this->_pcm->get_field($field, $tfrom, $tval);
+        $this->assertEquals($expend, $actual[$field]);
+    }
+
+    public function get_field_provider(){
+        return array(
+            array('title','gid','1','1010'),
+            array('href','gid','3','bugeitang')
+        );
+    }
+    /**
+     * // * @dataProvider edit_provider
+     */
+
+    public function test_edit($val,$new_data,$gid)
+    {
+        $data[$val] = $new_data;
+        $this->_pcm->edit($data, $gid);
+        $update_data = $this->_pcm->info('gid',$gid);
+        $this->assertEquals($new_data, $update_data[$val]);
+    }
+
+    public function edit_provider(){
+        return array(
+            array('title','test','2'),
+            array('href','test1','2')
+
+        );
+    }
+
 
 
     // ------------------------------------------------------------------------

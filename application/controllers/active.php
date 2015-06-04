@@ -115,7 +115,7 @@ class Active extends CI_Controller
         $this->load->model('active_model');
         $this->load->model('active_games_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        $active_games = $this->active_games_model->all();
+        $active_games = $this->active_games_model->all($this->input->get('type'),$this->input->get('gid'),$this->input->get('order'),$_GET['p'],$_GET['end']);
         foreach ($active_games as $index => $game) {
             $href = $this->host . 'active_games/' . $game['href'] . '/';
             $active_games[$index]['qrcode'] = $this->host . $this->erweima($href);
@@ -568,7 +568,7 @@ class Active extends CI_Controller
     public function  games()
     {
         $this->load->model('active_games_model');
-        $data['list'] = $this->active_games_model->all();
+        $data['list'] = $this->active_games_model->all($this->input->get('type'),$this->input->get('gid'),$this->input->get('order'),$_GET['p'],$_GET['end']);
         $this->load->view('active/game', $data);
     }
 

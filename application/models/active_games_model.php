@@ -13,23 +13,23 @@ class Active_games_model extends CI_Model
      * 获取信息
      * @return array
      */
-    public function where()
+    public function where($type,$gid)
     {
         $where[] = 'gid > 0';
-        if ($this->input->get('type')) $where[] = "type like '%" . $this->input->get('type') . "%'";
-        if ($this->input->get('gid')) $where[] = "gid=" . $this->input->get('gid');
+        if ($type) $where[] = "type like '%" . $type . "%'";
+        if ($gid) $where[] = "gid=" . $gid;
         return $where;
     }
 
-    public function all()
+    public function all($type,$gid,$order,$p_start,$p_end)
     {
-        $where = " where " . implode(" and ", $this->where());
+        $where = " where " . implode(" and ", $this->where($type,$gid));
         //排序方式,默认id排序
-        $order = $this->input->get('order') > 0 ? $this->input->get('order') : 'gid ';
+        $order = $order > 0 ? $order : 'gid ';
         //分页开始值
-        $start = $_GET['p'] ? ($_GET['p'] - 1) * $end : 0;
+        $end = $p_end ? $p_end : 15;
+        $start = $p_start ? ($p_start - 1) * $end : 0;
         //分页结束值
-        $end = $_GET['end'] ? $_GET['end'] : 15;
         $sql = "select * from " . $this->table . $where . " order by " . $order . " limit " . $start . "," . $end;
 
         $query = $this->db->query($sql);
@@ -38,9 +38,9 @@ class Active_games_model extends CI_Model
     }
 
     //获取总数量
-    public function con()
+    public function con($type,$gid)
     {
-        $where = $this->where();
+        $where = $this->where($type,$gid);
         $where[] = " 1=1 ";
         $sql = "select count(*) from " . $this->table . " where " . implode(' and ', $where);
         $query = $this->db->query($sql);
