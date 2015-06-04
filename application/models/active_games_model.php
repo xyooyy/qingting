@@ -82,9 +82,9 @@ class Active_games_model extends CI_Model
     }
 
     //修改信息
-    public function edit($data, $id)
+    public function edit($data, $gid)
     {
-        $where = array('id' => $id, 'id >' => 0);
+        $where = array('gid' => $gid);
         $this->db->where($where);
         $status = $this->db->update($this->table, $data);
         return $status;
