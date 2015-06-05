@@ -144,7 +144,29 @@ class ActiveGamesModelTest extends CIUnit_TestCase
         );
     }
 
+    public function test_insert(){
+        $data= array(
+            'gid' => 16,
+            'title' => 'test',
+            'href'=>'test',
+            'info'=>'我就是来测试的，不要想太多',
+            'img'=>'/upload/test.png',
+            'img1'=>'/upload/test.png1',
+            'img2'=>'/upload/test.png2'
+        );
+        $expend = count($this->_pcm->all('','','', 0,20)) + 1;
+        $return_data = $this->_pcm->ins($data);
+        $get_data = count($this->_pcm->all('','','', 0,20));
+        $this->assertEquals($expend, $get_data);
 
+    }
+    public function test_del(){
+        $expend = count($this->_pcm->all('','','', 0,20)) - 1;
+        $return_data = $this->_pcm->del(16);
+        $get_data = count($this->_pcm->all('','','', 0,20));
+        $this->assertEquals($expend, $get_data);
+
+    }
 
     // ------------------------------------------------------------------------
 

@@ -76,8 +76,7 @@ class Active_games_model extends CI_Model
     //删除信息
     public function del($id)
     {
-        $this->db->where("id>0");
-        $this->db->where_in("id", $id);
+        $this->db->where_in("gid", $id);
         $this->db->delete($this->table);
     }
 
