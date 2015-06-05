@@ -54,7 +54,7 @@ class Admin extends CI_Controller
     public function main_left($d)
     {
         $this->load->Model('userlogin_model');
-        $data['list'] = $this->userlogin_model->tab();
+        $data['list'] = $this->userlogin_model->tab($_SESSION['userid']);
 
         $data['now_left'] = $d;
         $this->load->view('common/left', $data);
@@ -86,7 +86,7 @@ class Admin extends CI_Controller
     {
         if (isset($_SESSION['userid'])) {
             $this->load->Model('userlogin_model');
-            $this->userlogin_model->del_tab($data);
+            $this->userlogin_model->del_tab($_GET['id']);
             $this->main_left(2);
         } else {
             $this->logout();

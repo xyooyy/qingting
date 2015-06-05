@@ -36,15 +36,14 @@ class Userlogin_model extends CI_Model
     public function tab($data)
     {
         $this->db->order_by('id', 'desc');
-        $query = $this->db->get_where('tab', array("userid" => $_SESSION['userid']));
+        $query = $this->db->get_where('tab', array("userid" => $data));
         $row = $query->result_array();
         return $row;
     }
 
     //删除主题
-    public function del_tab()
+    public function del_tab($id)
     {
-        $id = $_GET['id'];
         $this->db->where('id', $id);
         $this->db->delete('tab');
         $this->db->query("delete from games_my where type=" . $id);
