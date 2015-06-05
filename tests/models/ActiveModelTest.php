@@ -2,7 +2,7 @@
 
 
 class ActiveModelTest extends CIUnit_TestCase
-{    
+{
     private $_pcm;
 
     public function __construct($name = NULL, array $data = array(), $dataName = '')
@@ -27,9 +27,9 @@ class ActiveModelTest extends CIUnit_TestCase
     }
 
     public function test_where(){
-        $expend = array('id > 0', 'userid='.$this->session_user_id);
+        $expend = array('id > 0', 'userid='. $this->session_user_id);
         $get_data = null;
-      
+
         $get_data = $this->_pcm ->where();
 
         $this->assertEquals($expend, $get_data);

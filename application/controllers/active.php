@@ -30,26 +30,26 @@ class Active extends CI_Controller
 
         $data['active'] = $this->active_model->get_field('title' , 'gid' ,'id', $this->input->get('id'));
         $data['game'] = $this->active_games_model->get_field('img', 'gid', $data['active']['gid']);
-        $data['count']['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang');
-        $data['count']['click'] = $this->tongji_model->key_con('type', 'start');
-        $data['count']['uv'] = count($this->tongji_model->dis_con());
-        $data['area'] = $this->tongji_model->con_area();
-        $data['stay'] = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
-        $data['basic_info'] = $this->tongji_model->basic_info();
+        $data['count']['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang',$this->input->get('id'));
+        $data['count']['click'] = $this->tongji_model->key_con('type', 'start',$this->input->get('id'));
+        $data['count']['uv'] = count($this->tongji_model->dis_con($_GET['time'],$this->input->get('id')));
+        $data['area'] = $this->tongji_model->con_area($this->input->get('id'));
+        $data['stay'] = '[' . implode(',', $this->tongji_model->active_stay($this->input->get('id'))) . ']';
+        $data['basic_info'] = $this->tongji_model->basic_info($this->input->get('id'));
 
         $today = strtotime(date('Y-m-d 00:00:00', time()));
         $yestday = strtotime(date('Y-m-d 00:00:00', time()-24*60*60));
-        $data['return_visit']['today'] = $this->tongji_model->return_ip($today) * 100;
-        $data['return_visit']['yestday'] = $this->tongji_model->return_ip($yestday) * 100;
+        $data['return_visit']['today'] = $this->tongji_model->return_ip($today,$this->input->get('id')) * 100;
+        $data['return_visit']['yestday'] = $this->tongji_model->return_ip($yestday,$this->input->get('id')) * 100;
         $this->load->view('active/data_center', $data);
     }
 
     public function date_info()
     {
         $this->load->model('tongji_model');
-        $fenxiang = $this->tongji_model->key_con('type', 'fenxiang');
-        $click = $this->tongji_model->key_con('type', 'start');
-        $uv = count($this->tongji_model->dis_con());
+        $fenxiang = $this->tongji_model->key_con('type', 'fenxiang',$this->input->get('id'));
+        $click = $this->tongji_model->key_con('type', 'start',$this->input->get('id'));
+        $uv = count($this->tongji_model->dis_con($_GET['time'],$this->input->get('id')));
 
         echo json_encode(array('success' => true, 'fenxiang' => $fenxiang, 'click_count' => $click, 'players_count' => $uv, 'date' => date('Y-m-d', $_GET['time'])));
 
@@ -58,8 +58,8 @@ class Active extends CI_Controller
     public function activity_count_visit()
     {
         $this->load->model('tongji_model');
-        $info = '[' . implode(',', $this->tongji_model->active_stay()) . ']';
-        $count_visit = $this->tongji_model->basic_info();
+        $info = '[' . implode(',', $this->tongji_model->active_stay($this->input->get('id'))) . ']';
+        $count_visit = $this->tongji_model->basic_info($this->input->get('id'));
 //        print_r($count_visit);
         echo json_encode(array('count_visit' => $count_visit,'stay_time' => $info));
     }
