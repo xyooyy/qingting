@@ -175,5 +175,27 @@ class ActiveModelTest extends CIUnit_TestCase
             );
     }
 
+    /**
+        *@dataProvider edit_provider
+    */
+    public function test_edit($data, $id){
+        $expend = true;
+        $this->_pcm -> ins($this->data);
+
+        $get_data = $this->_pcm->edit($data, $id);
+
+        /**
+            *u can use get_field to deep test
+        */
+        $this->assertEquals($expend, $get_data);
+    }
+
+    public function edit_provider(){
+        return array(
+                array(array('gid' => 4), 1),
+                array(array('endtime' =>1430995620 ), 1),
+            );
+    }
+
 
 }
