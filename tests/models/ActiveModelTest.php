@@ -161,7 +161,6 @@ class ActiveModelTest extends CIUnit_TestCase
         $data2 = $this->data;
         $data2['title'] = '吃饭了2';
         $data2['gid'] = 100;
-        var_dump($data2);
         $this->_pcm->ins($data2);
 
         $get_data = $this->_pcm->get_field($field_title,  $field_gid, $tfrom, $tval);
