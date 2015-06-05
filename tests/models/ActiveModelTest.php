@@ -134,6 +134,9 @@ class ActiveModelTest extends CIUnit_TestCase
         $start = 0;
         $end = 10;
         $this->_pcm -> ins($this->data);
+        $data2 = $this->data;
+        $data2['title'] = '吃饭了2';
+        $this->_pcm->ins($data2);
         
         $get_data = $this->_pcm->info($tfrom, $tvalue);
 
@@ -145,7 +148,33 @@ class ActiveModelTest extends CIUnit_TestCase
                 array('gid', $this->data['gid'], $this->data),
             );
     }
+    /**
+        *@dataProvider get_field_provider
+    */
+    public function  test_get_field($field_title,$field_gid,$tfrom, $tval, $expend){
+        $get_data=null;
+        $order = 'id';
+        $start = 0;
+        $end = 10;
+        $this->_pcm -> ins($this->data);
 
+        $data2 = $this->data;
+        $data2['title'] = '吃饭了2';
+        $data2['gid'] = 100;
+        var_dump($data2);
+        $this->_pcm->ins($data2);
+
+        $get_data = $this->_pcm->get_field($field_title,  $field_gid, $tfrom, $tval);
+
+        $this->assertEquals($expend, $get_data);
+    }
+
+    public function get_field_provider(){
+        return array(
+                array('title', 'gid', 'gid', 3, array('title'=>'吃饭了', 'gid'=>3)),
+                array('title', 'gid', 'gid', 100, array('title'=>'吃饭了2', 'gid'=>100)),
+            );
+    }
 
 
 }
