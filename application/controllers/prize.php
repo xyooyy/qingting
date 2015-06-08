@@ -16,7 +16,7 @@ class Prize extends CI_Controller
         //echo $_GET['id'];
         $this->load->model('prize_model');
         $_GET['aid'] = $_GET['id'];
-        $data['list'] = $this->prize_model->all();
+        $data['list'] = $this->prize_model->all($this->input->get('aid'),$this->input->get('order'),$_GET['p'],$_GET['end']);
         $this->load->view('active/prizelist', $data);
     }
 

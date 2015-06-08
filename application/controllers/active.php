@@ -296,7 +296,7 @@ class Active extends CI_Controller
         $row = $this->active_model->info('id', $this->input->get('id'));
         $_GET['aid'] = $this->input->get('id');
         $_GET['order'] = 'p_size';
-        $data = $this->prize_model->all();
+        $data = $this->prize_model->all($this->input->get('aid'),$this->input->get('order'),$_GET['p'],$_GET['end']);
         $con = $this->prize_log_model->con();
 
         if ($con > $row['prize_c1']) {
