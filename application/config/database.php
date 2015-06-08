@@ -1,4 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = '127.0.0.1';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
+$db['default']['password'] = 'qingting';
 $db['default']['database'] = 'qingting';
 
 /*$db['default']['hostname'] = 'localhost';
@@ -71,6 +71,24 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+
+
+
+$db['yiqixiu']['hostname'] = '127.0.0.1';
+$db['yiqixiu']['username'] = 'root';
+$db['yiqixiu']['password'] = 'qingting';
+$db['yiqixiu']['database'] = 'yiqixiu';
+$db['yiqixiu']['dbdriver'] = 'mysql';
+$db['yiqixiu']['dbprefix'] = '';
+$db['yiqixiu']['pconnect'] = TRUE;
+$db['yiqixiu']['db_debug'] = TRUE;
+$db['yiqixiu']['cache_on'] = FALSE;
+$db['yiqixiu']['cachedir'] = '';
+$db['yiqixiu']['char_set'] = 'utf8';
+$db['yiqixiu']['dbcollat'] = 'utf8_general_ci';
+$db['yiqixiu']['swap_pre'] = '';
+$db['yiqixiu']['autoinit'] = TRUE;
+$db['yiqixiu']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
