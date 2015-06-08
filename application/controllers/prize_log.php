@@ -10,7 +10,7 @@ class Prize_log extends CI_Controller
         //echo $_GET['id'];
         $this->load->model('prize_log_model');
 
-        $data['list'] = $this->prize_log_model->all();
+        $data['list'] = $this->prize_log_model->all($this->input->get('aid'),$this->input->get('prizeid'),$this->input->get('order'),$_GET['p'],$_GET['end']);
         $this->load->view('active/prize_loglist', $data);
     }
 

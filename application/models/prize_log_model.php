@@ -14,23 +14,23 @@ class Prize_log_model extends CI_Model
      * 获取信息
      * @return array
      */
-    public function where()
+    public function where($aid,$prizeid)
     {
         $where[] = 'a.id > 0';
-        if ($this->input->get('aid')) $where[] = "a.aid=" . $this->input->get('aid');
-        if ($this->input->get('prizeid')) $where[] = "a.prizeid=" . $this->input->get('prizeid');
+        if ($aid) $where[] = "a.aid=" . $aid;
+        if ($prizeid) $where[] = "a.prizeid=" . $prizeid;
         return $where;
     }
 
-    public function all()
+    public function all($aid,$prizeid,$order,$p_start,$p_end)
     {
-        $where = " where " . implode(" and ", $this->where());
+        $where = " where " . implode(" and ", $this->where($aid,$prizeid));
         //排序方式,默认id排序
-        $order = $this->input->get('order') > 0 ? $this->input->get('order') : 'a.id ';
+        $order = $order > 0 ? $order : 'a.id ';
         //分页开始值
-        $start = $_GET['p'] ? ($_GET['p'] - 1) * $end : 0;
+        $start = $p_start ? ($p_start - 1) * $end : 0;
         //分页结束值
-        $end = $_GET['end'] ? $_GET['end'] : 20;
+        $end = $p_end ? $p_end : 20;
         $sql = "select a.*,b.p_name from " . $this->table . " a left join " . $this->table_p . " b  on a.prizeid=b.id " . $where . " order by " . $order . " limit " . $start . "," . $end;
 
         $query = $this->db->query($sql);
@@ -39,11 +39,11 @@ class Prize_log_model extends CI_Model
     }
 
     //获取总数量
-    public function con()
+    public function con($aid)
     {
 //        $where = $this->where();
 //        $where[] = " 1=1 ";
-        $where[] = "aid=" . $this->input->get('aid');
+        $where[] = "aid=" . $aid;
         $sql = "select count(*) from " . $this->table . " where " . implode(' and ', $where);
         $query = $this->db->query($sql);
         $row = $query->result_array();

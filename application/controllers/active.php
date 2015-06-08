@@ -297,7 +297,7 @@ class Active extends CI_Controller
         $_GET['aid'] = $this->input->get('id');
         $_GET['order'] = 'p_size';
         $data = $this->prize_model->all($this->input->get('aid'),$this->input->get('order'),$_GET['p'],$_GET['end']);
-        $con = $this->prize_log_model->con();
+        $con = $this->prize_log_model->con($this->input->get('aid'));
 
         if ($con > $row['prize_c1']) {
             $return['pirze_t'] = '';
@@ -324,7 +324,7 @@ class Active extends CI_Controller
                     $prize = rand(1, floor(100 / $data[$i]['p_size']));
 
                     if ($prize == 1) {
-                        $con = $this->prize_log_model->con();
+                        $con = $this->prize_log_model->con($this->input->get('aid'));
                         if ($con > $data[$i]['p_count']) {
                             continue;
                         }
