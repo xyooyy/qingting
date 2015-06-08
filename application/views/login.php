@@ -9,45 +9,75 @@
     <script src="/public/js/jquery-1.7.2.min.js"></script>
 </head>
 <body>
-<img src="/public/images/login_bg.jpg" id="loginBg"/>
-
-<div id="wrapper_login">
+<img src="/public/images/login_bg.jpg" id="loginBg" />
+<div id="wrapper_login" class="wrapper_login">
     <div id="menu">
         <div id="left"></div>
         <div id="right"></div>
         <h2></h2>
-
         <div class="clear"></div>
     </div>
     <div class="body">
         <form action="/index.php/admin/login" method="post">
             <p>
-                <input type="text" name="username" id="username" size="40" class="text"
-                       value="<?php echo $_GET['username'] ?>">
+
+                <input type="text" name="username" id="username"  size="40" class="text" value="<?php echo $_GET['username']?>">
                 <br>
             </p>
-
             <p>
 
-                <input type="password" name="password" id="password" size="40" class="text"
-                       value="<?php echo $_GET['password'] ?>">
+                <input type="password" name="password" id="password"   size="40" class="text" value="<?php echo $_GET['password']?>">
                 <br>
             </p>
-
             <p>
 
-                <input type="text" name="reg_rand" class="text" id="yan" value=""><img id="code" alt="看不清，换一张"
-                                                                                       onclick="location.href='?username='+document.getElementById('username').value;"
-                                                                                       src="http://<?php echo $_SERVER['HTTP_HOST'];?>/index.php/admin/rand_create"
-                                                                                       title="换张图片"/>
+                <input type="text" name="reg_rand" class="text" id="yan" value=""  ><img id="code" alt="看不清，换一张"
+                                                                                         onclick="location.href='?username='+document.getElementById('username').value;"
+                                                                                         src="http://<?php echo $_SERVER['HTTP_HOST'];?>/index.php/admin/rand_create"
+                                                                                         title="换张图片"/>
                 <br>
             </p>
-
             <p class="last">
                 <input type="submit" value="登陆" class="login">
-                <a href="#">账号申请</a>
+                <a href="#" onclick="$('.wrapper_login_r').show();$('.wrapper_login').hide();">账号申请</a>
             </p>
+            <div class="clear"></div>
+        </form>
+        <div class="clear"></div>
+    </div>
+</div>
 
+
+
+
+<div id="wrapper_login" class="wrapper_login_r" style="display:none">
+    <div id="menu">
+        <div id="left"></div>
+        <div id="right"></div>
+        <h2></h2>
+        <div class="clear"></div>
+    </div>
+    <div class="body">
+        <form action="/index.php/admin/reg" method="post">
+            <p>
+
+                <input type="text" name="username" id="username"  size="40" class="text" value="<?php echo $_GET['username']?>">
+                <br>
+            </p>
+            <p>
+
+                <input type="password" name="password" id="password"   size="40" class="text" value="<?php echo $_GET['password']?>">
+                <br>
+            </p>
+            <p>
+
+                <input type="text" name="reg_rand" class="text" id="yan" value=""  ><img id="code" alt="看不清，换一张" onclick="location.href='?username='+document.getElementById('username').value;"  src="http://qingting.huosu.com/index.php/admin/rand_create"  title="换张图片"/>
+                <br>
+            </p>
+            <p class="last">
+                <input type="submit" value="注册" class="login">
+                <a href="#" onclick="$('.wrapper_login').show();$('.wrapper_login_r').hide();">返回登陆</a>
+            </p>
             <div class="clear"></div>
         </form>
         <div class="clear"></div>
@@ -55,22 +85,21 @@
 </div>
 <script>
 
-    window.onload = function () {
+    window.onload=function(){
         changes();
     }
-    window.onresize = function () {
+    window.onresize=function(){
         changes();
     }
-    function changes() {
-        var w = $(document).width(), h = $(document).height();
+    function changes(){
+        var w = $(document).width(),h = $(document).height();
         //alert(w);
         $('#loginBg').css({
-            'width': w,
-            'height': h
+            'width':w,
+            'height':h
         });
 
     }
 
 </script>
-</body>
-</html>
+</body></html>
