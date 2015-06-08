@@ -22,11 +22,21 @@ class ActiveGamesModelTest extends CIUnit_TestCase
 
         $this->CI->load->model('active_games_model');
         $this->_pcm = $this->CI->active_games_model;
+        $this->data= array(
+            'gid' => 1,
+            'title' => 'test',
+            'href'=>'test',
+            'info'=>'我就是来测试的，不要想太多',
+            'img'=>'/upload/test.png',
+            'img1'=>'/upload/test.png1',
+            'img2'=>'/upload/test.png2'
+        );
     }
 
 	public function tearDown()
 	{
-		parent::tearDown();
+        $clear_data_sql = "truncate table " . $this->_pcm->table;
+        $this->_pcm->db->query($clear_data_sql);
 	}
 
     // ------------------------------------------------------------------------
@@ -58,6 +68,8 @@ class ActiveGamesModelTest extends CIUnit_TestCase
 
     public function test_all($type, $gid, $order, $p_start, $p_end, $expend)
     {
+
+        $this->_pcm->ins($this->data);
         $active_games_data = $this->_pcm->all($type, $gid, $order, $p_start, $p_end);
         $this->assertEquals($expend, count($active_games_data));
     }
@@ -65,9 +77,7 @@ class ActiveGamesModelTest extends CIUnit_TestCase
     public function all_provider()
     {
         return array(
-            array('', '', '', 1, 15, 15),
-            array('', '', '', 1, 5, 5),
-            array('', '1', '', 1, 15, 1)
+            array('', 1 , '', 1, 15, 1)
         );
     }
 
@@ -77,6 +87,7 @@ class ActiveGamesModelTest extends CIUnit_TestCase
 
     public function test_con($type, $gid, $expend)
     {
+        $this->_pcm->ins($this->data);
         $con = $this->_pcm->con($type, $gid);
         $this->assertEquals($expend, $con);
     }
@@ -85,7 +96,6 @@ class ActiveGamesModelTest extends CIUnit_TestCase
     {
         return array(
             array('', '1', 1),
-            array('', '', 15)
         );
     }
 
@@ -95,6 +105,7 @@ class ActiveGamesModelTest extends CIUnit_TestCase
 
     public function test_info($gid, $gid_id, $expend)
     {
+        $this->_pcm->ins($this->data);
         $get_data = $this->_pcm->info($gid, $gid_id);
         $this->assertEquals($expend, $get_data);
     }
@@ -102,7 +113,15 @@ class ActiveGamesModelTest extends CIUnit_TestCase
     public function info_provider()
     {
         return array(
-            array('gid', 3, array('gid' => '3', 'title' => '不给糖就捣蛋', 'href' => 'bugeitang', 'info' => '简单易懂且具有挑战性的游戏，快来测测是不是手残者！', 'img' => '/active_games/images/bugeitang1.jpg', 'img1' => '/active_games/images/bugeitang1.jpg', 'img2' => '/active_games/images/bugeitang2.jpg'))
+            array('gid', 1, array(
+                'gid' => 1,
+                'title' => 'test',
+                'href'=>'test',
+                'info'=>'我就是来测试的，不要想太多',
+                'img'=>'/upload/test.png',
+                'img1'=>'/upload/test.png1',
+                'img2'=>'/upload/test.png2'
+            ))
 
         );
     }
@@ -114,14 +133,15 @@ class ActiveGamesModelTest extends CIUnit_TestCase
 
     public function test_get_field($field,$tfrom, $tval,$expend)
     {
+        $this->_pcm->ins($this->data);
         $actual = $this->_pcm->get_field($field, $tfrom, $tval);
         $this->assertEquals($expend, $actual[$field]);
     }
 
     public function get_field_provider(){
         return array(
-            array('title','gid','1','1010'),
-            array('href','gid','3','bugeitang')
+            array('title','gid','1','test'),
+            array('href','gid','1','test')
         );
     }
     /**
@@ -130,6 +150,7 @@ class ActiveGamesModelTest extends CIUnit_TestCase
 
     public function test_edit($val,$new_data,$gid)
     {
+        $this->_pcm->ins($this->data);
         $data[$val] = $new_data;
         $this->_pcm->edit($data, $gid);
         $update_data = $this->_pcm->info('gid',$gid);
@@ -138,31 +159,23 @@ class ActiveGamesModelTest extends CIUnit_TestCase
 
     public function edit_provider(){
         return array(
-            array('title','test','2'),
-            array('href','test1','2')
+            array('title','test','1'),
+            array('href','test1','1')
 
         );
     }
 
     public function test_insert(){
-        $data= array(
-            'gid' => 16,
-            'title' => 'test',
-            'href'=>'test',
-            'info'=>'我就是来测试的，不要想太多',
-            'img'=>'/upload/test.png',
-            'img1'=>'/upload/test.png1',
-            'img2'=>'/upload/test.png2'
-        );
         $expend = count($this->_pcm->all('','','', 0,20)) + 1;
-        $return_data = $this->_pcm->ins($data);
+        $this->_pcm->ins($this->data);
         $get_data = count($this->_pcm->all('','','', 0,20));
         $this->assertEquals($expend, $get_data);
 
     }
     public function test_del(){
+        $this->_pcm->ins($this->data);
         $expend = count($this->_pcm->all('','','', 0,20)) - 1;
-        $return_data = $this->_pcm->del(16);
+        $this->_pcm->del(1);
         $get_data = count($this->_pcm->all('','','', 0,20));
         $this->assertEquals($expend, $get_data);
 
