@@ -13,34 +13,28 @@ class Active_games_model extends CI_Model
      * 获取信息
      * @return array
      */
-    public function where($type,$gid)
+    public function where($gid)
     {
         $where[] = 'gid > 0';
-        if ($type) $where[] = "type like '%" . $type . "%'";
         if ($gid) $where[] = "gid=" . $gid;
         return $where;
     }
 
-    public function all($type,$gid,$order,$p_start,$p_end)
+    public function all($gid, $order, $start = 0, $end = 15)
     {
-        $where = " where " . implode(" and ", $this->where($type,$gid));
+        $where = " where " . implode(" and ", $this->where($gid));
         //排序方式,默认id排序
         $order = $order > 0 ? $order : 'gid ';
-        //分页开始值
-        $end = $p_end ? $p_end : 15;
-        $start = $p_start ? ($p_start - 1) * $end : 0;
-        //分页结束值
         $sql = "select * from " . $this->table . $where . " order by " . $order . " limit " . $start . "," . $end;
-
         $query = $this->db->query($sql);
         $row = $query->result_array();
         return $row;
     }
 
     //获取总数量
-    public function con($type,$gid)
+    public function con($gid)
     {
-        $where = $this->where($type,$gid);
+        $where = $this->where($gid);
         $where[] = " 1=1 ";
         $sql = "select count(*) from " . $this->table . " where " . implode(' and ', $where);
         $query = $this->db->query($sql);
@@ -64,8 +58,9 @@ class Active_games_model extends CI_Model
         $row = $query->result_array();
         return $row[0];
     }
+
     //获取单个信息的单个属性
-    public function get_field($field,$tfrom, $tval)
+    public function get_field($field, $tfrom, $tval)
     {
         $sql = "select " . $field . "  from " . $this->table . " where " . $tfrom . "='" . $tval . "' limit 1";
         $query = $this->db->query($sql);

@@ -128,7 +128,7 @@ class ActiveModelTest extends CIUnit_TestCase
         *@dataProvider test_info_provider
     */
     public function test_info($tfrom, $tvalue, $expend){
-        
+
         $get_data=null;
         $order = 'id';
         $start = 0;
@@ -137,7 +137,7 @@ class ActiveModelTest extends CIUnit_TestCase
         $data2 = $this->data;
         $data2['title'] = '吃饭了2';
         $this->_pcm->ins($data2);
-        
+
         $get_data = $this->_pcm->info($tfrom, $tvalue);
 
         $this->assertEquals($expend, $get_data);
