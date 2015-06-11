@@ -575,7 +575,8 @@ class Active extends CI_Controller
     public function  games()
     {
         $this->load->model('active_games_model');
-        $data['list'] = $this->active_games_model->all($this->input->get('gid'),$this->input->get('order'),$_GET['p'],$_GET['end']);
+        $data['list'] = $this->active_games_model->all($this->input->get('gid'),$this->input->get('order'));
+        $data['user_id'] = $this->session->userdata('userid');
         $this->load->view('active/game', $data);
     }
 

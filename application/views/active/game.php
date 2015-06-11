@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0029)http://act.aiwanpai.com/game/ -->
-<html lang="zh-cn">
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
@@ -91,8 +91,11 @@ require('gameheader.php');
 
                                     <div class="form-group item--name">
                                         <label>
-                                            <!--<div class="icheckbox_polaris"><input type="checkbox" name="child" data-id="65a6e04bded911e482f2ac162d89ee80" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); border: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;"></ins></div>--><?php echo $v['title'] ?>
+                                            <?php echo $v['title'] ?>
                                         </label>
+                                        <a style="float:right;font-size: 14px" href="http://game_code.qingting.huosu.com/users/<?php echo $user_id ?>/games/<?php echo $v['href'] ?>/login">
+                                            编辑
+                                        </a>
                                     </div>
                                     <div class="item--gameinfo">
                                         购买次数:10&nbsp;&nbsp;
