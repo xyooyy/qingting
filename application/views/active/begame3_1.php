@@ -59,7 +59,7 @@ require('gameheader.php');
                             </a>
                         </li>
                         <li>
-                            <a href="./begame4?id=<?php echo $_GET['id'] ?>">
+                            <a href="">
                                 <span>
                                     确认提交
                                 </span>

@@ -25,7 +25,7 @@ require('gameheader.php');
                     <ul>
                         <li><a href="#"> 活动计划 </a></li>
                     </ul>
-                    <a class="create-btn" href="./begame1_files/begame1.html"> 新建活动 </a>
+                    <a class="create-btn" href="/active/begame1"> 新建活动 </a>
                 </div>
             </div>
             <div class="content-wrap">
@@ -40,7 +40,7 @@ require('gameheader.php');
                             </a>
                         </li>
                         <li>
-                            <a href="./begame2?id=<?php echo $_GET['id'] ?>">
+                            <a href="">
                                 <span>
                                     选择游戏
                                 </span>
@@ -48,7 +48,7 @@ require('gameheader.php');
                             </a>
                         </li>
                         <li>
-                            <a href="./begame3?id=<?php echo $_GET['id'] ?>">
+                            <a href="">
                                 <span>
                                     营销元素
                                 </span>
@@ -56,7 +56,7 @@ require('gameheader.php');
                             </a>
                         </li>
                         <li>
-                            <a href="./begame4?id=<?php echo $_GET['id'] ?>">
+                            <a href=>
                                 <span>
                                     确认提交
                                 </span>
