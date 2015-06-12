@@ -93,7 +93,7 @@ require('gameheader.php');
                                         <label>
                                             <?php echo $v['title'] ?>
                                         </label>
-                                        <a style="float:right;font-size: 14px" target="view_window" href="http://game_code.qingting.huosu.com/games/<?php echo $v['href'] ?>/login">
+                                        <a style="float:right;font-size: 14px" target="view_window" href="http://game-code.qingting.huosu.com/games/<?php echo $v['href'] ?>/login">
                                             编辑
                                         </a>
                                     </div>
