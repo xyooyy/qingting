@@ -20,13 +20,15 @@ class Game extends CI_Controller
     //进入游戏
     public function info()
     {
-        if ($_GET['mid']) $this->load->Model('game_my_model', 'game_model');
+        if ($_GET['mid'])
+            $this->load->Model('game_my_model', 'game_model');
         else {
             $this->load->Model('game_model');
         }
         $data = $this->game_model->all();
         //var_dump($data);
-        if ($data[0]['keyname'] != '') $this->load->view('games/' . $data[0]['keyname'] . '/index', $data['list'][0]);
+        if ($data[0]['keyname'] != '')
+            $this->load->view('games/' . $data[0]['keyname'] . '/index', $data['list'][0]);
         else {
             $this->err();
         }

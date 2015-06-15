@@ -11,45 +11,48 @@ class Active extends CI_Controller
         $this->host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
     }
 
-    public function _remap($method){
-        if($method == 'dataCenter'){
+    public function _remap($method)
+    {
+        if ($method == 'dataCenter') {
             $this->data_center();
-        }elseif($method == 'dataReport'){
+        } elseif ($method == 'dataReport') {
             $this->data_report();
-        }
-        else{
+        } else {
             $this->$method();
         }
     }
 
     public function data_report()
     {
+        $data = $this->get_data_report_data();
+        $this->load->view('active/data_center', $data);
+    }
+
+    public function get_data_report_data(){
         $this->load->model('active_model');
         $this->load->model('tongji_model');
         $this->load->model('active_games_model');
-
-        $data['active'] = $this->active_model->get_field('title' , 'gid' ,'id', $this->input->get('id'));
+        $data['active'] = $this->active_model->get_field('title', 'gid', 'id', $this->input->get('id'));
         $data['game'] = $this->active_games_model->get_field('img', 'gid', $data['active']['gid']);
-        $data['count']['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang',$this->input->get('id'));
-        $data['count']['click'] = $this->tongji_model->key_con('type', 'start',$this->input->get('id'));
-        $data['count']['uv'] = count($this->tongji_model->dis_con($_GET['time'],$this->input->get('id')));
+        $data['count']['fenxiang'] = $this->tongji_model->key_con('type', 'fenxiang', $this->input->get('id'));
+        $data['count']['click'] = $this->tongji_model->key_con('type', 'start', $this->input->get('id'));
+        $data['count']['uv'] = count($this->tongji_model->dis_con($_GET['time'], $this->input->get('id')));
         $data['area'] = $this->tongji_model->con_area($this->input->get('id'));
         $data['stay'] = '[' . implode(',', $this->tongji_model->active_stay($this->input->get('id'))) . ']';
         $data['basic_info'] = $this->tongji_model->basic_info($this->input->get('id'));
-
         $today = strtotime(date('Y-m-d 00:00:00', time()));
-        $yestday = strtotime(date('Y-m-d 00:00:00', time()-24*60*60));
-        $data['return_visit']['today'] = $this->tongji_model->return_ip($today,$this->input->get('id')) * 100;
-        $data['return_visit']['yestday'] = $this->tongji_model->return_ip($yestday,$this->input->get('id')) * 100;
-        $this->load->view('active/data_center', $data);
+        $yestday = strtotime(date('Y-m-d 00:00:00', time() - 24 * 60 * 60));
+        $data['return_visit']['today'] = $this->tongji_model->return_ip($today, $this->input->get('id')) * 100;
+        $data['return_visit']['yestday'] = $this->tongji_model->return_ip($yestday, $this->input->get('id')) * 100;
+        return $data;
     }
 
     public function date_info()
     {
         $this->load->model('tongji_model');
-        $fenxiang = $this->tongji_model->key_con('type', 'fenxiang',$this->input->get('id'));
-        $click = $this->tongji_model->key_con('type', 'start',$this->input->get('id'));
-        $uv = count($this->tongji_model->dis_con($_GET['time'],$this->input->get('id')));
+        $fenxiang = $this->tongji_model->key_con('type', 'fenxiang', $this->input->get('id'));
+        $click = $this->tongji_model->key_con('type', 'start', $this->input->get('id'));
+        $uv = count($this->tongji_model->dis_con($_GET['time'], $this->input->get('id')));
 
         echo json_encode(array('success' => true, 'fenxiang' => $fenxiang, 'click_count' => $click, 'players_count' => $uv, 'date' => date('Y-m-d', $_GET['time'])));
 
@@ -61,7 +64,7 @@ class Active extends CI_Controller
         $info = '[' . implode(',', $this->tongji_model->active_stay($this->input->get('id'))) . ']';
         $count_visit = $this->tongji_model->basic_info($this->input->get('id'));
 //        print_r($count_visit);
-        echo json_encode(array('count_visit' => $count_visit,'stay_time' => $info));
+        echo json_encode(array('count_visit' => $count_visit, 'stay_time' => $info));
     }
 
     public function ticket()
@@ -79,7 +82,7 @@ class Active extends CI_Controller
         $end = $_GET['end'] ? $_GET['end'] : 10;
 
         $this->load->model('active_model');
-        $data['list'] = $this->active_model->all($order,$start,$end);
+        $data['list'] = $this->active_model->all($order, $start, $end);
         $this->load->library('pagination');
         $config['base_url'] = '/active/index?';
         $config['total_rows'] = $this->active_model->con();
@@ -122,7 +125,7 @@ class Active extends CI_Controller
         $this->load->model('active_model');
         $this->load->model('active_games_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        $active_games = $this->active_games_model->all($this->input->get('gid'),$this->input->get('order'),'0','15');
+        $active_games = $this->active_games_model->all($this->input->get('gid'), $this->input->get('order'), '0', '15');
         foreach ($active_games as $index => $game) {
             $href = $this->host . 'active_games/' . $game['href'] . '/';
             $active_games[$index]['qrcode'] = $this->host . $this->erweima($href);
@@ -191,7 +194,7 @@ class Active extends CI_Controller
         $this->load->model('prize_model');
         $id = $this->input->get('id');
         $is_finish_set_prize = $this->active_model->is_finish_set_prize($id);
-        if(! $is_finish_set_prize){
+        if (!$is_finish_set_prize) {
             header('Location:/active/begame3_4?id=' . $id);
         }
 
@@ -201,7 +204,6 @@ class Active extends CI_Controller
         if (!$page) {
             $page = '1';
         }
-
         if ($page == '1') {
             if ($row['html_prize1'] != '') {
                 $data['html'] = file_get_contents($this->host . $row['html_prize1']);
@@ -236,7 +238,7 @@ class Active extends CI_Controller
         $data['val'] = $row;
         $data['val']['prize'] = $prize;
         $data['val']['games'] = $games;
-        $data['is_finish_set_prize'] = $this->active_model->is_finish_set_prize($id)?1:0;
+        $data['is_finish_set_prize'] = $this->active_model->is_finish_set_prize($id) ? 1 : 0;
         $this->load->view('active/begame4', $data);
     }
 
@@ -296,7 +298,7 @@ class Active extends CI_Controller
         $row = $this->active_model->info('id', $this->input->get('id'));
         $_GET['aid'] = $this->input->get('id');
         $_GET['order'] = 'p_size';
-        $data = $this->prize_model->all($this->input->get('aid'),$this->input->get('order'),$_GET['p'],$_GET['end']);
+        $data = $this->prize_model->all($this->input->get('aid'), $this->input->get('order'), $_GET['p'], $_GET['end']);
         $con = $this->prize_log_model->con($this->input->get('aid'));
 
         if ($con > $row['prize_c1']) {
@@ -337,7 +339,7 @@ class Active extends CI_Controller
                         $data_p['prizeid'] = $data[$i]['id'];
                         $this->prize_log_model->ins($data_p);
                         $phone_html = file_get_contents($row['html_prize1']);
-                        $phone_html = str_replace('javascript:;prize_href', $this->prize_model->info('aid',$this->input->get('id'))['p_href']  , $phone_html);
+                        $phone_html = str_replace('javascript:;prize_href', $this->prize_model->info('aid', $this->input->get('id'))['p_href'], $phone_html);
                         $phone_html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $this->input->get('id'), $phone_html);
                         $phone_html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $this->input->get('id'), $phone_html);
                         $return['html'] = $phone_html;
@@ -525,7 +527,7 @@ class Active extends CI_Controller
             $base_html = $generated_file . '1' . '.html';
             $generated_file .= '.html';
             file_put_contents($base_html, $phone_html);
-            $phone_html = str_replace('javascript:;prize_href', $this->prize_model->info('aid',$_POST['id'])['p_href']  , $phone_html);
+            $phone_html = str_replace('javascript:;prize_href', $this->prize_model->info('aid', $_POST['id'])['p_href'], $phone_html);
             $phone_html = str_replace('javascript:;fenxiang', '/index.php/active/games_fenxiang?id=' . $_POST['id'], $phone_html);
             $phone_html = str_replace('javascript:;', '/index.php/active/games_info?id=' . $_POST['id'], $phone_html);
 
@@ -575,7 +577,7 @@ class Active extends CI_Controller
     public function  games()
     {
         $this->load->model('active_games_model');
-        $data['list'] = $this->active_games_model->all($this->input->get('gid'),$this->input->get('order'));
+        $data['list'] = $this->active_games_model->all($this->input->get('gid'), $this->input->get('order'));
         $data['user_id'] = $this->session->userdata('userid');
         $this->load->view('active/game', $data);
     }
@@ -632,15 +634,7 @@ class Active extends CI_Controller
     //统计数据
     public function tongji($tp, $id, $pid)
     {
-        if ($_SERVER["HTTP_X_FORWARDED_FOR"]) {
-            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        } else {
-            if ($_SERVER["HTTP_CLIENT_IP"]) {
-                $ip = $_SERVER["HTTP_CLIENT_IP"];
-            } else {
-                $ip = $_SERVER["REMOTE_ADDR"];
-            }
-        }
+        $ip = $this->get_ip();
         $domain = strpos($ip, ',');
         if ($domain) {
             $ip = substr($ip, 0, strpos($ip, ','));
@@ -657,6 +651,17 @@ class Active extends CI_Controller
             $data['basic_info'] = $_SERVER['HTTP_USER_AGENT'];
             $data['tm'] = time();
             $this->tongji_model->ins($data);
+        }
+    }
+    public function get_ip(){
+        if ($_SERVER["HTTP_X_FORWARDED_FOR"]) {
+            return $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } else {
+            if ($_SERVER["HTTP_CLIENT_IP"]) {
+                return $_SERVER["HTTP_CLIENT_IP"];
+            } else {
+                return $_SERVER["REMOTE_ADDR"];
+            }
         }
     }
 

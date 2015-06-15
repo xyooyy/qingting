@@ -1,0 +1,13 @@
+1:
+    title: 'Verizon'
+    info: 'tianltiao'
+    gid: 3
+    href: 1010
+    img: '/active/test.png'
+2:
+    title: '2048'
+    info: 'tianlssstiao'
+    gid: 1
+    href: 2048
+    img: '/active/2.png'
+
