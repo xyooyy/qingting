@@ -145,6 +145,18 @@ class ActiveControllerTest extends CIUnit_TestCase
         $this->assertEquals($expend,$return_data);
     }
 
+    public function testIndex(){
+        $this->CI->load->model('active_model');
+        $this->_pcm = $this->CI->active_model;
+        $this->session_user_id = 1;
+        $session = array('userid' => $this->session_user_id);
+        $this->_pcm->session->set_userdata($session);
+        $data = $this->CI->index();
+        $out = output();
+        preg_match_all("/<td>(.*)<\/td>/",$out,$arr);
+        $this->assertEquals('Veridzon',$arr[1][0]);
+        $this->assertEquals('Verizon',$arr[1][4]);
+    }
 
 }
 
