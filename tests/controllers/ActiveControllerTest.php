@@ -63,8 +63,30 @@ class ActiveControllerTest extends CIUnit_TestCase
         $expend = '{"count_visit":[],"stay_time":"[0,0,0,0,0,0]"}';
         $this->expectOutputString($expend);
     }
-    public function testIndex(){
-        
+
+    public function testActiveSubmitUpdate()
+    {
+        $_POST['actName'] = 'test';
+        $_POST['scene'] = '品牌传播';
+        $_POST['wxTitle'] = 'fenxiang';
+        $_POST['wxDesc'] = '分享描述';
+        $_POST['ischou'] = '1';
+        $_POST['id'] = '1';
+        $this->CI->active_submit();
+        $this->expectOutputString('1');
+
+    }
+
+    public function testActiveSubmitNew()
+    {
+        $_POST['actName'] = 'test';
+        $_POST['scene'] = '品牌传播';
+        $_POST['wxTitle'] = 'fenxiang';
+        $_POST['wxDesc'] = '分享描述';
+        $_POST['ischou'] = '1';
+        $this->CI->active_submit();
+        $this->expectOutputString('3');
+
     }
 }
 

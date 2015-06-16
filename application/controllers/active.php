@@ -380,8 +380,7 @@ class Active extends CI_Controller
         $data['fenxiangt'] = $this->input->post('wxTitle');
         $data['fenxiangc'] = $this->input->post('wxDesc');
         $data['ischou'] = $this->input->post('ischou');
-
-        if ($wximg) $data['fenxiangi'] = $wximg;
+        $data['fenxiangi'] = $wximg ? $wximg : '';
         if ($this->input->post('id')) {
             $this->active_model->edit($data, $this->input->post('id'));
             echo $this->input->post('id');
