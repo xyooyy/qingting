@@ -28,7 +28,8 @@ class Active extends CI_Controller
         $this->load->view('active/data_center', $data);
     }
 
-    public function get_data_report_data(){
+    public function get_data_report_data()
+    {
         $this->load->model('active_model');
         $this->load->model('tongji_model');
         $this->load->model('active_games_model');
@@ -490,10 +491,8 @@ class Active extends CI_Controller
                 $this->active_model->edit($data, $this->input->post('id'));
             };
 
-            if ($row['ischou'] == 1) echo 'ischou' . $this->input->post('id');
-            else {
-                echo $this->input->post('id');
-            }
+            echo $row['ischou'] == 1 ? 'ischou' . $this->input->post('id') : $this->input->post('id');
+            
         }
 
     }
@@ -652,7 +651,9 @@ class Active extends CI_Controller
             $this->tongji_model->ins($data);
         }
     }
-    public function get_ip(){
+
+    public function get_ip()
+    {
         if ($_SERVER["HTTP_X_FORWARDED_FOR"]) {
             return $_SERVER["HTTP_X_FORWARDED_FOR"];
         } else {

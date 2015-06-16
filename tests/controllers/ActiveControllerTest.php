@@ -88,5 +88,27 @@ class ActiveControllerTest extends CIUnit_TestCase
         $this->expectOutputString('3');
 
     }
+
+    public function testActiveSubmit3_2(){
+        $_POST['html'] = 'end_html';
+        $_POST['id'] = '1';
+        $this->CI->active_submit3_2();
+        $this->expectOutputString('1');
+
+    }
+
+    public function testActiveSubmit3_3_chou(){
+        $_POST['html'] = 'fenxiang_html';
+        $_POST['id'] = '1';
+        $this->CI->active_submit3_3();
+        $this->expectOutputString('ischou1');
+    }
+    public function testActiveSubmit3_3_not(){
+        $_POST['html'] = 'fenxiang_html';
+        $_POST['id'] = '2';
+        $this->CI->active_submit3_3();
+        $this->expectOutputString('2');
+    }
+
 }
 
