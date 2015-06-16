@@ -11,6 +11,9 @@
     gid: 3
     ischou: 1
     userid: 1
+    prize_t: 'qt'
+    prize_c: 3
+    prize_c1: 100
 2:
     title: '测试'
     id: 2
@@ -24,6 +27,9 @@
     gid: 3
     ischou: 0
     userid: 1
+    prize_t: 'qt'
+    prize_c: 3
+    prize_c1: 100
 
 
 

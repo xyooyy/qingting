@@ -176,8 +176,8 @@ class Active extends CI_Controller
     {
         $this->load->model('active_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
-        if ($row['html_fenxiang1'] != '') $data['html'] = file_get_contents($this->host . $row['html_fenxiang1']);
-
+//        if ($row['html_fenxiang1'] != '') $data['html'] = file_get_contents($this->host . $row['html_fenxiang1']);
+        $data['html'] = $row['html_fenxiang1'] != '' ? file_get_contents($this->host . $row['html_fenxiang1']) : '';
         $data['ischou'] = $row['ischou'];
         $this->load->view('active/begame3_3', $data);
     }
@@ -252,7 +252,7 @@ class Active extends CI_Controller
         $_GET['gid'] = $row['gid'];
         $games = $this->active_games_model->info('gid', $this->input->get('gid'));
         $this->input->set_cookie("gamesid", $this->input->get('id'), 3600);
-        $this->tongji('start', $this->input->get('id'));
+        $this->tongji('start', $this->input->get('id'),0);
         //header("Location:./games_end".$games['href']);
         header("Location:" . $this->host . "active_games/" . $games['href']);
     }
@@ -275,7 +275,7 @@ class Active extends CI_Controller
         $this->load->model('active_games_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
         $this->input->set_cookie("cookie3_3", '1', 100);
-        $this->tongji('fenxiang', $this->input->get('id'));
+        $this->tongji('fenxiang', $this->input->get('id'),0);
         //$this->input->set_cookie("choujiang",$this->input->get('id'),10);
         header("Location:" . $this->host . $row['html_fenxiang']);
     }
@@ -286,7 +286,7 @@ class Active extends CI_Controller
         $this->load->model('active_model');
         $row = $this->active_model->info('id', $this->input->get('id'));
         $this->input->set_cookie("cookie3_5", '1', 100);
-        $this->tongji('choujiang', $this->input->get('id'));
+        $this->tongji('choujiang', $this->input->get('id'),0);
         header("Location:/" . $row['html_prize_not_win']);
     }
 
