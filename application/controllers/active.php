@@ -492,7 +492,7 @@ class Active extends CI_Controller
             };
 
             echo $row['ischou'] == 1 ? 'ischou' . $this->input->post('id') : $this->input->post('id');
-            
+
         }
 
     }
@@ -622,7 +622,6 @@ class Active extends CI_Controller
         $this->load->model('active_model');
 
         if ($this->input->get('id')) {
-            //echo $_GET['pid'];
             $this->active_model->del($this->input->get('id'));
         }
         $_GET['id'] = '';

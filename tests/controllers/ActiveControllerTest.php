@@ -8,8 +8,8 @@ class ActiveControllerTest extends CIUnit_TestCase
     protected $tables = array(
         'active' => 'active',
         'active_games' => 'active_games',
-        'tongji' => 'tongji'
-
+        'tongji' => 'tongji',
+        'prize' => 'prize'
     );
 
     private $_pcm;
@@ -109,6 +109,26 @@ class ActiveControllerTest extends CIUnit_TestCase
         $this->CI->active_submit3_3();
         $this->expectOutputString('2');
     }
+
+    public function testActiveSubmit3_5(){
+        $_POST['id'] = '1';
+        $_POST['html'] = 'prize_end_html';
+        $_POST['type'] = 'alreadyWinningHtml';
+        $this->CI->active_submit3_5();
+        $this->expectOutputString('1');
+    }
+
+    public function testDel(){
+        $_GET['id'] = '1';
+        $this->CI->del();
+        $this->CI->load->model('active_model');
+        $this->_pcm = $this->CI->active_model;
+        $return_data = $this->_pcm->info('id','1');
+        $expend = NULL;
+        $this->assertEquals($expend,$return_data);
+    }
+
+    
 
 }
 
