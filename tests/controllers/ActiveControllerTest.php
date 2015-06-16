@@ -36,7 +36,7 @@ class ActiveControllerTest extends CIUnit_TestCase
     {
         $_GET['id'] = '1';
         $expend = array(
-            'active' => array('title' => 'Verizon', 'gid' => '3'),
+            'active' => array('title' => 'test', 'gid' => '3'),
             'game' => array('img' => '/active/test.png'),
             'count' => array('fenxiang' => 1, 'click' => 5, 'uv' => 1),
             'area' => "[['',1.8],]",
@@ -154,9 +154,29 @@ class ActiveControllerTest extends CIUnit_TestCase
         $data = $this->CI->index();
         $out = output();
         preg_match_all("/<td>(.*)<\/td>/",$out,$arr);
-        $this->assertEquals('Veridzon',$arr[1][0]);
-        $this->assertEquals('Verizon',$arr[1][4]);
+        $this->assertEquals('测试',$arr[1][0]);
+        $this->assertEquals('test',$arr[1][4]);
     }
+
+    public function testDataCenterNoSearch(){
+        $this->CI->data_center();
+        $out = output();
+        preg_match_all("/<b>(.*)<\/b>/",$out,$arr);
+        $expend = '2条';
+        $this->assertEquals($expend,$arr[1][0]);
+    }
+
+    public function testDataCenterSearch(){
+        $_GET['keyword'] = 'test';
+        $this->CI->data_center();
+        $out = output();
+        preg_match_all("/<b>(.*)<\/b>/",$out,$arr);
+        $expend = '1条';
+        $this->assertEquals($expend,$arr[1][0]);
+
+    }
+
+    
 
 }
 
