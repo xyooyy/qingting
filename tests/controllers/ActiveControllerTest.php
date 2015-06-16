@@ -128,7 +128,23 @@ class ActiveControllerTest extends CIUnit_TestCase
         $this->assertEquals($expend,$return_data);
     }
 
-    
+    public function testTongJi(){
+        $this->CI->load->model('tongji_model');
+        $this->_pcm = $this->CI->tongji_model;
+        $this->CI->tongji('fenxiang','2','0');
+        $return_data = $this->_pcm->info('aid','2');
+        $expend = array(
+            'tm' => time(),
+            'type' => 'fenxiang',
+            'aid' => '2',
+            'pid' => '0',
+            'ip' => '127.0.0.1',
+            'area' => '',
+            'basic_info' => NULL
+        );
+        $this->assertEquals($expend,$return_data);
+    }
+
 
 }
 
