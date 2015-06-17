@@ -321,7 +321,15 @@ class ActiveControllerTest extends CIUnit_TestCase
         $this->assertEquals(' src="/active/test.png"', $arr[1][2]);
         $this->assertEquals('第一个奖品', $prize[1][0]);
         $this->assertEquals(' class="prize-show-text">100',$data[1][4]);
+    }
 
+    public function testGames(){
+        $_GET['gid'] = '1';
+        $this->CI->games();
+        $out = output();
+        preg_match_all("/<label>(.*)<\/label>/",$out,$arr);
+        $expend = '2048';
+        $this->assertEquals($expend,$arr[1][0]);
     }
 }
 

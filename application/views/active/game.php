@@ -90,9 +90,7 @@ require('gameheader.php');
                                             class="img" src="<?php echo $v['img'] ?>"></a>
 
                                     <div class="form-group item--name">
-                                        <label>
-                                            <?php echo $v['title'] ?>
-                                        </label>
+                                        <label><?php echo $v['title'] ?></label>
                                         <a style="float:right;font-size: 14px" target="view_window" href="http://game-code.qingting.huosu.com/games/<?php echo $v['href'] ?>/login">
                                             编辑
                                         </a>
